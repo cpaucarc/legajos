@@ -1,0 +1,252 @@
+[
+  {
+    "model": "common.ubigeodepartamento",
+    "pk": 1,
+    "fields": {
+      "cod_ubigeo_reniec_departamento": "01",
+      "cod_ubigeo_inei_departamento": "01",
+      "ubigeo_departamento": "Amazonas",
+      "pais": 177
+    }
+  },
+  {
+    "model": "common.ubigeodepartamento",
+    "pk": 2,
+    "fields": {
+      "cod_ubigeo_reniec_departamento": "02",
+      "cod_ubigeo_inei_departamento": "02",
+      "ubigeo_departamento": "\u00c1ncash",
+      "pais": 177
+    }
+  },
+  {
+    "model": "common.ubigeodepartamento",
+    "pk": 3,
+    "fields": {
+      "cod_ubigeo_reniec_departamento": "03",
+      "cod_ubigeo_inei_departamento": "03",
+      "ubigeo_departamento": "Apur\u00edmac",
+      "pais": 177
+    }
+  },
+  {
+    "model": "common.ubigeodepartamento",
+    "pk": 4,
+    "fields": {
+      "cod_ubigeo_reniec_departamento": "04",
+      "cod_ubigeo_inei_departamento": "04",
+      "ubigeo_departamento": "Arequipa",
+      "pais": 177
+    }
+  },
+  {
+    "model": "common.ubigeodepartamento",
+    "pk": 5,
+    "fields": {
+      "cod_ubigeo_reniec_departamento": "05",
+      "cod_ubigeo_inei_departamento": "05",
+      "ubigeo_departamento": "Ayacucho",
+      "pais": 177
+    }
+  },
+  {
+    "model": "common.ubigeodepartamento",
+    "pk": 6,
+    "fields": {
+      "cod_ubigeo_reniec_departamento": "06",
+      "cod_ubigeo_inei_departamento": "06",
+      "ubigeo_departamento": "Cajamarca",
+      "pais": 177
+    }
+  },
+  {
+    "model": "common.ubigeodepartamento",
+    "pk": 7,
+    "fields": {
+      "cod_ubigeo_reniec_departamento": "07",
+      "cod_ubigeo_inei_departamento": "08",
+      "ubigeo_departamento": "Cusco",
+      "pais": 177
+    }
+  },
+  {
+    "model": "common.ubigeodepartamento",
+    "pk": 8,
+    "fields": {
+      "cod_ubigeo_reniec_departamento": "08",
+      "cod_ubigeo_inei_departamento": "09",
+      "ubigeo_departamento": "Huancavelica",
+      "pais": 177
+    }
+  },
+  {
+    "model": "common.ubigeodepartamento",
+    "pk": 9,
+    "fields": {
+      "cod_ubigeo_reniec_departamento": "09",
+      "cod_ubigeo_inei_departamento": "10",
+      "ubigeo_departamento": "Hu\u00e1nuco",
+      "pais": 177
+    }
+  },
+  {
+    "model": "common.ubigeodepartamento",
+    "pk": 10,
+    "fields": {
+      "cod_ubigeo_reniec_departamento": "10",
+      "cod_ubigeo_inei_departamento": "11",
+      "ubigeo_departamento": "Ica",
+      "pais": 177
+    }
+  },
+  {
+    "model": "common.ubigeodepartamento",
+    "pk": 11,
+    "fields": {
+      "cod_ubigeo_reniec_departamento": "11",
+      "cod_ubigeo_inei_departamento": "12",
+      "ubigeo_departamento": "Jun\u00edn",
+      "pais": 177
+    }
+  },
+  {
+    "model": "common.ubigeodepartamento",
+    "pk": 12,
+    "fields": {
+      "cod_ubigeo_reniec_departamento": "12",
+      "cod_ubigeo_inei_departamento": "13",
+      "ubigeo_departamento": "La Libertad",
+      "pais": 177
+    }
+  },
+  {
+    "model": "common.ubigeodepartamento",
+    "pk": 13,
+    "fields": {
+      "cod_ubigeo_reniec_departamento": "13",
+      "cod_ubigeo_inei_departamento": "14",
+      "ubigeo_departamento": "Lambayeque",
+      "pais": 177
+    }
+  },
+  {
+    "model": "common.ubigeodepartamento",
+    "pk": 14,
+    "fields": {
+      "cod_ubigeo_reniec_departamento": "14",
+      "cod_ubigeo_inei_departamento": "15",
+      "ubigeo_departamento": "Lima",
+      "pais": 177
+    }
+  },
+  {
+    "model": "common.ubigeodepartamento",
+    "pk": 15,
+    "fields": {
+      "cod_ubigeo_reniec_departamento": "15",
+      "cod_ubigeo_inei_departamento": "16",
+      "ubigeo_departamento": "Loreto",
+      "pais": 177
+    }
+  },
+  {
+    "model": "common.ubigeodepartamento",
+    "pk": 16,
+    "fields": {
+      "cod_ubigeo_reniec_departamento": "16",
+      "cod_ubigeo_inei_departamento": "17",
+      "ubigeo_departamento": "Madre de Dios",
+      "pais": 177
+    }
+  },
+  {
+    "model": "common.ubigeodepartamento",
+    "pk": 17,
+    "fields": {
+      "cod_ubigeo_reniec_departamento": "17",
+      "cod_ubigeo_inei_departamento": "18",
+      "ubigeo_departamento": "Moquegua",
+      "pais": 177
+    }
+  },
+  {
+    "model": "common.ubigeodepartamento",
+    "pk": 18,
+    "fields": {
+      "cod_ubigeo_reniec_departamento": "18",
+      "cod_ubigeo_inei_departamento": "19",
+      "ubigeo_departamento": "Pasco",
+      "pais": 177
+    }
+  },
+  {
+    "model": "common.ubigeodepartamento",
+    "pk": 19,
+    "fields": {
+      "cod_ubigeo_reniec_departamento": "19",
+      "cod_ubigeo_inei_departamento": "20",
+      "ubigeo_departamento": "Piura",
+      "pais": 177
+    }
+  },
+  {
+    "model": "common.ubigeodepartamento",
+    "pk": 20,
+    "fields": {
+      "cod_ubigeo_reniec_departamento": "20",
+      "cod_ubigeo_inei_departamento": "21",
+      "ubigeo_departamento": "Puno",
+      "pais": 177
+    }
+  },
+  {
+    "model": "common.ubigeodepartamento",
+    "pk": 21,
+    "fields": {
+      "cod_ubigeo_reniec_departamento": "21",
+      "cod_ubigeo_inei_departamento": "22",
+      "ubigeo_departamento": "San Mart\u00edn",
+      "pais": 177
+    }
+  },
+  {
+    "model": "common.ubigeodepartamento",
+    "pk": 22,
+    "fields": {
+      "cod_ubigeo_reniec_departamento": "22",
+      "cod_ubigeo_inei_departamento": "23",
+      "ubigeo_departamento": "Tacna",
+      "pais": 177
+    }
+  },
+  {
+    "model": "common.ubigeodepartamento",
+    "pk": 23,
+    "fields": {
+      "cod_ubigeo_reniec_departamento": "23",
+      "cod_ubigeo_inei_departamento": "24",
+      "ubigeo_departamento": "Tumbes",
+      "pais": 177
+    }
+  },
+  {
+    "model": "common.ubigeodepartamento",
+    "pk": 24,
+    "fields": {
+      "cod_ubigeo_reniec_departamento": "24",
+      "cod_ubigeo_inei_departamento": "07",
+      "ubigeo_departamento": "Callao",
+      "pais": 177
+    }
+  },
+  {
+    "model": "common.ubigeodepartamento",
+    "pk": 25,
+    "fields": {
+      "cod_ubigeo_reniec_departamento": "25",
+      "cod_ubigeo_inei_departamento": "25",
+      "ubigeo_departamento": "Ucayali",
+      "pais": 177
+    }
+  }
+]

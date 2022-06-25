@@ -1,0 +1,30 @@
+{% load static %}
+<nav class="navbar no-print" xmlns:p.punto_vacunacion.id>
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <div class="logo-box"><a href="/">
+        <img src="{% static 'img/logo-unasam.png' %}" class="logo-peque center-block"></a>
+      </div>
+    </div>
+    <button class="navbar-toggle collapse in  no-padding " data-toggle="collapse" id="menu-toggle-3"><span
+        class="fa fa-indent" aria-hidden="true"></span></button>
+    <div class="desaparece-movil" style="font-size:11px;">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+            aria-expanded="false">
+          <span class="nameUser white nombre ellipsis desaparece-movil">{{username}} {{fullname}}</span>
+          <i class="fa fa-user white" id="icon-usuario"></i>
+          <span class="caret white"></span>
+        </li>
+        <ul class="dropdown-menu">
+          {% if user.is_authenticated %}
+            <li><a href="/accounts/password_change/">Cambiar contraseña</a></li>
+            {#<li><a href="/manual" target="_blank">Manual Conteo Rápido</a></li>#}
+          {% endif %}
+          <li role="separator" class="divider"></li>
+          <li><a href="/accounts/logout/">Cerrar Sesión</a></li>
+        </ul>
+      </ul>
+    </div>
+  </div>
+</nav>

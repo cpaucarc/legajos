@@ -1,0 +1,512 @@
+/*!
+ * Start Bootstrap - SB Admin 2 v4.0.7 (https://startbootstrap.com/template-overviews/sb-admin-2)
+ * Copyright 2013-2020 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-sb-admin-2/blob/master/LICENSE)
+ */
+
+/* CSS Formulario Theme Local */
+body {
+  color: #313237;
+}
+
+.sidebar .sidebar-brand {
+  border-right: 0px solid white;
+}
+
+.sidebar-logo {
+  width: 180px;
+  border: 2px solid white;
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .sidebar-logo {
+    display: block;
+  }
+}
+
+.toggled .sidebar-logo {
+  display: none;
+}
+
+.sidebar-logo-reduce {
+  display: block;
+  width: 50px;
+}
+
+@media (min-width: 768px) {
+  .sidebar-logo-reduce {
+    display: none;
+  }
+}
+
+.toggled .sidebar-logo-reduce {
+  display: block;
+}
+
+.title-covid19 {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .title-covid19 {
+    display: block;
+    color: white;
+  }
+}
+
+.navbar .fa-bars {
+  color: #5a5c69;
+}
+
+.nav-default {
+  background: #bf0909;
+}
+
+.logo-sistemafac{
+  width: 40px;
+  margin: 0 16px 0 0;
+}
+
+.covid-19 {
+  color: white;
+  font-size: 16px;
+  border-left: 1px solid white;
+  padding: 0 10px;
+}
+
+.section-form {
+  margin: 0 auto;
+  padding: 30px 0;
+}
+
+@media (min-width: 992px) {
+  .box-button {
+    margin-top: 36px;
+  }
+}
+
+.box-button button {
+  margin: 0 6px 0 0;
+}
+
+.box-row {
+  margin-bottom: 20px;
+}
+
+.box-row label span {
+  color: #e74a3b;
+}
+
+.center-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 0 auto;
+}
+
+@media (min-width: 992px) {
+  .center-btn {
+    width: 500px;
+  }
+}
+
+.map {
+  width: 100%;
+  height: 400px;
+  border: 1px solid lightgray;
+}
+
+#map {
+  width: 100%;
+  height: 400px;
+  background-color: lightgray;
+}
+
+#mapid {
+  max-width: 600px;
+  height: 400px;
+  border: 1px solid lightgray;
+  width: 100%;
+  background-color: lightgray;
+}
+
+.form-row .custom-file .custom-file-label:after {
+  content: "Cargar";
+}
+
+.carga-img {
+  border: 1px solid lightgray;
+  width: 160px;
+  height: 160px;
+}
+
+.carga-imagen {
+  max-width: 200px;
+}
+
+.btn i {
+  position: relative;
+  margin: 0 3px 0 0;
+}
+
+td.btn-doble {
+  display: flex;
+  width: 163px;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  align-items: center;
+  align-content: center;
+}
+
+.section-form fieldset {
+  margin: 0 0 10px 0;
+}
+
+@media (min-width: 992px) {
+  .box-space {
+    margin-top: 3px;
+  }
+}
+
+/* Login */
+.page-login {
+  background-color: #4e73df;
+  background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
+  background-size: cover;
+}
+
+.container-login form.user .form-control-user {
+  border-radius: 0;
+}
+
+.container-login form.user .btn-user {
+  border-radius: 0;
+}
+
+.container-login .logo-login-sistemafac{
+  width: 75%;
+  max-width: 320px;
+  padding: 10px;
+  margin-top: 25px;
+}
+
+
+.page-usuario {
+  padding: 10px 0;
+}
+
+.inputCelular {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left: 0;
+}
+
+.box-code {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.box-buscar {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  height: 38px;
+}
+
+.inputDocumento {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: 0;
+}
+
+.box-input-usuario .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+
+@media (min-width: 992px) {
+  .box-input-usuario .form-group {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+
+
+@media (min-width: 540px) {
+  .box-btn .espacio {
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 992px) {
+  .input-group.group-btn {
+    margin: 15px 0;
+  }
+}
+
+@media (max-width: 540px) {
+  .lista-link {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .lista-link a {
+    border-radius: 0;
+  }
+}
+
+.page-usuario .panel-collapse .panel-title {
+  color:white;
+}
+
+.row-center-btn {
+  display: flex;
+  max-width: 320px;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+}
+
+
+.input-aplicaciones .select2-container--bootstrap {
+  width: 100%!important;
+}
+
+.btn-user-busqueda {
+  height: 100%!important;
+}
+
+
+.card-datos-personales .col-lg-4, .card-datos-personales .col-lg-8 {
+  padding: 0;
+  max-width: 100%;
+}
+
+.page-admin .select2-container.select2-container--bootstrap {
+  width: 100%!important;
+}
+
+
+.box-super-usuario .checkbox {
+  position: relative;
+  display: block;
+  padding-left: 1.25rem;
+}
+
+/* TOGGLE CONFIGURATION */
+.has-switch {
+  top: 10px;
+  border-radius: 14px;
+  -webkit-border-radius: 14px;
+  display: inline-block;
+  cursor: pointer;
+  line-height: 1.231;
+  overflow: hidden;
+  position: relative;
+  text-align: left;
+  width: 80px;
+  user-select: none;
+}
+.has-switch.deactivate {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  cursor: default !important;
+}
+.has-switch.deactivate label,
+.has-switch.deactivate span {
+  cursor: default !important;
+}
+.has-switch > div {
+  width: 162%;
+  position: relative;
+  top: 0;
+}
+.has-switch > div.switch-animate {
+  -webkit-transition: left 0.25s ease-out;
+  -moz-transition: left 0.25s ease-out;
+  -o-transition: left 0.25s ease-out;
+  transition: left 0.25s ease-out;
+  -webkit-backface-visibility: hidden;
+}
+.has-switch > div.switch-off {
+  left: -63%;
+}
+.has-switch > div.switch-off label {
+  background-color: #7f8c9a;
+  border-color: #bdc3c7;
+  -webkit-box-shadow: -1px 0 0 rgba(255, 255, 255, 0.5);
+  -moz-box-shadow: -1px 0 0 rgba(255, 255, 255, 0.5);
+  box-shadow: -1px 0 0 rgba(255, 255, 255, 0.5);
+}
+.has-switch > div.switch-on {
+  left: 0%;
+}
+.has-switch > div.switch-on label {
+  background-color: #fff;
+}
+.has-switch input[type=checkbox] {
+  display: none;
+}
+.has-switch span {
+  cursor: pointer;
+  font-size: 14.994px;
+  font-weight: 700;
+  float: left;
+  height: 29px;
+  line-height: 19px;
+  margin: 0;
+  padding-bottom: 6px;
+  padding-top: 5px;
+  position: relative;
+  text-align: center;
+  width: 50%;
+  z-index: 1;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: 0.25s ease-out;
+  -moz-transition: 0.25s ease-out;
+  -o-transition: 0.25s ease-out;
+  transition: 0.25s ease-out;
+  -webkit-backface-visibility: hidden;
+}
+.has-switch span.switch-left {
+  border-radius: 30px 0 0 30px;
+  background-color: #e44747;
+  color: #fff;
+  border-left: 1px solid transparent;
+}
+.has-switch span.switch-right {
+  border-radius: 0 30px 30px 0;
+  background-color: #bdc3c7;
+  color: #ffffff;
+  text-indent: 7px;
+}
+.has-switch span.switch-right [class*="fui-"] {
+  text-indent: 0;
+}
+.has-switch label {
+  border: 4px solid #e44747;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  float: left;
+  height: 29px;
+  margin: 0 -21px 0 -14px;
+  padding: 0;
+  position: relative;
+  vertical-align: middle;
+  width: 29px;
+  z-index: 10;
+  -webkit-transition: 0.25s ease-out;
+  -moz-transition: 0.25s ease-out;
+  -o-transition: 0.25s ease-out;
+  transition: 0.25s ease-out;
+  -webkit-backface-visibility: hidden;
+}
+.switch-square {
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+}
+.switch-square > div.switch-off label {
+  border-color: #7f8c9a;
+  border-radius: 6px 0 0 6px;
+}
+.switch-square span.switch-left {
+  border-radius: 6px 0 0 6px;
+}
+.switch-square span.switch-left [class*="fui-"] {
+  text-indent: -10px;
+}
+.switch-square span.switch-right {
+  border-radius: 0 6px 6px 0;
+}
+.switch-square span.switch-right [class*="fui-"] {
+  text-indent: 5px;
+}
+.switch-square label {
+  border-radius: 0 6px 6px 0;
+  border-color: #41cac0;
+}
+
+.page-password {
+  overflow: hidden;
+}
+
+.inactiveLink {
+  pointer-events:none;
+  background-color: #eaecf4!important;
+}
+
+.conte_form_60 {
+  width: 60%;
+  margin: 0 20%;
+  display: flex;
+  font-size: 1.5em;
+}
+
+.inactiveBtn {
+  pointer-events:none;
+  opacity: .6;
+}
+
+.error {
+   color: red;
+   font-size: 12px!important;
+}
+
+.btnActivarUsuario, .btnDesactivarUsuario, btnActivarRol, btnDesactivarRol {
+  color: white!important;
+}
+
+.textoLugarHeader {
+  color: white;
+  margin-top: 25px;
+  font-size: 0.7em;
+}
+
+.oculto {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
+.page-usuario .box-super-usuario {
+  padding: 0 0 0 10px;
+}
+
+.select2-container--bootstrap .select2-selection--single {
+  height: 38px;
+  padding: 8px 24px 8px 12px;
+}
+
+.box-group-documento {
+  display: flex;
+}
+
+.group-evento-buscar {
+    display: flex;
+}
+
+.logo-licenciado {
+  padding: 0px 10px 0px 0px;
+  width: 8%;
+}
+
+.logo-login-unasam {
+   width: 60%;
+   margin-top:0%;
+}
+
+.navbar {
+  background-color: #3c8dbc;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}

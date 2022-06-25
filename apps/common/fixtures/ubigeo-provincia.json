@@ -1,0 +1,2158 @@
+[
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 1,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0101",
+      "cod_ubigeo_inei_provincia": "0101",
+      "ubigeo_provincia": "Chachapoyas",
+      "pais": 177,
+      "departamento": 1
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 2,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0102",
+      "cod_ubigeo_inei_provincia": "0102",
+      "ubigeo_provincia": "Bagua",
+      "pais": 177,
+      "departamento": 1
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 3,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0103",
+      "cod_ubigeo_inei_provincia": "0103",
+      "ubigeo_provincia": "Bongar\u00e1",
+      "pais": 177,
+      "departamento": 1
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 4,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0104",
+      "cod_ubigeo_inei_provincia": "0105",
+      "ubigeo_provincia": "Luya",
+      "pais": 177,
+      "departamento": 1
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 5,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0105",
+      "cod_ubigeo_inei_provincia": "0106",
+      "ubigeo_provincia": "Rodr\u00edguez de Mendoza",
+      "pais": 177,
+      "departamento": 1
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 6,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0106",
+      "cod_ubigeo_inei_provincia": "0104",
+      "ubigeo_provincia": "Condorcanqui",
+      "pais": 177,
+      "departamento": 1
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 7,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0107",
+      "cod_ubigeo_inei_provincia": "0107",
+      "ubigeo_provincia": "Utcubamba",
+      "pais": 177,
+      "departamento": 1
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 8,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0201",
+      "cod_ubigeo_inei_provincia": "0201",
+      "ubigeo_provincia": "Huaraz",
+      "pais": 177,
+      "departamento": 2
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 9,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0202",
+      "cod_ubigeo_inei_provincia": "0202",
+      "ubigeo_provincia": "Aija",
+      "pais": 177,
+      "departamento": 2
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 10,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0203",
+      "cod_ubigeo_inei_provincia": "0205",
+      "ubigeo_provincia": "Bolognesi",
+      "pais": 177,
+      "departamento": 2
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 11,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0204",
+      "cod_ubigeo_inei_provincia": "0206",
+      "ubigeo_provincia": "Carhuaz",
+      "pais": 177,
+      "departamento": 2
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 12,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0205",
+      "cod_ubigeo_inei_provincia": "0208",
+      "ubigeo_provincia": "Casma",
+      "pais": 177,
+      "departamento": 2
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 13,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0206",
+      "cod_ubigeo_inei_provincia": "0209",
+      "ubigeo_provincia": "Corongo",
+      "pais": 177,
+      "departamento": 2
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 14,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0207",
+      "cod_ubigeo_inei_provincia": "0212",
+      "ubigeo_provincia": "Huaylas",
+      "pais": 177,
+      "departamento": 2
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 15,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0208",
+      "cod_ubigeo_inei_provincia": "0210",
+      "ubigeo_provincia": "Huari",
+      "pais": 177,
+      "departamento": 2
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 16,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0209",
+      "cod_ubigeo_inei_provincia": "0213",
+      "ubigeo_provincia": "Mariscal Luzuriaga",
+      "pais": 177,
+      "departamento": 2
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 17,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0210",
+      "cod_ubigeo_inei_provincia": "0215",
+      "ubigeo_provincia": "Pallasca",
+      "pais": 177,
+      "departamento": 2
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 18,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0211",
+      "cod_ubigeo_inei_provincia": "0216",
+      "ubigeo_provincia": "Pomabamba",
+      "pais": 177,
+      "departamento": 2
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 19,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0212",
+      "cod_ubigeo_inei_provincia": "0217",
+      "ubigeo_provincia": "Recuay",
+      "pais": 177,
+      "departamento": 2
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 20,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0213",
+      "cod_ubigeo_inei_provincia": "0218",
+      "ubigeo_provincia": "Santa",
+      "pais": 177,
+      "departamento": 2
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 21,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0214",
+      "cod_ubigeo_inei_provincia": "0219",
+      "ubigeo_provincia": "Sihuas",
+      "pais": 177,
+      "departamento": 2
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 22,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0215",
+      "cod_ubigeo_inei_provincia": "0220",
+      "ubigeo_provincia": "Yungay",
+      "pais": 177,
+      "departamento": 2
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 23,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0216",
+      "cod_ubigeo_inei_provincia": "0203",
+      "ubigeo_provincia": "Antonio Raymondi",
+      "pais": 177,
+      "departamento": 2
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 24,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0217",
+      "cod_ubigeo_inei_provincia": "0207",
+      "ubigeo_provincia": "Carlos Ferm\u00edn Fitzcarrald",
+      "pais": 177,
+      "departamento": 2
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 25,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0218",
+      "cod_ubigeo_inei_provincia": "0204",
+      "ubigeo_provincia": "Asunci\u00f3n",
+      "pais": 177,
+      "departamento": 2
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 26,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0219",
+      "cod_ubigeo_inei_provincia": "0211",
+      "ubigeo_provincia": "Huarmey",
+      "pais": 177,
+      "departamento": 2
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 27,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0220",
+      "cod_ubigeo_inei_provincia": "0214",
+      "ubigeo_provincia": "Ocros",
+      "pais": 177,
+      "departamento": 2
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 28,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0301",
+      "cod_ubigeo_inei_provincia": "0301",
+      "ubigeo_provincia": "Abancay",
+      "pais": 177,
+      "departamento": 3
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 29,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0302",
+      "cod_ubigeo_inei_provincia": "0304",
+      "ubigeo_provincia": "Aymaraes",
+      "pais": 177,
+      "departamento": 3
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 30,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0303",
+      "cod_ubigeo_inei_provincia": "0302",
+      "ubigeo_provincia": "Andahuaylas",
+      "pais": 177,
+      "departamento": 3
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 31,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0304",
+      "cod_ubigeo_inei_provincia": "0303",
+      "ubigeo_provincia": "Antabamba",
+      "pais": 177,
+      "departamento": 3
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 32,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0305",
+      "cod_ubigeo_inei_provincia": "0305",
+      "ubigeo_provincia": "Cotabambas",
+      "pais": 177,
+      "departamento": 3
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 33,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0306",
+      "cod_ubigeo_inei_provincia": "0307",
+      "ubigeo_provincia": "Grau",
+      "pais": 177,
+      "departamento": 3
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 34,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0307",
+      "cod_ubigeo_inei_provincia": "0306",
+      "ubigeo_provincia": "Chincheros",
+      "pais": 177,
+      "departamento": 3
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 35,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0401",
+      "cod_ubigeo_inei_provincia": "0401",
+      "ubigeo_provincia": "Arequipa",
+      "pais": 177,
+      "departamento": 4
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 36,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0402",
+      "cod_ubigeo_inei_provincia": "0405",
+      "ubigeo_provincia": "Caylloma",
+      "pais": 177,
+      "departamento": 4
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 37,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0403",
+      "cod_ubigeo_inei_provincia": "0402",
+      "ubigeo_provincia": "Caman\u00e1",
+      "pais": 177,
+      "departamento": 4
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 38,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0404",
+      "cod_ubigeo_inei_provincia": "0403",
+      "ubigeo_provincia": "Caravel\u00ed",
+      "pais": 177,
+      "departamento": 4
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 39,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0405",
+      "cod_ubigeo_inei_provincia": "0404",
+      "ubigeo_provincia": "Castilla",
+      "pais": 177,
+      "departamento": 4
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 40,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0406",
+      "cod_ubigeo_inei_provincia": "0406",
+      "ubigeo_provincia": "Condesuyos",
+      "pais": 177,
+      "departamento": 4
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 41,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0407",
+      "cod_ubigeo_inei_provincia": "0407",
+      "ubigeo_provincia": "Islay",
+      "pais": 177,
+      "departamento": 4
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 42,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0408",
+      "cod_ubigeo_inei_provincia": "0408",
+      "ubigeo_provincia": "La Uni\u00f2n",
+      "pais": 177,
+      "departamento": 4
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 43,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0501",
+      "cod_ubigeo_inei_provincia": "0501",
+      "ubigeo_provincia": "Huamanga",
+      "pais": 177,
+      "departamento": 5
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 44,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0502",
+      "cod_ubigeo_inei_provincia": "0502",
+      "ubigeo_provincia": "Cangallo",
+      "pais": 177,
+      "departamento": 5
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 45,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0503",
+      "cod_ubigeo_inei_provincia": "0504",
+      "ubigeo_provincia": "Huanta",
+      "pais": 177,
+      "departamento": 5
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 46,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0504",
+      "cod_ubigeo_inei_provincia": "0505",
+      "ubigeo_provincia": "La Mar",
+      "pais": 177,
+      "departamento": 5
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 47,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0505",
+      "cod_ubigeo_inei_provincia": "0506",
+      "ubigeo_provincia": "Lucanas",
+      "pais": 177,
+      "departamento": 5
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 48,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0506",
+      "cod_ubigeo_inei_provincia": "0507",
+      "ubigeo_provincia": "Parinacochas",
+      "pais": 177,
+      "departamento": 5
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 49,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0507",
+      "cod_ubigeo_inei_provincia": "0510",
+      "ubigeo_provincia": "V\u00edctor Fajardo",
+      "pais": 177,
+      "departamento": 5
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 50,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0508",
+      "cod_ubigeo_inei_provincia": "0503",
+      "ubigeo_provincia": "Huanca Sancos",
+      "pais": 177,
+      "departamento": 5
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 51,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0509",
+      "cod_ubigeo_inei_provincia": "0511",
+      "ubigeo_provincia": "Vilcas Huam\u00e1n",
+      "pais": 177,
+      "departamento": 5
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 52,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0510",
+      "cod_ubigeo_inei_provincia": "0508",
+      "ubigeo_provincia": "P\u00e0ucar del Sara Sara",
+      "pais": 177,
+      "departamento": 5
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 53,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0511",
+      "cod_ubigeo_inei_provincia": "0509",
+      "ubigeo_provincia": "Sucre",
+      "pais": 177,
+      "departamento": 5
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 54,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0601",
+      "cod_ubigeo_inei_provincia": "0601",
+      "ubigeo_provincia": "Cajamarca",
+      "pais": 177,
+      "departamento": 6
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 55,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0602",
+      "cod_ubigeo_inei_provincia": "0602",
+      "ubigeo_provincia": "Cajabamba",
+      "pais": 177,
+      "departamento": 6
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 56,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0603",
+      "cod_ubigeo_inei_provincia": "0603",
+      "ubigeo_provincia": "Celend\u00edn",
+      "pais": 177,
+      "departamento": 6
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 57,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0604",
+      "cod_ubigeo_inei_provincia": "0605",
+      "ubigeo_provincia": "Contumaz\u00e1",
+      "pais": 177,
+      "departamento": 6
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 58,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0605",
+      "cod_ubigeo_inei_provincia": "0606",
+      "ubigeo_provincia": "Cutervo",
+      "pais": 177,
+      "departamento": 6
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 59,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0606",
+      "cod_ubigeo_inei_provincia": "0604",
+      "ubigeo_provincia": "Chota",
+      "pais": 177,
+      "departamento": 6
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 60,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0607",
+      "cod_ubigeo_inei_provincia": "0607",
+      "ubigeo_provincia": "Hualgayoc",
+      "pais": 177,
+      "departamento": 6
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 61,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0608",
+      "cod_ubigeo_inei_provincia": "0608",
+      "ubigeo_provincia": "Ja\u00e9n",
+      "pais": 177,
+      "departamento": 6
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 62,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0609",
+      "cod_ubigeo_inei_provincia": "0613",
+      "ubigeo_provincia": "Santa Cruz",
+      "pais": 177,
+      "departamento": 6
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 63,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0610",
+      "cod_ubigeo_inei_provincia": "0611",
+      "ubigeo_provincia": "San Miguel",
+      "pais": 177,
+      "departamento": 6
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 64,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0611",
+      "cod_ubigeo_inei_provincia": "0609",
+      "ubigeo_provincia": "San Ignacio",
+      "pais": 177,
+      "departamento": 6
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 65,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0612",
+      "cod_ubigeo_inei_provincia": "0610",
+      "ubigeo_provincia": "San Marcos",
+      "pais": 177,
+      "departamento": 6
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 66,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0613",
+      "cod_ubigeo_inei_provincia": "0612",
+      "ubigeo_provincia": "San Pablo",
+      "pais": 177,
+      "departamento": 6
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 67,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0701",
+      "cod_ubigeo_inei_provincia": "0801",
+      "ubigeo_provincia": "Cusco",
+      "pais": 177,
+      "departamento": 7
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 68,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0702",
+      "cod_ubigeo_inei_provincia": "0802",
+      "ubigeo_provincia": "Acomayo",
+      "pais": 177,
+      "departamento": 7
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 69,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0703",
+      "cod_ubigeo_inei_provincia": "0803",
+      "ubigeo_provincia": "Anta",
+      "pais": 177,
+      "departamento": 7
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 70,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0704",
+      "cod_ubigeo_inei_provincia": "0804",
+      "ubigeo_provincia": "Calca",
+      "pais": 177,
+      "departamento": 7
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 71,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0705",
+      "cod_ubigeo_inei_provincia": "0805",
+      "ubigeo_provincia": "Canas",
+      "pais": 177,
+      "departamento": 7
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 72,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0706",
+      "cod_ubigeo_inei_provincia": "0806",
+      "ubigeo_provincia": "Canchis",
+      "pais": 177,
+      "departamento": 7
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 73,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0707",
+      "cod_ubigeo_inei_provincia": "0807",
+      "ubigeo_provincia": "Chumbivilcas",
+      "pais": 177,
+      "departamento": 7
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 74,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0708",
+      "cod_ubigeo_inei_provincia": "0808",
+      "ubigeo_provincia": "Espinar",
+      "pais": 177,
+      "departamento": 7
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 75,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0709",
+      "cod_ubigeo_inei_provincia": "0809",
+      "ubigeo_provincia": "La Convenci\u00f3n",
+      "pais": 177,
+      "departamento": 7
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 76,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0710",
+      "cod_ubigeo_inei_provincia": "0810",
+      "ubigeo_provincia": "Paruro",
+      "pais": 177,
+      "departamento": 7
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 77,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0711",
+      "cod_ubigeo_inei_provincia": "0811",
+      "ubigeo_provincia": "Paucartambo",
+      "pais": 177,
+      "departamento": 7
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 78,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0712",
+      "cod_ubigeo_inei_provincia": "0812",
+      "ubigeo_provincia": "Quispicanchis",
+      "pais": 177,
+      "departamento": 7
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 79,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0713",
+      "cod_ubigeo_inei_provincia": "0813",
+      "ubigeo_provincia": "Urubamba",
+      "pais": 177,
+      "departamento": 7
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 80,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0801",
+      "cod_ubigeo_inei_provincia": "0901",
+      "ubigeo_provincia": "Huancavelica",
+      "pais": 177,
+      "departamento": 8
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 81,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0802",
+      "cod_ubigeo_inei_provincia": "0902",
+      "ubigeo_provincia": "Acobamba",
+      "pais": 177,
+      "departamento": 8
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 82,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0803",
+      "cod_ubigeo_inei_provincia": "0903",
+      "ubigeo_provincia": "Angaraes",
+      "pais": 177,
+      "departamento": 8
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 83,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0804",
+      "cod_ubigeo_inei_provincia": "0904",
+      "ubigeo_provincia": "Castrovirreyna",
+      "pais": 177,
+      "departamento": 8
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 84,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0805",
+      "cod_ubigeo_inei_provincia": "0907",
+      "ubigeo_provincia": "Tayacaja",
+      "pais": 177,
+      "departamento": 8
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 85,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0806",
+      "cod_ubigeo_inei_provincia": "0906",
+      "ubigeo_provincia": "Huaytar\u00e1",
+      "pais": 177,
+      "departamento": 8
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 86,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0807",
+      "cod_ubigeo_inei_provincia": "0905",
+      "ubigeo_provincia": "Churcampa",
+      "pais": 177,
+      "departamento": 8
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 87,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0901",
+      "cod_ubigeo_inei_provincia": "1001",
+      "ubigeo_provincia": "Hu\u00e1nuco",
+      "pais": 177,
+      "departamento": 9
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 88,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0902",
+      "cod_ubigeo_inei_provincia": "1002",
+      "ubigeo_provincia": "Ambo",
+      "pais": 177,
+      "departamento": 9
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 89,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0903",
+      "cod_ubigeo_inei_provincia": "1003",
+      "ubigeo_provincia": "Dos de Mayo",
+      "pais": 177,
+      "departamento": 9
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 90,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0904",
+      "cod_ubigeo_inei_provincia": "1005",
+      "ubigeo_provincia": "Huamal\u00edes",
+      "pais": 177,
+      "departamento": 9
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 91,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0905",
+      "cod_ubigeo_inei_provincia": "1007",
+      "ubigeo_provincia": "Mara\u00f1\u00f3n",
+      "pais": 177,
+      "departamento": 9
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 92,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0906",
+      "cod_ubigeo_inei_provincia": "1006",
+      "ubigeo_provincia": "Leoncio Prado",
+      "pais": 177,
+      "departamento": 9
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 93,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0907",
+      "cod_ubigeo_inei_provincia": "1008",
+      "ubigeo_provincia": "Pachitea",
+      "pais": 177,
+      "departamento": 9
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 94,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0908",
+      "cod_ubigeo_inei_provincia": "1009",
+      "ubigeo_provincia": "Puerto Inca",
+      "pais": 177,
+      "departamento": 9
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 95,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0909",
+      "cod_ubigeo_inei_provincia": "1004",
+      "ubigeo_provincia": "Huacaybamba",
+      "pais": 177,
+      "departamento": 9
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 96,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0910",
+      "cod_ubigeo_inei_provincia": "1010",
+      "ubigeo_provincia": "Lauricocha",
+      "pais": 177,
+      "departamento": 9
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 97,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "0911",
+      "cod_ubigeo_inei_provincia": "1011",
+      "ubigeo_provincia": "Yarowilca",
+      "pais": 177,
+      "departamento": 9
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 98,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1001",
+      "cod_ubigeo_inei_provincia": "1101",
+      "ubigeo_provincia": "Ica",
+      "pais": 177,
+      "departamento": 10
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 99,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1002",
+      "cod_ubigeo_inei_provincia": "1102",
+      "ubigeo_provincia": "Chincha",
+      "pais": 177,
+      "departamento": 10
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 100,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1003",
+      "cod_ubigeo_inei_provincia": "1103",
+      "ubigeo_provincia": "Nazca",
+      "pais": 177,
+      "departamento": 10
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 101,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1004",
+      "cod_ubigeo_inei_provincia": "1105",
+      "ubigeo_provincia": "Pisco",
+      "pais": 177,
+      "departamento": 10
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 102,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1005",
+      "cod_ubigeo_inei_provincia": "1104",
+      "ubigeo_provincia": "Palpa",
+      "pais": 177,
+      "departamento": 10
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 103,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1101",
+      "cod_ubigeo_inei_provincia": "1201",
+      "ubigeo_provincia": "Huancayo",
+      "pais": 177,
+      "departamento": 11
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 104,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1102",
+      "cod_ubigeo_inei_provincia": "1202",
+      "ubigeo_provincia": "Concepci\u00f3n",
+      "pais": 177,
+      "departamento": 11
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 105,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1103",
+      "cod_ubigeo_inei_provincia": "1204",
+      "ubigeo_provincia": "Jauja",
+      "pais": 177,
+      "departamento": 11
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 106,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1104",
+      "cod_ubigeo_inei_provincia": "1205",
+      "ubigeo_provincia": "Jun\u00edn",
+      "pais": 177,
+      "departamento": 11
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 107,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1105",
+      "cod_ubigeo_inei_provincia": "1207",
+      "ubigeo_provincia": "Tarma",
+      "pais": 177,
+      "departamento": 11
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 108,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1106",
+      "cod_ubigeo_inei_provincia": "1208",
+      "ubigeo_provincia": "Yauli",
+      "pais": 177,
+      "departamento": 11
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 109,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1107",
+      "cod_ubigeo_inei_provincia": "1206",
+      "ubigeo_provincia": "Satipo",
+      "pais": 177,
+      "departamento": 11
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 110,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1108",
+      "cod_ubigeo_inei_provincia": "1203",
+      "ubigeo_provincia": "Chanchamayo",
+      "pais": 177,
+      "departamento": 11
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 111,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1109",
+      "cod_ubigeo_inei_provincia": "1209",
+      "ubigeo_provincia": "Chupaca",
+      "pais": 177,
+      "departamento": 11
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 112,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1201",
+      "cod_ubigeo_inei_provincia": "1301",
+      "ubigeo_provincia": "Trujillo",
+      "pais": 177,
+      "departamento": 12
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 113,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1202",
+      "cod_ubigeo_inei_provincia": "1303",
+      "ubigeo_provincia": "Bol\u00edvar",
+      "pais": 177,
+      "departamento": 12
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 114,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1203",
+      "cod_ubigeo_inei_provincia": "1309",
+      "ubigeo_provincia": "S\u00e1nchez Carri\u00f3n",
+      "pais": 177,
+      "departamento": 12
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 115,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1204",
+      "cod_ubigeo_inei_provincia": "1306",
+      "ubigeo_provincia": "Otuzco",
+      "pais": 177,
+      "departamento": 12
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 116,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1205",
+      "cod_ubigeo_inei_provincia": "1307",
+      "ubigeo_provincia": "Pacasmayo",
+      "pais": 177,
+      "departamento": 12
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 117,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1206",
+      "cod_ubigeo_inei_provincia": "1308",
+      "ubigeo_provincia": "Pataz",
+      "pais": 177,
+      "departamento": 12
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 118,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1207",
+      "cod_ubigeo_inei_provincia": "1310",
+      "ubigeo_provincia": "Santiago de Chuco",
+      "pais": 177,
+      "departamento": 12
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 119,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1208",
+      "cod_ubigeo_inei_provincia": "1302",
+      "ubigeo_provincia": "Ascope",
+      "pais": 177,
+      "departamento": 12
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 120,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1209",
+      "cod_ubigeo_inei_provincia": "1304",
+      "ubigeo_provincia": "Chep\u00e9n",
+      "pais": 177,
+      "departamento": 12
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 121,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1210",
+      "cod_ubigeo_inei_provincia": "1305",
+      "ubigeo_provincia": "Julc\u00e1n",
+      "pais": 177,
+      "departamento": 12
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 122,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1211",
+      "cod_ubigeo_inei_provincia": "1311",
+      "ubigeo_provincia": "Gran Chim\u00fa",
+      "pais": 177,
+      "departamento": 12
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 123,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1212",
+      "cod_ubigeo_inei_provincia": "1312",
+      "ubigeo_provincia": "Vir\u00fa",
+      "pais": 177,
+      "departamento": 12
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 124,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1301",
+      "cod_ubigeo_inei_provincia": "1401",
+      "ubigeo_provincia": "Chiclayo",
+      "pais": 177,
+      "departamento": 13
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 125,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1302",
+      "cod_ubigeo_inei_provincia": "1402",
+      "ubigeo_provincia": "Ferre\u00f1afe",
+      "pais": 177,
+      "departamento": 13
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 126,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1303",
+      "cod_ubigeo_inei_provincia": "1403",
+      "ubigeo_provincia": "Lambayeque",
+      "pais": 177,
+      "departamento": 13
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 127,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1401",
+      "cod_ubigeo_inei_provincia": "1501",
+      "ubigeo_provincia": "Lima",
+      "pais": 177,
+      "departamento": 14
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 128,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1402",
+      "cod_ubigeo_inei_provincia": "1503",
+      "ubigeo_provincia": "Cajatambo",
+      "pais": 177,
+      "departamento": 14
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 129,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1403",
+      "cod_ubigeo_inei_provincia": "1504",
+      "ubigeo_provincia": "Canta",
+      "pais": 177,
+      "departamento": 14
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 130,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1404",
+      "cod_ubigeo_inei_provincia": "1505",
+      "ubigeo_provincia": "Ca\u00f1ete",
+      "pais": 177,
+      "departamento": 14
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 131,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1405",
+      "cod_ubigeo_inei_provincia": "1508",
+      "ubigeo_provincia": "Huaura",
+      "pais": 177,
+      "departamento": 14
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 132,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1406",
+      "cod_ubigeo_inei_provincia": "1507",
+      "ubigeo_provincia": "Huarochir\u00ed",
+      "pais": 177,
+      "departamento": 14
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 133,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1407",
+      "cod_ubigeo_inei_provincia": "1510",
+      "ubigeo_provincia": "Yauyos",
+      "pais": 177,
+      "departamento": 14
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 134,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1408",
+      "cod_ubigeo_inei_provincia": "1506",
+      "ubigeo_provincia": "Huaral",
+      "pais": 177,
+      "departamento": 14
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 135,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1409",
+      "cod_ubigeo_inei_provincia": "1502",
+      "ubigeo_provincia": "Barranca",
+      "pais": 177,
+      "departamento": 14
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 136,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1410",
+      "cod_ubigeo_inei_provincia": "1509",
+      "ubigeo_provincia": "Oy\u00f3n",
+      "pais": 177,
+      "departamento": 14
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 137,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1501",
+      "cod_ubigeo_inei_provincia": "1601",
+      "ubigeo_provincia": "Maynas",
+      "pais": 177,
+      "departamento": 15
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 138,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1502",
+      "cod_ubigeo_inei_provincia": "1602",
+      "ubigeo_provincia": "Alto Amazonas",
+      "pais": 177,
+      "departamento": 15
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 139,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1503",
+      "cod_ubigeo_inei_provincia": "1603",
+      "ubigeo_provincia": "Loreto",
+      "pais": 177,
+      "departamento": 15
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 140,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1504",
+      "cod_ubigeo_inei_provincia": "1605",
+      "ubigeo_provincia": "Requena",
+      "pais": 177,
+      "departamento": 15
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 141,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1505",
+      "cod_ubigeo_inei_provincia": "1606",
+      "ubigeo_provincia": "Ucayali",
+      "pais": 177,
+      "departamento": 15
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 142,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1506",
+      "cod_ubigeo_inei_provincia": "1604",
+      "ubigeo_provincia": "Mariscal Ram\u00f3n Castilla",
+      "pais": 177,
+      "departamento": 15
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 143,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1507",
+      "cod_ubigeo_inei_provincia": "1607",
+      "ubigeo_provincia": "Datem del Mara\u00f1\u00f3n",
+      "pais": 177,
+      "departamento": 15
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 144,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1601",
+      "cod_ubigeo_inei_provincia": "1701",
+      "ubigeo_provincia": "Tambopata",
+      "pais": 177,
+      "departamento": 16
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 145,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1602",
+      "cod_ubigeo_inei_provincia": "1702",
+      "ubigeo_provincia": "Manu",
+      "pais": 177,
+      "departamento": 16
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 146,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1603",
+      "cod_ubigeo_inei_provincia": "1703",
+      "ubigeo_provincia": "Tahuamanu",
+      "pais": 177,
+      "departamento": 16
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 147,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1701",
+      "cod_ubigeo_inei_provincia": "1801",
+      "ubigeo_provincia": "Mariscal Nieto",
+      "pais": 177,
+      "departamento": 17
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 148,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1702",
+      "cod_ubigeo_inei_provincia": "1802",
+      "ubigeo_provincia": "General S\u00e1nchez Cerro",
+      "pais": 177,
+      "departamento": 17
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 149,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1703",
+      "cod_ubigeo_inei_provincia": "1803",
+      "ubigeo_provincia": "Ilo",
+      "pais": 177,
+      "departamento": 17
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 150,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1801",
+      "cod_ubigeo_inei_provincia": "1901",
+      "ubigeo_provincia": "Pasco",
+      "pais": 177,
+      "departamento": 18
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 151,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1802",
+      "cod_ubigeo_inei_provincia": "1902",
+      "ubigeo_provincia": "Daniel Alcides Carri\u00f3n",
+      "pais": 177,
+      "departamento": 18
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 152,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1803",
+      "cod_ubigeo_inei_provincia": "1903",
+      "ubigeo_provincia": "Oxapampa",
+      "pais": 177,
+      "departamento": 18
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 153,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1901",
+      "cod_ubigeo_inei_provincia": "2001",
+      "ubigeo_provincia": "Piura",
+      "pais": 177,
+      "departamento": 19
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 154,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1902",
+      "cod_ubigeo_inei_provincia": "2002",
+      "ubigeo_provincia": "Ayabaca",
+      "pais": 177,
+      "departamento": 19
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 155,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1903",
+      "cod_ubigeo_inei_provincia": "2003",
+      "ubigeo_provincia": "Huancabamba",
+      "pais": 177,
+      "departamento": 19
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 156,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1904",
+      "cod_ubigeo_inei_provincia": "2004",
+      "ubigeo_provincia": "Morrop\u00f3n",
+      "pais": 177,
+      "departamento": 19
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 157,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1905",
+      "cod_ubigeo_inei_provincia": "2005",
+      "ubigeo_provincia": "Paita",
+      "pais": 177,
+      "departamento": 19
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 158,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1906",
+      "cod_ubigeo_inei_provincia": "2006",
+      "ubigeo_provincia": "Sullana",
+      "pais": 177,
+      "departamento": 19
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 159,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1907",
+      "cod_ubigeo_inei_provincia": "2007",
+      "ubigeo_provincia": "Talara",
+      "pais": 177,
+      "departamento": 19
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 160,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "1908",
+      "cod_ubigeo_inei_provincia": "2008",
+      "ubigeo_provincia": "Sechura",
+      "pais": 177,
+      "departamento": 19
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 161,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "2001",
+      "cod_ubigeo_inei_provincia": "2101",
+      "ubigeo_provincia": "Puno",
+      "pais": 177,
+      "departamento": 20
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 162,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "2002",
+      "cod_ubigeo_inei_provincia": "2102",
+      "ubigeo_provincia": "Az\u00e1ngaro",
+      "pais": 177,
+      "departamento": 20
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 163,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "2003",
+      "cod_ubigeo_inei_provincia": "2103",
+      "ubigeo_provincia": "Carabaya",
+      "pais": 177,
+      "departamento": 20
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 164,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "2004",
+      "cod_ubigeo_inei_provincia": "2104",
+      "ubigeo_provincia": "Chucuito",
+      "pais": 177,
+      "departamento": 20
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 165,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "2005",
+      "cod_ubigeo_inei_provincia": "2106",
+      "ubigeo_provincia": "Huancan\u00e9",
+      "pais": 177,
+      "departamento": 20
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 166,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "2006",
+      "cod_ubigeo_inei_provincia": "2107",
+      "ubigeo_provincia": "Lampa",
+      "pais": 177,
+      "departamento": 20
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 167,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "2007",
+      "cod_ubigeo_inei_provincia": "2108",
+      "ubigeo_provincia": "Melgar",
+      "pais": 177,
+      "departamento": 20
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 168,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "2008",
+      "cod_ubigeo_inei_provincia": "2112",
+      "ubigeo_provincia": "Sandia",
+      "pais": 177,
+      "departamento": 20
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 169,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "2009",
+      "cod_ubigeo_inei_provincia": "2111",
+      "ubigeo_provincia": "San Rom\u00e1n",
+      "pais": 177,
+      "departamento": 20
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 170,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "2010",
+      "cod_ubigeo_inei_provincia": "2113",
+      "ubigeo_provincia": "Yunguyo",
+      "pais": 177,
+      "departamento": 20
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 171,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "2011",
+      "cod_ubigeo_inei_provincia": "2110",
+      "ubigeo_provincia": "San Antonio de Putina",
+      "pais": 177,
+      "departamento": 20
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 172,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "2012",
+      "cod_ubigeo_inei_provincia": "2105",
+      "ubigeo_provincia": "El Collao",
+      "pais": 177,
+      "departamento": 20
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 173,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "2013",
+      "cod_ubigeo_inei_provincia": "2109",
+      "ubigeo_provincia": "Moho",
+      "pais": 177,
+      "departamento": 20
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 174,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "2101",
+      "cod_ubigeo_inei_provincia": "2201",
+      "ubigeo_provincia": "Moyobamba",
+      "pais": 177,
+      "departamento": 21
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 175,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "2102",
+      "cod_ubigeo_inei_provincia": "2204",
+      "ubigeo_provincia": "Huallaga",
+      "pais": 177,
+      "departamento": 21
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 176,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "2103",
+      "cod_ubigeo_inei_provincia": "2205",
+      "ubigeo_provincia": "Lamas",
+      "pais": 177,
+      "departamento": 21
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 177,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "2104",
+      "cod_ubigeo_inei_provincia": "2206",
+      "ubigeo_provincia": "Mariscal C\u00e1ceres",
+      "pais": 177,
+      "departamento": 21
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 178,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "2105",
+      "cod_ubigeo_inei_provincia": "2208",
+      "ubigeo_provincia": "Rioja",
+      "pais": 177,
+      "departamento": 21
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 179,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "2106",
+      "cod_ubigeo_inei_provincia": "2209",
+      "ubigeo_provincia": "San Mart\u00edn",
+      "pais": 177,
+      "departamento": 21
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 180,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "2107",
+      "cod_ubigeo_inei_provincia": "2202",
+      "ubigeo_provincia": "Bellavista",
+      "pais": 177,
+      "departamento": 21
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 181,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "2108",
+      "cod_ubigeo_inei_provincia": "2210",
+      "ubigeo_provincia": "Tocache",
+      "pais": 177,
+      "departamento": 21
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 182,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "2109",
+      "cod_ubigeo_inei_provincia": "2207",
+      "ubigeo_provincia": "Picota",
+      "pais": 177,
+      "departamento": 21
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 183,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "2110",
+      "cod_ubigeo_inei_provincia": "2203",
+      "ubigeo_provincia": "El Dorado",
+      "pais": 177,
+      "departamento": 21
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 184,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "2201",
+      "cod_ubigeo_inei_provincia": "2301",
+      "ubigeo_provincia": "Tacna",
+      "pais": 177,
+      "departamento": 22
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 185,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "2202",
+      "cod_ubigeo_inei_provincia": "2304",
+      "ubigeo_provincia": "Tarata",
+      "pais": 177,
+      "departamento": 22
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 186,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "2203",
+      "cod_ubigeo_inei_provincia": "2303",
+      "ubigeo_provincia": "Jorge Basadre",
+      "pais": 177,
+      "departamento": 22
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 187,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "2204",
+      "cod_ubigeo_inei_provincia": "2302",
+      "ubigeo_provincia": "Candarave",
+      "pais": 177,
+      "departamento": 22
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 188,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "2301",
+      "cod_ubigeo_inei_provincia": "2401",
+      "ubigeo_provincia": "Tumbes",
+      "pais": 177,
+      "departamento": 23
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 189,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "2302",
+      "cod_ubigeo_inei_provincia": "2402",
+      "ubigeo_provincia": "Contralmirante Villar",
+      "pais": 177,
+      "departamento": 23
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 190,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "2303",
+      "cod_ubigeo_inei_provincia": "2403",
+      "ubigeo_provincia": "Zarumilla",
+      "pais": 177,
+      "departamento": 23
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 191,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "2401",
+      "cod_ubigeo_inei_provincia": "0701",
+      "ubigeo_provincia": "Prov. Const. del Callao",
+      "pais": 177,
+      "departamento": 24
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 192,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "2501",
+      "cod_ubigeo_inei_provincia": "2501",
+      "ubigeo_provincia": "Coronel Portillo",
+      "pais": 177,
+      "departamento": 25
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 193,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "2502",
+      "cod_ubigeo_inei_provincia": "2503",
+      "ubigeo_provincia": "Padre Abad",
+      "pais": 177,
+      "departamento": 25
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 194,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "2503",
+      "cod_ubigeo_inei_provincia": "2502",
+      "ubigeo_provincia": "Atalaya",
+      "pais": 177,
+      "departamento": 25
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 195,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "2504",
+      "cod_ubigeo_inei_provincia": "2504",
+      "ubigeo_provincia": "Pur\u00fas",
+      "pais": 177,
+      "departamento": 25
+    }
+  },
+  {
+    "model": "common.ubigeoprovincia",
+    "pk": 196,
+    "fields": {
+      "cod_ubigeo_reniec_provincia": "",
+      "cod_ubigeo_inei_provincia": "1608",
+      "ubigeo_provincia": "Putumayo",
+      "pais": 177,
+      "departamento": 15
+    }
+  }
+]

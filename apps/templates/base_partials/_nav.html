@@ -1,0 +1,24 @@
+{% load static %}
+<div class="nav-side-menu scrollbar style-2 no-print" id="sidebar-wrapper">
+  <div class="menu-list heightList">
+    <ul id="menu-content" class="menu-content collapse in">
+      <br>
+      <li>
+        <a href="/crear-persona">
+          <div class="col-lg-3 col-md-3 col-xs-3">
+          <i class="fa fa-users"></i>
+          </div>
+          <div class="col-lg-7 col-md-7 col-xs-7">
+            <p data-toggle="tooltip" title="Gestionar persona" data-placement="bottom"
+               class="modulo ocultar ellipsis blue-tooltip" style="margin-top: 0.7rem; font-size:13px;">
+              Personas
+            <p>
+          </div>
+        </a>
+      </li>
+      <ul class="sub-menu modulo-selected collapse" id="moduloSelected" aria-expanded="true">
+        {% block navmenu %}{% endblock %}
+      </ul>
+    </ul>
+  </div>
+</div>

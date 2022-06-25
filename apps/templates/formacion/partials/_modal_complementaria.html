@@ -1,0 +1,56 @@
+{% load form_tags %}
+<div class="modal fade" id="modal-complementaria">
+  <div class="modal-dialog modal-xl2">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Nueva formacion Complementaria</h5>
+        <button type="button" class="btn btn-danger btn-md pull-right" style="margin-top:-30px;"
+                id="btnCerrarHeaderModalComplementaria">x
+        </button>
+      </div>
+      <form id="formComplementaria" action="POST" class="p-2">
+        {% csrf_token %}
+        <div id="errores_list2"></div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="col-md-8">
+                {% field form_complementaria.capacitacion_complementaria cols=False label=True %}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="col-md-8">
+                {% field form_complementaria.centro_estudios cols=False label=True %}
+              </div>
+              <div class="col-md-3">
+                {% field form_complementaria.pais_estudios cols=False label=True %}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="col-md-3">
+                {% field form_complementaria.frecuencia cols=False label=True %}
+              </div>
+              <div class="col-md-3">
+                {% field form_complementaria.cantidad cols=False label=True %}
+              </div>
+              <div class="col-md-3">
+                {% field form_complementaria.fecha_inicio cols=False label=True %}
+              </div>
+              <div class="col-md-3">
+                {% field form_complementaria.fecha_fin cols=False label=True %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a class="btn btn-primary m-b-sm add-item-complementaria" data-added="0">Agregar</a>
+          <button type="button" data-dismiss="modal" class="btn btn-danger" id="btnCerrarModalComplementaria">Cerrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

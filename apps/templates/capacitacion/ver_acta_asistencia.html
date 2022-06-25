@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load form_tags %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'vendor/jquery/css/jquery-ui.min.css' %}">
+{% endblock %}
+{% block container %}
+<div class="col-12">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h5>Acta de asistencia
+        <label class="pull-right">
+          User: <label class="text-success">{{username}}-{{tipo_persona_desc}}</label>
+          {% if tipo_persona == 'consejo_facultad' %}
+            Facultad: <label class="text-success">{{facultad}}</label>
+          {% endif %}
+        </label>
+      </h5>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-lg-12">
+          {% if form.errors %}
+          {% for error in form.non_field_errors %}
+          <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+          </div>
+          {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+        <fieldset class="border p-2">
+          <legend class="scheduler-border" style="width: 150px!important; font-size:12px;"> Acta de asistencia
+            generada
+          </legend>
+          <div class="tab-content table-responsive">
+            <table class="table table-bordered table-hover table-striped table-responsive"
+                   id="lista-capacitacion"
+                   style="width: 100%;">
+              <thead>
+              <tr>
+                <th>N</th>
+                <th>NumDoc</th>
+                <th>Apellidos y Nombres</th>
+                {% for f in fechas_unicas %}
+                <th>{{f.fecha|date:'d-m-y'}}</th>
+                {% endfor %}
+                <th>Resultado</th>
+              </tr>
+              </thead>
+              <tbody>
+              {% for l in list_participantes %}
+              <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{l.numero_documento}}</td>
+                <td>{{l.apellido_paterno}} {{l.apellido_materno}} {{l.nombres}}</td>
+                {% for e in l.estados %}
+                <td>{{e}}</td>
+                {% endfor %}
+                <td>{{l.resultado}}</td>
+              </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </fieldset>
+        <br>
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-1" align="right">
+              <button class="btn btn-danger btn-sm" id="elimina-acta" data-id="{{acta.id}}">Eliminar acta</button>
+            </div>
+            <div class="col-lg-9"></div>
+            <div class="col-lg-2" align="left">
+              <a href="/capacitacion"  class="btn btn-warning btn-sm">Cancel</a>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+<div class="modal" tabindex="-1" id="modal-proyecto-pdf">
+  <div class="modal-dialog modal-xl2">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Documento de proyecto de capacitación</h5>
+        <button type="button" class="close" aria-label="Close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <iframe style="width:100%;" height="800px" src="" id="iframe-proyecto-pdf">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block javascript %}
+  <script>
+    var buscarPersonaUrl = "{% url 'persona:buscar-persona' %}";
+    var urlListarCapacitacion = "{% url 'capacitacion:listar_capacitacion' %}";
+    datatablesES = "{% static 'vendor/datatables/language/spanish.json' %}";
+    var urlProyectoDescargaPdf = "{% url 'capacitacion:proyecto_descarga_pdf' 'archivo' %}";
+    var eliminarActa = "{% url 'capacitacion:eliminar-acta' 'id' %}";
+  </script>
+  <script src="{% static 'js/capacitacion/asistencia.js' %}"></script>
+{% endblock %}

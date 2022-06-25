@@ -1,0 +1,72 @@
+.bodyLogin {
+  background-color: #367fa9;
+}
+
+.contentLogin {
+  background-color: #fff;
+  box-sizing: border-box;
+  left: 50%;
+  opacity: 0.95;
+  padding: 5%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+}
+
+#botonEnviarLogin {
+  background-color: #172D44;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  display: inline-block;
+  padding: 2%;
+  width: 100%;
+}
+
+.contentLogoLogin {
+  border-right: 1px solid #c5c5c5;
+  box-sizing: border-box;
+  height: 177px;
+  margin-bottom: 5%;
+  padding: 55px 25px 0 0;
+}
+
+.logoMinsa {
+  margin-bottom: 5%;
+  width: 100%;
+}
+
+.forgetPassword, #remenberCheckbox {
+  font-size: 13px;
+}
+
+.forgetPassword {
+  text-align: right;
+}
+
+@media only screen and (max-width: 991px) {
+  .contentLogoLogin {
+    border-right: none;
+    height: 5px;
+    margin-bottom: 70%;
+    padding: 5px 5px 0 5px;
+  }
+.logoUNASAM{
+    height: 150px;
+}
+  .forgetPassword, #remenberCheckbox {
+    font-size: 12px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 550px) {
+  .contentLogin {
+    width: 79%;
+  }
+}
+
+.field-persona .selection .select2-selection{
+  height:35px;
+}

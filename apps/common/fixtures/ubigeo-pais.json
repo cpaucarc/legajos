@@ -1,0 +1,2752 @@
+[
+{
+    "model": "common.ubigeopais",
+    "pk": 1,
+    "fields": {
+        "alpha3": "ABW",
+        "alpha2": "AW",
+        "cod_ubigeo_reniec_pais": "1",
+        "cod_ubigeo_inei_pais": "1",
+        "ubigeo_pais": "ARUBA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 2,
+    "fields": {
+        "alpha3": "AFG",
+        "alpha2": "AF",
+        "cod_ubigeo_reniec_pais": "2",
+        "cod_ubigeo_inei_pais": "2",
+        "ubigeo_pais": "AFGANISTAN"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 3,
+    "fields": {
+        "alpha3": "AGO",
+        "alpha2": "AO",
+        "cod_ubigeo_reniec_pais": "3",
+        "cod_ubigeo_inei_pais": "3",
+        "ubigeo_pais": "ANGOLA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 4,
+    "fields": {
+        "alpha3": "AIA",
+        "alpha2": "AI",
+        "cod_ubigeo_reniec_pais": "4",
+        "cod_ubigeo_inei_pais": "4",
+        "ubigeo_pais": "ANGUILA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 5,
+    "fields": {
+        "alpha3": "ALA",
+        "alpha2": "AX",
+        "cod_ubigeo_reniec_pais": "5",
+        "cod_ubigeo_inei_pais": "5",
+        "ubigeo_pais": "ISLAS AALAND"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 6,
+    "fields": {
+        "alpha3": "ALB",
+        "alpha2": "AL",
+        "cod_ubigeo_reniec_pais": "6",
+        "cod_ubigeo_inei_pais": "6",
+        "ubigeo_pais": "ALBANIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 7,
+    "fields": {
+        "alpha3": "AND",
+        "alpha2": "AD",
+        "cod_ubigeo_reniec_pais": "7",
+        "cod_ubigeo_inei_pais": "7",
+        "ubigeo_pais": "ANDORRA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 8,
+    "fields": {
+        "alpha3": "ANT",
+        "alpha2": "AN",
+        "cod_ubigeo_reniec_pais": "8",
+        "cod_ubigeo_inei_pais": "8",
+        "ubigeo_pais": "ANTILLAS NEERLANDESAS"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 9,
+    "fields": {
+        "alpha3": "ARE",
+        "alpha2": "AE",
+        "cod_ubigeo_reniec_pais": "9",
+        "cod_ubigeo_inei_pais": "9",
+        "ubigeo_pais": "EMIRATOS ARABES UNIDOS"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 10,
+    "fields": {
+        "alpha3": "ARG",
+        "alpha2": "AR",
+        "cod_ubigeo_reniec_pais": "10",
+        "cod_ubigeo_inei_pais": "10",
+        "ubigeo_pais": "ARGENTINA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 11,
+    "fields": {
+        "alpha3": "ARM",
+        "alpha2": "AM",
+        "cod_ubigeo_reniec_pais": "11",
+        "cod_ubigeo_inei_pais": "11",
+        "ubigeo_pais": "ARMENIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 12,
+    "fields": {
+        "alpha3": "ASM",
+        "alpha2": "AS",
+        "cod_ubigeo_reniec_pais": "12",
+        "cod_ubigeo_inei_pais": "12",
+        "ubigeo_pais": "SAMOA AMERICANA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 13,
+    "fields": {
+        "alpha3": "ATA",
+        "alpha2": "AQ",
+        "cod_ubigeo_reniec_pais": "13",
+        "cod_ubigeo_inei_pais": "13",
+        "ubigeo_pais": "ANT\u00c1RTIDA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 14,
+    "fields": {
+        "alpha3": "ATF",
+        "alpha2": "TF",
+        "cod_ubigeo_reniec_pais": "14",
+        "cod_ubigeo_inei_pais": "14",
+        "ubigeo_pais": "TERRITORIOS AUSTRALES FRANCESES"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 15,
+    "fields": {
+        "alpha3": "ATG",
+        "alpha2": "AG",
+        "cod_ubigeo_reniec_pais": "15",
+        "cod_ubigeo_inei_pais": "15",
+        "ubigeo_pais": "ANTIGUA Y BARBUDA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 16,
+    "fields": {
+        "alpha3": "AUS",
+        "alpha2": "AU",
+        "cod_ubigeo_reniec_pais": "16",
+        "cod_ubigeo_inei_pais": "16",
+        "ubigeo_pais": "AUSTRALIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 17,
+    "fields": {
+        "alpha3": "AUT",
+        "alpha2": "AT",
+        "cod_ubigeo_reniec_pais": "17",
+        "cod_ubigeo_inei_pais": "17",
+        "ubigeo_pais": "AUSTRIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 18,
+    "fields": {
+        "alpha3": "AZE",
+        "alpha2": "AZ",
+        "cod_ubigeo_reniec_pais": "18",
+        "cod_ubigeo_inei_pais": "18",
+        "ubigeo_pais": "AZERBAIYAN"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 19,
+    "fields": {
+        "alpha3": "BDI",
+        "alpha2": "BI",
+        "cod_ubigeo_reniec_pais": "19",
+        "cod_ubigeo_inei_pais": "19",
+        "ubigeo_pais": "BURUNDI"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 20,
+    "fields": {
+        "alpha3": "BEL",
+        "alpha2": "BE",
+        "cod_ubigeo_reniec_pais": "20",
+        "cod_ubigeo_inei_pais": "20",
+        "ubigeo_pais": "B\u00c9LGICA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 21,
+    "fields": {
+        "alpha3": "BEN",
+        "alpha2": "BJ",
+        "cod_ubigeo_reniec_pais": "21",
+        "cod_ubigeo_inei_pais": "21",
+        "ubigeo_pais": "BENIN"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 22,
+    "fields": {
+        "alpha3": "BES",
+        "alpha2": "BQ",
+        "cod_ubigeo_reniec_pais": "22",
+        "cod_ubigeo_inei_pais": "22",
+        "ubigeo_pais": "BONAIRE, SAN EUSTAQUIO Y SABA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 23,
+    "fields": {
+        "alpha3": "BFA",
+        "alpha2": "BF",
+        "cod_ubigeo_reniec_pais": "23",
+        "cod_ubigeo_inei_pais": "23",
+        "ubigeo_pais": "BURKINA FASO"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 24,
+    "fields": {
+        "alpha3": "BGD",
+        "alpha2": "BD",
+        "cod_ubigeo_reniec_pais": "24",
+        "cod_ubigeo_inei_pais": "24",
+        "ubigeo_pais": "BANGLADESH"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 25,
+    "fields": {
+        "alpha3": "BGR",
+        "alpha2": "BG",
+        "cod_ubigeo_reniec_pais": "25",
+        "cod_ubigeo_inei_pais": "25",
+        "ubigeo_pais": "BULGARIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 26,
+    "fields": {
+        "alpha3": "BHR",
+        "alpha2": "BH",
+        "cod_ubigeo_reniec_pais": "26",
+        "cod_ubigeo_inei_pais": "26",
+        "ubigeo_pais": "BAHR\u00c9IN"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 27,
+    "fields": {
+        "alpha3": "BHS",
+        "alpha2": "BS",
+        "cod_ubigeo_reniec_pais": "27",
+        "cod_ubigeo_inei_pais": "27",
+        "ubigeo_pais": "BAHAMAS"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 28,
+    "fields": {
+        "alpha3": "BIH",
+        "alpha2": "BA",
+        "cod_ubigeo_reniec_pais": "28",
+        "cod_ubigeo_inei_pais": "28",
+        "ubigeo_pais": "BOSNIA Y HERZEGOVINA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 29,
+    "fields": {
+        "alpha3": "BLM",
+        "alpha2": "BL",
+        "cod_ubigeo_reniec_pais": "29",
+        "cod_ubigeo_inei_pais": "29",
+        "ubigeo_pais": "SAN BARTOLOME"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 30,
+    "fields": {
+        "alpha3": "BLR",
+        "alpha2": "BY",
+        "cod_ubigeo_reniec_pais": "30",
+        "cod_ubigeo_inei_pais": "30",
+        "ubigeo_pais": "BIELORRUSIA (BELAR\u00daS)"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 31,
+    "fields": {
+        "alpha3": "BLZ",
+        "alpha2": "BZ",
+        "cod_ubigeo_reniec_pais": "31",
+        "cod_ubigeo_inei_pais": "31",
+        "ubigeo_pais": "BELICE"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 32,
+    "fields": {
+        "alpha3": "BMU",
+        "alpha2": "BM",
+        "cod_ubigeo_reniec_pais": "32",
+        "cod_ubigeo_inei_pais": "32",
+        "ubigeo_pais": "BERMUDAS"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 33,
+    "fields": {
+        "alpha3": "BOL",
+        "alpha2": "BO",
+        "cod_ubigeo_reniec_pais": "33",
+        "cod_ubigeo_inei_pais": "33",
+        "ubigeo_pais": "BOLIVIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 34,
+    "fields": {
+        "alpha3": "BRA",
+        "alpha2": "BR",
+        "cod_ubigeo_reniec_pais": "34",
+        "cod_ubigeo_inei_pais": "34",
+        "ubigeo_pais": "BRASIL"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 35,
+    "fields": {
+        "alpha3": "BRB",
+        "alpha2": "BB",
+        "cod_ubigeo_reniec_pais": "35",
+        "cod_ubigeo_inei_pais": "35",
+        "ubigeo_pais": "BARBADOS"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 36,
+    "fields": {
+        "alpha3": "BRN",
+        "alpha2": "BN",
+        "cod_ubigeo_reniec_pais": "36",
+        "cod_ubigeo_inei_pais": "36",
+        "ubigeo_pais": "BRUNEI DARUSSALAM"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 37,
+    "fields": {
+        "alpha3": "BTN",
+        "alpha2": "BT",
+        "cod_ubigeo_reniec_pais": "37",
+        "cod_ubigeo_inei_pais": "37",
+        "ubigeo_pais": "BUTAN"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 38,
+    "fields": {
+        "alpha3": "BVT",
+        "alpha2": "BV",
+        "cod_ubigeo_reniec_pais": "38",
+        "cod_ubigeo_inei_pais": "38",
+        "ubigeo_pais": "ISLA BOUVET"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 39,
+    "fields": {
+        "alpha3": "BWA",
+        "alpha2": "BW",
+        "cod_ubigeo_reniec_pais": "39",
+        "cod_ubigeo_inei_pais": "39",
+        "ubigeo_pais": "BOTSUANA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 40,
+    "fields": {
+        "alpha3": "CAF",
+        "alpha2": "CF",
+        "cod_ubigeo_reniec_pais": "40",
+        "cod_ubigeo_inei_pais": "40",
+        "ubigeo_pais": "REPUBLICA CENTROAFRICANA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 41,
+    "fields": {
+        "alpha3": "CAN",
+        "alpha2": "CA",
+        "cod_ubigeo_reniec_pais": "41",
+        "cod_ubigeo_inei_pais": "41",
+        "ubigeo_pais": "CANADA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 42,
+    "fields": {
+        "alpha3": "CCK",
+        "alpha2": "CC",
+        "cod_ubigeo_reniec_pais": "42",
+        "cod_ubigeo_inei_pais": "42",
+        "ubigeo_pais": "ISLAS COCOS (KEELING)"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 43,
+    "fields": {
+        "alpha3": "CHE",
+        "alpha2": "CH",
+        "cod_ubigeo_reniec_pais": "43",
+        "cod_ubigeo_inei_pais": "43",
+        "ubigeo_pais": "SUIZA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 44,
+    "fields": {
+        "alpha3": "CHL",
+        "alpha2": "CL",
+        "cod_ubigeo_reniec_pais": "44",
+        "cod_ubigeo_inei_pais": "44",
+        "ubigeo_pais": "CHILE"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 45,
+    "fields": {
+        "alpha3": "CHN",
+        "alpha2": "CN",
+        "cod_ubigeo_reniec_pais": "45",
+        "cod_ubigeo_inei_pais": "45",
+        "ubigeo_pais": "CHINA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 46,
+    "fields": {
+        "alpha3": "CIV",
+        "alpha2": "CI",
+        "cod_ubigeo_reniec_pais": "46",
+        "cod_ubigeo_inei_pais": "46",
+        "ubigeo_pais": "COSTA DE MARFIL"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 47,
+    "fields": {
+        "alpha3": "CMR",
+        "alpha2": "CM",
+        "cod_ubigeo_reniec_pais": "47",
+        "cod_ubigeo_inei_pais": "47",
+        "ubigeo_pais": "CAMERUN"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 48,
+    "fields": {
+        "alpha3": "COD",
+        "alpha2": "CD",
+        "cod_ubigeo_reniec_pais": "48",
+        "cod_ubigeo_inei_pais": "48",
+        "ubigeo_pais": "REPUBLICA DEMOCRATICA DEL CONGO"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 49,
+    "fields": {
+        "alpha3": "COG",
+        "alpha2": "CG",
+        "cod_ubigeo_reniec_pais": "49",
+        "cod_ubigeo_inei_pais": "49",
+        "ubigeo_pais": "REPUBLICA DEL CONGO (BRAZZAVILLE)"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 50,
+    "fields": {
+        "alpha3": "COK",
+        "alpha2": "CK",
+        "cod_ubigeo_reniec_pais": "50",
+        "cod_ubigeo_inei_pais": "50",
+        "ubigeo_pais": "ISLAS COOK"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 51,
+    "fields": {
+        "alpha3": "COL",
+        "alpha2": "CO",
+        "cod_ubigeo_reniec_pais": "51",
+        "cod_ubigeo_inei_pais": "51",
+        "ubigeo_pais": "COLOMBIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 52,
+    "fields": {
+        "alpha3": "COM",
+        "alpha2": "KM",
+        "cod_ubigeo_reniec_pais": "52",
+        "cod_ubigeo_inei_pais": "52",
+        "ubigeo_pais": "COMORAS"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 53,
+    "fields": {
+        "alpha3": "CPV",
+        "alpha2": "CV",
+        "cod_ubigeo_reniec_pais": "53",
+        "cod_ubigeo_inei_pais": "53",
+        "ubigeo_pais": "CABO VERDE"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 54,
+    "fields": {
+        "alpha3": "CRI",
+        "alpha2": "CR",
+        "cod_ubigeo_reniec_pais": "54",
+        "cod_ubigeo_inei_pais": "54",
+        "ubigeo_pais": "COSTA RICA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 55,
+    "fields": {
+        "alpha3": "CUB",
+        "alpha2": "CU",
+        "cod_ubigeo_reniec_pais": "55",
+        "cod_ubigeo_inei_pais": "55",
+        "ubigeo_pais": "CUBA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 56,
+    "fields": {
+        "alpha3": "CUW",
+        "alpha2": "CW",
+        "cod_ubigeo_reniec_pais": "56",
+        "cod_ubigeo_inei_pais": "56",
+        "ubigeo_pais": "CURACAO"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 57,
+    "fields": {
+        "alpha3": "CXR",
+        "alpha2": "CX",
+        "cod_ubigeo_reniec_pais": "57",
+        "cod_ubigeo_inei_pais": "57",
+        "ubigeo_pais": "ISLA DE NAVIDAD (ISLA CHRISTMAS)"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 58,
+    "fields": {
+        "alpha3": "CYM",
+        "alpha2": "KY",
+        "cod_ubigeo_reniec_pais": "58",
+        "cod_ubigeo_inei_pais": "58",
+        "ubigeo_pais": "ISLAS CAIMAN"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 59,
+    "fields": {
+        "alpha3": "CYP",
+        "alpha2": "CY",
+        "cod_ubigeo_reniec_pais": "59",
+        "cod_ubigeo_inei_pais": "59",
+        "ubigeo_pais": "CHIPRE"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 60,
+    "fields": {
+        "alpha3": "CZE",
+        "alpha2": "CZ",
+        "cod_ubigeo_reniec_pais": "60",
+        "cod_ubigeo_inei_pais": "60",
+        "ubigeo_pais": "REPUBLICA CHECA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 61,
+    "fields": {
+        "alpha3": "DEU",
+        "alpha2": "DE",
+        "cod_ubigeo_reniec_pais": "61",
+        "cod_ubigeo_inei_pais": "61",
+        "ubigeo_pais": "ALEMANIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 62,
+    "fields": {
+        "alpha3": "DJI",
+        "alpha2": "DJ",
+        "cod_ubigeo_reniec_pais": "62",
+        "cod_ubigeo_inei_pais": "62",
+        "ubigeo_pais": "YIBUTI"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 63,
+    "fields": {
+        "alpha3": "DMA",
+        "alpha2": "DM",
+        "cod_ubigeo_reniec_pais": "63",
+        "cod_ubigeo_inei_pais": "63",
+        "ubigeo_pais": "DOMINICA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 64,
+    "fields": {
+        "alpha3": "DNK",
+        "alpha2": "DK",
+        "cod_ubigeo_reniec_pais": "64",
+        "cod_ubigeo_inei_pais": "64",
+        "ubigeo_pais": "DINAMARCA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 65,
+    "fields": {
+        "alpha3": "DOM",
+        "alpha2": "DO",
+        "cod_ubigeo_reniec_pais": "65",
+        "cod_ubigeo_inei_pais": "65",
+        "ubigeo_pais": "REPUBLICA DOMINICANA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 66,
+    "fields": {
+        "alpha3": "DZA",
+        "alpha2": "DZ",
+        "cod_ubigeo_reniec_pais": "66",
+        "cod_ubigeo_inei_pais": "66",
+        "ubigeo_pais": "ARGELIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 67,
+    "fields": {
+        "alpha3": "ECU",
+        "alpha2": "EC",
+        "cod_ubigeo_reniec_pais": "67",
+        "cod_ubigeo_inei_pais": "67",
+        "ubigeo_pais": "ECUADOR"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 68,
+    "fields": {
+        "alpha3": "EGY",
+        "alpha2": "EG",
+        "cod_ubigeo_reniec_pais": "68",
+        "cod_ubigeo_inei_pais": "68",
+        "ubigeo_pais": "EGIPTO"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 69,
+    "fields": {
+        "alpha3": "ERI",
+        "alpha2": "ER",
+        "cod_ubigeo_reniec_pais": "69",
+        "cod_ubigeo_inei_pais": "69",
+        "ubigeo_pais": "ERITREA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 70,
+    "fields": {
+        "alpha3": "ESH",
+        "alpha2": "EH",
+        "cod_ubigeo_reniec_pais": "70",
+        "cod_ubigeo_inei_pais": "70",
+        "ubigeo_pais": "SAHARA OCCIDENTAL"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 71,
+    "fields": {
+        "alpha3": "ESP",
+        "alpha2": "ES",
+        "cod_ubigeo_reniec_pais": "71",
+        "cod_ubigeo_inei_pais": "71",
+        "ubigeo_pais": "ESPA\u00d1A"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 72,
+    "fields": {
+        "alpha3": "EST",
+        "alpha2": "EE",
+        "cod_ubigeo_reniec_pais": "72",
+        "cod_ubigeo_inei_pais": "72",
+        "ubigeo_pais": "ESTONIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 73,
+    "fields": {
+        "alpha3": "ETH",
+        "alpha2": "ET",
+        "cod_ubigeo_reniec_pais": "73",
+        "cod_ubigeo_inei_pais": "73",
+        "ubigeo_pais": "ETIOPIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 74,
+    "fields": {
+        "alpha3": "FIN",
+        "alpha2": "FI",
+        "cod_ubigeo_reniec_pais": "74",
+        "cod_ubigeo_inei_pais": "74",
+        "ubigeo_pais": "FINLANDIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 75,
+    "fields": {
+        "alpha3": "FJI",
+        "alpha2": "FJ",
+        "cod_ubigeo_reniec_pais": "75",
+        "cod_ubigeo_inei_pais": "75",
+        "ubigeo_pais": "FIYI"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 76,
+    "fields": {
+        "alpha3": "FLK",
+        "alpha2": "FK",
+        "cod_ubigeo_reniec_pais": "76",
+        "cod_ubigeo_inei_pais": "76",
+        "ubigeo_pais": "ISLAS MALVINAS (FARKLAND)"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 77,
+    "fields": {
+        "alpha3": "FRA",
+        "alpha2": "FR",
+        "cod_ubigeo_reniec_pais": "77",
+        "cod_ubigeo_inei_pais": "77",
+        "ubigeo_pais": "FRANCIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 78,
+    "fields": {
+        "alpha3": "FRO",
+        "alpha2": "FO",
+        "cod_ubigeo_reniec_pais": "78",
+        "cod_ubigeo_inei_pais": "78",
+        "ubigeo_pais": "ISLAS FEROE"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 79,
+    "fields": {
+        "alpha3": "FSM",
+        "alpha2": "FM",
+        "cod_ubigeo_reniec_pais": "79",
+        "cod_ubigeo_inei_pais": "79",
+        "ubigeo_pais": "MICRONESIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 80,
+    "fields": {
+        "alpha3": "GAB",
+        "alpha2": "GA",
+        "cod_ubigeo_reniec_pais": "80",
+        "cod_ubigeo_inei_pais": "80",
+        "ubigeo_pais": "GABON"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 81,
+    "fields": {
+        "alpha3": "GBR",
+        "alpha2": "GB",
+        "cod_ubigeo_reniec_pais": "81",
+        "cod_ubigeo_inei_pais": "81",
+        "ubigeo_pais": "REINO UNIDO"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 82,
+    "fields": {
+        "alpha3": "GEO",
+        "alpha2": "GE",
+        "cod_ubigeo_reniec_pais": "82",
+        "cod_ubigeo_inei_pais": "82",
+        "ubigeo_pais": "GEORGIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 83,
+    "fields": {
+        "alpha3": "GGY",
+        "alpha2": "GG",
+        "cod_ubigeo_reniec_pais": "83",
+        "cod_ubigeo_inei_pais": "83",
+        "ubigeo_pais": "GUERNSEY"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 84,
+    "fields": {
+        "alpha3": "GHA",
+        "alpha2": "GH",
+        "cod_ubigeo_reniec_pais": "84",
+        "cod_ubigeo_inei_pais": "84",
+        "ubigeo_pais": "GHANA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 85,
+    "fields": {
+        "alpha3": "GIB",
+        "alpha2": "GI",
+        "cod_ubigeo_reniec_pais": "85",
+        "cod_ubigeo_inei_pais": "85",
+        "ubigeo_pais": "GIBRALTAR"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 86,
+    "fields": {
+        "alpha3": "GIN",
+        "alpha2": "GN",
+        "cod_ubigeo_reniec_pais": "86",
+        "cod_ubigeo_inei_pais": "86",
+        "ubigeo_pais": "GUINEA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 87,
+    "fields": {
+        "alpha3": "GLP",
+        "alpha2": "GP",
+        "cod_ubigeo_reniec_pais": "87",
+        "cod_ubigeo_inei_pais": "87",
+        "ubigeo_pais": "GUADALUPE"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 88,
+    "fields": {
+        "alpha3": "GMB",
+        "alpha2": "GM",
+        "cod_ubigeo_reniec_pais": "88",
+        "cod_ubigeo_inei_pais": "88",
+        "ubigeo_pais": "GAMBIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 89,
+    "fields": {
+        "alpha3": "GNB",
+        "alpha2": "GW",
+        "cod_ubigeo_reniec_pais": "89",
+        "cod_ubigeo_inei_pais": "89",
+        "ubigeo_pais": "GUINEA-BISSAU"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 90,
+    "fields": {
+        "alpha3": "GNQ",
+        "alpha2": "GQ",
+        "cod_ubigeo_reniec_pais": "90",
+        "cod_ubigeo_inei_pais": "90",
+        "ubigeo_pais": "GUINEA ECUATORIAL"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 91,
+    "fields": {
+        "alpha3": "GRC",
+        "alpha2": "GR",
+        "cod_ubigeo_reniec_pais": "91",
+        "cod_ubigeo_inei_pais": "91",
+        "ubigeo_pais": "GRECIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 92,
+    "fields": {
+        "alpha3": "GRD",
+        "alpha2": "GD",
+        "cod_ubigeo_reniec_pais": "92",
+        "cod_ubigeo_inei_pais": "92",
+        "ubigeo_pais": "GRANADA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 93,
+    "fields": {
+        "alpha3": "GRL",
+        "alpha2": "GL",
+        "cod_ubigeo_reniec_pais": "93",
+        "cod_ubigeo_inei_pais": "93",
+        "ubigeo_pais": "GROENLANDIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 94,
+    "fields": {
+        "alpha3": "GTM",
+        "alpha2": "GT",
+        "cod_ubigeo_reniec_pais": "94",
+        "cod_ubigeo_inei_pais": "94",
+        "ubigeo_pais": "GUATEMALA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 95,
+    "fields": {
+        "alpha3": "GUF",
+        "alpha2": "GF",
+        "cod_ubigeo_reniec_pais": "95",
+        "cod_ubigeo_inei_pais": "95",
+        "ubigeo_pais": "GUAYANA FRANCESA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 96,
+    "fields": {
+        "alpha3": "GUM",
+        "alpha2": "GU",
+        "cod_ubigeo_reniec_pais": "96",
+        "cod_ubigeo_inei_pais": "96",
+        "ubigeo_pais": "GUAM"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 97,
+    "fields": {
+        "alpha3": "GUY",
+        "alpha2": "GY",
+        "cod_ubigeo_reniec_pais": "97",
+        "cod_ubigeo_inei_pais": "97",
+        "ubigeo_pais": "GUYANA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 98,
+    "fields": {
+        "alpha3": "HKG",
+        "alpha2": "HK",
+        "cod_ubigeo_reniec_pais": "98",
+        "cod_ubigeo_inei_pais": "98",
+        "ubigeo_pais": "HONG KONG"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 99,
+    "fields": {
+        "alpha3": "HMD",
+        "alpha2": "HM",
+        "cod_ubigeo_reniec_pais": "99",
+        "cod_ubigeo_inei_pais": "99",
+        "ubigeo_pais": "ISLAS HEARD Y MCDONALD"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 100,
+    "fields": {
+        "alpha3": "HND",
+        "alpha2": "HN",
+        "cod_ubigeo_reniec_pais": "100",
+        "cod_ubigeo_inei_pais": "100",
+        "ubigeo_pais": "HONDURAS"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 101,
+    "fields": {
+        "alpha3": "HRV",
+        "alpha2": "HR",
+        "cod_ubigeo_reniec_pais": "101",
+        "cod_ubigeo_inei_pais": "101",
+        "ubigeo_pais": "CROACIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 102,
+    "fields": {
+        "alpha3": "HTI",
+        "alpha2": "HT",
+        "cod_ubigeo_reniec_pais": "102",
+        "cod_ubigeo_inei_pais": "102",
+        "ubigeo_pais": "HAITI"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 103,
+    "fields": {
+        "alpha3": "HUN",
+        "alpha2": "HU",
+        "cod_ubigeo_reniec_pais": "103",
+        "cod_ubigeo_inei_pais": "103",
+        "ubigeo_pais": "HUNGRIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 104,
+    "fields": {
+        "alpha3": "IDN",
+        "alpha2": "ID",
+        "cod_ubigeo_reniec_pais": "104",
+        "cod_ubigeo_inei_pais": "104",
+        "ubigeo_pais": "INDONESIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 105,
+    "fields": {
+        "alpha3": "IMN",
+        "alpha2": "IM",
+        "cod_ubigeo_reniec_pais": "105",
+        "cod_ubigeo_inei_pais": "105",
+        "ubigeo_pais": "ISLA DE MAN"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 106,
+    "fields": {
+        "alpha3": "IND",
+        "alpha2": "IN",
+        "cod_ubigeo_reniec_pais": "106",
+        "cod_ubigeo_inei_pais": "106",
+        "ubigeo_pais": "INDIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 107,
+    "fields": {
+        "alpha3": "IOT",
+        "alpha2": "IO",
+        "cod_ubigeo_reniec_pais": "107",
+        "cod_ubigeo_inei_pais": "107",
+        "ubigeo_pais": "TERRITORIO BRITANICO DEL OCEANO INDICO"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 108,
+    "fields": {
+        "alpha3": "IRL",
+        "alpha2": "IE",
+        "cod_ubigeo_reniec_pais": "108",
+        "cod_ubigeo_inei_pais": "108",
+        "ubigeo_pais": "IRLANDA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 109,
+    "fields": {
+        "alpha3": "IRN",
+        "alpha2": "IR",
+        "cod_ubigeo_reniec_pais": "109",
+        "cod_ubigeo_inei_pais": "109",
+        "ubigeo_pais": "IRAN"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 110,
+    "fields": {
+        "alpha3": "IRQ",
+        "alpha2": "IQ",
+        "cod_ubigeo_reniec_pais": "110",
+        "cod_ubigeo_inei_pais": "110",
+        "ubigeo_pais": "IRAK"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 111,
+    "fields": {
+        "alpha3": "ISL",
+        "alpha2": "IS",
+        "cod_ubigeo_reniec_pais": "111",
+        "cod_ubigeo_inei_pais": "111",
+        "ubigeo_pais": "ISLANDIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 112,
+    "fields": {
+        "alpha3": "ISR",
+        "alpha2": "IL",
+        "cod_ubigeo_reniec_pais": "112",
+        "cod_ubigeo_inei_pais": "112",
+        "ubigeo_pais": "ISRAEL"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 113,
+    "fields": {
+        "alpha3": "ITA",
+        "alpha2": "IT",
+        "cod_ubigeo_reniec_pais": "113",
+        "cod_ubigeo_inei_pais": "113",
+        "ubigeo_pais": "ITALIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 114,
+    "fields": {
+        "alpha3": "JAM",
+        "alpha2": "JM",
+        "cod_ubigeo_reniec_pais": "114",
+        "cod_ubigeo_inei_pais": "114",
+        "ubigeo_pais": "JAMAICA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 115,
+    "fields": {
+        "alpha3": "JEY",
+        "alpha2": "JE",
+        "cod_ubigeo_reniec_pais": "115",
+        "cod_ubigeo_inei_pais": "115",
+        "ubigeo_pais": "JERSEY"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 116,
+    "fields": {
+        "alpha3": "JOR",
+        "alpha2": "JO",
+        "cod_ubigeo_reniec_pais": "116",
+        "cod_ubigeo_inei_pais": "116",
+        "ubigeo_pais": "JORDANIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 117,
+    "fields": {
+        "alpha3": "JPN",
+        "alpha2": "JP",
+        "cod_ubigeo_reniec_pais": "117",
+        "cod_ubigeo_inei_pais": "117",
+        "ubigeo_pais": "JAPON"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 118,
+    "fields": {
+        "alpha3": "KAZ",
+        "alpha2": "KZ",
+        "cod_ubigeo_reniec_pais": "118",
+        "cod_ubigeo_inei_pais": "118",
+        "ubigeo_pais": "KAZAJIST\u00c1N"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 119,
+    "fields": {
+        "alpha3": "KEN",
+        "alpha2": "KE",
+        "cod_ubigeo_reniec_pais": "119",
+        "cod_ubigeo_inei_pais": "119",
+        "ubigeo_pais": "KENIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 120,
+    "fields": {
+        "alpha3": "KGZ",
+        "alpha2": "KG",
+        "cod_ubigeo_reniec_pais": "120",
+        "cod_ubigeo_inei_pais": "120",
+        "ubigeo_pais": "KIRGUIZIST\u00c1N"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 121,
+    "fields": {
+        "alpha3": "KHM",
+        "alpha2": "KH",
+        "cod_ubigeo_reniec_pais": "121",
+        "cod_ubigeo_inei_pais": "121",
+        "ubigeo_pais": "CAMBOYA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 122,
+    "fields": {
+        "alpha3": "KIR",
+        "alpha2": "KI",
+        "cod_ubigeo_reniec_pais": "122",
+        "cod_ubigeo_inei_pais": "122",
+        "ubigeo_pais": "KIRIBATI"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 123,
+    "fields": {
+        "alpha3": "KNA",
+        "alpha2": "KN",
+        "cod_ubigeo_reniec_pais": "123",
+        "cod_ubigeo_inei_pais": "123",
+        "ubigeo_pais": "SAN CRISTOBAL Y NIEVES"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 124,
+    "fields": {
+        "alpha3": "KOR",
+        "alpha2": "KR",
+        "cod_ubigeo_reniec_pais": "124",
+        "cod_ubigeo_inei_pais": "124",
+        "ubigeo_pais": "COREA DEL SUR"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 125,
+    "fields": {
+        "alpha3": "KWT",
+        "alpha2": "KW",
+        "cod_ubigeo_reniec_pais": "125",
+        "cod_ubigeo_inei_pais": "125",
+        "ubigeo_pais": "KUWAIT"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 126,
+    "fields": {
+        "alpha3": "LAO",
+        "alpha2": "LA",
+        "cod_ubigeo_reniec_pais": "126",
+        "cod_ubigeo_inei_pais": "126",
+        "ubigeo_pais": "LAOS"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 127,
+    "fields": {
+        "alpha3": "LBN",
+        "alpha2": "LB",
+        "cod_ubigeo_reniec_pais": "127",
+        "cod_ubigeo_inei_pais": "127",
+        "ubigeo_pais": "L\u00cdBANO"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 128,
+    "fields": {
+        "alpha3": "LBR",
+        "alpha2": "LR",
+        "cod_ubigeo_reniec_pais": "128",
+        "cod_ubigeo_inei_pais": "128",
+        "ubigeo_pais": "LIBERIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 129,
+    "fields": {
+        "alpha3": "LBY",
+        "alpha2": "LY",
+        "cod_ubigeo_reniec_pais": "129",
+        "cod_ubigeo_inei_pais": "129",
+        "ubigeo_pais": "LIBIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 130,
+    "fields": {
+        "alpha3": "LCA",
+        "alpha2": "LC",
+        "cod_ubigeo_reniec_pais": "130",
+        "cod_ubigeo_inei_pais": "130",
+        "ubigeo_pais": "SANTA LUCIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 131,
+    "fields": {
+        "alpha3": "LIE",
+        "alpha2": "LI",
+        "cod_ubigeo_reniec_pais": "131",
+        "cod_ubigeo_inei_pais": "131",
+        "ubigeo_pais": "LIECHTENSTEIN"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 132,
+    "fields": {
+        "alpha3": "LKA",
+        "alpha2": "LK",
+        "cod_ubigeo_reniec_pais": "132",
+        "cod_ubigeo_inei_pais": "132",
+        "ubigeo_pais": "SRI LANKA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 133,
+    "fields": {
+        "alpha3": "LSO",
+        "alpha2": "LS",
+        "cod_ubigeo_reniec_pais": "133",
+        "cod_ubigeo_inei_pais": "133",
+        "ubigeo_pais": "LESOTO"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 134,
+    "fields": {
+        "alpha3": "LTU",
+        "alpha2": "LT",
+        "cod_ubigeo_reniec_pais": "134",
+        "cod_ubigeo_inei_pais": "134",
+        "ubigeo_pais": "LITUANIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 135,
+    "fields": {
+        "alpha3": "LUX",
+        "alpha2": "LU",
+        "cod_ubigeo_reniec_pais": "135",
+        "cod_ubigeo_inei_pais": "135",
+        "ubigeo_pais": "LUXEMBURGO"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 136,
+    "fields": {
+        "alpha3": "LVA",
+        "alpha2": "LV",
+        "cod_ubigeo_reniec_pais": "136",
+        "cod_ubigeo_inei_pais": "136",
+        "ubigeo_pais": "LETONIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 137,
+    "fields": {
+        "alpha3": "MAC",
+        "alpha2": "MO",
+        "cod_ubigeo_reniec_pais": "137",
+        "cod_ubigeo_inei_pais": "137",
+        "ubigeo_pais": "MACAO"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 138,
+    "fields": {
+        "alpha3": "MAF",
+        "alpha2": "MF",
+        "cod_ubigeo_reniec_pais": "138",
+        "cod_ubigeo_inei_pais": "138",
+        "ubigeo_pais": "SAN MARTIN"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 139,
+    "fields": {
+        "alpha3": "MAR",
+        "alpha2": "MA",
+        "cod_ubigeo_reniec_pais": "139",
+        "cod_ubigeo_inei_pais": "139",
+        "ubigeo_pais": "MARRUECOS"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 140,
+    "fields": {
+        "alpha3": "MCO",
+        "alpha2": "MC",
+        "cod_ubigeo_reniec_pais": "140",
+        "cod_ubigeo_inei_pais": "140",
+        "ubigeo_pais": "M\u00f3NACO"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 141,
+    "fields": {
+        "alpha3": "MDA",
+        "alpha2": "MD",
+        "cod_ubigeo_reniec_pais": "141",
+        "cod_ubigeo_inei_pais": "141",
+        "ubigeo_pais": "MOLDAVIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 142,
+    "fields": {
+        "alpha3": "MDG",
+        "alpha2": "MG",
+        "cod_ubigeo_reniec_pais": "142",
+        "cod_ubigeo_inei_pais": "142",
+        "ubigeo_pais": "MADAGASCAR"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 143,
+    "fields": {
+        "alpha3": "MDV",
+        "alpha2": "MV",
+        "cod_ubigeo_reniec_pais": "143",
+        "cod_ubigeo_inei_pais": "143",
+        "ubigeo_pais": "MALDIVAS"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 144,
+    "fields": {
+        "alpha3": "MEX",
+        "alpha2": "MX",
+        "cod_ubigeo_reniec_pais": "144",
+        "cod_ubigeo_inei_pais": "144",
+        "ubigeo_pais": "M\u00c9XICO"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 145,
+    "fields": {
+        "alpha3": "MHL",
+        "alpha2": "MH",
+        "cod_ubigeo_reniec_pais": "145",
+        "cod_ubigeo_inei_pais": "145",
+        "ubigeo_pais": "ISLAS MARSHALL"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 146,
+    "fields": {
+        "alpha3": "MKD",
+        "alpha2": "MK",
+        "cod_ubigeo_reniec_pais": "146",
+        "cod_ubigeo_inei_pais": "146",
+        "ubigeo_pais": "MACEDONIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 147,
+    "fields": {
+        "alpha3": "MLI",
+        "alpha2": "ML",
+        "cod_ubigeo_reniec_pais": "147",
+        "cod_ubigeo_inei_pais": "147",
+        "ubigeo_pais": "MALI"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 148,
+    "fields": {
+        "alpha3": "MLT",
+        "alpha2": "MT",
+        "cod_ubigeo_reniec_pais": "148",
+        "cod_ubigeo_inei_pais": "148",
+        "ubigeo_pais": "MALTA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 149,
+    "fields": {
+        "alpha3": "MMR",
+        "alpha2": "MM",
+        "cod_ubigeo_reniec_pais": "149",
+        "cod_ubigeo_inei_pais": "149",
+        "ubigeo_pais": "MYANMAR (BIRMANIA)"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 150,
+    "fields": {
+        "alpha3": "MNE",
+        "alpha2": "ME",
+        "cod_ubigeo_reniec_pais": "150",
+        "cod_ubigeo_inei_pais": "150",
+        "ubigeo_pais": "MONTENEGRO"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 151,
+    "fields": {
+        "alpha3": "MNG",
+        "alpha2": "MN",
+        "cod_ubigeo_reniec_pais": "151",
+        "cod_ubigeo_inei_pais": "151",
+        "ubigeo_pais": "MONGOLIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 152,
+    "fields": {
+        "alpha3": "MNP",
+        "alpha2": "MP",
+        "cod_ubigeo_reniec_pais": "152",
+        "cod_ubigeo_inei_pais": "152",
+        "ubigeo_pais": "ISLAS MARIANAS DEL NORTE"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 153,
+    "fields": {
+        "alpha3": "MOZ",
+        "alpha2": "MZ",
+        "cod_ubigeo_reniec_pais": "153",
+        "cod_ubigeo_inei_pais": "153",
+        "ubigeo_pais": "MOZAMBIQUE"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 154,
+    "fields": {
+        "alpha3": "MRT",
+        "alpha2": "MR",
+        "cod_ubigeo_reniec_pais": "154",
+        "cod_ubigeo_inei_pais": "154",
+        "ubigeo_pais": "MAURITANIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 155,
+    "fields": {
+        "alpha3": "MSR",
+        "alpha2": "MS",
+        "cod_ubigeo_reniec_pais": "155",
+        "cod_ubigeo_inei_pais": "155",
+        "ubigeo_pais": "MONTSERRAT"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 156,
+    "fields": {
+        "alpha3": "MTQ",
+        "alpha2": "MQ",
+        "cod_ubigeo_reniec_pais": "156",
+        "cod_ubigeo_inei_pais": "156",
+        "ubigeo_pais": "MARTINICA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 157,
+    "fields": {
+        "alpha3": "MUS",
+        "alpha2": "MU",
+        "cod_ubigeo_reniec_pais": "157",
+        "cod_ubigeo_inei_pais": "157",
+        "ubigeo_pais": "MAURICIO"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 158,
+    "fields": {
+        "alpha3": "MWI",
+        "alpha2": "MW",
+        "cod_ubigeo_reniec_pais": "158",
+        "cod_ubigeo_inei_pais": "158",
+        "ubigeo_pais": "MALAWI"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 159,
+    "fields": {
+        "alpha3": "MYS",
+        "alpha2": "MY",
+        "cod_ubigeo_reniec_pais": "159",
+        "cod_ubigeo_inei_pais": "159",
+        "ubigeo_pais": "MALASIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 160,
+    "fields": {
+        "alpha3": "MYT",
+        "alpha2": "YT",
+        "cod_ubigeo_reniec_pais": "160",
+        "cod_ubigeo_inei_pais": "160",
+        "ubigeo_pais": "MAYOTTE"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 161,
+    "fields": {
+        "alpha3": "NAM",
+        "alpha2": "NA",
+        "cod_ubigeo_reniec_pais": "161",
+        "cod_ubigeo_inei_pais": "161",
+        "ubigeo_pais": "NAMIBIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 162,
+    "fields": {
+        "alpha3": "NCL",
+        "alpha2": "NC",
+        "cod_ubigeo_reniec_pais": "162",
+        "cod_ubigeo_inei_pais": "162",
+        "ubigeo_pais": "NUEVA CALEDONIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 163,
+    "fields": {
+        "alpha3": "NER",
+        "alpha2": "NE",
+        "cod_ubigeo_reniec_pais": "163",
+        "cod_ubigeo_inei_pais": "163",
+        "ubigeo_pais": "N\u00edGER"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 164,
+    "fields": {
+        "alpha3": "NFK",
+        "alpha2": "NF",
+        "cod_ubigeo_reniec_pais": "164",
+        "cod_ubigeo_inei_pais": "164",
+        "ubigeo_pais": "ISLA NORFOLK"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 165,
+    "fields": {
+        "alpha3": "NGA",
+        "alpha2": "NG",
+        "cod_ubigeo_reniec_pais": "165",
+        "cod_ubigeo_inei_pais": "165",
+        "ubigeo_pais": "NIGERIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 166,
+    "fields": {
+        "alpha3": "NIC",
+        "alpha2": "NI",
+        "cod_ubigeo_reniec_pais": "166",
+        "cod_ubigeo_inei_pais": "166",
+        "ubigeo_pais": "NICARAGUA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 167,
+    "fields": {
+        "alpha3": "NIU",
+        "alpha2": "NU",
+        "cod_ubigeo_reniec_pais": "167",
+        "cod_ubigeo_inei_pais": "167",
+        "ubigeo_pais": "NIUE"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 168,
+    "fields": {
+        "alpha3": "NLD",
+        "alpha2": "NL",
+        "cod_ubigeo_reniec_pais": "168",
+        "cod_ubigeo_inei_pais": "168",
+        "ubigeo_pais": "HOLANDA (PAISES BAJOS)"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 169,
+    "fields": {
+        "alpha3": "NOR",
+        "alpha2": "NO",
+        "cod_ubigeo_reniec_pais": "169",
+        "cod_ubigeo_inei_pais": "169",
+        "ubigeo_pais": "NORUEGA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 170,
+    "fields": {
+        "alpha3": "NPL",
+        "alpha2": "NP",
+        "cod_ubigeo_reniec_pais": "170",
+        "cod_ubigeo_inei_pais": "170",
+        "ubigeo_pais": "NEPAL"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 171,
+    "fields": {
+        "alpha3": "NRU",
+        "alpha2": "NR",
+        "cod_ubigeo_reniec_pais": "171",
+        "cod_ubigeo_inei_pais": "171",
+        "ubigeo_pais": "NAURU"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 172,
+    "fields": {
+        "alpha3": "NZL",
+        "alpha2": "NZ",
+        "cod_ubigeo_reniec_pais": "172",
+        "cod_ubigeo_inei_pais": "172",
+        "ubigeo_pais": "NUEVA ZELANDA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 173,
+    "fields": {
+        "alpha3": "OMN",
+        "alpha2": "OM",
+        "cod_ubigeo_reniec_pais": "173",
+        "cod_ubigeo_inei_pais": "173",
+        "ubigeo_pais": "OMAN"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 174,
+    "fields": {
+        "alpha3": "PAK",
+        "alpha2": "PK",
+        "cod_ubigeo_reniec_pais": "174",
+        "cod_ubigeo_inei_pais": "174",
+        "ubigeo_pais": "PAKISTAN"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 175,
+    "fields": {
+        "alpha3": "PAN",
+        "alpha2": "PA",
+        "cod_ubigeo_reniec_pais": "175",
+        "cod_ubigeo_inei_pais": "175",
+        "ubigeo_pais": "PANAMA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 176,
+    "fields": {
+        "alpha3": "PCN",
+        "alpha2": "PN",
+        "cod_ubigeo_reniec_pais": "176",
+        "cod_ubigeo_inei_pais": "176",
+        "ubigeo_pais": "ISLAS PITCAIRN"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 177,
+    "fields": {
+        "alpha3": "PER",
+        "alpha2": "PE",
+        "cod_ubigeo_reniec_pais": "177",
+        "cod_ubigeo_inei_pais": "177",
+        "ubigeo_pais": "PERU"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 178,
+    "fields": {
+        "alpha3": "PHL",
+        "alpha2": "PH",
+        "cod_ubigeo_reniec_pais": "178",
+        "cod_ubigeo_inei_pais": "178",
+        "ubigeo_pais": "FILIPINAS"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 179,
+    "fields": {
+        "alpha3": "PLW",
+        "alpha2": "PW",
+        "cod_ubigeo_reniec_pais": "179",
+        "cod_ubigeo_inei_pais": "179",
+        "ubigeo_pais": "PALAOS"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 180,
+    "fields": {
+        "alpha3": "PNG",
+        "alpha2": "PG",
+        "cod_ubigeo_reniec_pais": "180",
+        "cod_ubigeo_inei_pais": "180",
+        "ubigeo_pais": "PAPUA-NUEVA GUINEA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 181,
+    "fields": {
+        "alpha3": "POL",
+        "alpha2": "PL",
+        "cod_ubigeo_reniec_pais": "181",
+        "cod_ubigeo_inei_pais": "181",
+        "ubigeo_pais": "POLONIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 182,
+    "fields": {
+        "alpha3": "PRI",
+        "alpha2": "PR",
+        "cod_ubigeo_reniec_pais": "182",
+        "cod_ubigeo_inei_pais": "182",
+        "ubigeo_pais": "PUERTO RICO"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 183,
+    "fields": {
+        "alpha3": "PRK",
+        "alpha2": "KP",
+        "cod_ubigeo_reniec_pais": "183",
+        "cod_ubigeo_inei_pais": "183",
+        "ubigeo_pais": "COREA DEL NORTE"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 184,
+    "fields": {
+        "alpha3": "PRT",
+        "alpha2": "PT",
+        "cod_ubigeo_reniec_pais": "184",
+        "cod_ubigeo_inei_pais": "184",
+        "ubigeo_pais": "PORTUGAL"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 185,
+    "fields": {
+        "alpha3": "PRY",
+        "alpha2": "PY",
+        "cod_ubigeo_reniec_pais": "185",
+        "cod_ubigeo_inei_pais": "185",
+        "ubigeo_pais": "PARAGUAY"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 186,
+    "fields": {
+        "alpha3": "PSE",
+        "alpha2": "PS",
+        "cod_ubigeo_reniec_pais": "186",
+        "cod_ubigeo_inei_pais": "186",
+        "ubigeo_pais": "PALESTINA (GAZA)"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 187,
+    "fields": {
+        "alpha3": "PYF",
+        "alpha2": "PF",
+        "cod_ubigeo_reniec_pais": "187",
+        "cod_ubigeo_inei_pais": "187",
+        "ubigeo_pais": "POLINESIA FRANCESA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 188,
+    "fields": {
+        "alpha3": "QAT",
+        "alpha2": "QA",
+        "cod_ubigeo_reniec_pais": "188",
+        "cod_ubigeo_inei_pais": "188",
+        "ubigeo_pais": "QATAR"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 189,
+    "fields": {
+        "alpha3": "REU",
+        "alpha2": "RE",
+        "cod_ubigeo_reniec_pais": "189",
+        "cod_ubigeo_inei_pais": "189",
+        "ubigeo_pais": "REUNION"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 190,
+    "fields": {
+        "alpha3": "ROU",
+        "alpha2": "RO",
+        "cod_ubigeo_reniec_pais": "190",
+        "cod_ubigeo_inei_pais": "190",
+        "ubigeo_pais": "RUMANIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 191,
+    "fields": {
+        "alpha3": "RUS",
+        "alpha2": "RU",
+        "cod_ubigeo_reniec_pais": "191",
+        "cod_ubigeo_inei_pais": "191",
+        "ubigeo_pais": "RUSIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 192,
+    "fields": {
+        "alpha3": "RWA",
+        "alpha2": "RW",
+        "cod_ubigeo_reniec_pais": "192",
+        "cod_ubigeo_inei_pais": "192",
+        "ubigeo_pais": "RUANDA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 193,
+    "fields": {
+        "alpha3": "SAU",
+        "alpha2": "SA",
+        "cod_ubigeo_reniec_pais": "193",
+        "cod_ubigeo_inei_pais": "193",
+        "ubigeo_pais": "ARABIA SAUDITA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 194,
+    "fields": {
+        "alpha3": "SDN",
+        "alpha2": "SD",
+        "cod_ubigeo_reniec_pais": "194",
+        "cod_ubigeo_inei_pais": "194",
+        "ubigeo_pais": "SUDAN"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 195,
+    "fields": {
+        "alpha3": "SEN",
+        "alpha2": "SN",
+        "cod_ubigeo_reniec_pais": "195",
+        "cod_ubigeo_inei_pais": "195",
+        "ubigeo_pais": "SENEGAL"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 196,
+    "fields": {
+        "alpha3": "SGP",
+        "alpha2": "SG",
+        "cod_ubigeo_reniec_pais": "196",
+        "cod_ubigeo_inei_pais": "196",
+        "ubigeo_pais": "SINGAPUR"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 197,
+    "fields": {
+        "alpha3": "SGS",
+        "alpha2": "GS",
+        "cod_ubigeo_reniec_pais": "197",
+        "cod_ubigeo_inei_pais": "197",
+        "ubigeo_pais": "ISLAS GEORGIA DEL SUR Y SANDWICH DEL SUR"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 198,
+    "fields": {
+        "alpha3": "SHN",
+        "alpha2": "SH",
+        "cod_ubigeo_reniec_pais": "198",
+        "cod_ubigeo_inei_pais": "198",
+        "ubigeo_pais": "SANTA HELENA - ASCENSI\u00d3N Y TRIST\u00c1N DA CUNHA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 199,
+    "fields": {
+        "alpha3": "SJM",
+        "alpha2": "SJ",
+        "cod_ubigeo_reniec_pais": "199",
+        "cod_ubigeo_inei_pais": "199",
+        "ubigeo_pais": "SVALBARD Y JAN MAYEN"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 200,
+    "fields": {
+        "alpha3": "SLB",
+        "alpha2": "SB",
+        "cod_ubigeo_reniec_pais": "200",
+        "cod_ubigeo_inei_pais": "200",
+        "ubigeo_pais": "ISLAS SALOMON"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 201,
+    "fields": {
+        "alpha3": "SLE",
+        "alpha2": "SL",
+        "cod_ubigeo_reniec_pais": "201",
+        "cod_ubigeo_inei_pais": "201",
+        "ubigeo_pais": "SIERRA LEONA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 202,
+    "fields": {
+        "alpha3": "SLV",
+        "alpha2": "SV",
+        "cod_ubigeo_reniec_pais": "202",
+        "cod_ubigeo_inei_pais": "202",
+        "ubigeo_pais": "EL SALVADOR"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 203,
+    "fields": {
+        "alpha3": "SMR",
+        "alpha2": "SM",
+        "cod_ubigeo_reniec_pais": "203",
+        "cod_ubigeo_inei_pais": "203",
+        "ubigeo_pais": "SAN MARINO"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 204,
+    "fields": {
+        "alpha3": "SOM",
+        "alpha2": "SO",
+        "cod_ubigeo_reniec_pais": "204",
+        "cod_ubigeo_inei_pais": "204",
+        "ubigeo_pais": "SOMALIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 205,
+    "fields": {
+        "alpha3": "SPM",
+        "alpha2": "PM",
+        "cod_ubigeo_reniec_pais": "205",
+        "cod_ubigeo_inei_pais": "205",
+        "ubigeo_pais": "SAN PEDRO Y MIQUELON"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 206,
+    "fields": {
+        "alpha3": "SRB",
+        "alpha2": "RS",
+        "cod_ubigeo_reniec_pais": "206",
+        "cod_ubigeo_inei_pais": "206",
+        "ubigeo_pais": "SERBIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 207,
+    "fields": {
+        "alpha3": "SSD",
+        "alpha2": "SS",
+        "cod_ubigeo_reniec_pais": "207",
+        "cod_ubigeo_inei_pais": "207",
+        "ubigeo_pais": "SUDAN SUR"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 208,
+    "fields": {
+        "alpha3": "STP",
+        "alpha2": "ST",
+        "cod_ubigeo_reniec_pais": "208",
+        "cod_ubigeo_inei_pais": "208",
+        "ubigeo_pais": "SANTO TOME Y PRINCIPE"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 209,
+    "fields": {
+        "alpha3": "SUR",
+        "alpha2": "SR",
+        "cod_ubigeo_reniec_pais": "209",
+        "cod_ubigeo_inei_pais": "209",
+        "ubigeo_pais": "SURINAM"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 210,
+    "fields": {
+        "alpha3": "SVK",
+        "alpha2": "SK",
+        "cod_ubigeo_reniec_pais": "210",
+        "cod_ubigeo_inei_pais": "210",
+        "ubigeo_pais": "ESLOVAQUIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 211,
+    "fields": {
+        "alpha3": "SVN",
+        "alpha2": "SI",
+        "cod_ubigeo_reniec_pais": "211",
+        "cod_ubigeo_inei_pais": "211",
+        "ubigeo_pais": "ESLOVENIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 212,
+    "fields": {
+        "alpha3": "SWE",
+        "alpha2": "SE",
+        "cod_ubigeo_reniec_pais": "212",
+        "cod_ubigeo_inei_pais": "212",
+        "ubigeo_pais": "SUECIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 213,
+    "fields": {
+        "alpha3": "SWZ",
+        "alpha2": "SZ",
+        "cod_ubigeo_reniec_pais": "213",
+        "cod_ubigeo_inei_pais": "213",
+        "ubigeo_pais": "SUAZILANDIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 214,
+    "fields": {
+        "alpha3": "SYC",
+        "alpha2": "SC",
+        "cod_ubigeo_reniec_pais": "214",
+        "cod_ubigeo_inei_pais": "214",
+        "ubigeo_pais": "SEYCHELLES"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 215,
+    "fields": {
+        "alpha3": "SYR",
+        "alpha2": "SY",
+        "cod_ubigeo_reniec_pais": "215",
+        "cod_ubigeo_inei_pais": "215",
+        "ubigeo_pais": "SIRIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 216,
+    "fields": {
+        "alpha3": "TCA",
+        "alpha2": "TC",
+        "cod_ubigeo_reniec_pais": "216",
+        "cod_ubigeo_inei_pais": "216",
+        "ubigeo_pais": "ISLAS TURCAS Y CAICOS"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 217,
+    "fields": {
+        "alpha3": "TCD",
+        "alpha2": "TD",
+        "cod_ubigeo_reniec_pais": "217",
+        "cod_ubigeo_inei_pais": "217",
+        "ubigeo_pais": "CHAD"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 218,
+    "fields": {
+        "alpha3": "TGO",
+        "alpha2": "TG",
+        "cod_ubigeo_reniec_pais": "218",
+        "cod_ubigeo_inei_pais": "218",
+        "ubigeo_pais": "TOGO"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 219,
+    "fields": {
+        "alpha3": "THA",
+        "alpha2": "TH",
+        "cod_ubigeo_reniec_pais": "219",
+        "cod_ubigeo_inei_pais": "219",
+        "ubigeo_pais": "TAILANDIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 220,
+    "fields": {
+        "alpha3": "TJK",
+        "alpha2": "TJ",
+        "cod_ubigeo_reniec_pais": "220",
+        "cod_ubigeo_inei_pais": "220",
+        "ubigeo_pais": "TAYIKISTAN"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 221,
+    "fields": {
+        "alpha3": "TKL",
+        "alpha2": "TK",
+        "cod_ubigeo_reniec_pais": "221",
+        "cod_ubigeo_inei_pais": "221",
+        "ubigeo_pais": "TOKELAU"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 222,
+    "fields": {
+        "alpha3": "TKM",
+        "alpha2": "TM",
+        "cod_ubigeo_reniec_pais": "222",
+        "cod_ubigeo_inei_pais": "222",
+        "ubigeo_pais": "TURKMENIST\u00c1N"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 223,
+    "fields": {
+        "alpha3": "TLS",
+        "alpha2": "TL",
+        "cod_ubigeo_reniec_pais": "223",
+        "cod_ubigeo_inei_pais": "223",
+        "ubigeo_pais": "TIMOR ORIENTAL"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 224,
+    "fields": {
+        "alpha3": "TON",
+        "alpha2": "TO",
+        "cod_ubigeo_reniec_pais": "224",
+        "cod_ubigeo_inei_pais": "224",
+        "ubigeo_pais": "TONGA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 225,
+    "fields": {
+        "alpha3": "TTO",
+        "alpha2": "TT",
+        "cod_ubigeo_reniec_pais": "225",
+        "cod_ubigeo_inei_pais": "225",
+        "ubigeo_pais": "TRINIDAD Y TOBAGO"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 226,
+    "fields": {
+        "alpha3": "TUN",
+        "alpha2": "TN",
+        "cod_ubigeo_reniec_pais": "226",
+        "cod_ubigeo_inei_pais": "226",
+        "ubigeo_pais": "T\u00daNEZ"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 227,
+    "fields": {
+        "alpha3": "TUR",
+        "alpha2": "TR",
+        "cod_ubigeo_reniec_pais": "227",
+        "cod_ubigeo_inei_pais": "227",
+        "ubigeo_pais": "TURQUIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 228,
+    "fields": {
+        "alpha3": "TUV",
+        "alpha2": "TV",
+        "cod_ubigeo_reniec_pais": "228",
+        "cod_ubigeo_inei_pais": "228",
+        "ubigeo_pais": "TUVALU"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 229,
+    "fields": {
+        "alpha3": "TWN",
+        "alpha2": "TW",
+        "cod_ubigeo_reniec_pais": "229",
+        "cod_ubigeo_inei_pais": "229",
+        "ubigeo_pais": "TAIWAN"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 230,
+    "fields": {
+        "alpha3": "TZA",
+        "alpha2": "TZ",
+        "cod_ubigeo_reniec_pais": "230",
+        "cod_ubigeo_inei_pais": "230",
+        "ubigeo_pais": "TANZANIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 231,
+    "fields": {
+        "alpha3": "UGA",
+        "alpha2": "UG",
+        "cod_ubigeo_reniec_pais": "231",
+        "cod_ubigeo_inei_pais": "231",
+        "ubigeo_pais": "UGANDA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 232,
+    "fields": {
+        "alpha3": "UKR",
+        "alpha2": "UA",
+        "cod_ubigeo_reniec_pais": "232",
+        "cod_ubigeo_inei_pais": "232",
+        "ubigeo_pais": "UCRANIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 233,
+    "fields": {
+        "alpha3": "UMI",
+        "alpha2": "UM",
+        "cod_ubigeo_reniec_pais": "233",
+        "cod_ubigeo_inei_pais": "233",
+        "ubigeo_pais": "ISLAS MENORES ALEJADAS DE LOS ESTADOS UN"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 234,
+    "fields": {
+        "alpha3": "URY",
+        "alpha2": "UY",
+        "cod_ubigeo_reniec_pais": "234",
+        "cod_ubigeo_inei_pais": "234",
+        "ubigeo_pais": "URUGUAY"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 235,
+    "fields": {
+        "alpha3": "USA",
+        "alpha2": "US",
+        "cod_ubigeo_reniec_pais": "235",
+        "cod_ubigeo_inei_pais": "235",
+        "ubigeo_pais": "ESTADOS UNIDOS"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 236,
+    "fields": {
+        "alpha3": "UZB",
+        "alpha2": "UZ",
+        "cod_ubigeo_reniec_pais": "236",
+        "cod_ubigeo_inei_pais": "236",
+        "ubigeo_pais": "UZBEKISTAN"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 237,
+    "fields": {
+        "alpha3": "VAT",
+        "alpha2": "VA",
+        "cod_ubigeo_reniec_pais": "237",
+        "cod_ubigeo_inei_pais": "237",
+        "ubigeo_pais": "CIUDAD DEL VATICANO"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 238,
+    "fields": {
+        "alpha3": "VCT",
+        "alpha2": "VC",
+        "cod_ubigeo_reniec_pais": "238",
+        "cod_ubigeo_inei_pais": "238",
+        "ubigeo_pais": "SAN VICENTE Y LAS GRANADINAS"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 239,
+    "fields": {
+        "alpha3": "VEN",
+        "alpha2": "VE",
+        "cod_ubigeo_reniec_pais": "239",
+        "cod_ubigeo_inei_pais": "239",
+        "ubigeo_pais": "VENEZUELA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 240,
+    "fields": {
+        "alpha3": "VGB",
+        "alpha2": "VG",
+        "cod_ubigeo_reniec_pais": "240",
+        "cod_ubigeo_inei_pais": "240",
+        "ubigeo_pais": "ISLAS VIRGENES BRITANICAS"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 241,
+    "fields": {
+        "alpha3": "VIR",
+        "alpha2": "VI",
+        "cod_ubigeo_reniec_pais": "241",
+        "cod_ubigeo_inei_pais": "241",
+        "ubigeo_pais": "ISLAS VIRGENES AMERICANAS (EEUU)"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 242,
+    "fields": {
+        "alpha3": "VNM",
+        "alpha2": "VN",
+        "cod_ubigeo_reniec_pais": "242",
+        "cod_ubigeo_inei_pais": "242",
+        "ubigeo_pais": "VIETNAM"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 243,
+    "fields": {
+        "alpha3": "VUT",
+        "alpha2": "VU",
+        "cod_ubigeo_reniec_pais": "243",
+        "cod_ubigeo_inei_pais": "243",
+        "ubigeo_pais": "VANUATU"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 244,
+    "fields": {
+        "alpha3": "WLF",
+        "alpha2": "WF",
+        "cod_ubigeo_reniec_pais": "244",
+        "cod_ubigeo_inei_pais": "244",
+        "ubigeo_pais": "WALLIS Y FUTUNA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 245,
+    "fields": {
+        "alpha3": "WSM",
+        "alpha2": "WS",
+        "cod_ubigeo_reniec_pais": "245",
+        "cod_ubigeo_inei_pais": "245",
+        "ubigeo_pais": "SAMOA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 246,
+    "fields": {
+        "alpha3": "XKX",
+        "alpha2": "",
+        "cod_ubigeo_reniec_pais": "246",
+        "cod_ubigeo_inei_pais": "246",
+        "ubigeo_pais": "KOSOVO"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 247,
+    "fields": {
+        "alpha3": "YEM",
+        "alpha2": "YE",
+        "cod_ubigeo_reniec_pais": "247",
+        "cod_ubigeo_inei_pais": "247",
+        "ubigeo_pais": "YEMEN"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 248,
+    "fields": {
+        "alpha3": "ZAF",
+        "alpha2": "ZA",
+        "cod_ubigeo_reniec_pais": "248",
+        "cod_ubigeo_inei_pais": "248",
+        "ubigeo_pais": "SUDAFRICA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 249,
+    "fields": {
+        "alpha3": "ZMB",
+        "alpha2": "ZM",
+        "cod_ubigeo_reniec_pais": "249",
+        "cod_ubigeo_inei_pais": "249",
+        "ubigeo_pais": "ZAMBIA"
+    }
+},
+{
+    "model": "common.ubigeopais",
+    "pk": 250,
+    "fields": {
+        "alpha3": "ZWE",
+        "alpha2": "ZW",
+        "cod_ubigeo_reniec_pais": "250",
+        "cod_ubigeo_inei_pais": "250",
+        "ubigeo_pais": "ZIMBABUE"
+    }
+}
+]

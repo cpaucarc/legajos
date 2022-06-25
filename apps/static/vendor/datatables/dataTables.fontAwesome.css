@@ -1,0 +1,156 @@
+/*!
+ * DataTables + Font Awesome integration
+ * License: MIT - http://datatables.net/license
+ */
+
+/*
+ * Sort styling
+ */
+table.dataTable thead th {
+  background-image: none !important; /* Remove the DataTables bootstrap integration styling */
+  position: relative;
+}
+
+table.dataTable thead th.sorting:after,
+table.dataTable thead th.sorting_asc:after,
+table.dataTable thead th.sorting_desc:after {
+  display: block;
+  font-family: FontAwesome;
+  position: absolute;
+  right: 8px;
+  top: 12px;
+}
+
+table.dataTable thead th.sorting:after {
+  color: #ddd;
+  content: "\f0dc";
+  font-size: 0.8em;
+  padding-top: 0.12em;
+}
+
+table.dataTable thead th.sorting_asc:after {
+  content: "\f0de";
+}
+
+table.dataTable thead th.sorting_desc:after {
+  content: "\f0dd";
+}
+
+div.dataTables_scrollBody table.dataTable thead th.sorting:after,
+div.dataTables_scrollBody table.dataTable thead th.sorting_asc:after,
+div.dataTables_scrollBody table.dataTable thead th.sorting_desc:after {
+  content: "";
+}
+
+/* In Bootstrap and Foundation the padding top is a little different from the DataTables stylesheet */
+table.table thead th.sorting:after,
+table.table thead th.sorting_asc:after,
+table.table thead th.sorting_desc:after {
+  top: 8px;
+}
+
+/*
+ * DataTables style pagination controls
+ */
+div.dataTables_paginate a.paginate_button.first,
+div.dataTables_paginate a.paginate_button.previous {
+  padding-left: 24px;
+  position: relative;
+}
+
+div.dataTables_paginate a.paginate_button.next,
+div.dataTables_paginate a.paginate_button.last {
+  padding-right: 24px;
+  position: relative;
+}
+
+div.dataTables_paginate a.first:before,
+div.dataTables_paginate a.previous:before {
+  display: block;
+  font-family: FontAwesome;
+  left: 10px;
+  position: absolute;
+  top: 8px;
+}
+
+div.dataTables_paginate a.next:after,
+div.dataTables_paginate a.last:after {
+  display: block;
+  font-family: FontAwesome;
+  position: absolute;
+  right: 10px;
+  top: 8px;
+}
+
+div.dataTables_paginate a.first:before {
+  content: "\f100";
+}
+
+div.dataTables_paginate a.previous:before {
+  content: "\f104";
+}
+
+div.dataTables_paginate a.next:after {
+  content: "\f105";
+}
+
+div.dataTables_paginate a.last:after {
+  content: "\f101";
+}
+
+/*
+ * Bootstrap and foundation style pagination controls
+ */
+div.dataTables_paginate li.first > a,
+div.dataTables_paginate li.previous > a {
+  padding-left: 24px;
+  position: relative;
+}
+
+div.dataTables_paginate li.next > a,
+div.dataTables_paginate li.last > a {
+  padding-right: 24px;
+  position: relative;
+}
+
+div.dataTables_paginate li.first a:before,
+div.dataTables_paginate li.previous a:before {
+  display: block;
+  font-family: FontAwesome;
+  left: 10px;
+  position: absolute;
+  top: 6px;
+}
+
+div.dataTables_paginate li.next a:after,
+div.dataTables_paginate li.last a:after {
+  display: block;
+  font-family: FontAwesome;
+  position: absolute;
+  right: 10px;
+  top: 6px;
+}
+
+div.dataTables_paginate li.first a:before {
+  content: "\f100";
+}
+
+div.dataTables_paginate li.previous a:before {
+  content: "\f104";
+}
+
+div.dataTables_paginate li.next a:after {
+  content: "\f105";
+}
+
+div.dataTables_paginate li.last a:after {
+  content: "\f101";
+}
+
+/* In Foundation we don't want the padding like in bootstrap */
+div.columns div.dataTables_paginate li.first a:before,
+div.columns div.dataTables_paginate li.previous a:before,
+div.columns div.dataTables_paginate li.next a:after,
+div.columns div.dataTables_paginate li.last a:after {
+  top: 0;
+}

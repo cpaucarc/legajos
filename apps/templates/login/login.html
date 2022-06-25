@@ -1,0 +1,20 @@
+{% extends 'base_partials/base_login.html' %}
+{% block container %}
+<form class="user" action="." method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <input type="text" class="form-control form-control-user" placeholder="Usuario" name="username" autofocus
+               required>
+    </div>
+    <div class="form-group">
+        <input type="password" class="form-control form-control-user" placeholder="Contraseña" name="password" required>
+
+    </div>
+    {% for message in messages %}
+    <div class="alert alert-danger animate">
+        <span class="body-message">{{ message|safe }}</span>
+    </div>
+    {% endfor %}
+    <button class="btn btn-secondary btn-user btn-block" id="botonEnviarLogin"> Ingresar</button>
+</form>
+{% endblock %}

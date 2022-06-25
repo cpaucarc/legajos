@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load form_tags %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'vendor/jquery/css/jquery-ui.min.css' %}">
+{% endblock %}
+{% block container %}
+<div class="col-12">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h5>Proyecto de Capacitación
+        <label class="pull-right">
+          User: <label class="text-success">{{username}} {{tipo_persona_desc}}</label>
+          {% if tipo_persona == 'consejo_facultad' %}
+            Facultad: <label class="text-success">{{facultad}}</label>
+          {% endif %}
+        </label>
+      </h5>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-lg-12">
+          {% if form.errors %}
+          {% for error in form.non_field_errors %}
+          <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+          </div>
+          {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset class="border p-2">
+          <legend class="scheduler-border" style="width: 110px!important; font-size:12px;"> Datos del proyecto </legend>
+        <div class="col-lg-12">
+          <div class="col-lg-6">
+             <label class="txt-label">Nombre del proyecto de Capacitación <label class="text-danger">*</label></label>
+            {% field form.nombre cols=False label=False %}
+          </div>
+          <div class="col-md-3">
+            <label class="txt-label">Fecha Inicio <label class="text-danger">*</label></label>
+            {% field form.fecha_inicio cols=False label=False %}
+          </div>
+          <div class="col-md-3">
+            <label class="txt-label">Fecha Fin <label class="text-danger">*</label></label>
+            {% field form.fecha_fin cols=False label=False %}
+          </div>
+        </div>
+        <div class="col-lg-6">
+          {% field form.descripcion_horario cols=True %}
+          {% field form.beneficiarios cols=True %}
+          {% field form.objetivo cols=True %}
+          {% field form.certificacion cols=True %}
+          {% field form.ruta_proyecto_pdf cols=True %}
+        </div>
+        <div class="col-lg-6">
+          {% field form.canal_reunion cols=True %}
+          {% field form.justificacion cols=True %}
+          {% field form.observacion cols=True %}
+          {% field form.tipo_emision_certificado cols=True %}
+        </div>
+          {% if archivo %}
+          <div id="div_id_archivo_cargado" class="form-group row">
+            <label class="col-form-label col-lg-2">Archivo cargado </label>
+            <div class="col-lg-3">
+              &nbsp;<img src="{% static 'img/icono-pdf.png' %}" data-archivo="{{archivo}}"
+                         style="height:40px;cursor:pointer;" id="ver_pdf_cargado">
+            </div>
+          </div>
+          {% endif %}
+        </fieldset>
+        <fieldset class="border p-2">
+          <legend class="scheduler-border" style="width: 180px!important; font-size:14px;"> Agregar temario por módulo</legend>
+          <div class="col-lg-2 pull-right">
+            <button class="btn btn-success btn-sm" id="btn-agregar" type="button">Agregar Módulo</button>
+          </div>
+          <br>&nbsp;
+          {% include 'capacitacion/partials/modulos_formset.html' %}
+        </fieldset>
+        <fieldset class="border p-2">
+          <legend class="scheduler-border" style="width: 180px!important; font-size:14px;">
+            Agregar equipo de proyecto
+          </legend>
+          <div class="col-lg-12">
+            <div class="col-lg-3">
+              {% field form.cargo_select cols=False %}
+            </div>
+            <div class="col-lg-7">
+              {% field form.persona_select cols=False %}
+            </div>
+            <div class="col-lg-1">
+              <label>&nbsp;</label>
+              <button class="btn btn-success btn-sm" id="btn-agregar-miembro" type="button">Agregar Miembro</button>
+            </div>
+          </div>
+          <br>&nbsp;
+          {% include 'capacitacion/partials/equipo_formset.html' %}
+        </fieldset>
+        <br>
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-8"></div>
+            <div class="col-lg-4" align="right">
+              <a href="#" class="btn btn-danger btn-sm">Cancel</a>
+              &nbsp;
+              <button type="submit" class="btn btn-primary btn-sm" id="btn-guardar">Guardar</button>
+            </div>
+          </div>
+        </div>
+      </form>
+      &nbsp;
+      <div class="tab-content table-responsive">
+        <table class="table table-bordered table-hover table-striped table-responsive"
+               id="lista-capacitacion"
+               style="width: 100%;">
+          <thead>
+          <tr>
+            <th></th>
+            <th>Nombre del proyecto</th>
+            <th>Fecha</th>
+            <th>Módulos</th>
+            <th>Observación de la revisión</th>
+            <th>Estado</th>
+            <th>PDF</th>
+            <th>Acta asistencia</th>
+            <th></th>
+            <th></th>
+          </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" tabindex="-1" id="modal-proyecto-pdf">
+  <div class="modal-dialog modal-xl2">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Documento de proyecto de capacitación</h5>
+        <button type="button" class="close" aria-label="Close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <iframe style="width:100%;" height="800px" src="" id="iframe-proyecto-pdf">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block javascript %}
+  <script>
+    arrayIdErrors = "{{ids_errors}}";
+    $("#formset-parent tr").each(function(){
+      if (arrayIdErrors.indexOf($(this).closest("tr").find('input[type="hidden"]').val())){
+        $(this).closest("tr").find('input[type="checkbox"]').prop("checked", false);
+      }
+    });
+    var buscarPersonaUrl = "{% url 'persona:buscar-persona' %}";
+    var urlListarCapacitacion = "{% url 'capacitacion:listar_capacitacion' %}";
+    datatablesES = "{% static 'vendor/datatables/language/spanish.json' %}";
+    var urlProyectoDescargaPdf = "{% url 'capacitacion:proyecto_descarga_pdf' 'archivo' %}";
+    var eliminarCapacitacion = "{% url 'capacitacion:eliminar-capacitacion' 'id' %}";
+    var urlEnviaParaRevision = "{% url 'capacitacion:envia_para_revision' 'id' %}";
+  </script>
+  <script src="{% static 'js/formset.js' %}"></script>
+  <script src="{% static 'js/capacitacion/capacitacion.js' %}"></script>
+{% endblock %}

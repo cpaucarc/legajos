@@ -1,0 +1,14 @@
+#page {
+    /*display: none;*/
+}
+
+#loading {
+  background: rgba(254, 254, 254, 0.98) url(../img/loading.gif) no-repeat center;
+    display: block;
+  height: 100vh;
+  left: 0;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+  z-index: 10;
+}

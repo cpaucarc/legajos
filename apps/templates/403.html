@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block container %}
+<div class="container-fluid">
+    <div class="jumbotron">
+        <h2>{{ msg_403}}</h2>
+        <br>
+        <p>
+            <a class="btn btn-danger btn-lg" href="{% url 'login:logout' %}" role="button">Salir del sistema</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

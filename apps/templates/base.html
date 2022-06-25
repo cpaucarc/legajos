@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+{% spaceless %}
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/loadingPage.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/nprogress/nprogress.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/animate/css/animate.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap-flat.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/sweetalert2/sweetalert2.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/select2/css/select2.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/select2/css/select2-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap-toggle/bootstrap-toggle.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
+    <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}"/>
+    {% block css %}{% endblock css %}
+    <title> UNASAM - Capacitaciones</title>
+  </head>
+  <body id="body">
+  {% block head %}
+    {% include "base_partials/_head.html" %}
+  {% endblock %}
+  {% block _wrapper %}
+    <div id="wrapper">
+      {% block nav %}
+        {% include "base_partials/_nav.html" %}
+      {% endblock %}
+      <section id="page">
+        <div id="loading" class="no-print"></div>
+        <div id="page-content-wrapper">
+          <div class="mi-slider">
+            <div class="container">
+              {% if messages %}
+                <div class="row">
+                  <div class="content-message no-print">
+                    {% for message in messages %}
+                      <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %} alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
+                        <span class="body-message">{{ message|safe }}</span>
+                      </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endif %}
+              {% block container %}{% endblock %}
+            </div>
+          </div>
+          <div id="over"></div>
+        </div>
+      </section>
+    </div>
+  <div class="modal fade" tabindex="-1" id="modal-video-tutorial">
+    <div class="modal-dialog modal-xl2">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Video Tutorial</h5>
+          <button type="button" class="close" aria-label="Close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <iframe style="width:100%;" height="630px" src="" id="iframe-video-tutorial">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+  <script src="{% static 'js/loadingPage.js' %}"></script>
+  <script src="{% static 'vendor/nprogress/nprogress.js' %}"></script>
+  <script src="{% static 'vendor/sweetalert2/sweetalert2.min.js' %}"></script>
+  <script>
+    NProgress.configure({easing: "ease", speed: 1000, parent: "#body"});
+    NProgress.start();
+  </script>
+  <script src="{% static 'vendor/jquery/js/jquery-3.2.1.min.js' %}"></script>
+  <script src="{% static 'vendor/datatables/jquery.dataTables.min.js' %}"></script>
+  <script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+  <script src="{% static 'vendor/jquery/js/jquery-ui.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'vendor/jquery-validate/jquery.validate.js' %}"></script>
+  <script src="{% static 'vendor/jquery-validate/messages_es.js' %}"></script>
+  <script src="{% static 'vendor/select2/js/select2.full.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap-toggle/bootstrap-toggle.min.js' %}"></script>
+  <script src="{% static 'vendor/select2/js/i18n/es.js' %}"></script>
+  <script src="{% static 'vendor/inputmask/inputmask.min.js' %}"></script>
+  <script src="{% static 'vendor/inputmask/jquery.inputmask.min.js' %}"></script>
+  <script src="{% static 'vendor/block-ui/jquery.blockUI.js' %}"></script>
+  <script>
+    var url_minsa_logo_peque = "{% static 'img/minsa-peque.png' %}";
+    var url_minsa_logo_grande = "{% static 'img/minsa-grande.png' %}";
+    var url_video_tutorial = "{{url_video_tutorial}}";
+  </script>
+  <script src="{% static 'js/animation.js' %}"></script>
+  <script src="{% static 'js/fancy.js' %}"></script>
+  <script src="{% static 'js/common.js' %}"></script>
+  <script src="{% static 'js/base.js' %}"></script>
+  {% block javascript %}
+  {% endblock javascript %}
+
+  </body>
+{% endspaceless %}
+</html>

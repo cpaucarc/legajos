@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load form_tags %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'vendor/jquery/css/jquery-ui.min.css' %}">
+{% endblock %}
+{% block container %}
+<div class="col-12">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h5>Asignar firmantes al proyecto de capacitación
+        <label class="pull-right">
+          User: <label class="text-success">{{username}} {{tipo_persona_desc}}</label>
+        </label>
+      </h5>
+      <div>Proyecto: <label class="text-success">{{capacitacion.nombre}}</label></div>
+      <div>Facultad: <label class="text-success">{{capacitacion.facultad|yesno:"capacitacion.facultad,-"}}</label></div>
+    </div>
+    <br>
+    <div class="panel-body">
+      <div class="col-lg-12">
+        <div class="col-lg-2">
+          <label class="txt-label">Ámbito:</label>
+          <select id="id_ambito" class="form-control">
+            <option value="">-----------</option>
+            <option value="unasam">UNASAM</option>
+            <option value="facultad">FACULTAD</option>
+          </select>
+        </div>
+        <div class="col-md-7">
+          <label class="txt-label">Firmante:</label>
+          <select id="id_firmante" class="form-control">
+            <option value=""></option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <label class="txt-label">Tipo de firma</label>
+          <select id="id_tipo_firma" class="form-control">
+            <option value="">------------</option>
+            <option value="director">Director</option>
+            <option value="coordinador">Coordinador</option>
+            <option value="ponente">Ponente</option>
+            <option value="organizador">Organizador</option>
+          </select>
+        </div>
+        <div class="col-md-1">
+          <label class="txt-label"></label>
+          <button class="btn btn-success" id="asigna-firmante">Asignar</button>
+        </div>
+      </div>
+      &nbsp;
+      <div class="tab-content table-responsive">
+        <table class="table table-bordered table-hover table-striped table-responsive"
+               id="lista-firmantes-asignados"
+               style="width: 100%;">
+          <thead>
+          <tr>
+            <th></th>
+            <th>Tipo de firma</th>
+            <th>Firmante del Certificado</th>
+            <th>Acción</th>
+          </tr>
+          </thead>
+          <tbody>
+          {% for f in firmantes %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{f.get_tipo_firma_display}}</td>
+              <td>{{f.firmante}}</td>
+              <td><a class="fa fa-trash quitar-firmante" style="cursor:pointer;" data-id="{{f.id}}"></a></td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="col-lg-12" align="right">
+        <a href="/bandeja-validacion" class="btn btn-warning btn-sm">Regresar</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block javascript %}
+  <script>
+    var csrf_token = "{{ csrf_token }}";
+    var idFacultad = "{{ capacitacion.facultad_id|yesno:"capacitacion.facultad_id,"  }}";
+    var idCapacitacion = "{{ capacitacion.id }}";
+    var urlFirmanteAmbito = "{% url 'capacitacion:firmante_ambito' %}";
+    var urlAsignarFirmante = "{% url 'capacitacion:asignar_firmante' %}";
+    var urlQuitarResponsableFirma = "{% url 'capacitacion:eliminar_responsable_firma' 'id' %}";
+  </script>
+  <script src="{% static 'js/capacitacion/asignar-firmante.js' %}"></script>
+{% endblock %}

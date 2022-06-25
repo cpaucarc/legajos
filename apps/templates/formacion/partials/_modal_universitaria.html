@@ -1,0 +1,56 @@
+{% load form_tags %}
+<div class="modal fade" id="modal-universitaria">
+  <div class="modal-dialog modal-xl2">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Nueva formacion universitaria</h5>
+        <button type="button" class="btn btn-danger btn-md pull-right" style="margin-top:-30px;"
+                id="btnCerrarHeaderModalUniversitaria">x
+        </button>
+      </div>
+      <form id="formUniversitaria" action="POST" class="p-2">
+        {% csrf_token %}
+        <div id="errores_list"></div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="col-md-4">
+                {% field form_universitaria.grado_obtenido cols=False label=True %}
+              </div>
+              <div class="col-md-8">
+                {% field form_universitaria.facultad cols=False label=True %}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="col-md-6">
+                {% field form_universitaria.nombre_grado cols=False label=True %}
+              </div>
+              <div class="col-md-3">
+                {% field form_universitaria.fecha_inicio cols=False label=True %}
+              </div>
+              <div class="col-md-3">
+                {% field form_universitaria.fecha_fin cols=False label=True %}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="col-md-8">
+                {% field form_universitaria.centro_estudios cols=False label=True %}
+              </div>
+              <div class="col-md-4">
+                {% field form_universitaria.pais_estudios cols=False label=True %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a class="btn btn-primary m-b-sm add-item-universitaria" data-added="0">Agregar</a>
+          <button type="button" data-dismiss="modal" class="btn btn-danger" id="btnCerrarModalUniversitaria">Cerrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

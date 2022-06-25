@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load form_tags %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'vendor/jquery/css/jquery-ui.min.css' %}">
+{% endblock %}
+{% block container %}
+<div class="col-12">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h5>Agregar Firmante
+        <label class="pull-right">
+          User: <label class="text-success">{{username}} {{tipo_persona_desc}}</label>
+        </label>
+      </h5>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-lg-12">
+          {% if form.errors %}
+          {% for error in form.non_field_errors %}
+          <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+          </div>
+          {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset class="border p-2">
+          <legend class="scheduler-border" style="width: 110px!important; font-size:12px;"> Datos del firmante </legend>
+        <div class="col-lg-12">
+          <div class="col-lg-6">
+            {% field form.persona cols=True label=True label_width=2 %}
+          </div>
+          <div class="col-lg-6">
+            <div class="col-lg-9">
+            {% field form.firma cols=True label=True label_width=2 %}
+            </div>
+            {% if firma64 %}
+            <div class="col-lg-3 pull-right">
+              <label class="btn-success btn-xs" id="ver_firma_cargado" style="cursor:pointer">
+                <i class="fa fa-eye"></i> Ver firma
+              </label>
+            </div>
+              {% endif %}
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="col-lg-4">
+          {% field form.ambito cols=True label=True label_width=3 %}
+          </div>
+            <div class="col-lg-8">
+          {% field form.facultad cols=True label=True label_width=2 %}
+            </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-8"></div>
+            <div class="col-lg-4" align="right">
+              <a href="/crear-firmante" class="btn btn-danger btn-sm">Cancelar</a>
+              &nbsp;
+              <button type="submit" class="btn btn-primary btn-sm" id="btn-guardar">Guardar</button>
+            </div>
+          </div>
+        </div>
+          <br>&nbsp;
+        </fieldset>
+      </form>
+      &nbsp;
+      <div class="tab-content table-responsive">
+        <table class="table table-bordered table-hover table-striped table-responsive"
+               id="lista-firmante"
+               style="width: 100%;">
+          <thead>
+          <tr>
+            <th></th>
+            <th>Nro. Documento</th>
+            <th>Apellidos y Nombres</th>
+            <th>Ámbito</th>
+            <th>Facultad</th>
+            <th></th>
+            <th></th>
+          </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" tabindex="-1" id="modal-firma-pdf">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Firma cargada</h5>
+        <button type="button" class="close" aria-label="Close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <img src="data:image/png;base64, {{firma64}}" alt="firma-png" style="width:100%;"/>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block javascript %}
+  <script>
+    var buscarPersonaUrl = "{% url 'persona:buscar-persona' %}";
+    var urlListarFirmante = "{% url 'persona:listar_firmante' %}";
+    datatablesES = "{% static 'vendor/datatables/language/spanish.json' %}";
+    var urlProyectoDescargaPdf = "{% url 'capacitacion:proyecto_descarga_pdf' 'archivo' %}";
+    var eliminarFirmante = "{% url 'persona:eliminar_firmante' 'id' %}";
+    var ambitoFirmante = "{{ambito_firmante}}";
+    if (ambitoFirmante){
+    $("#id_reportadas").val("{{cantidad_camas}}");
+    $("#select2-id_persona-container").attr("title","{{object.persona}}");
+    $("#select2-id_persona-container").text("{{object.persona}}");
+    $("#id_persona").append(`<option value="{{object.persona_id}}">{{object.persona}}</option>`);
+    $("#id_persona option[value={{object.persona_id}}]").attr('selected','selected');
+  }
+  </script>
+  <script src="{% static 'js/persona/firmante.js' %}"></script>
+{% endblock %}

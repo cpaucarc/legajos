@@ -1,0 +1,56 @@
+{% load form_tags %}
+<div class="modal fade" id="modal-docente">
+  <div class="modal-dialog modal-xl2">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Nueva Experiencia Como Docente</h5>
+        <button type="button" class="btn btn-danger btn-md pull-right" style="margin-top:-30px;"
+                id="btnCerrarHeaderModalDocente">x
+        </button>
+      </div>
+      <form id="formDocente" action="POST" class="p-2">
+        {% csrf_token %}
+        <div id="errores_list_docente"></div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="col-md-9">
+                {% field form_docente.institucion cols=False label=True %}
+              </div>
+              <div class="col-md-3">
+                {% field form_docente.tipo_institucion cols=False label=True %}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="col-md-5">
+                {% field form_docente.tipo_docente cols=False label=True %}
+              </div>
+              <div class="col-md-3">
+                {% field form_docente.fecha_inicio cols=False label=True %}
+              </div>
+              <div class="col-md-3">
+                {% field form_docente.fecha_fin cols=False label=True %}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="col-md-8">
+                {% field form_docente.descripcion_cargo cols=False label=True %}
+              </div>
+              <div class="col-md-4" style="margin-top:30px;cursor:pointer;">
+                {% field form_docente.trabaja_actualmente cols=False label=True %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a class="btn btn-primary m-b-sm add-item-docente" data-added="0">Agregar</a>
+          <button type="button" data-dismiss="modal" class="btn btn-danger" id="btnCerrarModalDocente">Cerrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

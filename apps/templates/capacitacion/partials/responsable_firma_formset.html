@@ -1,0 +1,47 @@
+{% load form_tags %}
+<div class="row" style="margin:2px;">
+  <div class="col-lg-12">
+    {{ responsable_firma_formset.management_form }}
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th class="col-2">Cargo</th>
+          <th class="col-8">Firmante</th>
+          <th class="col-2">&nbsp;&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody id="formset-parent" class="form-firmante">
+        {% for firmante_form in responsable_firma_formset %}
+          <tr>
+            {{ firmante_form.id }}
+            <td>
+              {% field firmante_form.cargo label=False %}
+              {% field firmante_form.cargo_firmante label=False %}
+            </td>
+            <td>
+              {% field firmante_form.persona_id label=False %}
+              {% field firmante_form.persona_firmante label=False %}
+            </td>
+            <td>{% field firmante_form.DELETE label=True %}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+      <tbody id="formset-empty" class="d-none">
+        {% with responsable_firma_formset.empty_form as f %}
+         <tr>
+            {{ f.id }}
+            <td>
+              {% field f.cargo label=False %}
+              {% field f.cargo_firmante label=False %}
+            </td>
+            <td>
+              {% field f.persona_id label=False %}
+              {% field f.persona_firmante label=False %}
+            </td>
+            <td>{% field f.DELETE label=True %}</td>
+          </tr>
+        {% endwith %}
+      </tbody>
+    </table>
+  </div>
+</div>

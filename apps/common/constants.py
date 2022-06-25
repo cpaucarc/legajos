@@ -1,0 +1,462 @@
+DOCUMENT_TYPE_DNI = '01'
+DOCUMENT_TYPE_CE = '03'
+DOCUMENT_TYPE_PASAPORTE = '02'
+DOCUMENT_TYPE_CEDULA_IDENTIDAD = '04'
+
+DOCUMENTOS_EXISTENTES = [DOCUMENT_TYPE_DNI, DOCUMENT_TYPE_PASAPORTE, DOCUMENT_TYPE_CE, DOCUMENT_TYPE_CEDULA_IDENTIDAD]
+
+DOCUMENT_TYPE_CHOICES = (
+    (DOCUMENT_TYPE_DNI, 'DNI'),
+    (DOCUMENT_TYPE_CE, 'CE'),
+    (DOCUMENT_TYPE_PASAPORTE, 'Pasaporte'),
+    (DOCUMENT_TYPE_CEDULA_IDENTIDAD, 'Cédula de identidad')
+)
+
+DOCUMENT_TYPE_CHOICES1 = (
+    (DOCUMENT_TYPE_DNI, 'DNI'),
+    (DOCUMENT_TYPE_CE, 'CE')
+)
+
+AREA_CHOICES = (
+    (1, 'Urbano'),
+    (2, 'Rural'),
+)
+
+REGION_GEOGRAFICA_CHOICES = (
+    (1, "Costa"),
+    (2, "Sierra"),
+    (3, "Selva"),
+    (4, "Lima Metropolitana"),
+)
+
+
+SEXO_FEMENINO = '2'
+SEXO_MASCULINO = '1'
+
+SEXO_CHOICES = (
+    (SEXO_FEMENINO, 'Femenino'),
+    (SEXO_MASCULINO, 'Masculino')
+)
+
+ESTADO_PROYECTO_REGISTRADO = 'registrado'
+ESTADO_PROYECTO_VALIDADO = 'validado'
+ESTADO_PROYECTO_OBSERVADO = 'observado'
+ESTADO_PROYECTO_CANCELADO = 'cancelado'
+ESTADO_PROYECTO_CULMINADO = 'culminado'
+ESTADO_PROYECTO_POR_VALIDAR = 'por_validar'
+
+ESTADO_PROYECTO_CHOICES = (
+    (ESTADO_PROYECTO_REGISTRADO, 'Registrado'),
+    (ESTADO_PROYECTO_VALIDADO, 'Validado'),
+    (ESTADO_PROYECTO_CANCELADO, 'Cancelado'),
+    (ESTADO_PROYECTO_CULMINADO, 'Culminado'),
+    (ESTADO_PROYECTO_OBSERVADO, 'Observado'),
+    (ESTADO_PROYECTO_POR_VALIDAR, 'Por validar')
+)
+
+
+ESTADO_REVISION_COMISION_CHOICES = (
+    (ESTADO_PROYECTO_VALIDADO, 'Validado'),
+    (ESTADO_PROYECTO_CANCELADO, 'Cancelado'),
+    (ESTADO_PROYECTO_CULMINADO, 'Culminado'),
+    (ESTADO_PROYECTO_OBSERVADO, 'Observado'),
+    (ESTADO_PROYECTO_POR_VALIDAR, 'Por validar')
+)
+
+
+ESTADO_ASISTENCIA_PRESENTE = 'P'
+ESTADO_ASISTENCIA_FALTA = 'F'
+
+ESTADO_ASISTENCIA_CHOICES = (
+    (ESTADO_ASISTENCIA_PRESENTE, 'P'),
+    (ESTADO_ASISTENCIA_FALTA, 'F'),
+)
+
+
+TIPO_PERSONA_DOCENTE = 'docente'
+TIPO_PERSONA_ADMINISTRATIVO = 'administrativo'
+TIPO_PERSONA_REGISTRADOR = 'registrador'
+TIPO_PERSONA_AUTORIDAD = 'autoridad'
+
+TIPO_PERSONA_CHOICES = (
+    (TIPO_PERSONA_DOCENTE, 'Docente'),
+    (TIPO_PERSONA_ADMINISTRATIVO, 'Administrativo'),
+    (TIPO_PERSONA_REGISTRADOR, 'Registrador'),
+    (TIPO_PERSONA_AUTORIDAD, 'Autoridad'),
+)
+
+TIPO_CONTRATO_CONTRATADO = 'contratado'
+TIPO_CONTRATO_NOMBRADO = 'nombrado'
+
+TIPO_CONTRATO_CHOICES = (
+    (TIPO_CONTRATO_CONTRATADO, 'Contratado'),
+    (TIPO_CONTRATO_NOMBRADO, 'Nombrado'),
+)
+
+DEDICACION_TIEMPO_COMPLETO = 'tiempo_completo'
+DEDICACION_TIEMPO_PARCIAL = 'tiempo_parcial'
+
+DEDICACION_CHOICES = (
+    (DEDICACION_TIEMPO_COMPLETO, 'Tiempo completo'),
+    (DEDICACION_TIEMPO_PARCIAL, 'Tiempo parcial'),
+)
+
+CATEGORIA_AUXILIAR = 'auxiliar'
+CATEGORIA_ASOCIADO = 'asociado'
+CATEGORIA_PRINCIPAL = 'principal'
+
+CATEGORIA_CHOICES = (
+    (CATEGORIA_AUXILIAR, 'Auxiliar'),
+    (CATEGORIA_ASOCIADO, 'Asociado'),
+    (CATEGORIA_PRINCIPAL, 'Principal'),
+)
+
+TIPO_MIEMBRO_FACULTAD = 'consejo_facultad'
+TIPO_MIEMBRO_UNASAM = 'consejo_unasam'
+
+TIPO_MIEMBRO_CHOICES = (
+    (TIPO_MIEMBRO_FACULTAD, 'Miembro del CCEAD Facultad'),
+    (TIPO_MIEMBRO_UNASAM, 'Miembro del CCEAD UNASAM'),
+)
+
+EMISION_CERTIFICADO_UNICO = 'certificado_unico'
+EMISION_CERTIFICADO_MODULOS = 'certificado_por_modulo'
+EMISION_CERTIFICADO_UNICO_Y_MODULOS = 'certificado_unico_y_modulos'
+
+EMISION_CERTIFICADO_CHOICES = (
+    (EMISION_CERTIFICADO_UNICO, 'Certificado único'),
+    (EMISION_CERTIFICADO_MODULOS, 'Certificados por módulos'),
+    (EMISION_CERTIFICADO_UNICO_Y_MODULOS, 'Certificado único y por módulos'),
+)
+
+TIPO_CERT_EMITIDO_UNICO = 'certificado_unico'
+TIPO_CERT_EMITIDO_MODULO = 'certificado_por_modulo'
+
+TIPO_CERT_EMITIDO_CHOICES = (
+    (TIPO_CERT_EMITIDO_UNICO, 'Certificado único'),
+    (TIPO_CERT_EMITIDO_MODULO, 'Certificado por módulo'),
+)
+
+AMBITO_UNASAM = 'unasam'
+AMBITO_FACULTAD = 'facultad'
+
+AMBITO_CHOICES = (
+    (AMBITO_UNASAM, 'UNASAM'),
+    (AMBITO_FACULTAD, 'Facultad'),
+)
+
+CARGO_PROYECTO_PONENTE = 'ponente'
+CARGO_PROYECTO_ORGANIZADOR = 'organizador'
+CARGO_PROYECTO_RESPONSABLE = 'responsable'
+
+CARGO_PROYECTO_CHOICES = (
+    (CARGO_PROYECTO_PONENTE, 'Ponente'),
+    (CARGO_PROYECTO_ORGANIZADOR, 'Organizador'),
+    (CARGO_PROYECTO_RESPONSABLE, 'Responsable'),
+)
+
+CARGO_CERT_EMITIDO_PONENTE = 'ponente'
+CARGO_CERT_EMITIDO_ORGANIZADOR = 'organizador'
+CARGO_CERT_EMITIDO_RESPONSABLE = 'responsable'
+CARGO_CERT_EMITIDO_ASISTENTE = 'asistente'
+
+CARGO_CERT_EMITIDO_CHOICES = (
+    (CARGO_CERT_EMITIDO_PONENTE, 'Ponente'),
+    (CARGO_CERT_EMITIDO_ORGANIZADOR, 'Organizador'),
+    (CARGO_CERT_EMITIDO_RESPONSABLE, 'Responsable'),
+    (CARGO_CERT_EMITIDO_ASISTENTE, 'Asistente'),
+)
+
+ESTADO_CERT_EMITIDO = 'emitido'
+ESTADO_CERT_ANULADO = 'anulado'
+
+ESTADO_CERT_CHOICES = (
+    (ESTADO_CERT_EMITIDO, 'Emitido'),
+    (ESTADO_CERT_ANULADO, 'Anulado'),
+)
+
+ID_UBIGEO_PERU = 177
+
+TIPO_DOCUMENTO_LABORAL = 'laboral'
+TIPO_DOCUMENTO_DOCENTE = 'docente'
+TIPO_DOCUMENTO_EVALUADOR_PROYECTO = 'evaluador_proyecto'
+TIPO_DOCUMENTO_ASESOR_TESIS = 'asesor_tesis'
+TIPO_DOCUMENTO_FORMACION_UNIVERSITARIA = 'formacion_universitaria'
+TIPO_DOCUMENTO_FORMACION_TECNICA = 'formacion_tecnica'
+TIPO_DOCUMENTO_FORMACION_COMPLEMENTARIA = 'formacion_complementaria'
+
+TIPO_DOCUMENTO_CHOICES = (
+    (TIPO_DOCUMENTO_LABORAL, 'Laboral'),
+    (TIPO_DOCUMENTO_DOCENTE, 'Docente'),
+    (TIPO_DOCUMENTO_EVALUADOR_PROYECTO, 'Evaluador de proyecto'),
+    (TIPO_DOCUMENTO_ASESOR_TESIS, 'Asesor de tesis'),
+    (TIPO_DOCUMENTO_FORMACION_UNIVERSITARIA, 'Formación Universitaria'),
+    (TIPO_DOCUMENTO_FORMACION_TECNICA, 'Formación Técnica'),
+    (TIPO_DOCUMENTO_FORMACION_COMPLEMENTARIA, 'Formación Complementaria'),
+)
+
+TIPO_INSTITUCION_UNIVERSIDAD = 'universidad'
+TIPO_INSTITUCION_INSTITUTO = 'instituto'
+TIPO_INSTITUCION_OTROS = 'otros'
+
+TIPO_INSTITUCION_CHOICES = (
+    (TIPO_INSTITUCION_UNIVERSIDAD, 'Universidad'),
+    (TIPO_INSTITUCION_INSTITUTO, 'Instituto'),
+    (TIPO_INSTITUCION_OTROS, 'Otros'),
+)
+
+TIPO_DOCENTE_CONTRATADO = 'contratado'
+TIPO_DOCENTE_PRINCIPAL = 'principal'
+TIPO_DOCENTE_ASOCIADO = 'asociado'
+TIPO_DOCENTE_AUXILIAR = 'auxiliar'
+TIPO_DOCENTE_EXTRAORDINARIO = 'extraordinario'
+
+TIPO_DOCENTE_CHOICES = (
+    (TIPO_DOCENTE_CONTRATADO, 'Contratado'),
+    (TIPO_DOCENTE_PRINCIPAL, 'Ordinario-Principal'),
+    (TIPO_DOCENTE_ASOCIADO, 'Ordinario-Asociado'),
+    (TIPO_DOCENTE_AUXILIAR, 'Ordinario-Auxiliar'),
+    (TIPO_DOCENTE_EXTRAORDINARIO, 'Extraordinario(emerito, honorario, y similares'),
+)
+
+TIPO_TESIS_DOCTORADO = 'doctorado'
+TIPO_TESIS_MAGISTER = 'magister'
+TIPO_TESIS_LICENCIADO_TITULO = 'licenciado_titulo'
+TIPO_TESIS_BACHILLER = 'bachiller'
+TIPO_TESIS_SEGUNDA_ESPECIALIDAD = 'segunda_especialidad'
+
+TIPO_TESIS_CHOICES = (
+    (TIPO_TESIS_DOCTORADO, 'DOCTORADO'),
+    (TIPO_TESIS_MAGISTER, 'MAGISTER'),
+    (TIPO_TESIS_LICENCIADO_TITULO, 'LICENCIADO/TÍTULO'),
+    (TIPO_TESIS_BACHILLER, 'BACHILLER'),
+    (TIPO_TESIS_SEGUNDA_ESPECIALIDAD, 'SEGUNDA ESPECIALIDAD'),
+)
+
+TIPO_EXPERIENCIA_PROYECTO_EVALUADOR = 'evaluador'
+TIPO_EXPERIENCIA_PROYECTO_FORMULADOR = 'formulador'
+
+TIPO_EXPERIENCIA_PROYECTO_CHOICES = (
+    (TIPO_EXPERIENCIA_PROYECTO_EVALUADOR, 'Experiencia como Evaluador'),
+    (TIPO_EXPERIENCIA_PROYECTO_FORMULADOR, 'Experiencia como formulador(sólo proyectos ganados)'),
+)
+
+PROYECTO_FORMULADO_INCENTIVO_TRIBUTARIOS = 'incentivos_tributarios'
+PROYECTO_FORMULADO_PASANTIAS_MISIONES = 'pasantias_misiones'
+PROYECTO_FORMULADO_DESARROLLO_INDUSTRIAL = 'desarrollo_industrial'
+PROYECTO_FORMULADO_EQUIPAMIENTO_CIENTIFICO = 'equipamiento_cientifico'
+PROYECTO_FORMULADO_EXTENSIONISMO_TECNOLOGICO = 'extensionismo_tecnologico'
+PROYECTO_FORMULADO_INNOVACION = 'innovacion'
+PROYECTO_FORMULADO_SNIP = 'inversion_publica_snip'
+PROYECTO_FORMULADO_INVESTIGACION_APLICADA = 'investigacion_aplicada'
+PROYECTO_FORMULADO_INVESTIGACION_BASICA = 'investigacion_basica'
+PROYECTO_FORMULADO_TRANSFERENCIA_TECNOLOGIA = 'transferencia_tecnologia'
+PROYECTO_FORMULADO_OTROS = 'otros'
+
+PROYECTO_FORMULADO_CHOICES = (
+    (PROYECTO_FORMULADO_INCENTIVO_TRIBUTARIOS, 'Incentivos tributarios'),
+    (PROYECTO_FORMULADO_PASANTIAS_MISIONES, 'Pasantías y/o misiones'),
+    (PROYECTO_FORMULADO_DESARROLLO_INDUSTRIAL, 'Proyecto de desarrollo industrial'),
+    (PROYECTO_FORMULADO_EQUIPAMIENTO_CIENTIFICO, 'Proyectos de equipamiento científico/tecnológico'),
+    (PROYECTO_FORMULADO_EXTENSIONISMO_TECNOLOGICO, 'Proyectos de extensionismo tecnológico'),
+    (PROYECTO_FORMULADO_INNOVACION, 'Proyectos de Innovación'),
+    (PROYECTO_FORMULADO_SNIP, 'Proyectos de inversión pública-SNIP'),
+    (PROYECTO_FORMULADO_INVESTIGACION_APLICADA, 'Proyectos de investigación aplicada'),
+    (PROYECTO_FORMULADO_INVESTIGACION_BASICA, 'Proyectos de investigación básica'),
+    (PROYECTO_FORMULADO_TRANSFERENCIA_TECNOLOGIA, 'Proyectos de transferencia tecnológica'),
+    (PROYECTO_FORMULADO_OTROS, 'Otros'),
+)
+
+METODOLOGIA_EVALUACION_POR_PANEL = 'evaluador_por_panel'
+METODOLOGIA_EVALUACION_POR_PARES = 'evaluador_por_pares'
+METODOLOGIA_EVALUACION_UNICO_INDIVIDUAL = 'evaluador_unico_individual'
+
+METODOLOGIA_EVALUACION_CHOICES = (
+    (METODOLOGIA_EVALUACION_POR_PANEL, 'Evaluador por panel'),
+    (METODOLOGIA_EVALUACION_POR_PARES, 'Evaluador por pares'),
+    (METODOLOGIA_EVALUACION_UNICO_INDIVIDUAL, 'Evaluador único/individual'),
+)
+
+GRADO_DOCTORADO = 'doctorado'
+GRADO_MAGISTER = 'magister'
+GRADO_LICENCIADO_TITULO = 'licenciado_titulo'
+GRADO_BACHILLER = 'bachiller'
+GRADO_SEGUNDA_ESPECIALIDAD = 'segunda_especialidad'
+
+GRADO_CHOICES = (
+    (GRADO_DOCTORADO, 'DOCTORADO'),
+    (GRADO_MAGISTER, 'MAGISTER'),
+    (GRADO_LICENCIADO_TITULO, 'LICENCIADO/TÍTULO'),
+    (GRADO_BACHILLER, 'BACHILLER'),
+    (GRADO_SEGUNDA_ESPECIALIDAD, 'SEGUNDA ESPECIALIDAD'),
+)
+
+FRECUENCIA_HORAS = 'horas'
+FRECUENCIA_DIAS = 'dias'
+FRECUENCIA_MESES = 'meses'
+FRECUENCIA_ANIOS = 'anios'
+
+FRECUENCIA_CHOICES = (
+    (FRECUENCIA_HORAS, 'HORAS'),
+    (FRECUENCIA_DIAS, 'DIAS'),
+    (FRECUENCIA_MESES, 'MESES'),
+    (FRECUENCIA_ANIOS, 'AÑOS'),
+)
+
+FRECUENCIA_BASICO = 'basico'
+FRECUENCIA_INTERMEDIO = 'intermedio'
+NIVEL_IDIOMA_AVANZADO = 'avanzado'
+FRECUENCIA_AVANZADO_SUPERIOR = 'avanzado_superior'
+
+NIVEL_IDIOMA_CHOICES = (
+    (FRECUENCIA_BASICO, 'BÁSICO'),
+    (FRECUENCIA_INTERMEDIO, 'INTERMEDIO'),
+    (NIVEL_IDIOMA_AVANZADO, 'AVANZADO'),
+    (FRECUENCIA_AVANZADO_SUPERIOR, 'AVANZADO SUPERIOR'),
+)
+
+FORMA_APRENDIZAJE_INSTITUTO = 'instituto'
+FORMA_APRENDIZAJE_AUTODIDACTA = 'autodidacta'
+FORMA_APRENDIZAJE_SOFTWARE = 'software'
+FORMA_APRENDIZAJE_OTROS = 'otros'
+
+FORMA_APRENDIZAJE_CHOICES = (
+    (FORMA_APRENDIZAJE_INSTITUTO, 'INSTITUTO'),
+    (FORMA_APRENDIZAJE_AUTODIDACTA, 'AUTODIDACTA'),
+    (FORMA_APRENDIZAJE_SOFTWARE, 'SOFTWARE'),
+    (FORMA_APRENDIZAJE_OTROS, 'OTROS'),
+)
+
+
+CATEGORIA_TRABAJO_PUBLICACION = 'publicacion'
+CATEGORIA_TRABAJO_CONFERENCIA = 'conferencia'
+CATEGORIA_TRABAJO_PROPIEDAD_INTELECTUAL = 'propiedad_intelectual'
+CATEGORIA_TRABAJO_OTRO = 'otro'
+
+CATEGORIA_TRABAJO_CHOICES = (
+    (CATEGORIA_TRABAJO_PUBLICACION, 'Publicación'),
+    (CATEGORIA_TRABAJO_CONFERENCIA, 'Conferencia'),
+    (CATEGORIA_TRABAJO_PROPIEDAD_INTELECTUAL, 'Propiedad intelecutal'),
+    (CATEGORIA_TRABAJO_OTRO, 'Otro'),
+)
+
+OBRA_ARTICULO_BOLETIN = 'articulo_boletin'
+OBRA_ARTICULO_REVISTA_CIENTIFICA = 'articulo_revista_cientifica'
+OBRA_ARTICULO_MAGAZINE = 'articulo_magazine'
+OBRA_ARTICULO_PERIODICO = 'articulo_periodico'
+OBRA_CAPITULO_LIBRO = 'capitulo_libro'
+OBRA_DISSERTACION = 'dissertacion'
+OBRA_DOCUMENTO_TRABAJO = 'documento_trabajo'
+OBRA_ENTRADA_DICCIONARIO = 'entrada_diccionario'
+OBRA_ENTRADA_ENCICLOPEDIA = 'entrada_enciclopedia'
+OBRA_FASCICULO = 'fasciculo'
+OBRA_HERRAMIENTA_INVESTIGACION = 'herramienta_investigacion'
+OBRA_LIBRO = 'libro'
+OBRA_LIBRO_EDITADO = 'libro_editado'
+OBRA_LIBRO_MANUAL = 'manual'
+OBRA_LIBRO_PREFACIO_EPILOGO = 'prefacion_epilogo'
+OBRA_LIBRO_PUBLICACION_ESTUDIANTIL_SUPERVISADA = 'publicacion_estudiantil_supervisada'
+OBRA_LIBRO_RECURSO_LINEA = 'recurso_linea'
+OBRA_LIBRO_REPORTE = 'reporte'
+OBRA_RESENA_LIBRO = 'resena_libro'
+OBRA_TEST = 'test'
+OBRA_TRADUCCION = 'traduccion'
+OBRA_WEBSITE = 'website'
+
+TIPO_OBRA_CHOICES = (
+    (OBRA_ARTICULO_BOLETIN, 'Artículo boletín'),
+    (OBRA_ARTICULO_REVISTA_CIENTIFICA, 'Artículo en revista científica'),
+    (OBRA_ARTICULO_MAGAZINE, 'Artículo magazine'),
+    (OBRA_ARTICULO_PERIODICO, 'Artículo periódico'),
+    (OBRA_CAPITULO_LIBRO, 'Capítulo de libro'),
+    (OBRA_DISSERTACION, 'Dissertación'),
+    (OBRA_DOCUMENTO_TRABAJO, 'Documento de trabajo'),
+    (OBRA_ENTRADA_DICCIONARIO, 'Entrada de diccionario'),
+    (OBRA_ENTRADA_ENCICLOPEDIA, 'Entrada Enciclopedia/Enciclopedia'),
+    (OBRA_FASCICULO, 'Fascículo'),
+    (OBRA_HERRAMIENTA_INVESTIGACION, 'Herramienta de investigación'),
+    (OBRA_LIBRO, 'Libro'),
+    (OBRA_LIBRO_EDITADO, 'Libro editado'),
+    (OBRA_LIBRO_MANUAL, 'Manual'),
+    (OBRA_LIBRO_PREFACIO_EPILOGO, 'Prefacio, Epílogo'),
+    (OBRA_LIBRO_PUBLICACION_ESTUDIANTIL_SUPERVISADA, 'Publicación estudiantil supervisada'),
+    (OBRA_LIBRO_RECURSO_LINEA, 'Recurso en línea'),
+    (OBRA_LIBRO_REPORTE, 'Reporte'),
+    (OBRA_RESENA_LIBRO, 'Reseña de libro'),
+    (OBRA_TEST, 'Test'),
+    (OBRA_TRADUCCION, 'Traducción'),
+    (OBRA_WEBSITE, 'Website'),
+)
+
+FUNCION_AUTOR = 'autor'
+FUNCION_CESIONARIO = 'cesionario'
+FUNCION_CO_INVENTOR = 'coinventor'
+FUNCION_CO_INVESTIGADOR = 'coinvestigador'
+FUNCION_CO_EDITOR = 'editor'
+FUNCION_ESTUDIANTE_POSTGRADO = 'estudiante_posgrado'
+FUNCION_INVESTIGADOR_POST_DOCTORAL = 'investigador_post_doctoral'
+FUNCION_INVESTIGADOR_PRINCIPAL = 'investigador_principal'
+FUNCION_JEFE_TRADUCTOR = 'jefe_traductor'
+FUNCION_OTRO_INVENTOR = 'otro_inventor'
+FUNCION_PERSONAL_APOYO = 'personal_apoyo'
+
+FUNCION_CHOICES = (
+    (FUNCION_AUTOR, 'Autor'),
+    (FUNCION_CESIONARIO, 'Cesionario'),
+    (FUNCION_CO_INVENTOR, 'Co-inventor'),
+    (FUNCION_CO_INVESTIGADOR, 'Co-investigador'),
+    (FUNCION_CO_EDITOR, 'Co-investigador'),
+    (FUNCION_ESTUDIANTE_POSTGRADO, 'Estudiante de posgrado'),
+    (FUNCION_INVESTIGADOR_POST_DOCTORAL, 'Investigador postdoctoral'),
+    (FUNCION_INVESTIGADOR_PRINCIPAL, 'Investigador principal'),
+    (FUNCION_JEFE_TRADUCTOR, 'Jefe o traductor'),
+    (FUNCION_OTRO_INVENTOR, 'Otro inventor'),
+    (FUNCION_PERSONAL_APOYO, 'Personal de apoyo'),
+)
+
+TIPO_CITA_APA = 'apa'
+TIPO_CITA_BIBTEXT = 'bibtext'
+TIPO_CITA_CHICAGO = 'chicago'
+TIPO_CITA_HARVARD = 'harvard'
+TIPO_CITA_IEEE = 'ieee'
+TIPO_CITA_MLA = 'mla'
+TIPO_CITA_RIS = 'ris'
+TIPO_CITA_SIN_ESPECIFICAR = 'sin_especificar'
+TIPO_CITA_VANCOUVER = 'vancouver'
+
+TIPO_CITA_CHOICES = (
+    (TIPO_CITA_APA, 'APA'),
+    (TIPO_CITA_BIBTEXT, 'BIBTEXT'),
+    (TIPO_CITA_CHICAGO, 'CHICAGO'),
+    (TIPO_CITA_HARVARD, 'HARVARD'),
+    (TIPO_CITA_IEEE, 'IEEE'),
+    (TIPO_CITA_MLA, 'MLA'),
+    (TIPO_CITA_RIS, 'RIS'),
+    (TIPO_CITA_SIN_ESPECIFICAR, 'SIN ESPECIFICAR'),
+    (TIPO_CITA_VANCOUVER, 'VANCOUVER'),
+)
+
+
+ORDEN_AUTORIA_AUTOR = 'autor'
+ORDEN_AUTORIA_COAUTOR = 'co_autor'
+
+ORDEN_AUTORIA_CHOICES = (
+    (ORDEN_AUTORIA_AUTOR, 'Autor'),
+    (ORDEN_AUTORIA_COAUTOR, 'Coautor'),
+)
+
+TIPO_DOC_REVISION_PARES = 'revision_pares'
+TIPO_DOC_RESULTADO_INVESTIGACION = 'constancia_resultado_investigacion'
+
+TIPO_DOC_ADJUNTO_CHOICES = (
+    (TIPO_DOC_REVISION_PARES, 'Revisión de pares'),
+    (TIPO_DOC_RESULTADO_INVESTIGACION, 'Constancia de resultados de investigación'),
+)
+
+TIPO_CONGRESO_NACIONAL = 'nacional'
+TIPO_CONGRESO_INTERNACIONAL = 'internacional'
+
+TIPO_CONGRESO_CHOICES = (
+    (TIPO_CONGRESO_NACIONAL, 'nacional'),
+    (TIPO_CONGRESO_INTERNACIONAL, 'internacional'),
+)
