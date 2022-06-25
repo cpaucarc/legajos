@@ -13,6 +13,7 @@ class PersonaForm(forms.ModelForm):
                                        )
     apellido_paterno = forms.CharField(required=True)
     nombres = forms.CharField(required=True)
+    celular = forms.CharField(required=True)
     departamento = forms.ModelChoiceField(queryset=Departamento.objects.none(), required=False)
     ruta_foto = forms.FileField(required=False, widget=forms.FileInput(attrs={'class': 'form-control input-sm'}))
 
@@ -37,8 +38,8 @@ class PersonaForm(forms.ModelForm):
 
 class DatosGeneralesForm(forms.ModelForm):
     fecha_nacimiento = forms.DateField(widget=forms.DateInput(format='%Y-%m-%d',
-                                                              attrs={'class': 'form-control input-sm', 'type': 'date',
-                                                                     'min': ''}), label='Fecha de nacimiento')
+                                                              attrs={'class': 'form-control input-sm', 'type': 'date', 'min': ''}),
+                                                              label='Fecha de nacimiento')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
