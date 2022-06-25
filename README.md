@@ -1,6 +1,6 @@
-# Legajos
+# Sistema de Legajos de Personal
 
-# Instalacion y despliegue
+## Instalacion y despliegue
     Instalar python3.9 en ubuntu 18.04
     - sudo apt update
     - sudo apt install software-properties-common
@@ -11,7 +11,7 @@
     - sudo apt install python3.9-venv
     Crear el entorno virtual
     - python3.9 -m venv venv
-### Configuracion
+## Configuracion
     Crear archivo .env y añadir las variables de entorno necesarias para el correcto 
     funcionamiento del proyecto. 
     Variables de entorno básicas:
@@ -23,15 +23,15 @@
     | ``ALLOWED_HOSTS``                | "*"                                                 |
     +---------------------------------+------------------------------------------------------+
 
-### Instalar requerimientos en virtualenv
+## Instalar requerimientos en virtualenv
 - Activar el venv ubicandose dentro del proyecto: source venv/bin/activate 
 - pip install -r requirements/base.txt
 
-### Indicaciones para sysadmin
+## Indicaciones para sysadmin
 
 **EJECUTAR**
 - python manage.py migrate
 - python manage.py collectstatic
 
-**ARRANCAR LA APLICACIONM**
+**ARRANCAR LA APLICACION**
 - pyhthon manage.py runserver
