@@ -33,5 +33,8 @@
 - python manage.py migrate
 - python manage.py collectstatic
 
+**EJECUTAR SEEDERS** (DESDE LA RAIZ DEL PROYECTO)
+- python manage.py loaddata apps/common/fixtures/ubigeo-pais.json
+
 **ARRANCAR LA APLICACION**
-- pyhthon manage.py runserver
+- python manage.py runserver 8080
