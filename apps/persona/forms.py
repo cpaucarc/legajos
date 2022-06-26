@@ -19,6 +19,7 @@ class PersonaForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        
         if self.data.get('facultad'):
             self.fields['departamento'].queryset = Departamento.objects.filter(id=self.data.get('facultad'))
         if self['facultad'].value():
@@ -87,19 +88,23 @@ def get_departamentos(cod_dep=None):
         ).values_list('cod_ubigeo_inei_departamento', 'ubigeo_departamento')
     return list(departamentos)
 
-
 def get_provincias(dep_id):
     provincias = UbigeoProvincia.objects.filter(
         departamento__cod_ubigeo_inei_departamento=dep_id
     ).values_list('cod_ubigeo_inei_provincia', 'ubigeo_provincia')
     return list(provincias)
 
-
 def get_distritos(dep_id, prov_id):
     distritos = UbigeoDistrito.objects.filter(
         departamento__cod_ubigeo_inei_departamento=dep_id, provincia__cod_ubigeo_inei_provincia=prov_id
     ).values_list('cod_ubigeo_inei_distrito', 'ubigeo_distrito')
     return list(distritos)
+
+def get_deptos_academicos(fac_id):
+    deptos = Departamento.objects.filter(
+        facultad_id=fac_id
+    ).values_list('id', 'nombre')
+    return list(deptos)
 
 
 class ExportarCVForm(forms.Form):

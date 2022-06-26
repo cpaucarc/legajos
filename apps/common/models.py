@@ -31,18 +31,12 @@ class UbigeoPais(models.Model):
     cod_ubigeo_reniec_pais = models.CharField(
         'Código Ubigeo Pais - RENIEC', max_length=3,
         validators=[
-            RegexValidator(
-                regex='^[0-9]{1,3}$',
-                message='Numero de 1 o 3 digitos',
-            ),
+            RegexValidator(regex='^[0-9]{1,3}$', message='Numero de 1 o 3 digitos'),
         ], null=False, blank=False)
     cod_ubigeo_inei_pais = models.CharField(
         'Código Ubigeo Pais - INEI', max_length=3,
         validators=[
-            RegexValidator(
-                regex='^[0-9]{1,3}$',
-                message='Numero de 1 o 3 digitos',
-            ),
+            RegexValidator(regex='^[0-9]{1,3}$', message='Numero de 1 o 3 digitos'),
         ], null=False, blank=False)
     ubigeo_pais = models.CharField('Nombre Ubigeo Pais', max_length=100, null=False, blank=False)
     cod_telefono = models.CharField('Código Teléfono', max_length=10, null=True, blank=True)

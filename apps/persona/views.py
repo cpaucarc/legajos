@@ -31,7 +31,7 @@ from apps.persona.forms import PersonaForm, DatosGeneralesForm, ExportarCVForm
 from apps.persona.models import Persona, DatosGenerales, Departamento
 from apps.produccion.models import Cientifica
 
-
+# Clase para registrar a una nueva persona
 class PersonaCreateView(LoginRequiredMixin, BaseLogin, CreateView):
     template_name = 'persona/crear.html'
     model = Persona
@@ -49,30 +49,40 @@ class PersonaCreateView(LoginRequiredMixin, BaseLogin, CreateView):
         form_dg = DatosGeneralesForm(self.request.POST or None)
         valid = True
         ruta = None
+        print('♦♦♦♦♦♦♦♦Form dg', form_dg)
+        print('♦♦♦♦♦♦♦♦Form 1', form)
         if self.request.session.get('tipo_persona') == TIPO_PERSONA_REGISTRADOR:
             if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_REGISTRADOR, TIPO_PERSONA_AUTORIDAD):
                 self.msg = 'El usuario registrador solo puede registrar administrativo o docente, corregir'
                 return self.form_invalid(form_dg)
+        
         if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_DOCENTE, TIPO_PERSONA_ADMINISTRATIVO):
             if not form_dg.is_valid():
                 self.msg = 'Error en datos generales, verificar'
                 return self.form_invalid(form_dg)
+        
         if valid:
             if self.request.FILES:
                 ruta = self.request.FILES['ruta_foto']
                 extension = ruta.name.split(".")[-1]
                 ruta.name = f"{uuid.uuid4()}.{extension}"
+                
                 if extension not in ('png', 'jpg', 'jpeg'):
                     self.msg = 'El archivo seleccionado debe ser de formato png, jpeg, o jpg'
                     return self.form_invalid(form)
+                
                 if ruta.size > 100000:
                     self.msg = 'El tamaño máximo permitido es 100Kb'
                     return self.form_invalid(form)
+            
             persona = form.save(commit=False)
+            
             if ruta:
                 persona.ruta_foto = ruta
+            
             persona.creado_por = self.request.user.username
             persona.save()
+            
             if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_DOCENTE, TIPO_PERSONA_ADMINISTRATIVO):
                 datos_generales = form_dg.save(commit=False)
                 datos_generales.creado_por = self.request.user.username
@@ -82,20 +92,23 @@ class PersonaCreateView(LoginRequiredMixin, BaseLogin, CreateView):
 
     def form_invalid(self, form, **kwargs):
         context = self.get_context_data(**kwargs)
+        
         if self.msg:
             messages.warning(self.request, self.msg)
         else:
-            messages.warning(self.request, 'Ha ocurrido un error al crear a la persona')
+            messages.warning(self.request, 'Ha ocurrido un error al crear a la persona, revise si ha introducido bien todos los datos')
+        
         context.update({
             'form_datos_generales': DatosGeneralesForm(self.request.POST or None)
         })
+        
         return self.render_to_response(context)
 
     def get_success_url(self):
         messages.success(self.request, 'Persona creada con éxito')
         return reverse('persona:crear_persona')
 
-
+# Clase para editar la información de una persona existente
 class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
     template_name = 'persona/crear.html'
     model = Persona
@@ -106,19 +119,24 @@ class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
     def form_valid(self, form):
         ruta = None
         model_datos_generales = DatosGenerales.objects.filter(persona_id=self.object.id).last()
+        
         if model_datos_generales:
             form_dg = DatosGeneralesForm(self.request.POST or None, instance=model_datos_generales)
         else:
             form_dg = DatosGeneralesForm(self.request.POST or None)
+        
         valid = True
+        
         if self.request.session.get('tipo_persona') == TIPO_PERSONA_REGISTRADOR:
             if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_REGISTRADOR, TIPO_PERSONA_AUTORIDAD):
                 self.msg = 'El usuario registrador solo puede actualizar administrativo o docente, corregir'
                 return self.form_invalid(form_dg)
+        
         if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_DOCENTE, TIPO_PERSONA_ADMINISTRATIVO):
             if not form_dg.is_valid():
                 self.msg = 'Error en datos generales, verificar'
                 return self.form_invalid(form_dg)
+        
         if valid:
             if self.request.FILES:
                 ruta = self.request.FILES['ruta_foto']
@@ -130,11 +148,15 @@ class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
                 if ruta.size > 100000:
                     self.msg = 'El tamaño máximo permitido es 100Kb'
                     return self.form_invalid(form)
+
             persona = form.save(commit=False)
+            
             if ruta:
                 persona.ruta_foto = ruta
+            
             persona.modificado_por = self.request.user.username
             persona.save()
+            
             if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_DOCENTE, TIPO_PERSONA_ADMINISTRATIVO):
                 datos_generales = form_dg.save(commit=False)
                 if self.datos_generales:
@@ -176,11 +198,14 @@ class BuscarPersonaAPIView(APIView):
 
     def get(self, request):
         numero_documento = self.request.GET.get('q', '')
+        
         if numero_documento.isdigit() and len(numero_documento) == 8:
             tipo_documento = DOCUMENT_TYPE_DNI
         else:
             tipo_documento = DOCUMENT_TYPE_CE
+        
         persona = Persona.objects.filter(tipo_documento=tipo_documento, numero_documento=numero_documento).first()
+        
         data = []
         if persona:
             data.append({
@@ -191,23 +216,27 @@ class BuscarPersonaAPIView(APIView):
             })
         return Response(data, content_type='application/json')
 
-
+# Clase que lista a las personas registradas en la BD
 class ListaPersonaView(LoginRequiredMixin, BaseLogin, View):
     def get(self, request, *args, **kwargs):
         search_param = self.request.GET.get('search[value]')
         filtro = self.request.GET.get('filtro')
         personas = Persona.objects.none()
+        
         if filtro:
             ''
         else:
             personas = Persona.objects.filter(es_activo=True).order_by('-fecha_creacion')
             if self.request.session.get('tipo_persona') == TIPO_PERSONA_REGISTRADOR:
                 personas = personas.filter(tipo_persona__in=(TIPO_PERSONA_DOCENTE, TIPO_PERSONA_ADMINISTRATIVO))
+        
         if len(search_param) > 3:
             personas = personas.annotate(
                 search=Concat('apellido_paterno', Value(' '), 'apellido_materno', Value(' '), 'nombres')).filter(
                 Q(search__icontains=search_param) | Q(numero_documento=search_param))
+        
         draw, page = datatable_page(personas, request)
+        
         lista_personas_data = []
         cont = 0
         for a in page.object_list:
@@ -238,7 +267,8 @@ class ListaPersonaView(LoginRequiredMixin, BaseLogin, View):
     def get_enlace_experiencia_laboral(self, a):
         link = reverse('experiencia:experiencia_laboral', kwargs={'pk': a.id})
         boton = '''<a class="btn btn-primary btn-sm separa-boton" href="{0}">
-                <i class="fa fa-edit"></i>Experiencia laboral</a>'''
+                    <i class="fa fa-edit"></i> Experiencia laboral
+                </a>'''
         boton = boton.format(link)
         boton = '{0}'.format(boton)
         return boton
@@ -246,7 +276,8 @@ class ListaPersonaView(LoginRequiredMixin, BaseLogin, View):
     def get_enlace_formacion_academica(self, a):
         link = reverse('formacion:formacion_academica', kwargs={'pk': a.id})
         boton = '''<a class="btn btn-info btn-sm separa-boton" href="{0}">
-                <i class="fa fa-edit"></i>Formación académica</a>'''
+                    <i class="fa fa-edit"></i> Formación académica
+                </a>'''
         boton = boton.format(link)
         boton = '{0}'.format(boton)
         return boton
@@ -254,7 +285,8 @@ class ListaPersonaView(LoginRequiredMixin, BaseLogin, View):
     def get_enlace_idiomas(self, a):
         link = reverse('idioma:crear_idioma', kwargs={'pk': a.id})
         boton = '''<a class="btn btn-success btn-sm separa-boton" href="{0}">
-                <i class="fa fa-edit"></i>Idiomas</a>'''
+                    <i class="fa fa-edit"></i> Idiomas
+                </a>'''
         boton = boton.format(link)
         boton = '{0}'.format(boton)
         return boton
@@ -262,7 +294,8 @@ class ListaPersonaView(LoginRequiredMixin, BaseLogin, View):
     def get_enlace_produccion(self, a):
         link = reverse('produccion:cientifica', kwargs={'pk': a.id})
         boton = '''<a class="btn btn-info btn-sm separa-boton" href="{0}">
-                <i class="fa fa-edit"></i>Producción científica</a>'''
+                    <i class="fa fa-edit"></i> Producción científica
+                </a>'''
         boton = boton.format(link)
         boton = '{0}'.format(boton)
         return boton
@@ -270,7 +303,8 @@ class ListaPersonaView(LoginRequiredMixin, BaseLogin, View):
     def get_enlace_distincion(self, a):
         link = reverse('distincion:distincion', kwargs={'pk': a.id})
         boton = '''<a class="btn btn-primary btn-sm separa-boton" href="{0}">
-                <i class="fa fa-edit"></i>Distinción o premio</a>'''
+                    <i class="fa fa-edit"></i> Distinción o premio
+                </a>'''
         boton = boton.format(link)
         boton = '{0}'.format(boton)
         return boton
@@ -278,21 +312,25 @@ class ListaPersonaView(LoginRequiredMixin, BaseLogin, View):
     def get_exportar_cv(self, a):
         link = reverse('persona:exportar_cv', kwargs={'pk': a.id})
         boton = '''<a class="btn btn-warning btn-sm separa-boton" href="{0}">
-            <i class="fa fa-file"></i> Exportar CV</a>'''
+                <i class="fa fa-file"></i> Exportar CV
+            </a>'''
         boton = boton.format(link)
         boton = '{0}'.format(boton)
         return boton
 
     def get_boton_eliminar(self, a):
         boton_eliminar = '''<button class="btn btn-danger btn-sm eliminarc" data-id={0}>
-                      <i class="fa fa-trash"></i></button>'''
+                                <i class="fa fa-trash"></i>
+                            </button>'''
         boton_eliminar = boton_eliminar.format(a.id)
         boton = '{0}'.format(boton_eliminar)
         return boton
 
     def get_boton_editar(self, a):
         link = reverse('persona:editar_persona', kwargs={'pk': a.id})
-        boton_editar = '<a class="btn btn-warning btn-sm" href="{0}"><i class="fa fa-edit"></i></a>'
+        boton_editar = '''<a class="btn btn-warning btn-sm" href="{0}">
+                            <i class="fa fa-edit"></i>
+                        </a>'''
         boton_editar = boton_editar.format(link)
         boton = '{0}'.format(boton_editar)
         return boton
@@ -311,9 +349,12 @@ class DepartamentosPorFacultadView(View):
     def get(self, request, *args, **kwargs):
         data = [{'codigo': '', 'nombre': '----------'}]
         facultad_id = request.GET.get('facultad_id', '')
+        print('Data 1: ', data)
         if facultad_id.isdigit():
             departamento = Departamento.objects.filter(facultad_id=facultad_id).values('id', 'nombre')
-            data = list(departamento)
+            data += list(departamento)
+        print('Data 2: ', data)
+        
         return JsonResponse({'data': data})
 
 
@@ -321,13 +362,9 @@ class ProvinciaView(View):
     def get(self, request, *args, **kwargs):
         data = [{'codigo': '', 'nombre': '----------'}]
         dep_id = request.GET.get('dep_id', '')
+        
         if dep_id.isdigit():
-            provincias = UbigeoProvincia.objects.filter(
-                departamento__cod_ubigeo_inei_departamento=dep_id
-            ).annotate(
-                codigo=F('cod_ubigeo_inei_provincia'),
-                nombre=F('ubigeo_provincia'),
-            ).values('codigo', 'nombre')
+            provincias = UbigeoProvincia.objects.filter(departamento__cod_ubigeo_inei_departamento=dep_id).annotate(codigo=F('cod_ubigeo_inei_provincia'),nombre=F('ubigeo_provincia')).values('codigo', 'nombre')
             data = list(provincias)
         return JsonResponse({'data': data})
 
