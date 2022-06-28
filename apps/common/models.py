@@ -193,3 +193,10 @@ class CatalogoIdiomas(models.Model):
 
     def __str__(self):
         return self.descripcion
+
+class Colegio(models.Model):
+    acronym = models.CharField('Acrónimo', max_length=50)
+    name = models.CharField('Nombre',max_length=150)
+
+    def __str__(self):
+        return '{acronym}-{name}'.format(acronym=self.acronym, name=self.name)
