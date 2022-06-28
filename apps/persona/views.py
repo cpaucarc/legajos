@@ -241,21 +241,59 @@ class ListaPersonaView(LoginRequiredMixin, BaseLogin, View):
         cont = 0
         for a in page.object_list:
             cont = cont + 1
-            lista_personas_data.append([
-                cont,
-                '{} {}'.format(a.get_tipo_documento_display(), a.numero_documento),
-                a.nombre_completo,
-                a.celular or '-',
-                a.correo_personal or '-',
-                a.get_tipo_persona_display(),
-                a.departamento.nombre if a.departamento else '-',
-                (self.get_enlace_experiencia_laboral(a) + ' ' + self.get_enlace_formacion_academica(a) + ' ' +
-                 self.get_enlace_idiomas(a) + ' ' + self.get_enlace_produccion(a) + ' ' +
-                 self.get_enlace_distincion(a) + ' ' + self.get_exportar_cv(a)
-                 ) if a.tipo_persona in (TIPO_PERSONA_DOCENTE, TIPO_PERSONA_ADMINISTRATIVO) else '',
-                self.get_boton_editar(a),
-                self.get_boton_eliminar(a),
-            ])
+
+            if a.tipo_persona in (TIPO_PERSONA_DOCENTE):
+                lista_personas_data.append([
+                    cont,
+                    '{} {}'.format(a.get_tipo_documento_display(), a.numero_documento),
+                    a.nombre_completo,
+                    a.celular or '-',
+                    a.correo_personal or '-',
+                    a.get_tipo_persona_display(),
+                    a.departamento.nombre if a.departamento else '-',
+                    (self.get_enlace_experiencia_laboral(a) + ' ' + 
+                    self.get_enlace_formacion_academica(a) + ' ' +
+                    self.get_enlace_idiomas(a) + ' ' + 
+                    self.get_enlace_produccion(a) + ' ' +
+                    self.get_enlace_distincion(a) + ' ' + 
+                    self.get_enlace_agregar_cursos(a) + ' ' + 
+                    self.get_exportar_cv(a)
+                    ),
+                    self.get_boton_editar(a),
+                    self.get_boton_eliminar(a),
+                ])
+            elif a.tipo_persona in (TIPO_PERSONA_ADMINISTRATIVO):
+                lista_personas_data.append([
+                    cont,
+                    '{} {}'.format(a.get_tipo_documento_display(), a.numero_documento),
+                    a.nombre_completo,
+                    a.celular or '-',
+                    a.correo_personal or '-',
+                    a.get_tipo_persona_display(),
+                    a.departamento.nombre if a.departamento else '-',
+                    (self.get_enlace_experiencia_laboral(a) + ' ' + 
+                    self.get_enlace_formacion_academica(a) + ' ' +
+                    self.get_enlace_idiomas(a) + ' ' + 
+                    self.get_enlace_produccion(a) + ' ' +
+                    self.get_enlace_distincion(a) + ' ' +
+                    self.get_exportar_cv(a)
+                    ),
+                    self.get_boton_editar(a),
+                    self.get_boton_eliminar(a),
+                ])
+            else:
+                lista_personas_data.append([
+                    cont,
+                    '{} {}'.format(a.get_tipo_documento_display(), a.numero_documento),
+                    a.nombre_completo,
+                    a.celular or '-',
+                    a.correo_personal or '-',
+                    a.get_tipo_persona_display(),
+                    a.departamento.nombre if a.departamento else '-',
+                    '',
+                    self.get_boton_editar(a),
+                    self.get_boton_eliminar(a),
+                ])
         data = {
             'draw': draw,
             'recordsTotal': personas.count(),
@@ -304,6 +342,15 @@ class ListaPersonaView(LoginRequiredMixin, BaseLogin, View):
         link = reverse('distincion:distincion', kwargs={'pk': a.id})
         boton = '''<a class="btn btn-primary btn-sm separa-boton" href="{0}">
                     <i class="fa fa-edit"></i> Distinción o premio
+                </a>'''
+        boton = boton.format(link)
+        boton = '{0}'.format(boton)
+        return boton
+
+    def get_enlace_agregar_cursos(self, a):
+        link = reverse('distincion:distincion', kwargs={'pk': a.id})
+        boton = '''<a class="btn btn-primary btn-sm separa-boton" href="{0}">
+                    <i class="fa fa-edit"></i> Cursos dictados
                 </a>'''
         boton = boton.format(link)
         boton = '{0}'.format(boton)
