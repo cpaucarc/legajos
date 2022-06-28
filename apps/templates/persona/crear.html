@@ -136,6 +136,25 @@
             </div>
           </div>
         </fieldset>
+        <fieldset class="border p-2" id="dcolegiatura">
+          <legend class="scheduler-border" style="width: 120px!important; font-size:12px;"> Datos de Colegiatura</legend>
+          <div class="col-lg-12">
+            <div class="col-lg-6">
+              {% field form_datos_generales.categoria cols=True label=True %}
+            </div>
+            <div class="col-lg-6">
+                {% field form.apellido_paterno cols=True label=True %}
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="col-lg-6">
+                {% field form.numero_documento cols=True label=True %}
+            </div>
+            <div class="col-lg-6">
+              {% field form_datos_generales.categoria cols=True label=True %}
+            </div>
+          </div>
+        </fieldset>
       </form>
       &nbsp;
       <div class="tab-content table-responsive">
