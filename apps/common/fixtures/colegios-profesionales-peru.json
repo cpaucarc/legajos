@@ -1,0 +1,282 @@
+[
+  {
+    "model": "common.colegio",
+    "pk": 1,
+    "fields": {
+      "acronym": "JUDECAP",
+      "name": "JUNTA NACIONAL DE DECANOS DE COLEGIOS DE ABOGADOS DEL PERÚ"
+    }
+  },
+  {
+    "model": "common.colegio",
+    "pk": 2,
+    "fields": {
+      "acronym": "CDCP",
+      "name": "COLEGIO DE PROFESIONAL DE ANTROPÓLOGOS DEL PERÚ"
+    }
+  },
+  {
+    "model": "common.colegio",
+    "pk": 3,
+    "fields": {
+      "acronym": "COARPE",
+      "name": "COLEGIO DE ARQUEÓLOGOS DEL PERÚ"
+    }
+  },
+  {
+    "model": "common.colegio",
+    "pk": 4,
+    "fields": {
+      "acronym": "CAP",
+      "name": "COLEGIO DE ARQUITECTOS DEL PERÚ"
+    }
+  },
+  {
+    "model": "common.colegio",
+    "pk": 5,
+    "fields": {
+      "acronym": "CBP",
+      "name": "COLEGIO DE BIBLIOTECÓLOGOS DEL PERÚ"
+    }
+  },
+  {
+    "model": "common.colegio",
+    "pk": 6,
+    "fields": {
+      "acronym": "CBP",
+      "name": "COLEGIO DE BIÓLOGOS DEL PERÚ"
+    }
+  },
+  {
+    "model": "common.colegio",
+    "pk": 1,
+    "fields": {
+      "acronym": "JDCCPP",
+      "name": "JUNTA DE DECANOS DE COLEGIOS DE CONTADORES PÚBLICOS DEL PERÚ"
+    }
+  },
+  {
+    "model": "common.colegio",
+    "pk": 7,
+    "fields": {
+      "acronym": "CEP",
+      "name": "COLEGIO DE ECONOMISTAS DEL PERÚ"
+    }
+  },
+  {
+    "model": "common.colegio",
+    "pk": 8,
+    "fields": {
+      "acronym": "CEP",
+      "name": "COLEGIO DE ENFERMEROS DEL PERÚ"
+    }
+  },
+  {
+    "model": "common.colegio",
+    "pk": 9,
+    "fields": {
+      "acronym": "COESPE",
+      "name": "COLEGIO DE ESTADÍSTICOS DEL PERÚ"
+    }
+  },
+  {
+    "model": "common.colegio",
+    "pk": 10,
+    "fields": {
+      "acronym": "CFP",
+      "name": "COLEGIO DE FÍSICOS DEL PERÚ"
+    }
+  },
+  {
+    "model": "common.colegio",
+    "pk": 11,
+    "fields": {
+      "acronym": "CGP",
+      "name": "COLEGIO DE GEÓGRAFOS DEL PERÚ"
+    }
+  },
+  {
+    "model": "common.colegio",
+    "pk": 12,
+    "fields": {
+      "acronym": "CIP",
+      "name": "COLEGIO DE INGENIEROS DEL PERÚ"
+    }
+  },
+  {
+    "model": "common.colegio",
+    "pk": 13,
+    "fields": {
+      "acronym": "CLAD",
+      "name": "COLEGIO DE LICENCIADOS EN ADMINISTRACIÓN"
+    }
+  },
+  {
+    "model": "common.colegio",
+    "pk": 14,
+    "fields": {
+      "acronym": "COLICOOP",
+      "name": "COLEGIO DE LICENCIADOS EN COOPERATIVISMO DEL PERÚ"
+    }
+  },
+  {
+    "model": "common.colegio",
+    "pk": 15,
+    "fields": {
+      "acronym": "CLT",
+      "name": "COLEGIO DE LICENCIADOS EN TURISMO"
+    }
+  },
+  {
+    "model": "common.colegio",
+    "pk": 16,
+    "fields": {
+      "acronym": "COMAP",
+      "name": "COLEGIO DE MATEMÁTICOS DEL PERÚ"
+    }
+  },
+  {
+    "model": "common.colegio",
+    "pk": 17,
+    "fields": {
+      "acronym": "CMP",
+      "name": "COLEGIO MÉDICO DEL PERÚ"
+    }
+  },
+  {
+    "model": "common.colegio",
+    "pk": 18,
+    "fields": {
+      "acronym": "CMVL",
+      "name": "COLEGIO MÉDICO VETERINARIO DEL PERÚ"
+    }
+  },
+  {
+    "model": "common.colegio",
+    "pk": 19,
+    "fields": {
+      "acronym": "JDCNP",
+      "name": "JUNTA DE DECANOS DE COLEGIOS DE NOTARIOS DEL PERÚ"
+    }
+  },
+  {
+    "model": "common.colegio",
+    "pk": 20,
+    "fields": {
+      "acronym": "CNP",
+      "name": "COLEGIO DE NUTRICIONISTAS DEL PERÚ"
+    }
+  },
+  {
+    "model": "common.colegio",
+    "pk": 21,
+    "fields": {
+      "acronym": "COP",
+      "name": "COLEGIO DE OBSTETRAS DEL PERÚ"
+    }
+  },
+  {
+    "model": "common.colegio",
+    "pk": 22,
+    "fields": {
+      "acronym": "COP",
+      "name": "COLEGIO DE ODONTOLÓGICO DEL PERÚ"
+    }
+  },
+  {
+    "model": "common.colegio",
+    "pk": 23,
+    "fields": {
+      "acronym": "COMMPE",
+      "name": "COLEGIO DE OFICIALES DE MARINA MERCANTE DEL PERÚ"
+    }
+  },
+  {
+    "model": "common.colegio",
+    "pk": 24,
+    "fields": {
+      "acronym": "CPP",
+      "name": "COLEGIO DE PERIODISTAS DEL PERÚ"
+    }
+  },
+  {
+    "model": "common.colegio",
+    "pk": 25,
+    "fields": {
+      "acronym": "CPPe",
+      "name": "COLEGIO DE PROFESORES DEL PERÚ"
+    }
+  },
+  {
+    "model": "common.colegio",
+    "pk": 26,
+    "fields": {
+      "acronym": "CPSP",
+      "name": "COLEGIO DE PSICÓLOGOS DEL PERÚ"
+    }
+  },
+  {
+    "model": "common.colegio",
+    "pk": 27,
+    "fields": {
+      "acronym": "CQP",
+      "name": "COLEGIO DE QUÍMICOS DEL PERÚ"
+    }
+  },
+  {
+    "model": "common.colegio",
+    "pk": 28,
+    "fields": {
+      "acronym": "CQFP",
+      "name": "COLEGIO QUÍMICO FARMACÉUTICO DEL PERÚ"
+    }
+  },
+  {
+    "model": "common.colegio",
+    "pk": 29,
+    "fields": {
+      "acronym": "CRRIIRRHHP",
+      "name": "COLEGIO DE LICENCIADOS EN RELACIONES INDUSTRIALES Y LICENCIADOS EN GESTIÓN DE RECURSOS HUMANOS DEL PERÚ"
+    }
+  },
+  {
+    "model": "common.colegio",
+    "pk": 30,
+    "fields": {
+      "acronym": "CPRPP",
+      "name": "COLEGIO PROFESIONAL DE RELACIONISTAS PÚBLICOS DEL PERÚ"
+    }
+  },
+  {
+    "model": "common.colegio",
+    "pk": 31,
+    "fields": {
+      "acronym": "CSP",
+      "name": "COLEGIO DE SOCIÓLOGOS DEL PERÚ"
+    }
+  },
+  {
+    "model": "common.colegio",
+    "pk": 32,
+    "fields": {
+      "acronym": "CTMP",
+      "name": "COLEGIO TECNÓLOGO MÉDICO DEL PERÚ"
+    }
+  },
+  {
+    "model": "common.colegio",
+    "pk": 33,
+    "fields": {
+      "acronym": "CTSP",
+      "name": "COLEGIO DE TRABAJADORES SOCIALES DEL PERÚ"
+    }
+  },
+  {
+    "model": "common.colegio",
+    "pk": 34,
+    "fields": {
+      "acronym": "CTP",
+      "name": "COLEGIO DE TRADUCTORES DEL PERÚ"
+    }
+  }
+]
