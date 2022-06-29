@@ -170,7 +170,7 @@ class UbigeoDistrito(models.Model):
 def validate_ruc(value):
     if len(value) != 11:
         raise ValidationError(
-            _('El N°RUC debe tener 11 digitos'),  # noqa
+            _('El N° RUC debe tener 11 digitos'),  # noqa
             params={'value': value},
         )
     if not str(value).startswith('10') and not str(value).startswith('20'):
@@ -184,7 +184,7 @@ class Institucion(models.Model):
     name = models.CharField(max_length=200)
 
     def __str__(self):
-        return '{ruc}-{name}'.format(ruc=self.ruc, name=self.name)
+        return '{ruc} - {name}'.format(ruc=self.ruc, name=self.name)
 
 
 class CatalogoIdiomas(models.Model):

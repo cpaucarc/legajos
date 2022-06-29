@@ -12,6 +12,7 @@ urlpatterns = [
     path('idioma/', include('apps.idioma.urls', namespace='idioma')),
     path('produccion/', include('apps.produccion.urls', namespace='produccion')),
     path('distincion/', include('apps.distincion.urls', namespace='distincion')),
+    path('cursos/', include('apps.cursos.urls', namespace='cursos')),
 ]
 
 urlpatterns += static(

@@ -348,7 +348,7 @@ class ListaPersonaView(LoginRequiredMixin, BaseLogin, View):
         return boton
 
     def get_enlace_agregar_cursos(self, a):
-        link = reverse('distincion:distincion', kwargs={'pk': a.id})
+        link = reverse('cursos:agregar-cursos', kwargs={'pk': a.id})
         boton = '''<a class="btn btn-primary btn-sm separa-boton" href="{0}">
                     <i class="fa fa-edit"></i> Cursos dictados
                 </a>'''
