@@ -76,7 +76,7 @@ class PersonaCreateView(LoginRequiredMixin, BaseLogin, CreateView):
                     self.msg = 'El archivo seleccionado debe ser de formato png, jpeg, o jpg'
                     return self.form_invalid(form)
 
-                if ruta.size > 100000:
+                if ruta.size > 2400000:
                     self.msg = 'El tamaño máximo permitido es 100Kb'
                     return self.form_invalid(form)
 
@@ -140,11 +140,9 @@ class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
         else:
             form_dg = DatosGeneralesForm(self.request.POST or None)
 
-        valid = True
-
         # Colegiatura
         if model_datos_colegiatura:
-            form_dc = DatosColegiaturaForm(self.request.POST or None, instance=model_datos_generales)
+            form_dc = DatosColegiaturaForm(self.request.POST or None, instance=model_datos_colegiatura)
         else:
             form_dc = DatosColegiaturaForm(self.request.POST or None)
 
@@ -171,7 +169,7 @@ class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
                 if extension not in ('png', 'jpg', 'jpeg'):
                     self.msg = 'El archivo seleccionado debe ser de formato png, jpeg, o jpg'
                     return self.form_invalid(form)
-                if ruta.size > 100000:
+                if ruta.size > 2400000:
                     self.msg = 'El tamaño máximo permitido es 100Kb'
                     return self.form_invalid(form)
 
@@ -188,14 +186,14 @@ class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
                 datos_colegiatura = form_dc.save(commit=False)
                 if self.datos_generales:
                     datos_generales.modificado_por = self.request.user.username
-                    datos_generales.creado_por = self.request.user.username
-                    datos_generales.persona_id = persona.id
-                    datos_generales.save()
-                if self.datos_generales:
+                datos_generales.creado_por = self.request.user.username
+                datos_generales.persona_id = persona.id
+                datos_generales.save()
+                if self.datos_colegiatura:
                     datos_colegiatura.modificado_por = self.request.user.username
-                    datos_generales.creado_por = self.request.user.username
-                    datos_colegiatura.persona_id = persona.id
-                    datos_colegiatura.save()
+                datos_colegiatura.creado_por = self.request.user.username
+                datos_colegiatura.persona_id = persona.id
+                datos_colegiatura.save()
             else:
                 if model_datos_generales:
                     model_datos_generales.delete()
