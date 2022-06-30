@@ -78,8 +78,8 @@ class DatosGenerales(AuditableModel, TimeStampedModel):
 
 class Colegiatura(AuditableModel, TimeStampedModel):
     # colegio_profesional = models.ForeignKey(Colegio, on_delete=models.CASCADE, blank=True, null=True)
-    colegio_profesional = models.CharField(max_length=5, blank=True, null=True)
+    colegio_profesional = models.CharField(max_length=5, blank=True)
     sede_colegio = models.CharField(max_length=200, blank=True, null=True)
-    codigo_colegiado = models.CharField(max_length=15, blank=True, null=True)
+    codigo_colegiado = models.CharField(max_length=15, blank=True)
     estado_colegiado = models.BooleanField(choices=COLEGIATURA_ESTADO_CHOICES, default=COLEGIATURA_HABILITADO)
     persona = models.OneToOneField(Persona, on_delete=models.CASCADE, blank=True, null=True)
