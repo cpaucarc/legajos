@@ -76,7 +76,7 @@ class PersonaCreateView(LoginRequiredMixin, BaseLogin, CreateView):
                     self.msg = 'El archivo seleccionado debe ser de formato png, jpeg, o jpg'
                     return self.form_invalid(form)
 
-                if ruta.size > 100000:
+                if ruta.size > 2400000:
                     self.msg = 'El tamaño máximo permitido es 100Kb'
                     return self.form_invalid(form)
 
@@ -169,7 +169,7 @@ class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
                 if extension not in ('png', 'jpg', 'jpeg'):
                     self.msg = 'El archivo seleccionado debe ser de formato png, jpeg, o jpg'
                     return self.form_invalid(form)
-                if ruta.size > 100000:
+                if ruta.size > 2400000:
                     self.msg = 'El tamaño máximo permitido es 100Kb'
                     return self.form_invalid(form)
 
