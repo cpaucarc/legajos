@@ -186,14 +186,14 @@ class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
                 datos_colegiatura = form_dc.save(commit=False)
                 if self.datos_generales:
                     datos_generales.modificado_por = self.request.user.username
-                    datos_generales.creado_por = self.request.user.username
-                    datos_generales.persona_id = persona.id
-                    datos_generales.save()
+                datos_generales.creado_por = self.request.user.username
+                datos_generales.persona_id = persona.id
+                datos_generales.save()
                 if self.datos_colegiatura:
                     datos_colegiatura.modificado_por = self.request.user.username
-                    datos_colegiatura.creado_por = self.request.user.username
-                    datos_colegiatura.persona_id = persona.id
-                    datos_colegiatura.save()
+                datos_colegiatura.creado_por = self.request.user.username
+                datos_colegiatura.persona_id = persona.id
+                datos_colegiatura.save()
             else:
                 if model_datos_generales:
                     model_datos_generales.delete()
