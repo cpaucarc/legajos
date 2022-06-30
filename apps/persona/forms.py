@@ -131,13 +131,13 @@ class DatosColegiaturaForm(forms.ModelForm):
         self.fields['colegio_profesional'] = forms.ChoiceField(
             label='Colegio profesional',
             choices=[('', '---------')] + get_colegios(),
-            widget=forms.Select(attrs={'class': 'form-control form-control-lg'}))
+            widget=forms.Select(attrs={'class': 'form-control'}))
 
-    sede_colegio = forms.CharField(required=True)
+    sede_colegio = forms.CharField(required=False)
     codigo_colegiado = forms.CharField(required=True)
     estado_colegiado = forms.ChoiceField(label='Estado', choices=COLEGIATURA_ESTADO_CHOICES,
                                        initial=COLEGIATURA_HABILITADO,
-                                       widget=forms.Select(attrs={'class': 'form-control form-control-lg'})
+                                       widget=forms.Select(attrs={'class': 'form-control'})
                                        )
 
     class Meta:

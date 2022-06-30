@@ -56,21 +56,14 @@ class PersonaCreateView(LoginRequiredMixin, BaseLogin, CreateView):
         if self.request.session.get('tipo_persona') == TIPO_PERSONA_REGISTRADOR:
             if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_REGISTRADOR, TIPO_PERSONA_AUTORIDAD):
                 self.msg = 'El usuario registrador solo puede registrar administrativo o docente, corregir'
-                return self.form_invalid(form_dg)
+                return self.form_invalid(form_dg,form_dc)
 
         if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_DOCENTE):
             if not form_dg.is_valid():
                 self.msg = 'Error en datos generales, verificar'
                 return self.form_invalid(form_dg)
-
-        if self.request.session.get('tipo_persona') == TIPO_PERSONA_REGISTRADOR:
-            if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_REGISTRADOR, TIPO_PERSONA_AUTORIDAD, TIPO_PERSONA_ADMINISTRATIVO):
-                self.msg = 'El usuario registrador solo puede registrar administrativo o docente, corregir'
-                return self.form_invalid(form_dc)
-
-        if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_DOCENTE):
             if not form_dc.is_valid():
-                self.msg = 'Error en datos generales, verificar'
+                self.msg = 'Error en datos de colegiatura, verificar'
                 return self.form_invalid(form_dc)
 
         if valid:
@@ -148,6 +141,7 @@ class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
             form_dg = DatosGeneralesForm(self.request.POST or None)
 
         valid = True
+
         # Colegiatura
         if model_datos_colegiatura:
             form_dc = DatosColegiaturaForm(self.request.POST or None, instance=model_datos_generales)
@@ -159,20 +153,12 @@ class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
         if self.request.session.get('tipo_persona') == TIPO_PERSONA_REGISTRADOR:
             if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_REGISTRADOR, TIPO_PERSONA_AUTORIDAD):
                 self.msg = 'El usuario registrador solo puede actualizar administrativo o docente, corregir'
-                return self.form_invalid(form_dg)
+                return self.form_invalid(form_dg,form_dc)
 
         if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_DOCENTE, TIPO_PERSONA_ADMINISTRATIVO):
             if not form_dg.is_valid():
                 self.msg = 'Error en datos generales, verificar'
                 return self.form_invalid(form_dg)
-
-        #Colegiatura
-        if self.request.session.get('tipo_persona') == TIPO_PERSONA_REGISTRADOR:
-            if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_REGISTRADOR, TIPO_PERSONA_AUTORIDAD, TIPO_PERSONA_ADMINISTRATIVO):
-                self.msg = 'El usuario registrador solo puede actualizar administrativo o docente, corregir'
-                return self.form_invalid(form_dc)
-
-        if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_DOCENTE):
             if not form_dc.is_valid():
                 self.msg = 'Error en datos generales, verificar'
                 return self.form_invalid(form_dc)
@@ -199,26 +185,22 @@ class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
 
             if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_DOCENTE, TIPO_PERSONA_ADMINISTRATIVO):
                 datos_generales = form_dg.save(commit=False)
+                datos_colegiatura = form_dc.save(commit=False)
                 if self.datos_generales:
                     datos_generales.modificado_por = self.request.user.username
-                datos_generales.creado_por = self.request.user.username
-                datos_generales.persona_id = persona.id
-                datos_generales.save()
+                    datos_generales.creado_por = self.request.user.username
+                    datos_generales.persona_id = persona.id
+                    datos_generales.save()
+                if self.datos_generales:
+                    datos_colegiatura.modificado_por = self.request.user.username
+                    datos_generales.creado_por = self.request.user.username
+                    datos_colegiatura.persona_id = persona.id
+                    datos_colegiatura.save()
             else:
                 if model_datos_generales:
                     model_datos_generales.delete()
-            #Colegiatura
-            if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_DOCENTE):
-                datos_colegiatura = form_dc.save(commit=False)
-                if self.datos_generales:
-                    datos_colegiatura.modificado_por = self.request.user.username
-                datos_generales.creado_por = self.request.user.username
-                datos_colegiatura.persona_id = persona.id
-                datos_colegiatura.save()
-            else:
                 if model_datos_colegiatura:
                     model_datos_colegiatura.delete()
-
 
         return HttpResponseRedirect(self.get_success_url())
 
