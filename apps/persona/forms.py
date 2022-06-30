@@ -135,7 +135,7 @@ class DatosColegiaturaForm(forms.ModelForm):
 
     sede_colegio = forms.CharField(required=False)
     codigo_colegiado = forms.CharField(required=True)
-    estado_colegiado = forms.ChoiceField(label='Estado', choices=COLEGIATURA_ESTADO_CHOICES,
+    estado_colegiado = forms.ChoiceField(label='Estado del colegiado', choices=COLEGIATURA_ESTADO_CHOICES,
                                        initial=COLEGIATURA_HABILITADO,
                                        widget=forms.Select(attrs={'class': 'form-control'})
                                        )

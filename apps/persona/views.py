@@ -140,11 +140,9 @@ class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
         else:
             form_dg = DatosGeneralesForm(self.request.POST or None)
 
-        valid = True
-
         # Colegiatura
         if model_datos_colegiatura:
-            form_dc = DatosColegiaturaForm(self.request.POST or None, instance=model_datos_generales)
+            form_dc = DatosColegiaturaForm(self.request.POST or None, instance=model_datos_colegiatura)
         else:
             form_dc = DatosColegiaturaForm(self.request.POST or None)
 
@@ -191,9 +189,9 @@ class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
                     datos_generales.creado_por = self.request.user.username
                     datos_generales.persona_id = persona.id
                     datos_generales.save()
-                if self.datos_generales:
+                if self.datos_colegiatura:
                     datos_colegiatura.modificado_por = self.request.user.username
-                    datos_generales.creado_por = self.request.user.username
+                    datos_colegiatura.creado_por = self.request.user.username
                     datos_colegiatura.persona_id = persona.id
                     datos_colegiatura.save()
             else:
