@@ -21,14 +21,14 @@ from xhtml2pdf import pisa
 from apps.common.constants import (DOCUMENT_TYPE_DNI, DOCUMENT_TYPE_CE, TIPO_PERSONA_DOCENTE,
                                    TIPO_PERSONA_ADMINISTRATIVO, TIPO_PERSONA_REGISTRADOR, TIPO_PERSONA_AUTORIDAD)
 from apps.common.datatables_pagination import datatable_page
-from apps.common.models import UbigeoDistrito, UbigeoProvincia, UbigeoDepartamento
+from apps.common.models import UbigeoDistrito, UbigeoProvincia, UbigeoDepartamento, Colegio
 from apps.distincion.models import Distincion
 from apps.experiencia.models import Laboral, AsesorTesis, Docente, EvaluadorProyecto
 from apps.formacion.models import Universitaria, Tecnico, Complementaria
 from apps.idioma.models import Idioma
 from apps.login.views import BaseLogin
 from apps.persona.forms import PersonaForm, DatosGeneralesForm, ExportarCVForm, DatosColegiaturaForm
-from apps.persona.models import Persona, DatosGenerales, Departamento,Colegiatura
+from apps.persona.models import Persona, DatosGenerales, Departamento, Colegiatura
 from apps.produccion.models import Cientifica
 
 # Clase para registrar a una nueva persona
@@ -500,6 +500,11 @@ class DescargarCVPdf(View, LoginRequiredMixin):
             cod_ubigeo_inei_provincia=p.datosgenerales.ubigeo_provincia).last().ubigeo_provincia
         dist = UbigeoDistrito.objects.filter(
             cod_ubigeo_inei_distrito=p.datosgenerales.ubigeo_distrito).last().ubigeo_distrito
+        #Datos de colegiatura
+        colegio = Colegio.objects.filter(id=p.colegiatura.colegio_profesional).last().name
+        sede = Colegiatura.objects.filter(persona=p.colegiatura.persona).last().sede_colegio
+        codigo = Colegiatura.objects.filter(persona=p.colegiatura.persona).last().codigo_colegiado
+        estado = Colegiatura.objects.filter(persona=p.colegiatura.persona).last().estado_colegiado
         universitaria = None
         tecnico = None
         complementaria = None
@@ -532,6 +537,10 @@ class DescargarCVPdf(View, LoginRequiredMixin):
             'dep': dep,
             'prov': prov,
             'dist': dist,
+            'colegio': colegio,
+            'sede': sede,
+            'codigo': codigo,
+            'estado': estado,
             'foto_path': foto_path,
             'universitaria': universitaria,
             'tecnico': tecnico,
