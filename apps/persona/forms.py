@@ -1,8 +1,8 @@
 from django import forms
 
-from apps.common.constants import DOCUMENT_TYPE_DNI, DOCUMENT_TYPE_CHOICES1, ID_UBIGEO_PERU
-from apps.common.models import UbigeoDepartamento, UbigeoProvincia, UbigeoDistrito
-from apps.persona.models import Persona, DatosGenerales, Departamento
+from apps.common.constants import DOCUMENT_TYPE_DNI, DOCUMENT_TYPE_CHOICES1, ID_UBIGEO_PERU,COLEGIATURA_HABILITADO,COLEGIATURA_INHABILITADO, COLEGIATURA_ESTADO_CHOICES
+from apps.common.models import UbigeoDepartamento, UbigeoProvincia, UbigeoDistrito, Colegio
+from apps.persona.models import Persona, DatosGenerales, Departamento, Colegiatura
 from django.utils import timezone
 
 
@@ -19,7 +19,7 @@ class PersonaForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        
+
         if self.data.get('facultad'):
             self.fields['departamento'].queryset = Departamento.objects.filter(id=self.data.get('facultad'))
         if self['facultad'].value():
@@ -123,3 +123,35 @@ class ExportarCVForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+
+class DatosColegiaturaForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['colegio_profesional'] = forms.ChoiceField(
+            label='Colegio profesional',
+            choices=[('', '---------')] + get_colegios(),
+            widget=forms.Select(attrs={'class': 'form-control form-control-lg'}))
+
+    sede_colegio = forms.CharField(required=True)
+    codigo_colegiado = forms.CharField(required=True)
+    estado_colegiado = forms.ChoiceField(label='Estado', choices=COLEGIATURA_ESTADO_CHOICES,
+                                       initial=COLEGIATURA_HABILITADO,
+                                       widget=forms.Select(attrs={'class': 'form-control form-control-lg'})
+                                       )
+
+    class Meta:
+        model = Colegiatura
+        fields = (
+            'colegio_profesional', 'sede_colegio', 'codigo_colegiado', 'estado_colegiado'
+        )
+
+def get_colegios(col_id=None):
+    col_list = ['id', 'name']
+    if col_id:
+        colegios = Colegio.objects.filter(
+            acronym=col_id
+        ).values_list(*col_list)
+    else:
+        colegios = Colegio.objects.all().values_list(*col_list)
+    return list(colegios)

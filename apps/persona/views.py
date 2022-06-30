@@ -27,8 +27,8 @@ from apps.experiencia.models import Laboral, AsesorTesis, Docente, EvaluadorProy
 from apps.formacion.models import Universitaria, Tecnico, Complementaria
 from apps.idioma.models import Idioma
 from apps.login.views import BaseLogin
-from apps.persona.forms import PersonaForm, DatosGeneralesForm, ExportarCVForm
-from apps.persona.models import Persona, DatosGenerales, Departamento
+from apps.persona.forms import PersonaForm, DatosGeneralesForm, ExportarCVForm, DatosColegiaturaForm
+from apps.persona.models import Persona, DatosGenerales, Departamento,Colegiatura
 from apps.produccion.models import Cientifica
 
 # Clase para registrar a una nueva persona
@@ -41,12 +41,14 @@ class PersonaCreateView(LoginRequiredMixin, BaseLogin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context.update({
-            'form_datos_generales': DatosGeneralesForm(self.request.POST or None)
+            'form_datos_generales': DatosGeneralesForm(self.request.POST or None),
+            'form_datos_colegiatura': DatosColegiaturaForm(self.request.POST or None)
         })
         return context
 
     def form_valid(self, form):
         form_dg = DatosGeneralesForm(self.request.POST or None)
+        form_dc = DatosColegiaturaForm(self.request.POST or None)
         valid = True
         ruta = None
         print('♦♦♦♦♦♦♦♦Form dg', form_dg)
@@ -55,53 +57,71 @@ class PersonaCreateView(LoginRequiredMixin, BaseLogin, CreateView):
             if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_REGISTRADOR, TIPO_PERSONA_AUTORIDAD):
                 self.msg = 'El usuario registrador solo puede registrar administrativo o docente, corregir'
                 return self.form_invalid(form_dg)
-        
-        if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_DOCENTE, TIPO_PERSONA_ADMINISTRATIVO):
+
+        if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_DOCENTE):
             if not form_dg.is_valid():
                 self.msg = 'Error en datos generales, verificar'
                 return self.form_invalid(form_dg)
-        
+
+        if self.request.session.get('tipo_persona') == TIPO_PERSONA_REGISTRADOR:
+            if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_REGISTRADOR, TIPO_PERSONA_AUTORIDAD, TIPO_PERSONA_ADMINISTRATIVO):
+                self.msg = 'El usuario registrador solo puede registrar administrativo o docente, corregir'
+                return self.form_invalid(form_dc)
+
+        if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_DOCENTE):
+            if not form_dc.is_valid():
+                self.msg = 'Error en datos generales, verificar'
+                return self.form_invalid(form_dc)
+
         if valid:
             if self.request.FILES:
                 ruta = self.request.FILES['ruta_foto']
                 extension = ruta.name.split(".")[-1]
                 ruta.name = f"{uuid.uuid4()}.{extension}"
-                
+
                 if extension not in ('png', 'jpg', 'jpeg'):
                     self.msg = 'El archivo seleccionado debe ser de formato png, jpeg, o jpg'
                     return self.form_invalid(form)
-                
+
                 if ruta.size > 100000:
                     self.msg = 'El tamaño máximo permitido es 100Kb'
                     return self.form_invalid(form)
-            
+
             persona = form.save(commit=False)
-            
+
             if ruta:
                 persona.ruta_foto = ruta
-            
+
             persona.creado_por = self.request.user.username
             persona.save()
-            
+
             if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_DOCENTE, TIPO_PERSONA_ADMINISTRATIVO):
                 datos_generales = form_dg.save(commit=False)
                 datos_generales.creado_por = self.request.user.username
                 datos_generales.persona_id = persona.id
                 datos_generales.save()
+
+            if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_DOCENTE):
+                datos_colegiatura = form_dc.save(commit=False)
+                datos_colegiatura.creado_por = self.request.user.username
+                datos_colegiatura.persona_id = persona.id
+                datos_colegiatura.save()
+
         return HttpResponseRedirect(self.get_success_url())
 
     def form_invalid(self, form, **kwargs):
         context = self.get_context_data(**kwargs)
-        
+
         if self.msg:
             messages.warning(self.request, self.msg)
         else:
             messages.warning(self.request, 'Ha ocurrido un error al crear a la persona, revise si ha introducido bien todos los datos')
-        
+
         context.update({
-            'form_datos_generales': DatosGeneralesForm(self.request.POST or None)
+            'form_datos_generales': DatosGeneralesForm(self.request.POST or None),
+            'form_datos_colegiatura': DatosColegiaturaForm(self.request.POST or None)
         })
-        
+
         return self.render_to_response(context)
 
     def get_success_url(self):
@@ -115,28 +135,48 @@ class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
     form_class = PersonaForm
     msg = None
     datos_generales = None
+    datos_colegiatura = None
 
     def form_valid(self, form):
         ruta = None
         model_datos_generales = DatosGenerales.objects.filter(persona_id=self.object.id).last()
-        
+        model_datos_colegiatura = Colegiatura.objects.filter(persona_id=self.object.id).last()
+
         if model_datos_generales:
             form_dg = DatosGeneralesForm(self.request.POST or None, instance=model_datos_generales)
         else:
             form_dg = DatosGeneralesForm(self.request.POST or None)
-        
+
         valid = True
-        
+        # Colegiatura
+        if model_datos_colegiatura:
+            form_dc = DatosColegiaturaForm(self.request.POST or None, instance=model_datos_generales)
+        else:
+            form_dc = DatosColegiaturaForm(self.request.POST or None)
+
+        valid = True
+
         if self.request.session.get('tipo_persona') == TIPO_PERSONA_REGISTRADOR:
             if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_REGISTRADOR, TIPO_PERSONA_AUTORIDAD):
                 self.msg = 'El usuario registrador solo puede actualizar administrativo o docente, corregir'
                 return self.form_invalid(form_dg)
-        
+
         if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_DOCENTE, TIPO_PERSONA_ADMINISTRATIVO):
             if not form_dg.is_valid():
                 self.msg = 'Error en datos generales, verificar'
                 return self.form_invalid(form_dg)
-        
+
+        #Colegiatura
+        if self.request.session.get('tipo_persona') == TIPO_PERSONA_REGISTRADOR:
+            if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_REGISTRADOR, TIPO_PERSONA_AUTORIDAD, TIPO_PERSONA_ADMINISTRATIVO):
+                self.msg = 'El usuario registrador solo puede actualizar administrativo o docente, corregir'
+                return self.form_invalid(form_dc)
+
+        if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_DOCENTE):
+            if not form_dc.is_valid():
+                self.msg = 'Error en datos generales, verificar'
+                return self.form_invalid(form_dc)
+
         if valid:
             if self.request.FILES:
                 ruta = self.request.FILES['ruta_foto']
@@ -150,13 +190,13 @@ class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
                     return self.form_invalid(form)
 
             persona = form.save(commit=False)
-            
+
             if ruta:
                 persona.ruta_foto = ruta
-            
+
             persona.modificado_por = self.request.user.username
             persona.save()
-            
+
             if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_DOCENTE, TIPO_PERSONA_ADMINISTRATIVO):
                 datos_generales = form_dg.save(commit=False)
                 if self.datos_generales:
@@ -167,6 +207,19 @@ class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
             else:
                 if model_datos_generales:
                     model_datos_generales.delete()
+            #Colegiatura
+            if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_DOCENTE):
+                datos_colegiatura = form_dc.save(commit=False)
+                if self.datos_generales:
+                    datos_colegiatura.modificado_por = self.request.user.username
+                datos_generales.creado_por = self.request.user.username
+                datos_colegiatura.persona_id = persona.id
+                datos_colegiatura.save()
+            else:
+                if model_datos_colegiatura:
+                    model_datos_colegiatura.delete()
+
+
         return HttpResponseRedirect(self.get_success_url())
 
     def form_invalid(self, form, **kwargs):
@@ -176,15 +229,18 @@ class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
         else:
             messages.warning(self.request, 'Ha ocurrido un error al actualizar a la persona')
         context.update({
-            'form_datos_generales': DatosGeneralesForm(self.request.POST or None)
+            'form_datos_generales': DatosGeneralesForm(self.request.POST or None),
+            'form_datos_colegiatura': DatosColegiaturaForm(self.request.POST or None)
         })
         return self.render_to_response(context)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         datos_generales = DatosGenerales.objects.filter(persona_id=self.object.id).last()
+        datos_colegiatura = Colegiatura.objects.filter(persona_id=self.object.id).last()
         context.update({
             'form_datos_generales': DatosGeneralesForm(self.request.POST or None, instance=datos_generales),
+            'form_datos_colegiatura': DatosColegiaturaForm(self.request.POST or None, instance=datos_colegiatura),
             'MEDIA_URL': settings.MEDIA_URL
         })
         return context
@@ -198,14 +254,14 @@ class BuscarPersonaAPIView(APIView):
 
     def get(self, request):
         numero_documento = self.request.GET.get('q', '')
-        
+
         if numero_documento.isdigit() and len(numero_documento) == 8:
             tipo_documento = DOCUMENT_TYPE_DNI
         else:
             tipo_documento = DOCUMENT_TYPE_CE
-        
+
         persona = Persona.objects.filter(tipo_documento=tipo_documento, numero_documento=numero_documento).first()
-        
+
         data = []
         if persona:
             data.append({
@@ -222,21 +278,21 @@ class ListaPersonaView(LoginRequiredMixin, BaseLogin, View):
         search_param = self.request.GET.get('search[value]')
         filtro = self.request.GET.get('filtro')
         personas = Persona.objects.none()
-        
+
         if filtro:
             ''
         else:
             personas = Persona.objects.filter(es_activo=True).order_by('-fecha_creacion')
             if self.request.session.get('tipo_persona') == TIPO_PERSONA_REGISTRADOR:
                 personas = personas.filter(tipo_persona__in=(TIPO_PERSONA_DOCENTE, TIPO_PERSONA_ADMINISTRATIVO))
-        
+
         if len(search_param) > 3:
             personas = personas.annotate(
                 search=Concat('apellido_paterno', Value(' '), 'apellido_materno', Value(' '), 'nombres')).filter(
                 Q(search__icontains=search_param) | Q(numero_documento=search_param))
-        
+
         draw, page = datatable_page(personas, request)
-        
+
         lista_personas_data = []
         cont = 0
         for a in page.object_list:
@@ -401,7 +457,7 @@ class DepartamentosPorFacultadView(View):
             departamento = Departamento.objects.filter(facultad_id=facultad_id).values('id', 'nombre')
             data += list(departamento)
         print('Data 2: ', data)
-        
+
         return JsonResponse({'data': data})
 
 
@@ -409,7 +465,7 @@ class ProvinciaView(View):
     def get(self, request, *args, **kwargs):
         data = [{'codigo': '', 'nombre': '----------'}]
         dep_id = request.GET.get('dep_id', '')
-        
+
         if dep_id.isdigit():
             provincias = UbigeoProvincia.objects.filter(departamento__cod_ubigeo_inei_departamento=dep_id).annotate(codigo=F('cod_ubigeo_inei_provincia'),nombre=F('ubigeo_provincia')).values('codigo', 'nombre')
             data = list(provincias)
