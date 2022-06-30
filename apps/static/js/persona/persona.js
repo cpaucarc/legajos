@@ -4,6 +4,7 @@ $(document).ready(function () {
     $("#id_tipo_persona option[value='autoridad']").remove();
   }
   $("#dgenerales").hide();
+  $("#dcolegiatura").hide();
   $("#div_resumen").hide();
   var $valor = $('#id_numero_documento');
   var $tipoPersona = $('#id_tipo_persona');
@@ -18,9 +19,13 @@ $(document).ready(function () {
   if($tipoPersona.val() === 'docente' || $tipoPersona.val() === 'administrativo'){
     $("#dgenerales").show();
     $("#div_resumen").show();
+    if($tipoPersona.val() === 'docente'){
+      $("#dcolegiatura").show();
+    }
   }else{
     $("#dgenerales").hide();
     $("#div_resumen").hide();
+    $("#dcolegiatura").hide();
   }
 
   $btnLimpiar.click(function () {
@@ -87,8 +92,12 @@ $(document).ready(function () {
     if($(this).val() === 'docente' || $(this).val() === 'administrativo'){
       $("#dgenerales").show();
       $("#div_resumen").show();
+          if($(this).val() === 'docente'){
+            $("#dcolegiatura").show();
+          }
     }else{
       $("#dgenerales").hide();
+      $("#dcolegiatura").hide();
       $("#div_resumen").hide();
       $("#id_facultad").val("");
       $("#id_departamento").val("");

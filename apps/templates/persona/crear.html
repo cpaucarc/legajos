@@ -136,24 +136,22 @@
             </div>
           </div>
         </fieldset>
-        <fieldset class="border p-2" id="dcolegiatura">
-          <legend class="scheduler-border" style="width: 120px!important; font-size:12px;"> Datos de Colegiatura</legend>
-          <div class="col-lg-12">
-            <div class="col-lg-6">
-              {% field form_datos_generales.categoria cols=True label=True %}
+        <fieldset class="border p-5" id="dcolegiatura">
+            <legend class="scheduler-border" style="width: 120px!important; font-size:12px;"> Datos de Colegiatura</legend>
+            <div class="row center-block">
+                 <div class="col-lg-12">
+                     {% field form_datos_colegiatura.colegio_profesional cols=True label=True %}
+                 </div>
+                 <div class="col-lg-6">
+                    {% field form_datos_colegiatura.sede_colegio cols=True label=True %}
+                 </div>
+                 <div class="col-lg-3">
+                    {% field form_datos_colegiatura.codigo_colegiado cols=True label=True %}
+                 </div>
+                 <div class="col-lg-3">
+                    {% field form_datos_colegiatura.estado_colegiado cols=True label=True %}
+                 </div>
             </div>
-            <div class="col-lg-6">
-                {% field form.apellido_paterno cols=True label=True %}
-            </div>
-          </div>
-          <div class="col-lg-12">
-            <div class="col-lg-6">
-                {% field form.numero_documento cols=True label=True %}
-            </div>
-            <div class="col-lg-6">
-              {% field form_datos_generales.categoria cols=True label=True %}
-            </div>
-          </div>
         </fieldset>
       </form>
       &nbsp;
