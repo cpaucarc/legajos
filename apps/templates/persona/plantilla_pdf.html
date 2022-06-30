@@ -148,6 +148,20 @@
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label style="color:#51AEF8;">Dist.:</label> &nbsp;&nbsp;&nbsp;{{dist}}
       </td>
     </tr>
+    <tr>
+      <td class="td_25" style="text-align:right;">Colegiado en :</td>
+      <td class="td_70">{{colegio}}</td>
+    </tr>
+    <tr>
+      <td class="td_25" style="text-align:right;">Sede :</td>
+      <td class="td_70">{{sede}}</td>
+    </tr>
+    <tr>
+      <td class="td_25" style="text-align:right;">Código.:</td>
+      <td class="td_70">{{codigo}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label style="color:#51AEF8;">Estado :</label> &nbsp;&nbsp;&nbsp;
+          {% if estado %}Habilitado{% else %}Inhabilitado{% endif %}
+      </td>
+    </tr>
     </tbody>
   </table>
 
