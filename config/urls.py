@@ -13,8 +13,4 @@ urlpatterns = [
     path('produccion/', include('apps.produccion.urls', namespace='produccion')),
     path('distincion/', include('apps.distincion.urls', namespace='distincion')),
     path('cursos/', include('apps.cursos.urls', namespace='cursos')),
-]
-
-urlpatterns += static(
-    settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
-)
+]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

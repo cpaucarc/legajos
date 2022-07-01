@@ -80,6 +80,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -151,7 +152,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # MEDIA
 # -----------------------------------------------------------------------------
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'staticfiles/media/')
 MEDIA_ROOT = str(APPS_DIR('media'))
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
 MEDIA_URL = '/media/'
 
 ADMIN_URL = 'admin/'

@@ -101,18 +101,22 @@
     }
   </style>
 </header>
+
 <body>
-<table style="padding-bottom:5px;">
-  <tbody>
-    <tr>
-      <td class="t_foto" style="text-align:left;"><img src="{{foto_path}}" class="foto-persona"></td>
-      <td class="t_texto_head">{{p.apellido_paterno}} {{p.apellido_materno}} {{p.nombres}}
-        <p class="t_texto_resumen">{{p.resumen|default_if_none:"" }}</p>
-      </td >
-    </tr>
-  </tbody>
-</table>
-<br>
+
+  <table style="padding-bottom:5px;">
+    <tbody>
+      <tr>
+        <td class="t_foto" style="text-align:left;"><img src="{{foto_path}}" class="foto-persona"></td>
+        <td class="t_texto_head">{{p.apellido_paterno}} {{p.apellido_materno}} {{p.nombres}}
+          <p class="t_texto_resumen">{{p.resumen|default_if_none:"" }}</p>
+        </td >
+      </tr>
+    </tbody>
+  </table>
+  
+  <br>
+  
   <div class="subtitulo">DATOS PERSONALES</div>
   <hr color="#51AEF8" class="linea-subtitulo">
   <br>

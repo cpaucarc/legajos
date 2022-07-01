@@ -1,6 +1,8 @@
 import json
 import os
 import uuid
+import mimetypes
+from builtins import print
 
 from django.conf import settings
 from django.contrib import messages
@@ -18,18 +20,19 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK
 from rest_framework.views import APIView
 from xhtml2pdf import pisa
+from PyPDF2 import PdfFileMerger, PdfFileReader
 from apps.common.constants import (DOCUMENT_TYPE_DNI, DOCUMENT_TYPE_CE, TIPO_PERSONA_DOCENTE,
                                    TIPO_PERSONA_ADMINISTRATIVO, TIPO_PERSONA_REGISTRADOR, TIPO_PERSONA_AUTORIDAD)
 from apps.common.datatables_pagination import datatable_page
 from apps.common.models import UbigeoDistrito, UbigeoProvincia, UbigeoDepartamento
-from apps.distincion.models import Distincion
-from apps.experiencia.models import Laboral, AsesorTesis, Docente, EvaluadorProyecto
-from apps.formacion.models import Universitaria, Tecnico, Complementaria
+from apps.distincion.models import AdjuntoDistincion, Distincion
+from apps.experiencia.models import AdjuntoAsesorTesis, AdjuntoDocente, AdjuntoEvaluadorProyecto, AdjuntoLaboral, Laboral, AsesorTesis, Docente, EvaluadorProyecto
+from apps.formacion.models import AdjuntoComplementaria, AdjuntoTecnico, AdjuntoUniversitaria, Universitaria, Tecnico, Complementaria
 from apps.idioma.models import Idioma
 from apps.login.views import BaseLogin
 from apps.persona.forms import PersonaForm, DatosGeneralesForm, ExportarCVForm
 from apps.persona.models import Persona, DatosGenerales, Departamento
-from apps.produccion.models import Cientifica
+from apps.produccion.models import AdjuntoCientifica, Cientifica
 
 # Clase para registrar a una nueva persona
 class PersonaCreateView(LoginRequiredMixin, BaseLogin, CreateView):
@@ -192,7 +195,6 @@ class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
     def get_success_url(self):
         messages.success(self.request, 'Persona actualizada con éxito')
         return reverse('persona:editar_persona', kwargs={'pk': self.object.id})
-
 
 class BuscarPersonaAPIView(APIView):
 
@@ -382,7 +384,6 @@ class ListaPersonaView(LoginRequiredMixin, BaseLogin, View):
         boton = '{0}'.format(boton_editar)
         return boton
 
-
 class EliminarPersonaView(LoginRequiredMixin, APIView):
     def get(self, request, *args, **kwargs):
         persona = get_object_or_404(Persona, id=self.kwargs.get('pk'))
@@ -390,7 +391,6 @@ class EliminarPersonaView(LoginRequiredMixin, APIView):
         persona.delete()
         msg = f'Persona eliminada correctamente'
         return Response({'msg': msg, 'tipo_msg': tipo_msg}, HTTP_200_OK)
-
 
 class DepartamentosPorFacultadView(View):
     def get(self, request, *args, **kwargs):
@@ -404,7 +404,6 @@ class DepartamentosPorFacultadView(View):
         
         return JsonResponse({'data': data})
 
-
 class ProvinciaView(View):
     def get(self, request, *args, **kwargs):
         data = [{'codigo': '', 'nombre': '----------'}]
@@ -414,7 +413,6 @@ class ProvinciaView(View):
             provincias = UbigeoProvincia.objects.filter(departamento__cod_ubigeo_inei_departamento=dep_id).annotate(codigo=F('cod_ubigeo_inei_provincia'),nombre=F('ubigeo_provincia')).values('codigo', 'nombre')
             data = list(provincias)
         return JsonResponse({'data': data})
-
 
 class DistritoView(View):
     def get(self, request, *args, **kwargs):
@@ -430,7 +428,6 @@ class DistritoView(View):
             ).values('codigo', 'nombre')
             data = list(distritos)
         return JsonResponse({'data': data})
-
 
 class ExportarCVView(TemplateView, BaseLogin):
     template_name = 'persona/exportar_cv.html'
@@ -448,20 +445,23 @@ class ExportarCVView(TemplateView, BaseLogin):
         })
         return context
 
-
+# CV Simple
 class DescargarCVPdf(View, LoginRequiredMixin):
     def get(self, request, *args, **kwargs):
-        response = HttpResponse(content_type='application/pdf')
-        response['Content-Disposition'] = 'attachment; filename="listado.pdf"'
         array_filtros = json.loads(self.request.GET.get('array_filtros'))
+
         p = get_object_or_404(Persona, pk=self.kwargs.get('pk'))
         foto_path = default_storage.path('{}'.format(p.ruta_foto))
-        dep = UbigeoDepartamento.objects.filter(
-            cod_ubigeo_inei_departamento=p.datosgenerales.ubigeo_departamento).last().ubigeo_departamento
-        prov = UbigeoProvincia.objects.filter(
-            cod_ubigeo_inei_provincia=p.datosgenerales.ubigeo_provincia).last().ubigeo_provincia
-        dist = UbigeoDistrito.objects.filter(
-            cod_ubigeo_inei_distrito=p.datosgenerales.ubigeo_distrito).last().ubigeo_distrito
+        dep = UbigeoDepartamento.objects.filter(cod_ubigeo_inei_departamento=p.datosgenerales.ubigeo_departamento).last().ubigeo_departamento
+        prov = UbigeoProvincia.objects.filter(cod_ubigeo_inei_provincia=p.datosgenerales.ubigeo_provincia).last().ubigeo_provincia
+        dist = UbigeoDistrito.objects.filter(cod_ubigeo_inei_distrito=p.datosgenerales.ubigeo_distrito).last().ubigeo_distrito
+
+        BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        response = HttpResponse(content_type='application/pdf')
+        response['Content-Disposition'] = 'attachment; filename="{pat}_{mat}_{nom}_CV_SIMPLE.pdf"'.format(
+            pat=p.apellido_paterno, mat=p.apellido_materno, nom=p.nombres
+        )
+
         universitaria = None
         tecnico = None
         complementaria = None
@@ -519,6 +519,368 @@ class DescargarCVPdf(View, LoginRequiredMixin):
         if os.path.exists(path):
             try:
                 os.remove(path)
+            except Exception as e:
+                pass
+        return response
+
+class DescargarCVPdfDet6(View, LoginRequiredMixin):
+    def get(self, request, *args, **kwargs):
+        response = HttpResponse(content_type='application/pdf')
+        response['Content-Disposition'] = 'attachment; filename="listado.pdf"'
+        array_filtros = json.loads(self.request.GET.get('array_filtros'))
+        persona = get_object_or_404(Persona, pk=self.kwargs.get('pk'))
+        foto_path = default_storage.path('{}'.format(persona.ruta_foto))
+        dep = UbigeoDepartamento.objects.filter(
+            cod_ubigeo_inei_departamento=persona.datosgenerales.ubigeo_departamento).last().ubigeo_departamento
+        prov = UbigeoProvincia.objects.filter(
+            cod_ubigeo_inei_provincia=persona.datosgenerales.ubigeo_provincia).last().ubigeo_provincia
+        dist = UbigeoDistrito.objects.filter(
+            cod_ubigeo_inei_distrito=persona.datosgenerales.ubigeo_distrito).last().ubigeo_distrito
+        universitaria = None
+        adjuntos_universitaria = []
+        tecnico = None
+        adjuntos_tecnico = []
+        complementaria = None
+        adjuntos_complementaria = []
+        laboral = None
+        adjuntos_laboral = []
+        docente = None
+        adjuntos_docente = []
+        asesor_tesis = None
+        adjuntos_asesor_tesis = []
+        idiomas = None
+        produccion_cientifica = None
+        adjuntos_produccion_cientifica = []
+        premios = None
+        adjuntos_premios = []
+        evaluador_proyecto = None
+        adjuntos_evaluador_proyecto = []
+        for a in array_filtros:
+            if a.get('opcion') == 'formacion_academica' and a.get('valor') == 'on':
+                universitaria = Universitaria.objects.filter(persona=persona)
+                for uni in universitaria:
+                    adjuntos_universitaria.append(AdjuntoUniversitaria.objects.filter(universitaria=uni).order_by('-id'))
+                
+                tecnico = Tecnico.objects.filter(persona=persona)
+                for tec in tecnico:
+                    adjuntos_tecnico.append(AdjuntoTecnico.objects.filter(tecnico=tec).order_by('-id'))
+
+                complementaria = Complementaria.objects.filter(persona=persona)
+                for cmp in complementaria:
+                    adjuntos_complementaria.append(AdjuntoComplementaria.objects.filter(complementaria=cmp).order_by('-id'))
+
+            if a.get('opcion') == 'experiencia_laboral' and a.get('valor') == 'on':
+                laboral = Laboral.objects.filter(persona=persona)
+                for lb in laboral:
+                    adjuntos_laboral.append(AdjuntoLaboral.objects.filter(laboral=lb).order_by('-id'))
+
+                docente = Docente.objects.filter(persona=persona)
+                for doc in docente:
+                    adjuntos_docente.append(AdjuntoDocente.objects.filter(docente=doc).order_by('-id'))
+
+                asesor_tesis = AsesorTesis.objects.filter(persona=persona)
+                for ast in asesor_tesis:
+                    adjuntos_asesor_tesis.append(AdjuntoAsesorTesis.objects.filter(asesor_tesis=ast).order_by('-id'))
+                
+                evaluador_proyecto = EvaluadorProyecto.objects.filter(persona=persona)
+                for evpy in evaluador_proyecto:
+                    adjuntos_evaluador_proyecto.append(AdjuntoEvaluadorProyecto.objects.filter(evaluador_proyecto=evpy).order_by('-id'))
+            if a.get('opcion') == 'idiomas' and a.get('valor') == 'on':
+                idiomas = Idioma.objects.filter(persona=persona)
+            if a.get('opcion') == 'produccion_cientifica' and a.get('valor') == 'on':
+                produccion_cientifica = Cientifica.objects.filter(persona=persona)
+                for prdctf in produccion_cientifica:
+                    adjuntos_produccion_cientifica.append(AdjuntoCientifica.objects.filter(cientifica=prdctf).order_by('-id'))
+            if a.get('opcion') == 'premios' and a.get('valor') == 'on':
+                premios = Distincion.objects.filter(persona=persona)
+                for prm in premios:
+                    adjuntos_premios.append(AdjuntoDistincion.objects.filter(distincion=prm).order_by('-id'))
+        
+        docs = []
+        # docs.append(path)
+        for adju in adjuntos_universitaria:
+            for univ in adju:
+                docs.append(str(default_storage.path(univ.ruta)))
+
+        for adjt in adjuntos_tecnico:
+            for tec in adjt:
+                docs.append(str(default_storage.path(tec.ruta)))
+                
+        for adjc in adjuntos_complementaria:
+            for cmp in adjc:
+                docs.append(str(default_storage.path(cmp.ruta)))
+                
+        for adjl in adjuntos_laboral:
+            for lab in adjl:
+                docs.append(str(default_storage.path(lab.ruta)))
+                
+        for adjd in adjuntos_docente:
+            for doc in adjd:
+                docs.append(str(default_storage.path(doc.ruta)))
+                
+        for adjat in adjuntos_asesor_tesis:
+            for ast in adjat:
+                docs.append(str(default_storage.path(ast.ruta)))
+                
+        for adjpc in adjuntos_produccion_cientifica:
+            for pdc in adjpc:
+                docs.append(str(default_storage.path(pdc.ruta)))
+                
+        for adjp in adjuntos_premios:
+            for prm in adjp:
+                docs.append(str(default_storage.path(prm.ruta)))
+                
+        for adjep in adjuntos_evaluador_proyecto:
+            for evp in adjep:
+                docs.append(str(default_storage.path(evp.ruta)))
+        
+        data = {
+            'array_filtros': array_filtros,
+            'p': persona,
+            'dep': dep,
+            'prov': prov,
+            'dist': dist,
+            'foto_path': foto_path,
+            'universitaria': universitaria,
+            'adjuntos_universitaria': adjuntos_universitaria,
+            'tecnico': tecnico,
+            'adjuntos_tecnico': adjuntos_tecnico,
+            'complementaria': complementaria,
+            'adjuntos_complementaria': adjuntos_complementaria,
+            'laboral': laboral,
+            'adjuntos_laboral': adjuntos_laboral,
+            'docente': docente,
+            'adjuntos_docente': adjuntos_docente,
+            'asesor_tesis': asesor_tesis,
+            'adjuntos_asesor_tesis': adjuntos_asesor_tesis,
+            'evaluador_proyecto': evaluador_proyecto,
+            'adjuntos_evaluador_proyecto': adjuntos_evaluador_proyecto,
+            'idiomas': idiomas,
+            'produccion_cientifica': produccion_cientifica,
+            'adjuntos_produccion_cientifica': adjuntos_produccion_cientifica,
+            'premios': premios,
+            'adjuntos_premios': adjuntos_premios,
+            'documentos': docs,
+        }
+        template = get_template('persona/plantilla_pdf_det.html')
+        html = template.render(data, request)
+        nombre_archivo = f"{uuid.uuid4()}.pdf"
+        path = f"{settings.STATIC_ROOT}/{nombre_archivo}"
+        file = open(path, "w+b")
+        pisa.CreatePDF(html, dest=file)
+        file.seek(0)
+        pdf = file.read()
+        file.close()
+        response.write(pdf)
+        if os.path.exists(path):
+            try:
+                os.remove(path)
+            except Exception as e:
+                pass
+        return response
+
+class DescargarCVPdfDet3(View, LoginRequiredMixin):
+    def get(self, request, *args, **kwargs):
+        BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        filename = 'experiencia_asesor_tesis/6518f9e6-c5a7-404d-afb5-346c160f0b17.pdf'
+        # Define the full file path
+        filepath = BASE_DIR + '/media/' + filename
+        print("BASE DIR: ", BASE_DIR)
+        print("filepath DIR: ", filepath)
+        path = open(filepath, 'r')
+        mime_type, _ = mimetypes.guess_type(filepath)
+        # Set the return value of the HttpResponse
+        response = HttpResponse(path, content_type=mime_type)
+        # Set the HTTP header for sending to browser
+        filename = 'elarchivo.pdf'
+        response['Content-Disposition'] = "attachment; filename=%s" % filename
+        # Return the response value
+        return response
+
+class DescargarCVPdfDet(View, LoginRequiredMixin):
+    def get(self, request, *args, **kwargs):
+        persona = get_object_or_404(Persona, pk=self.kwargs.get('pk'))
+        foto_path = default_storage.path('{}'.format(persona.ruta_foto))
+        dep = UbigeoDepartamento.objects.filter(cod_ubigeo_inei_departamento=persona.datosgenerales.ubigeo_departamento).last().ubigeo_departamento
+        prov = UbigeoProvincia.objects.filter(cod_ubigeo_inei_provincia=persona.datosgenerales.ubigeo_provincia).last().ubigeo_provincia
+        dist = UbigeoDistrito.objects.filter(cod_ubigeo_inei_distrito=persona.datosgenerales.ubigeo_distrito).last().ubigeo_distrito
+
+        universitaria = None
+        adjuntos_universitaria = []
+        tecnico = None
+        adjuntos_tecnico = []
+        complementaria = None
+        adjuntos_complementaria = []
+        laboral = None
+        adjuntos_laboral = []
+        docente = None
+        adjuntos_docente = []
+        asesor_tesis = None
+        adjuntos_asesor_tesis = []
+        idiomas = None
+        produccion_cientifica = None
+        adjuntos_produccion_cientifica = []
+        premios = None
+        adjuntos_premios = []
+        evaluador_proyecto = None
+        adjuntos_evaluador_proyecto = []
+
+        array_filtros = json.loads(self.request.GET.get('array_filtros'))
+        for a in array_filtros:
+            if a.get('opcion') == 'formacion_academica' and a.get('valor') == 'on':
+                universitaria = Universitaria.objects.filter(persona=persona)
+                for uni in universitaria:
+                    adjuntos_universitaria.append(AdjuntoUniversitaria.objects.filter(universitaria=uni).order_by('-id'))
+                
+                tecnico = Tecnico.objects.filter(persona=persona)
+                for tec in tecnico:
+                    adjuntos_tecnico.append(AdjuntoTecnico.objects.filter(tecnico=tec).order_by('-id'))
+
+                complementaria = Complementaria.objects.filter(persona=persona)
+                for cmp in complementaria:
+                    adjuntos_complementaria.append(AdjuntoComplementaria.objects.filter(complementaria=cmp).order_by('-id'))
+            if a.get('opcion') == 'experiencia_laboral' and a.get('valor') == 'on':
+                laboral = Laboral.objects.filter(persona=persona)
+                for lb in laboral:
+                    adjuntos_laboral.append(AdjuntoLaboral.objects.filter(laboral=lb).order_by('-id'))
+
+                docente = Docente.objects.filter(persona=persona)
+                for doc in docente:
+                    adjuntos_docente.append(AdjuntoDocente.objects.filter(docente=doc).order_by('-id'))
+
+                asesor_tesis = AsesorTesis.objects.filter(persona=persona)
+                for ast in asesor_tesis:
+                    adjuntos_asesor_tesis.append(AdjuntoAsesorTesis.objects.filter(asesor_tesis=ast).order_by('-id'))
+                
+                evaluador_proyecto = EvaluadorProyecto.objects.filter(persona=persona)
+                for evpy in evaluador_proyecto:
+                    adjuntos_evaluador_proyecto.append(AdjuntoEvaluadorProyecto.objects.filter(evaluador_proyecto=evpy).order_by('-id'))
+            if a.get('opcion') == 'idiomas' and a.get('valor') == 'on':
+                idiomas = Idioma.objects.filter(persona=persona)
+            if a.get('opcion') == 'produccion_cientifica' and a.get('valor') == 'on':
+                produccion_cientifica = Cientifica.objects.filter(persona=persona)
+                for prdctf in produccion_cientifica:
+                    adjuntos_produccion_cientifica.append(AdjuntoCientifica.objects.filter(cientifica=prdctf).order_by('-id'))
+            if a.get('opcion') == 'premios' and a.get('valor') == 'on':
+                premios = Distincion.objects.filter(persona=persona)
+                for prm in premios:
+                    adjuntos_premios.append(AdjuntoDistincion.objects.filter(distincion=prm).order_by('-id'))
+
+        data = {
+            'array_filtros': array_filtros,
+            'p': persona,
+            'dep': dep,
+            'prov': prov,
+            'dist': dist,
+            'foto_path': foto_path,
+            'universitaria': universitaria,
+            'adjuntos_universitaria': adjuntos_universitaria,
+            'tecnico': tecnico,
+            'adjuntos_tecnico': adjuntos_tecnico,
+            'complementaria': complementaria,
+            'adjuntos_complementaria': adjuntos_complementaria,
+            'laboral': laboral,
+            'adjuntos_laboral': adjuntos_laboral,
+            'docente': docente,
+            'adjuntos_docente': adjuntos_docente,
+            'asesor_tesis': asesor_tesis,
+            'adjuntos_asesor_tesis': adjuntos_asesor_tesis,
+            'evaluador_proyecto': evaluador_proyecto,
+            'adjuntos_evaluador_proyecto': adjuntos_evaluador_proyecto,
+            'idiomas': idiomas,
+            'produccion_cientifica': produccion_cientifica,
+            'adjuntos_produccion_cientifica': adjuntos_produccion_cientifica,
+            'premios': premios,
+            'adjuntos_premios': adjuntos_premios,
+        }
+
+        BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        response = HttpResponse(content_type='application/pdf')
+        response['Content-Disposition'] = 'attachment; filename="{pat}_{mat}_{nom}_CV_DETALLADO.pdf"'.format(
+            pat=persona.apellido_paterno, mat=persona.apellido_materno, nom=persona.nombres
+        )
+
+        template = get_template('persona/plantilla_pdf_det.html')
+        html = template.render(data, request)
+        nombre_archivo = f"{uuid.uuid4()}.pdf"
+        path = f"{settings.STATIC_ROOT}/{nombre_archivo}"
+        print("\n- Path 1: ",path, '\n')
+
+        file = open(path, "w+b")
+        pisa.CreatePDF(html, dest=file)
+        file.seek(0)
+
+        print("CV Simple creado")
+
+        docs = []
+        docs.append(path)
+        for adju in adjuntos_universitaria:
+            for univ in adju:
+                # docs.append(default_storage.path(univ.ruta))
+                docs.append("/media/"+univ.rut)
+        for adjt in adjuntos_tecnico:
+            for tec in adjt:
+                # docs.append(f"{settings.STATIC_ROOT}/media/{tec.ruta}")
+                docs.append("/media/"+tec.ruta)
+        for adjc in adjuntos_complementaria:
+            for cmp in adjc:
+                docs.append("/media/"+cmp.ruta)
+        for adjl in adjuntos_laboral:
+            for lab in adjl:
+                docs.append("/media/"+lab.ruta)
+        for adjd in adjuntos_docente:
+            for doc in adjd:
+                docs.append("/media/"+doc.ruta)
+        for adjat in adjuntos_asesor_tesis:
+            for ast in adjat:
+                docs.append("/media/"+ast.ruta)
+        for adjpc in adjuntos_produccion_cientifica:
+            for pdc in adjpc:
+                docs.append("/media/"+pdc.ruta)
+        for adjp in adjuntos_premios:
+            for prm in adjp:
+                docs.append("/media/"+prm.ruta)
+        for adjep in adjuntos_evaluador_proyecto:
+            for evp in adjep:
+                docs.append("/media/"+evp.ruta)
+
+        print("\nDocumentos: ", docs)
+
+        merger = PdfFileMerger()
+        ind = 0
+        for doc_name in docs:
+            ind += 1
+            if doc_name.endswith('.pdf') is False:
+                continue
+            try:
+                print(f" -> DocName {ind}:", doc_name)
+                merger.append(PdfFileReader(open(doc_name, 'rb')),)
+                print(f" - Merger {ind}:", merger, "\n")
+            except Exception as e:
+                print(f" Ocurrio un error: {e}")
+
+        print("\nMerged files\n")
+        nombre_archivo_merged = f"{uuid.uuid4()}.pdf"
+        path_merged = f"{settings.STATIC_ROOT}/{nombre_archivo_merged}"
+
+        print("\n- Path 2: ",path_merged, '\n')
+        merger.write(path_merged)
+        merger.close()
+
+        print("Save merged file.\n")
+        file = open(path_merged, "r+b")
+        pdf = file.read()
+        file.close()
+        response.write(pdf)
+        print("\n- Response: ",response, '\n')
+        if os.path.exists(path):
+            try:
+                os.remove(path)
+            except Exception as e:
+                pass
+        if os.path.exists(path_merged):
+            try:
+                os.remove(path_merged)
             except Exception as e:
                 pass
         return response

@@ -18,4 +18,16 @@ $(document).ready(function () {
     window.location.href =`/descargar-cv/${id_persona}/?array_filtros=${arreglo}`;
   });
 
+  $("#btn-descarga-cv-det").on('click', function() {
+    const id_persona = $(this).attr("data-id");
+    array_filtros = []
+    $("input:checkbox:checked").each(function() {
+      opcion = $(this)[0].name
+      valor = $(this).val()
+      array_filtros.push({opcion, valor});
+    });
+    arreglo = JSON.stringify(array_filtros)
+    window.location.href =`/descargar-cv-det/${id_persona}/?array_filtros=${arreglo}`;
+  });
+
 });

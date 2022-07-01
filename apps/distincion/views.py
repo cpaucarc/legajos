@@ -131,6 +131,10 @@ class SubirArchivosView(LoginRequiredMixin, View):
             nombre_archivo = f"{uuid.uuid4()}.{extension}"
             archivo = default_storage.save('{}/{}'.format(carpeta, nombre_archivo), ruta.file)
             path = default_storage.path(archivo)
+            print("\n\nDefault Storage", default_storage)
+            print("Archivo", archivo)
+            print("Ruta Name", ruta.name)
+            print("Default Storage Path2", default_storage.path(archivo), '\n\n')
             modelo.nombre = ruta.name
             modelo.ruta = '{}/{}'.format(carpeta, nombre_archivo)
             modelo.save()
