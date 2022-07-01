@@ -42,24 +42,26 @@
           <legend class="scheduler-border" style="width: 110px!important; font-size:12px;"> Datos de la Persona</legend>
           <div class="col-lg-12">
             <div class="col-md-4">
-              {% field form.idioma cols=True label=True %}
+              {% field form.idioma cols=False label=True %}
             </div>
             <div class="col-md-4">
-              {% field form.lectura cols=True label=True %}
+              {% field form.lectura cols=False label=True %}
             </div>
             <div class="col-md-4">
-              {% field form.conversacion cols=True label=True label_width=3 %}
+              {% field form.conversacion cols=False label=True label_width=3 %}
             </div>
           </div>
           <div class="col-lg-12">
             <div class="col-md-4">
-              {% field form.escritura cols=True label=True %}
+              {% field form.escritura cols=False label=True %}
             </div>
             <div class="col-md-4">
-              {% field form.forma_aprendizaje cols=True label=True %}
+              {% field form.forma_aprendizaje cols=False label=True %}
             </div>
             <div class="col-md-4">
-              {% field form.es_lengua_materna cols=True label=True label_width=3 %}
+                <div style="margin-top: 35px">
+                  {% field form.es_lengua_materna cols=False label=True label_width=3 %}
+                </div>
             </div>
           </div>
         </fieldset>

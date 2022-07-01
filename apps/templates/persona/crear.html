@@ -40,8 +40,7 @@
         </div>
         <fieldset class="border p-2">
           <legend class="scheduler-border" style="width: 110px!important; font-size:12px;"> Datos de la Persona</legend>
-          <div class="col-lg-2">
-            <label style="font-size:11px;">Fotografía (formato png, jpeg, o jpg<=100Kb)</label>
+          <div class="col-lg-2 d-flex flex-column">
             {% if object.ruta_foto %}
             <img src="{{MEDIA_URL}}{{object.ruta_foto}}" class="img-fluid border shadow-sm" alt="personal"
                  style="margin-left: auto; margin-right: auto; width: 100%; display: block;"/>
@@ -50,52 +49,55 @@
                    style="margin-left: auto; margin-right: auto; width: 100%; display: block;"/>
             {% endif %}
             {% field form.ruta_foto cols=False label=False label_width=0 %}
+          <div class="bg-warning text-center border shadow-sm">
+              <label style="font-size:12px;" class="p-8 white">Formato png, jpeg, o jpg menor a 2MB</label>
+          </div>
           </div>
           <div class="col-md-10">
             <div class="col-md-12">
               <div class="col-md-4">
-                {% field form.tipo_documento cols=True label=True %}
+                {% field form.tipo_documento label=True %}
               </div>
               <div class="col-md-4">
-                {% field form.numero_documento cols=True label=True %}
+                {% field form.numero_documento label=True %}
               </div>
               <div class="col-md-4">
-                {% field form.tipo_persona cols=True label=True label_width=3 %}
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="col-md-4">
-                {% field form.apellido_paterno cols=True label=True %}
-              </div>
-              <div class="col-md-4">
-                {% field form.apellido_materno cols=True label=True %}
-              </div>
-              <div class="col-md-4">
-                {% field form.nombres cols=True label=True label_width=3 %}
+                {% field form.tipo_persona label=True label_width=3 %}
               </div>
             </div>
             <div class="col-md-12">
               <div class="col-md-4">
-                {% field form.sexo cols=True label=True %}
+                {% field form.apellido_paterno label=True %}
               </div>
               <div class="col-md-4">
-                {% field form.celular cols=True label=True %}
+                {% field form.apellido_materno label=True %}
               </div>
               <div class="col-md-4">
-                {% field form.correo_personal cols=True label=True label_width=3 %}
+                {% field form.nombres  label_width=3 %}
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="col-md-4">
+                {% field form.sexo label=True %}
+              </div>
+              <div class="col-md-4">
+                {% field form.celular label=True %}
+              </div>
+              <div class="col-md-4">
+                {% field form.correo_personal label=True label_width=3 %}
               </div>
             </div>
             <div class="col-md-12" id="div_resumen">
               <div class="col-md-12">
-                {% field form.resumen cols=True label=True label_width=1 %}
+                {% field form.resumen label=True label_width=1 %}
               </div>
             </div>
             <div class="col-md-12 f-ext">
               <div class="col-md-6">
-                {% field form.facultad cols=True label=True label_width=2 %}
+                {% field form.facultad label=True label_width=2 %}
               </div>
               <div class="col-md-6">
-                {% field form.departamento cols=True label=True label_width=2 %}
+                {% field form.departamento label=True label_width=2 %}
               </div>
             </div>
           </div>
@@ -104,37 +106,54 @@
           <legend class="scheduler-border" style="width: 95px!important; font-size:12px;"> Datos Generales</legend>
           <div class="col-lg-12">
             <div class="col-md-4">
-              {% field form_datos_generales.fecha_nacimiento cols=True label=True %}
+              {% field form_datos_generales.fecha_nacimiento  label=True %}
             </div>
             <div class="col-md-4">
-              {% field form_datos_generales.nacionalidad cols=True label=True %}
+              {% field form_datos_generales.nacionalidad  label=True %}
             </div>
             <div class="col-md-4">
-              {% field form_datos_generales.tipo_contrato cols=True label=True label_width=3 %}
+              {% field form_datos_generales.tipo_contrato  label=True label_width=3 %}
             </div>
           </div>
           <div class="col-lg-12">
             <div class="col-lg-4">
-              {% field form_datos_generales.categoria cols=True label=True %}
+              {% field form_datos_generales.categoria  label=True %}
             </div>
             <div class="col-md-4">
-              {% field form_datos_generales.dedicacion cols=True label=True %}
+              {% field form_datos_generales.dedicacion label=True %}
             </div>
             <div class="col-md-4">
-              {% field form_datos_generales.correo_institucional cols=True label=True label_width=3 %}
+              {% field form_datos_generales.correo_institucional label=True label_width=3 %}
             </div>
           </div>
           <div class="col-lg-12">
             <div class="col-lg-4">
-              {% field form_datos_generales.ubigeo_departamento cols=True label=True %}
+              {% field form_datos_generales.ubigeo_departamento label=True %}
             </div>
             <div class="col-md-4">
-              {% field form_datos_generales.ubigeo_provincia cols=True label=True %}
+              {% field form_datos_generales.ubigeo_provincia label=True %}
             </div>
             <div class="col-md-4">
-              {% field form_datos_generales.ubigeo_distrito cols=True label=True label_width=3 %}
+              {% field form_datos_generales.ubigeo_distrito label=True label_width=3 %}
             </div>
           </div>
+        </fieldset>
+        <fieldset class="border p-5" id="dcolegiatura">
+            <legend class="scheduler-border" style="width: 120px!important; font-size:12px;"> Datos de Colegiatura</legend>
+            <div class="row center-block">
+                 <div class="col-lg-12">
+                     {% field form_datos_colegiatura.colegio_profesional label=True %}
+                 </div>
+                 <div class="col-lg-6">
+                    {% field form_datos_colegiatura.sede_colegio label=True %}
+                 </div>
+                 <div class="col-lg-3">
+                    {% field form_datos_colegiatura.codigo_colegiado label=True %}
+                 </div>
+                 <div class="col-lg-3">
+                    {% field form_datos_colegiatura.estado_colegiado label=True %}
+                 </div>
+            </div>
         </fieldset>
       </form>
       &nbsp;
