@@ -30,11 +30,31 @@
 ## Indicaciones para sysadmin
 
 **EJECUTAR**
+
+```
 - python manage.py migrate
 - python manage.py collectstatic
+```
 
-**EJECUTAR SEEDERS** (DESDE LA RAIZ DEL PROYECTO)
+**EJECUTAR SEEDERS (en orden)** (DESDE LA RAIZ DEL PROYECTO)
+```
 - python manage.py loaddata apps/common/fixtures/ubigeo-pais.json
+- python manage.py loaddata apps/common/fixtures/ubigeo-departamento.json
+- python manage.py loaddata apps/common/fixtures/ubigeo-provincia.json
+- python manage.py loaddata apps/common/fixtures/ubigeo-distrito.json
+```
+```
+- python manage.py loaddata apps/common/fixtures/colegios-profesionales.json
+```
+```
+- python manage.py loaddata apps/persona/seeders/facultades.json
+- python manage.py loaddata apps/persona/seeders/departamentos_academicos.json
+- python manage.py loaddata apps/persona/seeders/docentes.json
+- python manage.py loaddata apps/persona/seeders/datos_generales.json
 
+x python manage.py loaddata apps/persona/seeders/usuarios.json (❌ No funciona)
+  Solución: Ejecutar el script sql (postgresql) para insertar usuarios: 👍
+    -> Esta ubicado en: apps/scripts-bd/usuarios.sql
+```
 **ARRANCAR LA APLICACION**
 - python manage.py runserver 8080
