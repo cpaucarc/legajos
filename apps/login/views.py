@@ -40,9 +40,21 @@ class LoginView(FormView):
 
     def get_success_url(self):
         next = self.request.GET.get("next")
+        user = auth.authenticate(username=self.request.POST['username'].strip(), password=self.request.POST['password'].strip())
+        persona_id = user.persona.id if user.persona else None
+        print('\nUser', user)
+        print('Username', self.request.POST['username'])
+        print('Password', self.request.POST['password'])
+        print('Request POST', self.request.POST)
+        print('Persona', persona_id, '\n')
+
         if next is not None:
             return next
-        return '/'
+
+        if persona_id is not None:
+            return '/editar-persona/{}'.format(persona_id)
+
+        return '/crear-persona'
 
 
 class LogoutView(RedirectView):

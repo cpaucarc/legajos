@@ -157,6 +157,8 @@
         </fieldset>
       </form>
       &nbsp;
+
+    {% if username == 'admin' %}
       <div class="tab-content table-responsive">
         <table class="table table-bordered table-hover table-striped table-responsive"
                id="lista-persona"
@@ -177,6 +179,7 @@
           </thead>
         </table>
       </div>
+    {% endif %}
     </div>
   </div>
 </div>

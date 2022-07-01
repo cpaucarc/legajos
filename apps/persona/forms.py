@@ -23,7 +23,7 @@ class PersonaForm(forms.ModelForm):
         if self.data.get('facultad'):
             self.fields['departamento'].queryset = Departamento.objects.filter(id=self.data.get('facultad'))
         if self['facultad'].value():
-            self.fields['departamento'].queryset = Departamento.objects.filter(id=self['facultad'].value())
+            self.fields['departamento'].queryset = Departamento.objects.filter(facultad_id=self['facultad'].value())
             self.fields['departamento'].initial = self['departamento'].value()
 
     class Meta:
