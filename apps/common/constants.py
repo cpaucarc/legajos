@@ -104,11 +104,21 @@ DEDICACION_CHOICES = (
 CATEGORIA_AUXILIAR = 'auxiliar'
 CATEGORIA_ASOCIADO = 'asociado'
 CATEGORIA_PRINCIPAL = 'principal'
+CATEGORIA_DC_B1 = 'dc_b1'
+CATEGORIA_DC_B2 = 'dc_b2'
+CATEGORIA_DC_A1 = 'dc_a1'
+CATEGORIA_JEFE_DE_PRACTICAS = 'jefe_de_practica'
+CATEGORIA_SERVICIO_ACADEMICO_PROFESIONAL = 'servicio_academico_profesional'
 
 CATEGORIA_CHOICES = (
     (CATEGORIA_AUXILIAR, 'Auxiliar'),
     (CATEGORIA_ASOCIADO, 'Asociado'),
     (CATEGORIA_PRINCIPAL, 'Principal'),
+    (CATEGORIA_DC_B1, 'DC B1'),
+    (CATEGORIA_DC_B2, 'DC B2'),
+    (CATEGORIA_DC_A1, 'DC A1'),
+    (CATEGORIA_JEFE_DE_PRACTICAS, 'Jefe de Practicas'),
+    (CATEGORIA_SERVICIO_ACADEMICO_PROFESIONAL, 'Servicio Academico Profesional'),
 )
 
 TIPO_MIEMBRO_FACULTAD = 'consejo_facultad'

@@ -64,9 +64,9 @@ class Persona(AuditableModel, TimeStampedModel):
 
 class DatosGenerales(AuditableModel, TimeStampedModel):
     orcid = models.CharField('ORCID', max_length=45, null=True, blank=True)
-    tipo_contrato = models.CharField('Tipo de contrato', max_length=15, choices=TIPO_CONTRATO_CHOICES)
-    categoria = models.CharField('Categoria', max_length=15, choices=CATEGORIA_CHOICES)
-    dedicacion = models.CharField('Dedicación', max_length=15, choices=DEDICACION_CHOICES)
+    tipo_contrato = models.CharField('Tipo de contrato', max_length=45, choices=TIPO_CONTRATO_CHOICES)
+    categoria = models.CharField('Categoria', max_length=45, choices=CATEGORIA_CHOICES)
+    dedicacion = models.CharField('Dedicación', max_length=45, choices=DEDICACION_CHOICES)
     fecha_nacimiento = models.DateField('Fecha de nacimiento')
     nacionalidad = models.ForeignKey(UbigeoPais, on_delete=models.PROTECT)
     direccion = models.CharField('Dirección', max_length=200)

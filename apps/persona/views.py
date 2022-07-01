@@ -137,12 +137,15 @@ class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
     def form_valid(self, form):
         ruta = None
         model_datos_generales = DatosGenerales.objects.filter(persona_id=self.object.id).last()
+        print('views-140: model_datos_generales: ', model_datos_generales)
         model_datos_colegiatura = Colegiatura.objects.filter(persona_id=self.object.id).last()
+        print('views-142: model_datos_colegiatura: ', model_datos_colegiatura)
 
         if model_datos_generales:
             form_dg = DatosGeneralesForm(self.request.POST or None, instance=model_datos_generales)
         else:
             form_dg = DatosGeneralesForm(self.request.POST or None)
+        print('views-148: form_dg: ', form_dg)
 
         # Colegiatura
         if model_datos_colegiatura:
@@ -208,6 +211,8 @@ class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
 
     def form_invalid(self, form, **kwargs):
         context = self.get_context_data(**kwargs)
+        print('context views-214:', context)
+        print('context views-215:', self.request)
         if self.msg:
             messages.warning(self.request, self.msg)
         else:
