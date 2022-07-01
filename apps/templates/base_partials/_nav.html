@@ -3,6 +3,7 @@
   <div class="menu-list heightList">
     <ul id="menu-content" class="menu-content collapse in">
       <br>
+    {% if username == 'admin' %}
       <li>
         <a href="/crear-persona">
           <div class="col-lg-3 col-md-3 col-xs-3">
@@ -16,6 +17,21 @@
           </div>
         </a>
       </li>
+    {% else %}
+     <li>
+        <a href="/editar-persona/{{ identificador_persona }}">
+          <div class="col-lg-3 col-md-3 col-xs-3">
+          <i class="fa fa-users"></i>
+          </div>
+          <div class="col-lg-7 col-md-7 col-xs-7">
+            <p data-toggle="tooltip" title="Mi información" data-placement="bottom"
+               class="modulo ocultar ellipsis blue-tooltip" style="margin-top: 0.7rem; font-size:13px;">
+              Mi información
+            <p>
+          </div>
+        </a>
+      </li>
+    {% endif %}
       <ul class="sub-menu modulo-selected collapse" id="moduloSelected" aria-expanded="true">
         {% block navmenu %}{% endblock %}
       </ul>

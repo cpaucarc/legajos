@@ -54,7 +54,9 @@ class Persona(AuditableModel, TimeStampedModel):
             a_paterno=self.apellido_paterno,
             a_materno=self.apellido_materno
         )
-    def persona_id(self):
+
+    @property
+    def indenteficador_persona(self):
         return '{id}'.format(
             id=self.id
         )
