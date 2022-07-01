@@ -1,0 +1,90 @@
+[
+  {
+    "model": "persona.facultad",
+    "pk": 1,
+    "fields": {
+      "codigo": "FC",
+      "nombre": "CIENCIAS"
+    }
+  },
+  {
+    "model": "persona.facultad",
+    "pk": 2,
+    "fields": {
+      "codigo": "FCA",
+      "nombre": "CIENCIAS AGRARIAS"
+    }
+  },
+  {
+    "model": "persona.facultad",
+    "pk": 3,
+    "fields": {
+      "codigo": "FAT",
+      "nombre": "ADMINISTRACION Y TURISMO"
+    }
+  },
+  {
+    "model": "persona.facultad",
+    "pk": 4,
+    "fields": {
+      "codigo": "FIIA",
+      "nombre": "INGENIERIA INDUSTRIAS ALIMENTARIAS"
+    }
+  },
+  {
+    "model": "persona.facultad",
+    "pk": 5,
+    "fields": {
+      "codigo": "FCAM",
+      "nombre": "CIENCIAS DEL AMBIENTE"
+    }
+  },
+  {
+    "model": "persona.facultad",
+    "pk": 6,
+    "fields": {
+      "codigo": "FIMGM",
+      "nombre": "INGENIERIA MINAS GEOLOGIA Y METALURGIA"
+    }
+  },
+  {
+    "model": "persona.facultad",
+    "pk": 7,
+    "fields": {
+      "codigo": "FIC",
+      "nombre": "INGENIERIA CIVIL"
+    }
+  },
+  {
+    "model": "persona.facultad",
+    "pk": 8,
+    "fields": {
+      "codigo": "FCM",
+      "nombre": "CIENCIAS MEDICAS"
+    }
+  },
+  {
+    "model": "persona.facultad",
+    "pk": 10,
+    "fields": {
+      "codigo": "FDCCPP",
+      "nombre": "DERECHO Y CIENCIAS POLITICAS"
+    }
+  },
+  {
+    "model": "persona.facultad",
+    "pk": 11,
+    "fields": {
+      "codigo": "FCSEC",
+      "nombre": "CIENCIAS SOCIALES, EDUCACION Y DE LA COMUNICACION"
+    }
+  },
+  {
+    "model": "persona.facultad",
+    "pk": 12,
+    "fields": {
+      "codigo": "FEC",
+      "nombre": "ECONOMIA Y CONTABILIDAD"
+    }
+  }
+]

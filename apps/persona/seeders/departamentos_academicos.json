@@ -1,0 +1,173 @@
+[
+  {
+    "model": "persona.departamento",
+    "pk": 46,
+    "fields": {
+      "codigo": "FAT-ADTR",
+      "nombre": "ADMINISTRACION Y TURISMO",
+      "facultad": 3
+    }
+  },
+  {
+    "model": "persona.departamento",
+    "pk": 51,
+    "fields": {
+      "codigo": "FCA-AGRN",
+      "nombre": "AGRONOMIA",
+      "facultad": 2
+    }
+  },
+  {
+    "model": "persona.departamento",
+    "pk": 40,
+    "fields": {
+      "codigo": "FIIA-CTAL",
+      "nombre": "CIENCIA Y TECNOLOGIA DE ALIMENTOS",
+      "facultad": 4
+    }
+  },
+  {
+    "model": "persona.departamento",
+    "pk": 57,
+    "fields": {
+      "codigo": "FC-CCBB",
+      "nombre": "CIENCIAS BÁSICAS",
+      "facultad": 1
+    }
+  },
+  {
+    "model": "persona.departamento",
+    "pk": 44,
+    "fields": {
+      "codigo": "FCAM-CAMB",
+      "nombre": "CIENCIAS DEL AMBIENTE",
+      "facultad": 5
+    }
+  },
+  {
+    "model": "persona.departamento",
+    "pk": 50,
+    "fields": {
+      "codigo": "FCSEC-CSCC",
+      "nombre": "CIENCIAS SOCIALES Y CIENCIAS DE LA COMUNICACION",
+      "facultad": 11
+    }
+  },
+  {
+    "model": "persona.departamento",
+    "pk": 45,
+    "fields": {
+      "codigo": "FEC-CONT",
+      "nombre": "CONTABILIDAD",
+      "facultad": 12
+    }
+  },
+  {
+    "model": "persona.departamento",
+    "pk": 48,
+    "fields": {
+      "codigo": "FDCCPP-DCCPP",
+      "nombre": "DERECHO Y CIENCIAS POLITICAS",
+      "facultad": 10
+    }
+  },
+  {
+    "model": "persona.departamento",
+    "pk": 61,
+    "fields": {
+      "codigo": "FEC-ECON",
+      "nombre": "ECONOMÍA",
+      "facultad": 12
+    }
+  },
+  {
+    "model": "persona.departamento",
+    "pk": 49,
+    "fields": {
+      "codigo": "FCSEC-EDUC",
+      "nombre": "EDUCACION",
+      "facultad": 11
+    }
+  },
+  {
+    "model": "persona.departamento",
+    "pk": 54,
+    "fields": {
+      "codigo": "FCM-ENFM",
+      "nombre": "ENFERMERÍA",
+      "facultad": 8
+    }
+  },
+  {
+    "model": "persona.departamento",
+    "pk": 68,
+    "fields": {
+      "codigo": "FC-ESTD",
+      "nombre": "ESTADÍSTICA",
+      "facultad": 1
+    }
+  },
+  {
+    "model": "persona.departamento",
+    "pk": 41,
+    "fields": {
+      "codigo": "FCA-INAG",
+      "nombre": "INGENIERIA AGRICOLA",
+      "facultad": 2
+    }
+  },
+  {
+    "model": "persona.departamento",
+    "pk": 42,
+    "fields": {
+      "codigo": "FIC-INCI",
+      "nombre": "INGENIERIA CIVIL",
+      "facultad": 7
+    }
+  },
+  {
+    "model": "persona.departamento",
+    "pk": 43,
+    "fields": {
+      "codigo": "FIMGM-INMN",
+      "nombre": "INGENIERIA DE MINAS",
+      "facultad": 6
+    }
+  },
+  {
+    "model": "persona.departamento",
+    "pk": 52,
+    "fields": {
+      "codigo": "FC-INSTTL",
+      "nombre": "INGENIERIA DE SISTEMAS Y TELECOMUNICACIONES",
+      "facultad": 1
+    }
+  },
+  {
+    "model": "persona.departamento",
+    "pk": 56,
+    "fields": {
+      "codigo": "FC-MATM",
+      "nombre": "MATEMÁTICA",
+      "facultad": 1
+    }
+  },
+  {
+    "model": "persona.departamento",
+    "pk": 53,
+    "fields": {
+      "codigo": "FCM-OBST",
+      "nombre": "OBSTETRICIA",
+      "facultad": 8
+    }
+  },
+  {
+    "model": "persona.departamento",
+    "pk": 55,
+    "fields": {
+      "codigo": "FCM-PROPD",
+      "nombre": "PROPEDÉUTICA",
+      "facultad": 8
+    }
+  }
+]

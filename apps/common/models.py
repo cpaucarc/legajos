@@ -13,7 +13,7 @@ class AuditableModel(models.Model):
 
 class TimeStampedModel(models.Model):
     fecha_creacion = models.DateTimeField('fecha de creación', auto_now_add=True, editable=False, blank=True, null=True) # noqa
-    fecha_modificacion = models.DateTimeField('fecha de modificación', auto_now=True, editable=False)
+    fecha_modificacion = models.DateTimeField('fecha de modificación', auto_now=True, editable=False, blank=True, null=True)
 
     class Meta:
         abstract = True
