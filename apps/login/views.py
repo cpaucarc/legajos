@@ -28,10 +28,12 @@ class LoginView(FormView):
                 self.request.session['tipo_persona_desc'] = user.persona.get_tipo_persona_display()
                 self.request.session['tipo_persona'] = user.persona.tipo_persona
                 self.request.session['fullname'] = user.persona.nombre_completo
+                self.request.session['persona_id'] = user.persona.persona_id
             else:
                 self.request.session['tipo_persona_desc'] = ''
                 self.request.session['tipo_persona'] = ''
                 self.request.session['fullname'] = ''
+                self.request.session['persona_id'] = ''
             self.request.session['username'] = user.username
             return super().form_valid(form)
         else:
@@ -64,6 +66,7 @@ class LogoutView(RedirectView):
         self.request.session['tipo_persona_desc'] = None
         self.request.session['username'] = None
         self.request.session['fullname'] = None
+        self.request.session['persona_id'] = None
         self.request.session['facultad'] = None
         return settings.LOGIN_URL
 
@@ -87,6 +90,7 @@ class BaseLogin(ContextMixin, View):
             'tipo_persona_desc': self.request.session.get('tipo_persona_desc'),
             'username': self.request.session.get('username'),
             'fullname': self.request.session.get('fullname'),
+            'persona_id': self.request.session.get('persona_id'),
             'facultad': self.request.session.get('facultad')
         })
         return context
