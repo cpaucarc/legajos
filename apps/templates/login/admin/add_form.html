@@ -2,17 +2,17 @@
 {% load static %}
 
 {% block extrahead %}{{ block.super }}
-  <link rel="stylesheet" href="{% static 'vendor/select2/css/select2-bootstrap.min.css' %}">
-  <link rel="stylesheet" href="{% static 'vendor/select2/css/select2.min.css' %}">
-  <link rel="stylesheet" href="{% static 'css/login.css' %}">
-{{ media }}
+    <link rel="stylesheet" href="{% static 'vendor/select2/css/select2-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/select2/css/select2.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    {{ media }}
 {% endblock %}
 {% block admin_change_form_document_ready %}{{ block.super }}
-  <script>
-    buscarPersonaUrl = "{% url 'persona:buscar-persona' %}";
-  </script>
-  <script src="{% static 'vendor/jquery/js/jquery-3.2.1.min.js' %}"></script>
-  <script src="{% static 'vendor/select2/js/select2.full.min.js' %}"></script>
-  <script src="{% static 'vendor/select2/js/i18n/es.js' %}"></script>
-  <script src="{% static 'js/admin-login.js' %}"></script>
+    <script>
+        buscarPersonaUrl = "{% url 'persona:buscar-persona' %}";
+    </script>
+    <script src="{% static 'vendor/jquery/js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'vendor/select2/js/select2.full.min.js' %}"></script>
+    <script src="{% static 'vendor/select2/js/i18n/es.js' %}"></script>
+    <script src="{% static 'js/admin-login.js' %}"></script>
 {% endblock %}

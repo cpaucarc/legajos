@@ -1,107 +1,109 @@
 {% load form_tags %}
 <div class="modal fade" id="modal-cientifica">
-  <div class="modal-dialog modal-xl2">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Nueva producción cientifica</h5>
-        <button type="button" class="btn btn-danger btn-md pull-right" style="margin-top:-30px;"
-                id="btnCerrarHeaderModalCientifica">x
-        </button>
-      </div>
-      <form id="formCientifica" action="POST" class="p-2">
-        {% csrf_token %}
-        <div id="errores_list"></div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="col-md-4">
-                {% field form_cientifica.categoria_trabajo cols=False label=True %}
-              </div>
-              <div class="col-md-4">
-                {% field form_cientifica.tipo_obra cols=False label=True %}
-              </div>
-              <div class="col-md-4">
-                {% field form_cientifica.funcion cols=False label=True %}
-              </div>
+    <div class="modal-dialog modal-xl2">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Nueva producción cientifica</h5>
+                <button type="button" class="btn btn-danger btn-md pull-right" style="margin-top:-30px;"
+                        id="btnCerrarHeaderModalCientifica">x
+                </button>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="col-md-12">
-                {% field form_cientifica.titulo cols=False label=True %}
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="col-md-12">
-                {% field form_cientifica.sub_titulo cols=False label=True %}
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="col-md-12">
-                {% field form_cientifica.revista cols=False label=True %}
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="col-md-2">
-                {% field form_cientifica.volumen cols=False label=True %}
-              </div>
-              <div class="col-md-2">
-                {% field form_cientifica.fasciculo cols=False label=True %}
-              </div>
-              <div class="col-md-4">
-                {% field form_cientifica.rango_paginas cols=False label=True %}
-              </div>
-              <div class="col-md-4">
-                {% field form_cientifica.fecha_publicacion cols=False label=True %}
-              </div>
-            </div>
-          </div>
-         <div class="row" id="div_cita">
-            <div class="col-lg-12">
-              <div class="col-md-4">
-                {% field form_cientifica.tipo_cita cols=False label=True %}
-              </div>
-              <div class="col-md-8">
-                {% field form_cientifica.cita cols=False label=True %}
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="col-md-12">
-                {% field form_cientifica.descripcion cols=False label=True %}
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="col-md-2" id="div_tipo_congreso">
-                <label>Tipo de congreso<label class="text-danger">*</label></label>
-                {% field form_cientifica.tipo_congreso cols=False label=False %}
-              </div>
-              <div class="col-md-2">
-                {% field form_cientifica.orden_autoria cols=False label=True %}
-              </div>
-              <div class="col-md-5">
-                {% field form_cientifica.autor cols=False label=True %}
-              </div>
-              <div class="col-md-3">
-                {% field form_cientifica.pais_publicacion cols=False label=True %}
-              </div>
-            </div>
-          </div>
+            <form id="formCientifica" action="POST" class="p-2">
+                {% csrf_token %}
+                <div id="errores_list"></div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="col-md-4">
+                                {% field form_cientifica.categoria_trabajo cols=False label=True %}
+                            </div>
+                            <div class="col-md-4">
+                                {% field form_cientifica.tipo_obra cols=False label=True %}
+                            </div>
+                            <div class="col-md-4">
+                                {% field form_cientifica.funcion cols=False label=True %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="col-md-12">
+                                {% field form_cientifica.titulo cols=False label=True %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="col-md-12">
+                                {% field form_cientifica.sub_titulo cols=False label=True %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="col-md-12">
+                                {% field form_cientifica.revista cols=False label=True %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="col-md-2">
+                                {% field form_cientifica.volumen cols=False label=True %}
+                            </div>
+                            <div class="col-md-2">
+                                {% field form_cientifica.fasciculo cols=False label=True %}
+                            </div>
+                            <div class="col-md-4">
+                                {% field form_cientifica.rango_paginas cols=False label=True %}
+                            </div>
+                            <div class="col-md-4">
+                                {% field form_cientifica.fecha_publicacion cols=False label=True %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="div_cita">
+                        <div class="col-lg-12">
+                            <div class="col-md-4">
+                                {% field form_cientifica.tipo_cita cols=False label=True %}
+                            </div>
+                            <div class="col-md-8">
+                                {% field form_cientifica.cita cols=False label=True %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="col-md-12">
+                                {% field form_cientifica.descripcion cols=False label=True %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="col-md-2" id="div_tipo_congreso">
+                                <label>Tipo de congreso<label class="text-danger">*</label></label>
+                                {% field form_cientifica.tipo_congreso cols=False label=False %}
+                            </div>
+                            <div class="col-md-2">
+                                {% field form_cientifica.orden_autoria cols=False label=True %}
+                            </div>
+                            <div class="col-md-5">
+                                {% field form_cientifica.autor cols=False label=True %}
+                            </div>
+                            <div class="col-md-3">
+                                {% field form_cientifica.pais_publicacion cols=False label=True %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-primary m-b-sm add-item-cientifica" data-added="0">Agregar</a>
+                    <button type="button" data-dismiss="modal" class="btn btn-danger" id="btnCerrarModalCientifica">
+                        Cerrar
+                    </button>
+                </div>
+            </form>
         </div>
-        <div class="modal-footer">
-          <a class="btn btn-primary m-b-sm add-item-cientifica" data-added="0">Agregar</a>
-          <button type="button" data-dismiss="modal" class="btn btn-danger" id="btnCerrarModalCientifica">Cerrar</button>
-        </div>
-      </form>
     </div>
-  </div>
 </div>

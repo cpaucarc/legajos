@@ -2,90 +2,90 @@
 {% load static %}
 {% load form_tags %}
 {% block css %}
-  <link rel="stylesheet" href="{% static 'vendor/jquery/css/jquery-ui.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/jquery/css/jquery-ui.min.css' %}">
 {% endblock %}
 {% block container %}
-<div class="col-12">
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      <h5>Bandeja de validación de proyectos de capacitación
-        <label class="pull-right">
-          User: <label class="text-success">{{username}} {{tipo_persona_desc}}</label>
-        </label>
-      </h5>
+    <div class="col-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h5>Bandeja de validación de proyectos de capacitación
+                    <label class="pull-right">
+                        User: <label class="text-success">{{ username }} {{ tipo_persona_desc }}</label>
+                    </label>
+                </h5>
+            </div>
+            <div class="panel-body">
+                <div class="tab-content table-responsive">
+                    <table class="table table-bordered table-hover table-striped table-responsive"
+                           id="lista-capacitacion-validar"
+                           style="width: 100%;">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>Facultad</th>
+                            <th>Nombre del proyecto</th>
+                            <th style="width:80px;">Fecha</th>
+                            <th>PDF</th>
+                            <th>Acta asistencia</th>
+                            <th>Observación</th>
+                            <th style="width:125px;">Estado</th>
+                            <th>Firmantes</th>
+                            <th>Certificados</th>
+                            <th>Envío Cert.</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="panel-body">
-      <div class="tab-content table-responsive">
-        <table class="table table-bordered table-hover table-striped table-responsive"
-               id="lista-capacitacion-validar"
-               style="width: 100%;">
-          <thead>
-          <tr>
-            <th></th>
-            <th>Facultad</th>
-            <th>Nombre del proyecto</th>
-            <th style="width:80px;">Fecha</th>
-            <th>PDF</th>
-            <th>Acta asistencia</th>
-            <th>Observación</th>
-            <th style="width:125px;">Estado</th>
-            <th>Firmantes</th>
-            <th>Certificados</th>
-            <th>Envío Cert.</th>
-          </tr>
-          </thead>
-        </table>
-      </div>
+    <div class="modal" tabindex="-1" id="modal-acta">
+        <div class="modal-dialog modal-xl2">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Acta de asistencia</h5>
+                    <button type="button" class="close" aria-label="Close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body responsive">
+                    <iframe style="width:100%;" height="400px" src="" id="iframe-acta" allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
-<div class="modal" tabindex="-1" id="modal-acta">
-  <div class="modal-dialog modal-xl2">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Acta de asistencia</h5>
-        <button type="button" class="close" aria-label="Close" data-dismiss="modal">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body responsive">
-        <iframe style="width:100%;" height="400px" src="" id="iframe-acta" allowfullscreen>
-        </iframe>
-      </div>
+    <div class="modal" tabindex="-1" id="modal-proyecto-pdf">
+        <div class="modal-dialog modal-xl2">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="close" aria-label="Close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <iframe style="width:100%;" height="800px" src="" id="iframe-proyecto-pdf" allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
-<div class="modal" tabindex="-1" id="modal-proyecto-pdf">
-  <div class="modal-dialog modal-xl2">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title"></h5>
-        <button type="button" class="close" aria-label="Close" data-dismiss="modal">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <iframe style="width:100%;" height="800px" src="" id="iframe-proyecto-pdf" allowfullscreen>
-        </iframe>
-      </div>
-    </div>
-  </div>
-</div>
 {% endblock %}
 {% block javascript %}
-  <script>
-    var csrf_token = "{{ csrf_token }}";
-    var buscarPersonaUrl = "{% url 'persona:buscar-persona' %}";
-    var urlListarCapacitacionValidar = "{% url 'capacitacion:listar_capacitacion_validar' %}";
-    var urlObservarCapacitacion = "{% url 'capacitacion:observar_capacitacion' %}";
-    var urlrevisarCapacitacion = "{% url 'capacitacion:revisar_capacitacion' %}";
-    datatablesES = "{% static 'vendor/datatables/language/spanish.json' %}";
-    var urlProyectoDescargaPdf = "{% url 'capacitacion:proyecto_descarga_pdf' 'archivo' %}";
-    var urlEnviaCertificadoCorreo = "{% url 'capacitacion:envio_cert_multi_correo' 999999999 %}";
-    var urlEnviaCertificadoCorreoMod = "{% url 'capacitacion:envio_cert_multi_correo_mod' 999999999 888888888 %}";
-    var eliminarCapacitacion = "{% url 'capacitacion:eliminar-capacitacion' 'id' %}";
-    var urlVerActa = "{% url 'capacitacion:ver_acta_asistencia_modal' 999999999  'capacitacion_id' %}";
-  </script>
-  <script src="{% static 'js/formset.js' %}"></script>
-  <script src="{% static 'js/capacitacion/bandeja-validacion.js' %}"></script>
+    <script>
+        var csrf_token = "{{ csrf_token }}";
+        var buscarPersonaUrl = "{% url 'persona:buscar-persona' %}";
+        var urlListarCapacitacionValidar = "{% url 'capacitacion:listar_capacitacion_validar' %}";
+        var urlObservarCapacitacion = "{% url 'capacitacion:observar_capacitacion' %}";
+        var urlrevisarCapacitacion = "{% url 'capacitacion:revisar_capacitacion' %}";
+        datatablesES = "{% static 'vendor/datatables/language/spanish.json' %}";
+        var urlProyectoDescargaPdf = "{% url 'capacitacion:proyecto_descarga_pdf' 'archivo' %}";
+        var urlEnviaCertificadoCorreo = "{% url 'capacitacion:envio_cert_multi_correo' 999999999 %}";
+        var urlEnviaCertificadoCorreoMod = "{% url 'capacitacion:envio_cert_multi_correo_mod' 999999999 888888888 %}";
+        var eliminarCapacitacion = "{% url 'capacitacion:eliminar-capacitacion' 'id' %}";
+        var urlVerActa = "{% url 'capacitacion:ver_acta_asistencia_modal' 999999999  'capacitacion_id' %}";
+    </script>
+    <script src="{% static 'js/formset.js' %}"></script>
+    <script src="{% static 'js/capacitacion/bandeja-validacion.js' %}"></script>
 {% endblock %}

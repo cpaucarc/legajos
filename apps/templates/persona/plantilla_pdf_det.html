@@ -1,89 +1,93 @@
 {% load static %}
 
 <html>
-    <header>
+<header>
     <meta charset="utf-8">
     <!-- Custom CSS -->
     <style>
         @page {
             size: a4;
             @frame footer_frame {
-                -pdf-frame-content: footer_content;
-                left: 50pt; width: 512pt; top: 800pt; height: 40pt;
-                border: 0pt solid white;
-            }
-            @frame content_frame {
-            left: 50pt; width: 512pt; top: 40pt; height: 740pt;
+            -pdf-frame-content: footer_content;
+            left: 50pt;
+            width: 512pt;
+            top: 800pt;
+            height: 40pt;
             border: 0pt solid white;
-            }
+        }
+        @frame content_frame {
+        left: 50pt; width: 512pt; top: 40pt; height: 740pt;
+        border: 0pt solid white;
+        }
         }
 
-        .foto-persona{
+        .foto-persona {
             height: 160px;
             width: 130px;
         }
 
-        .subtitulo{
-            color:#51AEF8;
-            font-size:14px;
+        .subtitulo {
+            color: #51AEF8;
+            font-size: 14px;
         }
 
-        .linea-subtitulo{
-            color:blue;
-            margin-top:-1px;
+        .linea-subtitulo {
+            color: blue;
+            margin-top: -1px;
         }
 
         .table th {
-            vertical-align:middle;
-            text-align:center;
+            vertical-align: middle;
+            text-align: center;
             border: 1pt solid black;
             height: 60pt;
             padding-top: 2px;
         }
 
         .table td {
-        vertical-align:middle;
-        text-align:left;
-        border: 1pt solid #CCCCCC;
-        padding-top: 2px;
-        padding-left: 3px;
+            vertical-align: middle;
+            text-align: left;
+            border: 1pt solid #CCCCCC;
+            padding-top: 2px;
+            padding-left: 3px;
         }
 
         .td_25 {
-            width:25%;
-            vertical-align:middle;
-            padding-right:10px;
-            font-size:13px;
-            color:#51AEF8;
+            width: 25%;
+            vertical-align: middle;
+            padding-right: 10px;
+            font-size: 13px;
+            color: #51AEF8;
         }
 
         .t_foto {
-            width:20%;
-            vertical-align:middle;
-            padding-right:10px;
-            font-size:12px;
-            color:#51AEF8;
+            width: 20%;
+            vertical-align: middle;
+            padding-right: 10px;
+            font-size: 12px;
+            color: #51AEF8;
         }
 
         .t_texto_head {
-            width:70%;
-            vertical-align:top;
-            padding-right:10px;
-            font-size:18px;
+            width: 70%;
+            vertical-align: top;
+            padding-right: 10px;
+            font-size: 18px;
         }
+
         .t_texto_resumen {
-            font-size:12px;
+            font-size: 12px;
             text-align: justify;
         }
 
         .td_70 {
-            width:70%;
-            vertical-align:middle;
-            padding-right:10px;
-            font-size:13px;
+            width: 70%;
+            vertical-align: middle;
+            padding-right: 10px;
+            font-size: 13px;
         }
 
-        .imagen-adjunto{
+        .imagen-adjunto {
             width: 95%;
             height: auto;
             margin: 0 auto;
@@ -92,227 +96,244 @@
 </header>
 
 <body>
-    <table style="padding-bottom:5px;">
-        <tbody>
-            <tr>
-                <td class="t_foto" style="text-align:left;">
-                    <img src="{{foto_path}}" class="foto-persona">
-                </td>
-                <td class="t_texto_head">
-                    {{p.apellido_paterno}} {{p.apellido_materno}} {{p.nombres}}
-                    <p class="t_texto_resumen">{{p.resumen|default_if_none:"" }}</p>
-                </td >
-            </tr>
-        </tbody>
-    </table>
+<table style="padding-bottom:5px;">
+    <tbody>
+    <tr>
+        <td class="t_foto" style="text-align:left;">
+            <img src="{{ foto_path }}" class="foto-persona">
+        </td>
+        <td class="t_texto_head">
+            {{ p.apellido_paterno }} {{ p.apellido_materno }} {{ p.nombres }}
+            <p class="t_texto_resumen">{{ p.resumen|default_if_none:"" }}</p>
+        </td>
+    </tr>
+    </tbody>
+</table>
 
+<br>
+
+<div class="subtitulo">DATOS PERSONALES</div>
+<hr color="#51AEF8" class="linea-subtitulo">
+<br>
+<table style="padding-bottom:5px;">
+    <tbody>
+    <tr>
+        <td class="td_25" style="text-align:right;">Número de documento :</td>
+        <td class="td_70">{{ p.numero_documento }}</td>
+    </tr>
+    <tr>
+        <td class="td_25" style="text-align:right;">Fecha de Nacimiento :</td>
+        <td class="td_70">{{ p.datosgenerales.fecha_nacimiento }}</td>
+    </tr>
+    <tr>
+        <td class="td_25" style="text-align:right;">Correo personal :</td>
+        <td class="td_70">{{ p.correo_personal }}</td>
+    </tr>
+    <tr>
+        <td class="td_25" style="text-align:right;">Celular :</td>
+        <td class="td_70">{{ p.celular }}</td>
+    </tr>
+    <tr>
+        <td class="td_25" style="text-align:right;">Facultad :</td>
+        <td class="td_70">{{ p.departamento.facultad.nombre|upper }}</td>
+    </tr>
+    <tr>
+        <td class="td_25" style="text-align:right;">Departamento :</td>
+        <td class="td_70">{{ p.departamento.nombre|upper }}</td>
+    </tr>
+    <tr>
+        <td class="td_25" style="text-align:right;">Dep.:</td>
+        <td class="td_70">
+            {{ dep }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label style="color:#51AEF8;">Prov. :</label>
+            &nbsp;&nbsp;&nbsp;{{ prov }}
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label style="color:#51AEF8;">Dist.:</label> &nbsp;&nbsp;&nbsp;{{ dist }}
+        </td>
+    </tr>
+    <tr>
+        <td class="td_25" style="text-align:right;">Colegiado en :</td>
+        <td class="td_70">{{ colegio }}</td>
+    </tr>
+    <tr>
+        <td class="td_25" style="text-align:right;">Sede :</td>
+        <td class="td_70">{{ sede }}</td>
+    </tr>
+    <tr>
+        <td class="td_25" style="text-align:right;">Código.:</td>
+        <td class="td_70">{{ codigo }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label style="color:#51AEF8;">Estado :</label>
+            &nbsp;&nbsp;&nbsp;
+            {% if estado %}Habilitado{% else %}Inhabilitado{% endif %}
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+{% if universitaria or tecnico or complementaria %}
     <br>
 
-    <div class="subtitulo">DATOS PERSONALES</div>
+    <div class="subtitulo">FORMACIÓN ACADÉMICA (UNIVERSITARIA)</div>
     <hr color="#51AEF8" class="linea-subtitulo">
     <br>
-    <table style="padding-bottom:5px;">
-        <tbody>
-            <tr>
-                <td class="td_25" style="text-align:right;">Número de documento :</td>
-                <td class="td_70">{{p.numero_documento}}</td>
-            </tr>
-            <tr>
-                <td class="td_25" style="text-align:right;">Fecha de Nacimiento :</td>
-                <td class="td_70">{{p.datosgenerales.fecha_nacimiento}}</td>
-            </tr>
-            <tr>
-                <td class="td_25" style="text-align:right;">Correo personal :</td>
-                <td class="td_70">{{p.correo_personal}}</td>
-            </tr>
-            <tr>
-                <td class="td_25" style="text-align:right;">Celular :</td>
-                <td class="td_70">{{p.celular}}</td>
-            </tr>
-            <tr>
-                <td class="td_25" style="text-align:right;">Facultad :</td>
-                <td class="td_70">{{p.departamento.facultad.nombre|upper}}</td>
-            </tr>
-            <tr>
-                <td class="td_25" style="text-align:right;">Departamento :</td>
-                <td class="td_70">{{p.departamento.nombre|upper}}</td>
-            </tr>
-            <tr>
-                <td class="td_25" style="text-align:right;">Dep.:</td>
-                <td class="td_70">
-                    {{dep}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label style="color:#51AEF8;">Prov. :</label> &nbsp;&nbsp;&nbsp;{{prov}}
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label style="color:#51AEF8;">Dist.:</label> &nbsp;&nbsp;&nbsp;{{dist}}
-                </td>
-            </tr>
-            <tr>
-                  <td class="td_25" style="text-align:right;">Colegiado en :</td>
-                  <td class="td_70">{{colegio}}</td>
-            </tr>
-            <tr>
-                  <td class="td_25" style="text-align:right;">Sede :</td>
-                  <td class="td_70">{{sede}}</td>
-            </tr>
-            <tr>
-                  <td class="td_25" style="text-align:right;">Código.:</td>
-                  <td class="td_70">{{codigo}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label style="color:#51AEF8;">Estado :</label> &nbsp;&nbsp;&nbsp;
-                      {% if estado %}Habilitado{% else %}Inhabilitado{% endif %}
-                  </td>
-            </tr>
-        </tbody>
-    </table>
-
-    {% if universitaria or tecnico or complementaria %}
-        <br>
-
-        <div class="subtitulo">FORMACIÓN ACADÉMICA (UNIVERSITARIA)</div>
-        <hr color="#51AEF8" class="linea-subtitulo">
-        <br>
-        <div style="margin-left:20px;font-size:12px;">
-            {% for u in universitaria %}
-                <div><b>{{ u.get_grado_obtenido_display }}</b></div>
-                <div><b>Título:</b> {{ u.nombre_grado|upper }}</div>
-                <div>{{ u.centro_estudios.name|upper }}</div>
-                <div><b>País:</b> {{ u.pais_estudios.ubigeo_pais|upper }}</div>
-                <br>
-            {% endfor %}
-        </div>
-
-        <div class="subtitulo">FORMACIÓN ACADÉMICA (TÉCNICA)</div>
-        <hr color="#51AEF8" class="linea-subtitulo">
-        <br>
-        <div style="margin-left:20px;font-size:12px;">
-            {% for t in tecnico %}
-                <div>{{ t.centro_estudios.name|upper }}</div>
-                <div><b>Carrera:</b> {{ t.nombre_carrera|upper }}</div>
-                <div><b>Fecha:</b> {{t.fecha_inicio|date:"d/m/Y"}}  al {{t.fecha_fin|date:"d/m/Y"}}</div>
-                <br>
-            {% endfor %}
-        </div>
-
-        <div class="subtitulo">FORMACIÓN COMPLEMENTARIA</div>
-        <hr color="#51AEF8" class="linea-subtitulo">
-        <br>
-        <div style="margin-left:20px;font-size:12px;">
-            {% for c in complementaria %}
-                <div><label style="color:#51AEF8">{{c.fecha_fin|date:"d/m/Y" }} </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>{{ c.capacitacion_complementaria|upper }}</b></div>
-                <div style="margin-left:84px;">{{ c.centro_estudios.name|upper }}</div>
-                <div style="margin-left:84px;">{{ c.pais_estudios.ubigeo_pais|upper }}, Carga horaria: {{c.cantidad}} {{c.get_frecuencia_display}}</div>
-                <br>
-            {% endfor %}
-        </div>
-    {% endif %}
-
-    {% if laboral or docente or asesor_tesis or evaluador_proyecto %}
-        <div class="subtitulo">EXPERIENCIA LABORAL</div>
-        <hr color="#51AEF8" class="linea-subtitulo">
-        <br>
-        <div style="margin-left:20px;font-size:12px;">
-            {% for l in laboral %}
-                <div>{{l.institucion.name|upper}}</div>
-                <div><label style="color:#51AEF8">{{l.fecha_inicio|date:"d/m/Y"}}  al {{l.fecha_fin|date:"d/m/Y"}}</label> &nbsp;&nbsp;&nbsp;&nbsp;<b>Cargo:</b> {{l.cargo|upper}}</div>
-                <div style="margin-left:153px;font-size:12px;text-align:justify;">{{l.descripcion_cargo}}</div>
-                <br>
-            {% endfor%}
-        </div>
-
-        <div class="subtitulo">EXPERIENCIA DOCENTE</div>
-        <hr color="#51AEF8" class="linea-subtitulo">
-        <br>
-        <div style="margin-left:20px;font-size:12px;">
-            {% for d in docente %}
-                <div>{{d.institucion.name|upper}}</div>
-                <div><label style="color:#51AEF8">{{d.fecha_inicio|date:"d/m/Y"}}  {% if d.fecha_fin %} al {{d.fecha_fin|date:"d/m/Y"}} {% endif %}</label> &nbsp;&nbsp;&nbsp;&nbsp;<b>Cargo:</b> DOCENTE {{d.get_tipo_docente_display|upper}}</div>
-                <div style="margin-left:153px;font-size:12px;text-align:justify;">{{d.descripcion_cargo}}</div>
-                <br>
-            {% endfor%}
-        </div>
-
-        <div class="subtitulo">EXPERIENCIA COMO ASESOR DE TESIS</div>
-        <hr color="#51AEF8" class="linea-subtitulo">
-        <br>
-        <div style="margin-left:20px;font-size:12px;">
-            {% for a in asesor_tesis %}
-                <div>{{a.universidad.name|upper}}</div>
-                <div><label style="color:#51AEF8">{{a.fecha_aceptacion_tesis|date:"d/m/Y"}}</label> &nbsp;&nbsp;&nbsp;&nbsp;<b>Tipo de tesis:</b> {{a.get_tesis_display|upper}}</div>
-                <br>
-            {% endfor%}
-        </div>
-
-        <div class="subtitulo">EXPERIENCIA COMO EVALUADOR/FORMULADOR DE PROYECTO</div>
-        <hr color="#51AEF8" class="linea-subtitulo">
-        <br>
-        <div style="margin-left:20px;font-size:12px;">
-            {% for e in evaluador_proyecto %}
-                <div><label style="color:#51AEF8">{{e.get_experiencia_display|upper}}</label> &nbsp;&nbsp; - &nbsp;&nbsp;<b>Año:</b> {{e.anio}}, <b>País: </b>{{e.pais}}</div>
-                <div><b>Tipo de proyecto formulado:</b> {{e.get_tipo_proyecto_formulado_display|upper}}</div>
-                <div><b>Entidad financiadora:</b> {{e.entidad_financiadora.name|upper}}</div>
-                <div><b>Nombre del concurso:</b> {{e.nombre_concurso|upper}}</div>
-                <br>
-            {% endfor%}
-        </div>
-    {% endif %}
-
-    {% if idiomas %}
-        <div class="subtitulo">IDIOMAS</div>
-        <hr color="#51AEF8" class="linea-subtitulo">
-        <br>
-        <div style="margin-left:20px;font-size:12px;">
-            {% for i in idiomas %}
-                <div style="color:#51AEF8">{{i.idioma.descripcion|upper}}</div>
-                <div><b>Lectura:</b>  {{ i.get_lectura_display }} &nbsp;&nbsp;&nbsp;&nbsp;<b>Escritura:</b> {{ i.get_escritura_display }}&nbsp;&nbsp;&nbsp;&nbsp;<b>Conversación:</b> {{ i.get_conversacion_display }}</div>
-                <br>
-            {% endfor%}
-        </div>
-    {% endif %}
-
-    {% if produccion_cientifica %}
-        <div class="subtitulo">PRODUCCIÓN CIENTÍFICA</div>
-        <hr color="#51AEF8" class="linea-subtitulo">
-        <br>
-        <div style="margin-left:20px;font-size:12px;">
-            {% for p in produccion_cientifica %}
-                <div><b>Categoria:</b> {{ p.get_categoria_trabajo_display|upper }} &nbsp;&nbsp; - &nbsp;&nbsp;<b>Tipo de obra:</b> {{ p.get_tipo_obra_display|upper }} &nbsp;&nbsp; - &nbsp;&nbsp;<b>Fecha:</b> {{ p.fecha_publicacion|date:"d/m/Y" }}</div>
-                <div style="font-size:12px;text-align:justify;">{{p.titulo}}</div>
-                <div style="font-size:11px;text-align:justify;">{{p.revista}} {{p.fecha_publicacion|date:"Y"}};{{p.volumen}}({{p.fasciculo}})</div>
-                <br>
-            {% endfor%}
-        </div>
-    {% endif %}
-
-    {% if premios %}
-        <div class="subtitulo">DISTINCIONES Y PREMIOS</div>
-        <hr color="#51AEF8" class="linea-subtitulo">
-        <br>
-        <div style="margin-left:20px;font-size:12px;">
-            {% for pm in premios %}
-                <div>{{pm.institucion.name|upper}} - {{pm.fecha}}</div>
-                <div><b>Distinción:</b> {{ pm.distincion|upper }}</div>
-                <div><b>Descripción:</b> {{ pm.descripcion|upper }}</div>
-                <div><b>País:</b> {{ pm.pais.ubigeo_pais|upper }}</div>
-                <br>
-            {% endfor%}
-        </div>
-    {% endif %}
-
-    <br><br>
-    {{ documentos }}
-    <br><br>
-
-    {% for doc in documentos %}
-        <img src="{{doc}}" alt="{{doc}}" class="imagen-adjunto"/>
-        <br>
-        {{doc}}
-        <br>
-        <object width="100%" height="500" type="application/pdf" data="{{doc}}">
-        </object>
-        <br>
-    {% endfor %}
-    <br><br>
-
-    <div id="footer_content">
-        <hr/>
-        Página <pdf:pagenumber/> - <pdf:pagecount/>
+    <div style="margin-left:20px;font-size:12px;">
+        {% for u in universitaria %}
+            <div><b>{{ u.get_grado_obtenido_display }}</b></div>
+            <div><b>Título:</b> {{ u.nombre_grado|upper }}</div>
+            <div>{{ u.centro_estudios.name|upper }}</div>
+            <div><b>País:</b> {{ u.pais_estudios.ubigeo_pais|upper }}</div>
+            <br>
+        {% endfor %}
     </div>
+
+    <div class="subtitulo">FORMACIÓN ACADÉMICA (TÉCNICA)</div>
+    <hr color="#51AEF8" class="linea-subtitulo">
+    <br>
+    <div style="margin-left:20px;font-size:12px;">
+        {% for t in tecnico %}
+            <div>{{ t.centro_estudios.name|upper }}</div>
+            <div><b>Carrera:</b> {{ t.nombre_carrera|upper }}</div>
+            <div><b>Fecha:</b> {{ t.fecha_inicio|date:"d/m/Y" }} al {{ t.fecha_fin|date:"d/m/Y" }}</div>
+            <br>
+        {% endfor %}
+    </div>
+
+    <div class="subtitulo">FORMACIÓN COMPLEMENTARIA</div>
+    <hr color="#51AEF8" class="linea-subtitulo">
+    <br>
+    <div style="margin-left:20px;font-size:12px;">
+        {% for c in complementaria %}
+            <div><label style="color:#51AEF8">{{ c.fecha_fin|date:"d/m/Y" }} </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <b>{{ c.capacitacion_complementaria|upper }}</b></div>
+            <div style="margin-left:84px;">{{ c.centro_estudios.name|upper }}</div>
+            <div style="margin-left:84px;">{{ c.pais_estudios.ubigeo_pais|upper }}, Carga
+                horaria: {{ c.cantidad }} {{ c.get_frecuencia_display }}</div>
+            <br>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if laboral or docente or asesor_tesis or evaluador_proyecto %}
+    <div class="subtitulo">EXPERIENCIA LABORAL</div>
+    <hr color="#51AEF8" class="linea-subtitulo">
+    <br>
+    <div style="margin-left:20px;font-size:12px;">
+        {% for l in laboral %}
+            <div>{{ l.institucion.name|upper }}</div>
+            <div><label style="color:#51AEF8">{{ l.fecha_inicio|date:"d/m/Y" }}
+                al {{ l.fecha_fin|date:"d/m/Y" }}</label> &nbsp;&nbsp;&nbsp;&nbsp;<b>Cargo:</b> {{ l.cargo|upper }}
+            </div>
+            <div style="margin-left:153px;font-size:12px;text-align:justify;">{{ l.descripcion_cargo }}</div>
+            <br>
+        {% endfor %}
+    </div>
+
+    <div class="subtitulo">EXPERIENCIA DOCENTE</div>
+    <hr color="#51AEF8" class="linea-subtitulo">
+    <br>
+    <div style="margin-left:20px;font-size:12px;">
+        {% for d in docente %}
+            <div>{{ d.institucion.name|upper }}</div>
+            <div><label style="color:#51AEF8">{{ d.fecha_inicio|date:"d/m/Y" }}  {% if d.fecha_fin %} al
+                {{ d.fecha_fin|date:"d/m/Y" }} {% endif %}</label> &nbsp;&nbsp;&nbsp;&nbsp;<b>Cargo:</b>
+                DOCENTE {{ d.get_tipo_docente_display|upper }}</div>
+            <div style="margin-left:153px;font-size:12px;text-align:justify;">{{ d.descripcion_cargo }}</div>
+            <br>
+        {% endfor %}
+    </div>
+
+    <div class="subtitulo">EXPERIENCIA COMO ASESOR DE TESIS</div>
+    <hr color="#51AEF8" class="linea-subtitulo">
+    <br>
+    <div style="margin-left:20px;font-size:12px;">
+        {% for a in asesor_tesis %}
+            <div>{{ a.universidad.name|upper }}</div>
+            <div><label style="color:#51AEF8">{{ a.fecha_aceptacion_tesis|date:"d/m/Y" }}</label> &nbsp;&nbsp;&nbsp;&nbsp;<b>Tipo
+                de tesis:</b> {{ a.get_tesis_display|upper }}</div>
+            <br>
+        {% endfor %}
+    </div>
+
+    <div class="subtitulo">EXPERIENCIA COMO EVALUADOR/FORMULADOR DE PROYECTO</div>
+    <hr color="#51AEF8" class="linea-subtitulo">
+    <br>
+    <div style="margin-left:20px;font-size:12px;">
+        {% for e in evaluador_proyecto %}
+            <div><label style="color:#51AEF8">{{ e.get_experiencia_display|upper }}</label> &nbsp;&nbsp; -
+                &nbsp;&nbsp;<b>Año:</b> {{ e.anio }}, <b>País: </b>{{ e.pais }}</div>
+            <div><b>Tipo de proyecto formulado:</b> {{ e.get_tipo_proyecto_formulado_display|upper }}</div>
+            <div><b>Entidad financiadora:</b> {{ e.entidad_financiadora.name|upper }}</div>
+            <div><b>Nombre del concurso:</b> {{ e.nombre_concurso|upper }}</div>
+            <br>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if idiomas %}
+    <div class="subtitulo">IDIOMAS</div>
+    <hr color="#51AEF8" class="linea-subtitulo">
+    <br>
+    <div style="margin-left:20px;font-size:12px;">
+        {% for i in idiomas %}
+            <div style="color:#51AEF8">{{ i.idioma.descripcion|upper }}</div>
+            <div><b>Lectura:</b> {{ i.get_lectura_display }}
+                &nbsp;&nbsp;&nbsp;&nbsp;<b>Escritura:</b> {{ i.get_escritura_display }}&nbsp;&nbsp;&nbsp;&nbsp;<b>Conversación:</b> {{ i.get_conversacion_display }}
+            </div>
+            <br>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if produccion_cientifica %}
+    <div class="subtitulo">PRODUCCIÓN CIENTÍFICA</div>
+    <hr color="#51AEF8" class="linea-subtitulo">
+    <br>
+    <div style="margin-left:20px;font-size:12px;">
+        {% for p in produccion_cientifica %}
+            <div><b>Categoria:</b> {{ p.get_categoria_trabajo_display|upper }} &nbsp;&nbsp; - &nbsp;&nbsp;<b>Tipo de
+                obra:</b> {{ p.get_tipo_obra_display|upper }} &nbsp;&nbsp; -
+                &nbsp;&nbsp;<b>Fecha:</b> {{ p.fecha_publicacion|date:"d/m/Y" }}</div>
+            <div style="font-size:12px;text-align:justify;">{{ p.titulo }}</div>
+            <div style="font-size:11px;text-align:justify;">{{ p.revista }} {{ p.fecha_publicacion|date:"Y" }};{{ p.volumen }}({{ p.fasciculo }})</div>
+            <br>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if premios %}
+    <div class="subtitulo">DISTINCIONES Y PREMIOS</div>
+    <hr color="#51AEF8" class="linea-subtitulo">
+    <br>
+    <div style="margin-left:20px;font-size:12px;">
+        {% for pm in premios %}
+            <div>{{ pm.institucion.name|upper }} - {{ pm.fecha }}</div>
+            <div><b>Distinción:</b> {{ pm.distincion|upper }}</div>
+            <div><b>Descripción:</b> {{ pm.descripcion|upper }}</div>
+            <div><b>País:</b> {{ pm.pais.ubigeo_pais|upper }}</div>
+            <br>
+        {% endfor %}
+    </div>
+{% endif %}
+
+<br><br>
+{{ documentos }}
+<br><br>
+
+{% for doc in documentos %}
+    <img src="{{ doc }}" alt="{{ doc }}" class="imagen-adjunto"/>
+    <br>
+    {{ doc }}
+    <br>
+    <object width="100%" height="500" type="application/pdf" data="{{ doc }}">
+    </object>
+    <br>
+{% endfor %}
+<br><br>
+
+<div id="footer_content">
+    <hr/>
+    Página
+    <pdf:pagenumber/>
+    -
+    <pdf:pagecount/>
+</div>
 
 </body>
 </html>

@@ -1,115 +1,118 @@
 {% extends 'base.html' %} {% load static %} {% load form_tags %} {% block css %}
-<link
-  rel="stylesheet"
-  href="{% static 'vendor/jquery/css/jquery-ui.min.css' %}"
-/>
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="{% static 'vendor/dropzone/dropzone.min.css' %}"
-/>
+    <link
+            rel="stylesheet"
+            href="{% static 'vendor/jquery/css/jquery-ui.min.css' %}"
+    />
+    <link
+            rel="stylesheet"
+            type="text/css"
+            href="{% static 'vendor/dropzone/dropzone.min.css' %}"
+    />
 {% endblock %} {% block container %}
 
-<div class="col-12">
-  {% if mensaje is not None %}
-    <div class="alert alert-success" role="alert">
-      {{ mensaje }}
-    </div>
-  {% endif %}
-
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      <h5>Cursos Dictados</h5>
-    </div>
-    <div class="panel-body">
-      <div class="card">
-        <div class="card-body">
-          <div class="tab-content" id="myTabContent">
-            <div align="right">
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                <i class="fa fa-plus"></i> Registrar Cursos
-              </button>
+    <div class="col-12">
+        {% if mensaje is not None %}
+            <div class="alert alert-success" role="alert">
+                {{ mensaje }}
             </div>
-            <br/>
-            <div class="table-responsive">
-              <table id="tabla-distincion" class="table table-striped table-bordered display nowrap w-100" >
-                <thead>
-                  <tr>
-                    <th>Universidad</th>
-                    <th>Escuela Profesional</th>
-                    <th>Cursos</th>
-                    <th>Semestre</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for curso in cursos_registrados %}
-                    <tr>
-                      <td>{{ curso.institucion }}</td>
-                      <td>{{ curso.escuela }}</td>
-                      <td>{{ curso.curso }}</td>
-                      <td>{{ curso.semestre }}</td>
-                    </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
+        {% endif %}
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h5>Cursos Dictados</h5>
             </div>
-          </div>
+            <div class="panel-body">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="tab-content" id="myTabContent">
+                            <div align="right">
+                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#exampleModal">
+                                    <i class="fa fa-plus"></i> Registrar Cursos
+                                </button>
+                            </div>
+                            <br/>
+                            <div class="table-responsive">
+                                <table id="tabla-distincion"
+                                       class="table table-striped table-bordered display nowrap w-100">
+                                    <thead>
+                                    <tr>
+                                        <th>Universidad</th>
+                                        <th>Escuela Profesional</th>
+                                        <th>Cursos</th>
+                                        <th>Semestre</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for curso in cursos_registrados %}
+                                        <tr>
+                                            <td>{{ curso.institucion }}</td>
+                                            <td>{{ curso.escuela }}</td>
+                                            <td>{{ curso.curso }}</td>
+                                            <td>{{ curso.semestre }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-</div>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Registro de cursos dictados</h5>
-      </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Registro de cursos dictados</h5>
+                </div>
 
-    <form method="POST" action="{% url 'cursos:agregar-cursos' pk %}" id="cursos-form">
-      {% csrf_token %}
-      <div class="modal-body">
-        {% field form.institucion %}
-        {% field form.escuela %}
-        {% field form.semestre %}
-        <br/>
-        <div class="d-flex flex-row justify-content-between align-items-center">
-          <label for="input-curso">Nombre del Curso</label>
-          <input type="text" id="input-curso" class="form-control form-control-sm" />
-          <p class="text-danger py-1" id="error-message"></p>
-          <button type="button" class="pull-right btn btn-primary btn-sm my-1" id="btn-agregar-curso">
-            <i class="fa fa-plus"></i> Agregar curso
-          </button>
+                <form method="POST" action="{% url 'cursos:agregar-cursos' pk %}" id="cursos-form">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        {% field form.institucion %}
+                        {% field form.escuela %}
+                        {% field form.semestre %}
+                        <br/>
+                        <div class="d-flex flex-row justify-content-between align-items-center">
+                            <label for="input-curso">Nombre del Curso</label>
+                            <input type="text" id="input-curso" class="form-control form-control-sm"/>
+                            <p class="text-danger py-1" id="error-message"></p>
+                            <button type="button" class="pull-right btn btn-primary btn-sm my-1" id="btn-agregar-curso">
+                                <i class="fa fa-plus"></i> Agregar curso
+                            </button>
+                        </div>
+                        <br/>
+                        <input type="hidden" name="cantidad" id="input-cantidad"/>
+                        <div id="cursos-inputs">
+                        </div>
+                        <br/>
+                        <table class="table table-sm table-striped table-bordered mt-2">
+                            <tbody id="cursos-agregados">
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type=submit id="btn-guardar-cursos" class="btn btn-primary">
+                            Guardar información
+                        </button>
+                        <button type="button" data-dismiss="modal" class="btn btn-danger">
+                            Cancelar
+                        </button>
+                    </div>
+                </form
+            </div>
         </div>
-        <br/>
-        <input type="hidden" name="cantidad" id="input-cantidad"/>
-        <div id="cursos-inputs">
-        </div>
-        <br/>
-        <table class="table table-sm table-striped table-bordered mt-2">
-          <tbody id="cursos-agregados">
-          </tbody>
-        </table>
-
-      </div>
-
-      <div class="modal-footer">
-        <button type=submit id="btn-guardar-cursos" class="btn btn-primary">
-          Guardar información
-        </button>
-        <button type="button" data-dismiss="modal" class="btn btn-danger">
-          Cancelar
-        </button>
-      </div>
-    </form
     </div>
-  </div>
-</div>
 
 {% endblock %}
 
 {% block javascript %}
-<script src="{% static 'js/cursos/cursos.js' %}"></script>
+    <script src="{% static 'js/cursos/cursos.js' %}"></script>
 {% endblock %}

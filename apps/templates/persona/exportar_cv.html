@@ -2,91 +2,94 @@
 {% load static %}
 {% load form_tags %}
 {% block css %}
-<link rel="stylesheet" href="{% static 'vendor/jquery/css/jquery-ui.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/jquery/css/jquery-ui.min.css' %}">
 {% endblock %}
 {% block container %}
-<div class="col-12">
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      <h5>EXPORTACIÓN DE CV
-        <label class="pull-right">
-          User: <label class="text-success">{{username}} {{tipo_persona_desc}}</label>
-        </label>
-      </h5>
-      <h5>{{persona.get_tipo_persona_display}}: <label class="text-success">{{persona.nombre_completo}}</label></h5>
-    </div>
-    <div class="panel-body">
-      <div class="row">
-        <div class="col-lg-12">
-          {% if form_exportar.errors %}
-          {% for error in form_exportar.non_field_errors %}
-          <div class="alert alert-danger">
-            <strong>{{ error|escape }}</strong>
-          </div>
-          {% endfor %}
-          {% endif %}
+    <div class="col-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h5>EXPORTACIÓN DE CV
+                    <label class="pull-right">
+                        User: <label class="text-success">{{ username }} {{ tipo_persona_desc }}</label>
+                    </label>
+                </h5>
+                <h5>{{ persona.get_tipo_persona_display }}: <label
+                        class="text-success">{{ persona.nombre_completo }}</label></h5>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        {% if form_exportar.errors %}
+                            {% for error in form_exportar.non_field_errors %}
+                                <div class="alert alert-danger">
+                                    <strong>{{ error|escape }}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <fieldset class="border p-2">
+                        <legend class="scheduler-border" style="width: 200px!important; font-size:14px;"> Seleccione los
+                            datos a
+                            exportar
+                        </legend>
+                        <div class="col-lg-2">
+                            {% field form_exportar.datos_personales cols=False label=True %}
+                        </div>
+                        <div class="col-lg-2">
+                            {% field form_exportar.experiencia_laboral cols=False label=True %}
+                        </div>
+                        <div class="col-lg-2">
+                            {% field form_exportar.formacion_academica cols=False label=True %}
+                        </div>
+                        <div class="col-lg-2">
+                            {% field form_exportar.idiomas cols=False label=True %}
+                        </div>
+                        <div class="col-lg-2">
+                            {% field form_exportar.produccion_cientifica cols=False label=True %}
+                        </div>
+                        <div class="col-lg-2">
+                            {% field form_exportar.premios cols=False label=True %}
+                        </div>
+                        <div class="col-lg-12" align="">
+                            <button type="button" class="btn btn-primary btn-sm" id="btn-descarga-cv"
+                                    data-id="{{ persona.id }}">
+                                <i class="fa fa-download"></i>
+                                &nbsp;DESCARGAR CV SIMPLE
+                            </button>
+                            <span>&nbsp;&nbsp;&nbsp;</span>
+                            <button type="button" class="btn btn-success btn-sm" id="btn-descarga-cv-det"
+                                    data-id="{{ persona.id }}">
+                                <i class="fa fa-download"></i>
+                                &nbsp;DESCARGAR CV DETALLADO
+                            </button>
+                            <br><br>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
         </div>
-      </div>
-      <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <fieldset class="border p-2">
-          <legend class="scheduler-border" style="width: 200px!important; font-size:14px;"> Seleccione los datos a
-            exportar
-          </legend>
-          <div class="col-lg-2">
-            {% field form_exportar.datos_personales cols=False label=True %}
-          </div>
-          <div class="col-lg-2">
-            {% field form_exportar.experiencia_laboral cols=False label=True %}
-          </div>
-          <div class="col-lg-2">
-            {% field form_exportar.formacion_academica cols=False label=True %}
-          </div>
-          <div class="col-lg-2">
-            {% field form_exportar.idiomas cols=False label=True %}
-          </div>
-          <div class="col-lg-2">
-            {% field form_exportar.produccion_cientifica cols=False label=True %}
-          </div>
-          <div class="col-lg-2">
-            {% field form_exportar.premios cols=False label=True %}
-          </div>
-          <div class="col-lg-12" align="">
-            <button type="button" class="btn btn-primary btn-sm" id="btn-descarga-cv" data-id="{{persona.id}}">
-              <i class="fa fa-download"></i>
-              &nbsp;DESCARGAR CV SIMPLE
-            </button>
-            <span>&nbsp;&nbsp;&nbsp;</span>
-            <button type="button" class="btn btn-success btn-sm" id="btn-descarga-cv-det" data-id="{{persona.id}}">
-              <i class="fa fa-download"></i>
-              &nbsp;DESCARGAR CV DETALLADO
-            </button>
-            <br><br>
-          </div>
-        </fieldset>
-      </form>
     </div>
-  </div>
-</div>
 
 {% endblock %}
 {% block javascript %}
-<script>
-    var id_persona = "{{persona.id}}";
-    var buscarPersonaUrl = "{% url 'persona:buscar-persona' %}";
-    var urlListarPersona= "{% url 'persona:listar_persona' %}";
-    datatablesES = "{% static 'vendor/datatables/language/spanish.json' %}";
-    var urlProyectoDescargaPdf = "";
-    var eliminarPersona = "{% url 'persona:eliminar_persona' 'id' %}";
-    var tipPersona = "{{tip_persona}}";
-    var urlDepartamento = "{% url 'persona:consulta_departamento' %}";
-    var urls_ubigeo = {
-      "provincias"   : "{% url 'persona:provincias' %}",
-      "distritos"    : "{% url 'persona:distritos' %}",
-    };
+    <script>
+        var id_persona = "{{persona.id}}";
+        var buscarPersonaUrl = "{% url 'persona:buscar-persona' %}";
+        var urlListarPersona = "{% url 'persona:listar_persona' %}";
+        datatablesES = "{% static 'vendor/datatables/language/spanish.json' %}";
+        var urlProyectoDescargaPdf = "";
+        var eliminarPersona = "{% url 'persona:eliminar_persona' 'id' %}";
+        var tipPersona = "{{tip_persona}}";
+        var urlDepartamento = "{% url 'persona:consulta_departamento' %}";
+        var urls_ubigeo = {
+            "provincias": "{% url 'persona:provincias' %}",
+            "distritos": "{% url 'persona:distritos' %}",
+        };
 
 
-
-</script>
-<script src="{% static 'js/persona/exportar-cv.js' %}"></script>
+    </script>
+    <script src="{% static 'js/persona/exportar-cv.js' %}"></script>
 {% endblock %}

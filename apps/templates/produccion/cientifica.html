@@ -2,82 +2,82 @@
 {% load static %}
 {% load form_tags %}
 {% block css %}
-<link rel="stylesheet" href="{% static 'vendor/jquery/css/jquery-ui.min.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'vendor/dropzone/dropzone.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/jquery/css/jquery-ui.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/dropzone/dropzone.min.css' %}">
 {% endblock %}
 {% block container %}
-<div class="col-12">
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      <h5>Producción científica
-        <label class="pull-right">
-          User: <label class="text-success">{{username}} {{tipo_persona_desc}}</label>
-        </label>
-      </h5>
-    </div>
-    <div class="panel-body">
-      <div class="card">
-        <div class="card-body">
-          <div class="tab-content" id="myTabContent">
-              <div align="right">
-                <a class="btn btn-primary m-b-sm" data-added="0" id="agrega-cientifica">
-                  <i class="fa fa-plus" aria-hidden="true"></i> Agregar producción científica
-                </a>
-                <br>&nbsp;
-              </div>
-              <div class="table-responsive">
-                <table id="tabla-cientifica" class="table table-striped table-bordered display nowrap"
-                       style="max-width:1000px; width:100%!important;">
-                  <thead>
-                  <tr>
-                    <th>Tipo de producción</th>
-                    <th>Título</th>
-                    <th>Autor</th>
-                    <th>Fecha de publicación</th>
-                    <th>Revista</th>
-                    <th>Adjuntos</th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  </tbody>
-                </table>
-              </div>
-          </div>
+    <div class="col-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h5>Producción científica
+                    <label class="pull-right">
+                        User: <label class="text-success">{{ username }} {{ tipo_persona_desc }}</label>
+                    </label>
+                </h5>
+            </div>
+            <div class="panel-body">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="tab-content" id="myTabContent">
+                            <div align="right">
+                                <a class="btn btn-primary m-b-sm" data-added="0" id="agrega-cientifica">
+                                    <i class="fa fa-plus" aria-hidden="true"></i> Agregar producción científica
+                                </a>
+                                <br>&nbsp;
+                            </div>
+                            <div class="table-responsive">
+                                <table id="tabla-cientifica" class="table table-striped table-bordered display nowrap"
+                                       style="max-width:1000px; width:100%!important;">
+                                    <thead>
+                                    <tr>
+                                        <th>Tipo de producción</th>
+                                        <th>Título</th>
+                                        <th>Autor</th>
+                                        <th>Fecha de publicación</th>
+                                        <th>Revista</th>
+                                        <th>Adjuntos</th>
+                                        <th>Editar</th>
+                                        <th>Eliminar</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-</div>
-<input type="hidden" id="id_cientifica">
-{% include 'produccion/partials/_modal_cientifica.html' %}
-{% include 'produccion/partials/_modal_adjuntar_archivos_cientifica.html' %}
+    <input type="hidden" id="id_cientifica">
+    {% include 'produccion/partials/_modal_cientifica.html' %}
+    {% include 'produccion/partials/_modal_adjuntar_archivos_cientifica.html' %}
 
 {% endblock %}
 {% block javascript %}
-<script>
-  var urlListaCientifica= "{% url 'produccion:lista_cientifica' pk %}";
-  var urlGuardarCientifica = "{% url 'produccion:guardar_cientifica' pk %}";
-  var urlConsultaCientifica = "{% url 'produccion:consulta_cientifica' 'id' %}";
-  var urlEliminarCientifica = "{% url 'produccion:eliminar_cientifica' 'id' %}";
-  var urlSubirArchivos = "{% url 'produccion:subir_archivos' 'id' %}";
-  var urlListaArchivos = "{% url 'produccion:listar_archivos' 'id' %}";
-  var urlEliminarArchivo = "{% url 'produccion:eliminar_archivo' 'id' %}";
-  var personalId = "{{pk}}";
-  var urlListarPersona = "{% url 'persona:listar_persona' %}";
-  datatablesES = "{% static 'vendor/datatables/language/spanish.json' %}";
-  var urlProyectoDescargaPdf = "";
-  var eliminarPersona = "{% url 'persona:eliminar_persona' 'id' %}";
-  var tipPersona = "{{tip_persona}}";
-  var urlDepartamento = "{% url 'persona:consulta_departamento' %}";
-  var urls_ubigeo = {
-    "provincias"   : "{% url 'persona:provincias' %}",
-    "distritos"    : "{% url 'persona:distritos' %}",
-  };
-</script>
-<script src="{% static 'vendor/dropzone/dropzone.min.js' %}"></script>
-<script src="{% static 'js/produccion/produccion.js' %}"></script>
-<script src="{% static 'js/produccion/modal-cientifica.js' %}"></script>
-<script src="{% static 'js/produccion/modal-adjuntar-archivos-produccion.js' %}"></script>
+    <script>
+        var urlListaCientifica = "{% url 'produccion:lista_cientifica' pk %}";
+        var urlGuardarCientifica = "{% url 'produccion:guardar_cientifica' pk %}";
+        var urlConsultaCientifica = "{% url 'produccion:consulta_cientifica' 'id' %}";
+        var urlEliminarCientifica = "{% url 'produccion:eliminar_cientifica' 'id' %}";
+        var urlSubirArchivos = "{% url 'produccion:subir_archivos' 'id' %}";
+        var urlListaArchivos = "{% url 'produccion:listar_archivos' 'id' %}";
+        var urlEliminarArchivo = "{% url 'produccion:eliminar_archivo' 'id' %}";
+        var personalId = "{{pk}}";
+        var urlListarPersona = "{% url 'persona:listar_persona' %}";
+        datatablesES = "{% static 'vendor/datatables/language/spanish.json' %}";
+        var urlProyectoDescargaPdf = "";
+        var eliminarPersona = "{% url 'persona:eliminar_persona' 'id' %}";
+        var tipPersona = "{{tip_persona}}";
+        var urlDepartamento = "{% url 'persona:consulta_departamento' %}";
+        var urls_ubigeo = {
+            "provincias": "{% url 'persona:provincias' %}",
+            "distritos": "{% url 'persona:distritos' %}",
+        };
+    </script>
+    <script src="{% static 'vendor/dropzone/dropzone.min.js' %}"></script>
+    <script src="{% static 'js/produccion/produccion.js' %}"></script>
+    <script src="{% static 'js/produccion/modal-cientifica.js' %}"></script>
+    <script src="{% static 'js/produccion/modal-adjuntar-archivos-produccion.js' %}"></script>
 {% endblock %}
