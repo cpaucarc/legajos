@@ -22,4 +22,4 @@ class UsuarioPasswordChangePassword(PasswordChangeForm):
     new_password2 = forms.CharField(
         label='Contraseña nueva(confirmación)',
         widget=PasswordInput(attrs={'class': 'form-control'})
-        )
+    )

@@ -1,53 +1,55 @@
 <div class="modal fade" id="modal-archivos">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Archivos adjuntos</h5>
-        <button type="button" class="btn btn-danger btn-md pull-right" style="margin-top:-30px;"
-                id="btnCerrarHeaderModalArchivos">x
-        </button>
-      </div>
-      <div class="modal-body">
-        <form action="#" class="dropzone" id="myDropzone" method='POST' enctype="multipart/form-data">
-          {% csrf_token %}
-          <div class="fallback">
-            <input name="file" type="file" multiple/>
-          </div>
-        </form>
-        <div class="text-info" id="cargando-archivos"><i class="fa fa-spinner fa-pulse fa-fw"></i> Subiendo Archivo
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Archivos adjuntos</h5>
+                <button type="button" class="btn btn-danger btn-md pull-right" style="margin-top:-30px;"
+                        id="btnCerrarHeaderModalArchivos">x
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="#" class="dropzone" id="myDropzone" method='POST' enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="fallback">
+                        <input name="file" type="file" multiple/>
+                    </div>
+                </form>
+                <div class="text-info" id="cargando-archivos"><i class="fa fa-spinner fa-pulse fa-fw"></i> Subiendo
+                    Archivo
+                </div>
+                <input type="hidden" name="tx_tipo_obra" id="id_tx_tipo_obra">
+                <div id="div_tipo_documento_adjunto">
+                    <br>
+                    <label>Tipo de documento adjunto:</label>
+                    <select name="tipo_documento_adjunto" id="id_tipo_documento_adjunto" class="form-control">
+                        <option value="">--Seleccionar--</option>
+                        <option value="revision_pares">Revisión de pares</option>
+                        <option value="constancia_resultado_investigacion">Constancia de resultados de investigación
+                        </option>
+                    </select>
+                </div>
+                <br>
+                <button type="button" class="btn btn-success btn-sm" id="subir-archivos">Subir archivos</button>
+                <br><br>
+                <div class="table-responsive">
+                    <table id="tabla-archivos" class="table table-striped table-bordered display nowrap"
+                           style="max-width:1000px; width:100%!important;">
+                        <thead>
+                        <tr>
+                            <th>Nro</th>
+                            <th>Nombre del archivo</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-danger" id="btnCerrarModalArchivos">Cerrar
+                </button>
+            </div>
         </div>
-        <input type="hidden" name="tx_tipo_obra" id="id_tx_tipo_obra">
-        <div id="div_tipo_documento_adjunto">
-          <br>
-          <label>Tipo de documento adjunto:</label>
-          <select name="tipo_documento_adjunto" id="id_tipo_documento_adjunto" class="form-control">
-            <option value="">--Seleccionar--</option>
-            <option value="revision_pares">Revisión de pares</option>
-            <option value="constancia_resultado_investigacion">Constancia de resultados de investigación</option>
-          </select>
-        </div>
-        <br>
-        <button type="button" class="btn btn-success btn-sm" id="subir-archivos">Subir archivos</button>
-        <br><br>
-        <div class="table-responsive">
-          <table id="tabla-archivos" class="table table-striped table-bordered display nowrap"
-                 style="max-width:1000px; width:100%!important;">
-            <thead>
-            <tr>
-              <th>Nro</th>
-              <th>Nombre del archivo</th>
-              <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" data-dismiss="modal" class="btn btn-danger" id="btnCerrarModalArchivos">Cerrar
-        </button>
-      </div>
     </div>
-  </div>
 </div>

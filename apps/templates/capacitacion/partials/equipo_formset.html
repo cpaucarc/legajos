@@ -1,47 +1,47 @@
 {% load form_tags %}
 <div class="row" style="margin:2px;">
-  <div class="col-lg-12">
-    {{ equipo_formset.management_form }}
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th class="col-2">Cargo</th>
-          <th class="col-8">Miembro</th>
-          <th class="col-2">&nbsp;&nbsp;</th>
-        </tr>
-      </thead>
-      <tbody id="formset-parent1" class="form-equipo">
-        {% for equipo_form in equipo_formset %}
-          <tr>
-            {{ equipo_form.id }}
-            <td>
-              {% field equipo_form.cargo label=False %}
-              {% field equipo_form.cargo_equipo label=False %}
-            </td>
-            <td>
-              {% field equipo_form.persona_id label=False %}
-              {% field equipo_form.persona_equipo label=False %}
-            </td>
-            <td>{% field equipo_form.DELETE label=True %}</td>
-          </tr>
-        {% endfor %}
-      </tbody>
-      <tbody id="formset-empty1" class="d-none form-equipo">
-        {% with equipo_formset.empty_form as f %}
-         <tr>
-            {{ f.id }}
-            <td>
-              {% field f.cargo label=False %}
-              {% field f.cargo_equipo label=False %}
-            </td>
-            <td>
-              {% field f.persona_id label=False %}
-              {% field f.persona_equipo label=False %}
-            </td>
-            <td>{% field f.DELETE label=True %}</td>
-          </tr>
-        {% endwith %}
-      </tbody>
-    </table>
-  </div>
+    <div class="col-lg-12">
+        {{ equipo_formset.management_form }}
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th class="col-2">Cargo</th>
+                <th class="col-8">Miembro</th>
+                <th class="col-2">&nbsp;&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody id="formset-parent1" class="form-equipo">
+            {% for equipo_form in equipo_formset %}
+                <tr>
+                    {{ equipo_form.id }}
+                    <td>
+                        {% field equipo_form.cargo label=False %}
+                        {% field equipo_form.cargo_equipo label=False %}
+                    </td>
+                    <td>
+                        {% field equipo_form.persona_id label=False %}
+                        {% field equipo_form.persona_equipo label=False %}
+                    </td>
+                    <td>{% field equipo_form.DELETE label=True %}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tbody id="formset-empty1" class="d-none form-equipo">
+            {% with equipo_formset.empty_form as f %}
+                <tr>
+                    {{ f.id }}
+                    <td>
+                        {% field f.cargo label=False %}
+                        {% field f.cargo_equipo label=False %}
+                    </td>
+                    <td>
+                        {% field f.persona_id label=False %}
+                        {% field f.persona_equipo label=False %}
+                    </td>
+                    <td>{% field f.DELETE label=True %}</td>
+                </tr>
+            {% endwith %}
+            </tbody>
+        </table>
+    </div>
 </div>

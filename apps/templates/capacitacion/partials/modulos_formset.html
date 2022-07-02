@@ -1,50 +1,50 @@
 {% load form_tags %}
 <div class="row" style="margin:2px;">
-  <div class="col-lg-12">
-    {{ modulo_formset.management_form }}
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th class="col-2">Nombre de Módulo</th>
-          <th class="col-2">Horas académicas</th>
-          <th class="col-8">Temas</th>
-          <th class="col-2">&nbsp;&nbsp;</th>
-        </tr>
-      </thead>
-      <tbody id="formset-parent" class="form-firmante">
-        {% for modulo_form in modulo_formset %}
-          <tr>
-            {{ modulo_form.id }}
-            <td>
-              {% field modulo_form.nombre label=False %}
-            </td>
-            <td>
-              {% field modulo_form.horas_academicas label=False %}
-            </td>
-            <td>
-              {% field modulo_form.temas label=False %}
-            </td>
-            <td>{% field modulo_form.DELETE label=True %}</td>
-          </tr>
-        {% endfor %}
-      </tbody>
-      <tbody id="formset-empty" class="d-none form-firmante">
-        {% with modulo_formset.empty_form as f %}
-         <tr>
-            {{ f.id }}
-           <td>
-              {% field f.nombre label=False %}
-            </td>
-            <td>
-              {% field f.horas_academicas label=False %}
-            </td>
-            <td>
-              {% field f.temas label=False %}
-            </td>
-            <td>{% field f.DELETE label=True %}</td>
-          </tr>
-        {% endwith %}
-      </tbody>
-    </table>
-  </div>
+    <div class="col-lg-12">
+        {{ modulo_formset.management_form }}
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th class="col-2">Nombre de Módulo</th>
+                <th class="col-2">Horas académicas</th>
+                <th class="col-8">Temas</th>
+                <th class="col-2">&nbsp;&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody id="formset-parent" class="form-firmante">
+            {% for modulo_form in modulo_formset %}
+                <tr>
+                    {{ modulo_form.id }}
+                    <td>
+                        {% field modulo_form.nombre label=False %}
+                    </td>
+                    <td>
+                        {% field modulo_form.horas_academicas label=False %}
+                    </td>
+                    <td>
+                        {% field modulo_form.temas label=False %}
+                    </td>
+                    <td>{% field modulo_form.DELETE label=True %}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tbody id="formset-empty" class="d-none form-firmante">
+            {% with modulo_formset.empty_form as f %}
+                <tr>
+                    {{ f.id }}
+                    <td>
+                        {% field f.nombre label=False %}
+                    </td>
+                    <td>
+                        {% field f.horas_academicas label=False %}
+                    </td>
+                    <td>
+                        {% field f.temas label=False %}
+                    </td>
+                    <td>{% field f.DELETE label=True %}</td>
+                </tr>
+            {% endwith %}
+            </tbody>
+        </table>
+    </div>
 </div>

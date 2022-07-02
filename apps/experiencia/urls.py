@@ -6,6 +6,7 @@ from apps.experiencia.views import (
     ListaAsesorTesisView, GuardarAsesorTesisView, ConsultaAsesorTesisView, ConsultaEvaluadorProyectoView,
     ListaEvaluadorProyectoView, GuardarEvaluadorProyectoView
 )
+
 app_name = 'experiencia'
 urlpatterns = [
     path('experiencia-laboral/<str:pk>', ExperienciaLaboralView.as_view(), name='experiencia_laboral'),

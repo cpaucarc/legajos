@@ -1,229 +1,272 @@
 {% load static %}
 {% load form_tags %}
 {% block css %}
-  <link rel="stylesheet" href="{% static 'vendor/jquery/css/jquery-ui.min.css' %}">
-  <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
-  <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap-flat.css' %}">
-  <link rel="stylesheet" href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/jquery/css/jquery-ui.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap-flat.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}">
     <link rel="stylesheet" href="{% static 'vendor/sweetalert2/sweetalert2.min.css' %}">
 {% endblock %}
 {% block container %}
-{% if es_permitido %}
-<div class="col-12">
-  <div class="panel panel-primary">
-    <div class="panel-body">
-      <div class="row">
-        <div class="col-lg-12">
-          {% if form.errors %}
-          {% for error in form.non_field_errors %}
-          <div class="alert alert-danger">
-            <strong>{{ error|escape }}</strong>
-          </div>
-          {% endfor %}
-          {% endif %}
-        </div>
-      </div>
-      <div class="tab-content table-responsive" id="list-capacitacion">
-        {% if tipo_emision_cert == 'certificado_unico'%}
-          <label class="text-info">Participantes:</label>
-        {% else %}
-          <label class="text-info">Participantes del Módulo: {{acta.modulo.nombre}}</label>
-        {% endif %}
+    {% if es_permitido %}
+        <div class="col-12">
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            {% if form.errors %}
+                                {% for error in form.non_field_errors %}
+                                    <div class="alert alert-danger">
+                                        <strong>{{ error|escape }}</strong>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="tab-content table-responsive" id="list-capacitacion">
+                        {% if tipo_emision_cert == 'certificado_unico' %}
+                            <label class="text-info">Participantes:</label>
+                        {% else %}
+                            <label class="text-info">Participantes del Módulo: {{ acta.modulo.nombre }}</label>
+                        {% endif %}
 
-        <table class="table table-bordered table-hover table-striped table-responsive"
-               id="lista-capacitacion"
-               style="width: 100%;">
-          <thead>
-          <tr>
-            <th>N</th>
-            <th>NumDoc</th>
-            <th>Apellidos y Nombres</th>
-            {% for f in fechas_unicas %}
-            <th>{{f.fecha|date:'d-m-y'}}</th>
-            {% endfor %}
-            <th>Resultado</th>
-            {% if estado_capacitacion == 'culminado' %}
-            {% if tipo_persona == 'consejo_unasam' or username == 'admin' %}
-            {% if mostrar_pdf and not mostrar_pdf_unico  %}
-              <th>Cert.</th>
-              <th>Envío Correo</th>
-            {% elif tipo_emision_cert == 'certificado_unico_y_modulos' and mostrar_pdf_unico %}
-              <th>Cert. Único</th>
-              <th>Cert. Módulo</th>
-              <th>Envío Correo</th>
-            {% elif mostrar_pdf %}
-              <th>Cert.</th>
-              <th>Envío Correo</th>
-            {% endif %}
-            {% endif %}
-            {% endif %}
-          </tr>
-          </thead>
-          <tbody>
-          {% for l in list_participantes %}
-          <tr>
-            <td>{{forloop.counter}}</td>
-            <td>{{l.numero_documento}}</td>
-            <td>{{l.apellido_paterno}} {{l.apellido_materno}} {{l.nombres}}</td>
-            {% for e in l.estados %}
-            <td>{{e}}</td>
-            {% endfor %}
-            <td>{{l.resultado}}</td>
-              {% if l.resultado == 'APROBADO' and estado_capacitacion == 'culminado' %}
-            {% if tipo_persona == 'consejo_unasam' or username == 'admin' %}
-            {% if mostrar_pdf %}
-            {% if tipo_emision_cert == 'certificado_unico' %}
-              <td>
-                <a href="{% url 'capacitacion:descarga_certificado' capacitacion_id l.id_persona %}">
-                  <img src="{% static 'img/icono-pdf.png' %}" style="height:30px;cursor:pointer;">
-                </a>
-              </td>
-            {% elif tipo_emision_cert == 'certificado_unico_y_modulos' and mostrar_pdf_unico %}
-              <td>
-                <a href="{% url 'capacitacion:descarga_certificado' capacitacion_id l.id_persona %}">
-                  <img src="{% static 'img/icono-pdf.png' %}" style="height:30px;cursor:pointer;">
-                </a>
-              </td>
-              <td>
-                <a href="{% url 'capacitacion:descarga_certificado_por_modulo' capacitacion_id acta.modulo_id l.id_persona %}">
-                  <img src="{% static 'img/icono-pdf.png' %}" style="height:30px;cursor:pointer;">
-                </a>
-              </td>
-            {% else %}
-              <td>
-                <a href="{% url 'capacitacion:descarga_certificado_por_modulo' capacitacion_id acta.modulo_id l.id_persona %}">
-                  <img src="{% static 'img/icono-pdf.png' %}" style="height:30px;cursor:pointer;">
-                </a>
-              </td>
-            {% endif %}
-              <td>
-                {% if tipo_emision_cert == 'certificado_unico' %}
-                  <button class="btn btn-info btn-xs enviar-correo-unico elv-{{l.id_acta}}-{{l.id_persona}}" data-id="{{capacitacion_id}}"
-                        data-li="{{l.id_acta}}-{{l.id_persona}}" data-persona="{{l.id_persona}}" data-id_modulo="{{acta.modulo_id}}" style="margin-top:2px;margin-left:2px;">
-                  <i class="fa fa-envelope">Cert. Único</i></button>
-                {% elif tipo_emision_cert == 'certificado_unico_y_modulos' and mostrar_pdf_unico %}
-                  <button class="btn btn-info btn-xs enviar-correo-unico elv-{{l.id_acta}}-{{l.id_persona}}" data-id="{{capacitacion_id}}"
-                        data-li="{{l.id_acta}}-{{l.id_persona}}" data-persona="{{l.id_persona}}" data-id_modulo="{{acta.modulo_id}}" style="margin-top:2px;margin-left:2px;">
-                  <i class="fa fa-envelope">Cert. Único</i></button>
-                  <button class="btn btn-info btn-xs enviar-correo-por-mod elv-{{l.id_acta}}-{{l.id_persona}}" data-id="{{capacitacion_id}}"
-                        data-li="{{l.id_acta}}-{{l.id_persona}}" data-persona="{{l.id_persona}}" data-modulo="{{acta.modulo_id}}" style="margin-top:2px;margin-left:2px;">
-                  <i class="fa fa-envelope">Módulo</i></button>
-                {% else %}
-                  <button class="btn btn-info btn-xs enviar-correo-por-mod elv-{{l.id_acta}}-{{l.id_persona}}" data-id="{{capacitacion_id}}"
-                        data-li="{{l.id_acta}}-{{l.id_persona}}" data-persona="{{l.id_persona}}" data-modulo="{{acta.modulo_id}}" style="margin-top:2px;margin-left:2px;">
-                  <i class="fa fa-envelope">Módulo</i></button>
-                {% endif %}
-              </td>
-            {% endif %}
-            {% endif %}
-            {% endif %}
-          </tr>
-          {% endfor %}
-          </tbody>
-        </table>
-        <label class="text-info">Miembros del proyecto de capacitación:</label>
-        <table class="table table-bordered table-hover table-striped table-responsive" style="width: 100%;">
-          <thead>
-          <tr>
-            <th>N</th>
-            <th>Cargo</th>
-            <th>DNI</th>
-            <th>Miembro</th>
-            {% if estado_capacitacion == 'culminado' %}
-            {% if tipo_persona == 'consejo_unasam' or username == 'admin' %}
-            {% if mostrar_pdf and not mostrar_pdf_unico  %}
-              <th>Cert.</th>
-              <th>Envío Correo</th>
-            {% elif tipo_emision_cert == 'certificado_unico_y_modulos' and mostrar_pdf_unico %}
-              <th>Cert. Único</th>
-              <th>Cert. Módulo</th>
-              <th>Envío Correo</th>
-            {% elif mostrar_pdf %}
-              <th>Cert.</th>
-              <th>Envío Correo</th>
-            {% endif %}
-            {% endif %}
-            {% endif %}
-          </tr>
-          </thead>
-          <tbody>
-          {% for m in miembros_equipo %}
-          <tr>
-            <td>{{forloop.counter}}</td>
-            <td>{{m.get_cargo_display}}</td>
-            <td>{{m.persona.numero_documento}}</td>
-            <td>{{m.persona.apellido_paterno}} {{m.persona.apellido_materno}} {{m.persona.nombres}}</td>
-            {% if estado_capacitacion == 'culminado' %}
-            {% if tipo_persona == 'consejo_unasam' or username == 'admin' %}
-            {% if mostrar_pdf %}
-            {% if tipo_emision_cert == 'certificado_unico' %}
-              <td>
-                <a href="{% url 'capacitacion:descarga_certificado' id_capacitacion=capacitacion_id id_persona=m.persona_id %}?cargo={{m.cargo}}">
-                  <img src="{% static 'img/icono-pdf.png' %}" style="height:30px;cursor:pointer;">
-                </a>
-              </td>
-            {% elif tipo_emision_cert == 'certificado_unico_y_modulos' and mostrar_pdf_unico %}
-              <td>
-                <a href="{% url 'capacitacion:descarga_certificado' id_capacitacion=capacitacion_id id_persona=m.persona_id %}?cargo={{m.cargo}}">
-                  <img src="{% static 'img/icono-pdf.png' %}" style="height:30px;cursor:pointer;">
-                </a>
-              </td>
-              <td>
-                <a href="{% url 'capacitacion:descarga_certificado_por_modulo' id_capacitacion=capacitacion_id id_modulo=acta.modulo_id id_persona=m.persona_id %}?cargo={{m.cargo}}">
-                  <img src="{% static 'img/icono-pdf.png' %}" style="height:30px;cursor:pointer;">
-                </a>
-              </td>
-            {% else %}
-              <td>
-                <a href="{% url 'capacitacion:descarga_certificado_por_modulo' id_capacitacion=capacitacion_id id_modulo=acta.modulo_id id_persona=m.persona_id %}?cargo={{m.cargo}}">
-                  <img src="{% static 'img/icono-pdf.png' %}" style="height:30px;cursor:pointer;">
-                </a>
-              </td>
-            {% endif %}
-            <td>
-              {% if tipo_emision_cert == 'certificado_unico' %}
-                <button class="btn btn-info btn-xs enviar-correo-unico-miembro emv-{{m.id}}-{{m.cargo}}" data-id="{{capacitacion_id}}" data-mi="{{m.id}}-{{m.cargo}}" data-cargo="{{m.cargo}}"
-                        data-persona="{{m.persona_id}}" style="margin-top:2px;margin-left:2px;">
-                <i class="fa fa-envelope">Cert. Único</i></button>
-              {% elif tipo_emision_cert == 'certificado_unico_y_modulos'  and mostrar_pdf_unico %}
-                <button class="btn btn-info btn-xs enviar-correo-unico-miembro emv-{{m.id}}-{{m.cargo}}" data-id="{{capacitacion_id}}" data-mi="{{m.id}}-{{m.cargo}}" data-cargo="{{m.cargo}}"
-                        data-persona="{{m.persona_id}}" style="margin-top:2px;margin-left:2px;">
-                <i class="fa fa-envelope">Cert. Único</i></button>
-                <button class="btn btn-info btn-xs enviar-correo-por-mod-miembro emv-{{m.id}}-{{m.cargo}}" data-id="{{capacitacion_id}}"
-                        data-mi="{{m.id}}-{{m.cargo}}" data-cargo="{{m.cargo}}" data-persona="{{m.persona_id}}" data-modulo="{{acta.modulo_id}}" style="margin-top:2px;margin-left:2px;">
-                <i class="fa fa-envelope">Módulo</i></button>
-              {% else %}
-                <button class="btn btn-info btn-xs enviar-correo-por-mod-miembro emv-{{m.id}}-{{m.cargo}}" data-id="{{capacitacion_id}}"
-                        data-mi="{{m.id}}-{{m.cargo}}" data-cargo="{{m.cargo}}" data-persona="{{m.persona_id}}" data-modulo="{{acta.modulo_id}}" style="margin-top:2px;margin-left:2px;">
-                <i class="fa fa-envelope">Módulo</i></button>
-              {% endif %}
-            </td>
-            {% endif %}
-            {% endif %}
-            {% endif %}
-          </tr>
-          {% endfor %}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
-{% else %}
-<label class="text-danger">Acceso no permitido, iniciar sesión y reintentar</label>
-{% endif %}
+                        <table class="table table-bordered table-hover table-striped table-responsive"
+                               id="lista-capacitacion"
+                               style="width: 100%;">
+                            <thead>
+                            <tr>
+                                <th>N</th>
+                                <th>NumDoc</th>
+                                <th>Apellidos y Nombres</th>
+                                {% for f in fechas_unicas %}
+                                    <th>{{ f.fecha|date:'d-m-y' }}</th>
+                                {% endfor %}
+                                <th>Resultado</th>
+                                {% if estado_capacitacion == 'culminado' %}
+                                    {% if tipo_persona == 'consejo_unasam' or username == 'admin' %}
+                                        {% if mostrar_pdf and not mostrar_pdf_unico %}
+                                            <th>Cert.</th>
+                                            <th>Envío Correo</th>
+                                        {% elif tipo_emision_cert == 'certificado_unico_y_modulos' and mostrar_pdf_unico %}
+                                            <th>Cert. Único</th>
+                                            <th>Cert. Módulo</th>
+                                            <th>Envío Correo</th>
+                                        {% elif mostrar_pdf %}
+                                            <th>Cert.</th>
+                                            <th>Envío Correo</th>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endif %}
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for l in list_participantes %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ l.numero_documento }}</td>
+                                    <td>{{ l.apellido_paterno }} {{ l.apellido_materno }} {{ l.nombres }}</td>
+                                    {% for e in l.estados %}
+                                        <td>{{ e }}</td>
+                                    {% endfor %}
+                                    <td>{{ l.resultado }}</td>
+                                    {% if l.resultado == 'APROBADO' and estado_capacitacion == 'culminado' %}
+                                        {% if tipo_persona == 'consejo_unasam' or username == 'admin' %}
+                                            {% if mostrar_pdf %}
+                                                {% if tipo_emision_cert == 'certificado_unico' %}
+                                                    <td>
+                                                        <a href="{% url 'capacitacion:descarga_certificado' capacitacion_id l.id_persona %}">
+                                                            <img src="{% static 'img/icono-pdf.png' %}"
+                                                                 style="height:30px;cursor:pointer;">
+                                                        </a>
+                                                    </td>
+                                                {% elif tipo_emision_cert == 'certificado_unico_y_modulos' and mostrar_pdf_unico %}
+                                                    <td>
+                                                        <a href="{% url 'capacitacion:descarga_certificado' capacitacion_id l.id_persona %}">
+                                                            <img src="{% static 'img/icono-pdf.png' %}"
+                                                                 style="height:30px;cursor:pointer;">
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="{% url 'capacitacion:descarga_certificado_por_modulo' capacitacion_id acta.modulo_id l.id_persona %}">
+                                                            <img src="{% static 'img/icono-pdf.png' %}"
+                                                                 style="height:30px;cursor:pointer;">
+                                                        </a>
+                                                    </td>
+                                                {% else %}
+                                                    <td>
+                                                        <a href="{% url 'capacitacion:descarga_certificado_por_modulo' capacitacion_id acta.modulo_id l.id_persona %}">
+                                                            <img src="{% static 'img/icono-pdf.png' %}"
+                                                                 style="height:30px;cursor:pointer;">
+                                                        </a>
+                                                    </td>
+                                                {% endif %}
+                                                <td>
+                                                    {% if tipo_emision_cert == 'certificado_unico' %}
+                                                        <button class="btn btn-info btn-xs enviar-correo-unico elv-{{ l.id_acta }}-{{ l.id_persona }}"
+                                                                data-id="{{ capacitacion_id }}"
+                                                                data-li="{{ l.id_acta }}-{{ l.id_persona }}"
+                                                                data-persona="{{ l.id_persona }}"
+                                                                data-id_modulo="{{ acta.modulo_id }}"
+                                                                style="margin-top:2px;margin-left:2px;">
+                                                            <i class="fa fa-envelope">Cert. Único</i></button>
+                                                    {% elif tipo_emision_cert == 'certificado_unico_y_modulos' and mostrar_pdf_unico %}
+                                                        <button class="btn btn-info btn-xs enviar-correo-unico elv-{{ l.id_acta }}-{{ l.id_persona }}"
+                                                                data-id="{{ capacitacion_id }}"
+                                                                data-li="{{ l.id_acta }}-{{ l.id_persona }}"
+                                                                data-persona="{{ l.id_persona }}"
+                                                                data-id_modulo="{{ acta.modulo_id }}"
+                                                                style="margin-top:2px;margin-left:2px;">
+                                                            <i class="fa fa-envelope">Cert. Único</i></button>
+                                                        <button class="btn btn-info btn-xs enviar-correo-por-mod elv-{{ l.id_acta }}-{{ l.id_persona }}"
+                                                                data-id="{{ capacitacion_id }}"
+                                                                data-li="{{ l.id_acta }}-{{ l.id_persona }}"
+                                                                data-persona="{{ l.id_persona }}"
+                                                                data-modulo="{{ acta.modulo_id }}"
+                                                                style="margin-top:2px;margin-left:2px;">
+                                                            <i class="fa fa-envelope">Módulo</i></button>
+                                                    {% else %}
+                                                        <button class="btn btn-info btn-xs enviar-correo-por-mod elv-{{ l.id_acta }}-{{ l.id_persona }}"
+                                                                data-id="{{ capacitacion_id }}"
+                                                                data-li="{{ l.id_acta }}-{{ l.id_persona }}"
+                                                                data-persona="{{ l.id_persona }}"
+                                                                data-modulo="{{ acta.modulo_id }}"
+                                                                style="margin-top:2px;margin-left:2px;">
+                                                            <i class="fa fa-envelope">Módulo</i></button>
+                                                    {% endif %}
+                                                </td>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endif %}
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <label class="text-info">Miembros del proyecto de capacitación:</label>
+                        <table class="table table-bordered table-hover table-striped table-responsive"
+                               style="width: 100%;">
+                            <thead>
+                            <tr>
+                                <th>N</th>
+                                <th>Cargo</th>
+                                <th>DNI</th>
+                                <th>Miembro</th>
+                                {% if estado_capacitacion == 'culminado' %}
+                                    {% if tipo_persona == 'consejo_unasam' or username == 'admin' %}
+                                        {% if mostrar_pdf and not mostrar_pdf_unico %}
+                                            <th>Cert.</th>
+                                            <th>Envío Correo</th>
+                                        {% elif tipo_emision_cert == 'certificado_unico_y_modulos' and mostrar_pdf_unico %}
+                                            <th>Cert. Único</th>
+                                            <th>Cert. Módulo</th>
+                                            <th>Envío Correo</th>
+                                        {% elif mostrar_pdf %}
+                                            <th>Cert.</th>
+                                            <th>Envío Correo</th>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endif %}
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for m in miembros_equipo %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ m.get_cargo_display }}</td>
+                                    <td>{{ m.persona.numero_documento }}</td>
+                                    <td>{{ m.persona.apellido_paterno }} {{ m.persona.apellido_materno }} {{ m.persona.nombres }}</td>
+                                    {% if estado_capacitacion == 'culminado' %}
+                                        {% if tipo_persona == 'consejo_unasam' or username == 'admin' %}
+                                            {% if mostrar_pdf %}
+                                                {% if tipo_emision_cert == 'certificado_unico' %}
+                                                    <td>
+                                                        <a href="{% url 'capacitacion:descarga_certificado' id_capacitacion=capacitacion_id id_persona=m.persona_id %}?cargo={{ m.cargo }}">
+                                                            <img src="{% static 'img/icono-pdf.png' %}"
+                                                                 style="height:30px;cursor:pointer;">
+                                                        </a>
+                                                    </td>
+                                                {% elif tipo_emision_cert == 'certificado_unico_y_modulos' and mostrar_pdf_unico %}
+                                                    <td>
+                                                        <a href="{% url 'capacitacion:descarga_certificado' id_capacitacion=capacitacion_id id_persona=m.persona_id %}?cargo={{ m.cargo }}">
+                                                            <img src="{% static 'img/icono-pdf.png' %}"
+                                                                 style="height:30px;cursor:pointer;">
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="{% url 'capacitacion:descarga_certificado_por_modulo' id_capacitacion=capacitacion_id id_modulo=acta.modulo_id id_persona=m.persona_id %}?cargo={{ m.cargo }}">
+                                                            <img src="{% static 'img/icono-pdf.png' %}"
+                                                                 style="height:30px;cursor:pointer;">
+                                                        </a>
+                                                    </td>
+                                                {% else %}
+                                                    <td>
+                                                        <a href="{% url 'capacitacion:descarga_certificado_por_modulo' id_capacitacion=capacitacion_id id_modulo=acta.modulo_id id_persona=m.persona_id %}?cargo={{ m.cargo }}">
+                                                            <img src="{% static 'img/icono-pdf.png' %}"
+                                                                 style="height:30px;cursor:pointer;">
+                                                        </a>
+                                                    </td>
+                                                {% endif %}
+                                                <td>
+                                                    {% if tipo_emision_cert == 'certificado_unico' %}
+                                                        <button class="btn btn-info btn-xs enviar-correo-unico-miembro emv-{{ m.id }}-{{ m.cargo }}"
+                                                                data-id="{{ capacitacion_id }}"
+                                                                data-mi="{{ m.id }}-{{ m.cargo }}"
+                                                                data-cargo="{{ m.cargo }}"
+                                                                data-persona="{{ m.persona_id }}"
+                                                                style="margin-top:2px;margin-left:2px;">
+                                                            <i class="fa fa-envelope">Cert. Único</i></button>
+                                                    {% elif tipo_emision_cert == 'certificado_unico_y_modulos'  and mostrar_pdf_unico %}
+                                                        <button class="btn btn-info btn-xs enviar-correo-unico-miembro emv-{{ m.id }}-{{ m.cargo }}"
+                                                                data-id="{{ capacitacion_id }}"
+                                                                data-mi="{{ m.id }}-{{ m.cargo }}"
+                                                                data-cargo="{{ m.cargo }}"
+                                                                data-persona="{{ m.persona_id }}"
+                                                                style="margin-top:2px;margin-left:2px;">
+                                                            <i class="fa fa-envelope">Cert. Único</i></button>
+                                                        <button class="btn btn-info btn-xs enviar-correo-por-mod-miembro emv-{{ m.id }}-{{ m.cargo }}"
+                                                                data-id="{{ capacitacion_id }}"
+                                                                data-mi="{{ m.id }}-{{ m.cargo }}"
+                                                                data-cargo="{{ m.cargo }}"
+                                                                data-persona="{{ m.persona_id }}"
+                                                                data-modulo="{{ acta.modulo_id }}"
+                                                                style="margin-top:2px;margin-left:2px;">
+                                                            <i class="fa fa-envelope">Módulo</i></button>
+                                                    {% else %}
+                                                        <button class="btn btn-info btn-xs enviar-correo-por-mod-miembro emv-{{ m.id }}-{{ m.cargo }}"
+                                                                data-id="{{ capacitacion_id }}"
+                                                                data-mi="{{ m.id }}-{{ m.cargo }}"
+                                                                data-cargo="{{ m.cargo }}"
+                                                                data-persona="{{ m.persona_id }}"
+                                                                data-modulo="{{ acta.modulo_id }}"
+                                                                style="margin-top:2px;margin-left:2px;">
+                                                            <i class="fa fa-envelope">Módulo</i></button>
+                                                    {% endif %}
+                                                </td>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endif %}
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <label class="text-danger">Acceso no permitido, iniciar sesión y reintentar</label>
+    {% endif %}
 {% endblock %}
 {% block javascript %}
-  <script>
-    var buscarPersonaUrl = "{% url 'persona:buscar-persona' %}";
-    var urlListarCapacitacion = "{% url 'capacitacion:listar_capacitacion' %}";
-    datatablesES = "{% static 'vendor/datatables/language/spanish.json' %}";
-    var urlProyectoDescargaPdf = "{% url 'capacitacion:proyecto_descarga_pdf' 'archivo' %}";
-    var urlEnviaCertCorreo = "{% url 'capacitacion:envio_cert_correo' 999999999 888888888 %}";
-    var urlEnviaCertPorModCorreo = "{% url 'capacitacion:envio_cert_por_mod_correo' 999999999 888888888 777777777 %}";
-    var eliminarActa = "{% url 'capacitacion:eliminar-acta' 'id' %}";
-  </script>
-  <script src="{% static 'vendor/jquery/js/jquery-3.2.1.min.js' %}"></script>
-  <script src="{% static 'vendor/sweetalert2/sweetalert2.min.js' %}"></script>
-  <script src="{% static 'js/capacitacion/envio-cert-correo.js' %}"></script>
+    <script>
+        var buscarPersonaUrl = "{% url 'persona:buscar-persona' %}";
+        var urlListarCapacitacion = "{% url 'capacitacion:listar_capacitacion' %}";
+        datatablesES = "{% static 'vendor/datatables/language/spanish.json' %}";
+        var urlProyectoDescargaPdf = "{% url 'capacitacion:proyecto_descarga_pdf' 'archivo' %}";
+        var urlEnviaCertCorreo = "{% url 'capacitacion:envio_cert_correo' 999999999 888888888 %}";
+        var urlEnviaCertPorModCorreo = "{% url 'capacitacion:envio_cert_por_mod_correo' 999999999 888888888 777777777 %}";
+        var eliminarActa = "{% url 'capacitacion:eliminar-acta' 'id' %}";
+    </script>
+    <script src="{% static 'vendor/jquery/js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'vendor/sweetalert2/sweetalert2.min.js' %}"></script>
+    <script src="{% static 'js/capacitacion/envio-cert-correo.js' %}"></script>
 {% endblock %}

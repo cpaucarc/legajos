@@ -2,6 +2,7 @@ from django.urls import path
 from apps.persona.views import (BuscarPersonaAPIView, PersonaCreateView, ListaPersonaView, PersonaUpdateView,
                                 EliminarPersonaView, ProvinciaView, DistritoView, DepartamentosPorFacultadView,
                                 ExportarCVView, DescargarCVPdf, DescargarCVPdfDet)
+
 app_name = 'persona'
 urlpatterns = [
     path('crear-persona', PersonaCreateView.as_view(), name='crear_persona'),

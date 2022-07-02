@@ -1,46 +1,47 @@
 {% load form_tags %}
 <div class="modal fade" id="modal-asesor">
-  <div class="modal-dialog modal-xl2">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Nueva Experiencia Como Asesor de Tesis</h5>
-        <button type="button" class="btn btn-danger btn-md pull-right" style="margin-top:-30px;"
-                id="btnCerrarHeaderModalAsesor">x
-        </button>
-      </div>
-      <form id="formAsesor" action="POST" class="p-2">
-        {% csrf_token %}
-        <div id="errores_list_asesor"></div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="col-md-6">
-                {% field form_asesor.universidad cols=False label=True %}
-              </div>
-              <div class="col-md-3">
-                {% field form_asesor.tesis cols=False label=True %}
-              </div>
-              <div class="col-md-3">
-                {% field form_asesor.fecha_aceptacion_tesis cols=False label=True %}
-              </div>
+    <div class="modal-dialog modal-xl2">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Nueva Experiencia Como Asesor de Tesis</h5>
+                <button type="button" class="btn btn-danger btn-md pull-right" style="margin-top:-30px;"
+                        id="btnCerrarHeaderModalAsesor">x
+                </button>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="col-md-5">
-                {% field form_asesor.tesista cols=False label=True %}
-              </div>
-              <div class="col-md-7">
-                {% field form_asesor.enlace_fuente_repositorio_academico cols=False label=True %}
-              </div>
-            </div>
-          </div>
+            <form id="formAsesor" action="POST" class="p-2">
+                {% csrf_token %}
+                <div id="errores_list_asesor"></div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="col-md-6">
+                                {% field form_asesor.universidad cols=False label=True %}
+                            </div>
+                            <div class="col-md-3">
+                                {% field form_asesor.tesis cols=False label=True %}
+                            </div>
+                            <div class="col-md-3">
+                                {% field form_asesor.fecha_aceptacion_tesis cols=False label=True %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="col-md-5">
+                                {% field form_asesor.tesista cols=False label=True %}
+                            </div>
+                            <div class="col-md-7">
+                                {% field form_asesor.enlace_fuente_repositorio_academico cols=False label=True %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-primary m-b-sm add-item-asesor" data-added="0">Agregar</a>
+                    <button type="button" data-dismiss="modal" class="btn btn-danger" id="btnCerrarModalAsesor">Cerrar
+                    </button>
+                </div>
+            </form>
         </div>
-        <div class="modal-footer">
-          <a class="btn btn-primary m-b-sm add-item-asesor" data-added="0">Agregar</a>
-          <button type="button" data-dismiss="modal" class="btn btn-danger" id="btnCerrarModalAsesor">Cerrar</button>
-        </div>
-      </form>
     </div>
-  </div>
 </div>

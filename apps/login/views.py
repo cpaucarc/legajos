@@ -42,7 +42,8 @@ class LoginView(FormView):
 
     def get_success_url(self):
         next = self.request.GET.get("next")
-        user = auth.authenticate(username=self.request.POST['username'].strip(), password=self.request.POST['password'].strip())
+        user = auth.authenticate(username=self.request.POST['username'].strip(),
+                                 password=self.request.POST['password'].strip())
         persona_id = user.persona.id if user.persona else None
 
         if next is not None:
@@ -89,6 +90,7 @@ class BaseLogin(ContextMixin, View):
             'facultad': self.request.session.get('facultad')
         })
         return context
+
 
 class InicioView(LoginRequiredMixin, BaseLogin, TemplateView):
     template_name = 'login/inicio.html'

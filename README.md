@@ -44,7 +44,7 @@
 - python manage.py loaddata apps/common/fixtures/ubigeo-distrito.json
 ```
 ```
-- python manage.py loaddata apps/common/fixtures/colegios-profesionales.json
+- python manage.py loaddata apps/common/fixtures/colegios-profesionales-peru.json
 ```
 ```
 - python manage.py loaddata apps/persona/seeders/facultades.json

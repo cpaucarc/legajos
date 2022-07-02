@@ -1,6 +1,7 @@
 from django import forms
 
-from apps.common.constants import DOCUMENT_TYPE_DNI, DOCUMENT_TYPE_CHOICES1, ID_UBIGEO_PERU,COLEGIATURA_HABILITADO,COLEGIATURA_INHABILITADO, COLEGIATURA_ESTADO_CHOICES
+from apps.common.constants import DOCUMENT_TYPE_DNI, DOCUMENT_TYPE_CHOICES1, ID_UBIGEO_PERU, COLEGIATURA_HABILITADO, \
+    COLEGIATURA_INHABILITADO, COLEGIATURA_ESTADO_CHOICES
 from apps.common.models import UbigeoDepartamento, UbigeoProvincia, UbigeoDistrito, Colegio
 from apps.persona.models import Persona, DatosGenerales, Departamento, Colegiatura
 from django.utils import timezone
@@ -39,8 +40,9 @@ class PersonaForm(forms.ModelForm):
 
 class DatosGeneralesForm(forms.ModelForm):
     fecha_nacimiento = forms.DateField(widget=forms.DateInput(format='%Y-%m-%d',
-                                                              attrs={'class': 'form-control input-sm', 'type': 'date', 'min': ''}),
-                                                              label='Fecha de nacimiento')
+                                                              attrs={'class': 'form-control input-sm', 'type': 'date',
+                                                                     'min': ''}),
+                                       label='Fecha de nacimiento')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -70,7 +72,8 @@ class DatosGeneralesForm(forms.ModelForm):
         )
 
     def clean_fecha_nacimiento(self):
-        if self.cleaned_data.get('fecha_nacimiento') and self.cleaned_data.get('fecha_nacimiento') > timezone.now().date():  # noqa
+        if self.cleaned_data.get('fecha_nacimiento') and self.cleaned_data.get(
+                'fecha_nacimiento') > timezone.now().date():  # noqa
             raise forms.ValidationError('La fecha de nacimiento no puede ser mayor a la fecha actual')
         if not self.cleaned_data.get('fecha_nacimiento'):
             raise forms.ValidationError('Debe registrar fecha de nacimiento')
@@ -88,17 +91,20 @@ def get_departamentos(cod_dep=None):
         ).values_list('cod_ubigeo_inei_departamento', 'ubigeo_departamento')
     return list(departamentos)
 
+
 def get_provincias(dep_id):
     provincias = UbigeoProvincia.objects.filter(
         departamento__cod_ubigeo_inei_departamento=dep_id
     ).values_list('cod_ubigeo_inei_provincia', 'ubigeo_provincia')
     return list(provincias)
 
+
 def get_distritos(dep_id, prov_id):
     distritos = UbigeoDistrito.objects.filter(
         departamento__cod_ubigeo_inei_departamento=dep_id, provincia__cod_ubigeo_inei_provincia=prov_id
     ).values_list('cod_ubigeo_inei_distrito', 'ubigeo_distrito')
     return list(distritos)
+
 
 def get_deptos_academicos(fac_id):
     deptos = Departamento.objects.filter(
@@ -136,15 +142,16 @@ class DatosColegiaturaForm(forms.ModelForm):
     sede_colegio = forms.CharField(required=False)
     codigo_colegiado = forms.CharField(required=True)
     estado_colegiado = forms.ChoiceField(label='Estado del colegiado', choices=COLEGIATURA_ESTADO_CHOICES,
-                                       initial=COLEGIATURA_HABILITADO,
-                                       widget=forms.Select(attrs={'class': 'form-control'})
-                                       )
+                                         initial=COLEGIATURA_HABILITADO,
+                                         widget=forms.Select(attrs={'class': 'form-control'})
+                                         )
 
     class Meta:
         model = Colegiatura
         fields = (
             'colegio_profesional', 'sede_colegio', 'codigo_colegiado', 'estado_colegiado'
         )
+
 
 def get_colegios(col_id=None):
     col_list = ['id', 'name']

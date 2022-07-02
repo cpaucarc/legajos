@@ -27,13 +27,16 @@ from apps.common.datatables_pagination import datatable_page
 
 from apps.common.models import UbigeoDistrito, UbigeoProvincia, UbigeoDepartamento, Colegio
 from apps.distincion.models import AdjuntoDistincion, Distincion
-from apps.experiencia.models import AdjuntoAsesorTesis, AdjuntoDocente, AdjuntoEvaluadorProyecto, AdjuntoLaboral, Laboral, AsesorTesis, Docente, EvaluadorProyecto
-from apps.formacion.models import AdjuntoComplementaria, AdjuntoTecnico, AdjuntoUniversitaria, Universitaria, Tecnico, Complementaria
+from apps.experiencia.models import AdjuntoAsesorTesis, AdjuntoDocente, AdjuntoEvaluadorProyecto, AdjuntoLaboral, \
+    Laboral, AsesorTesis, Docente, EvaluadorProyecto
+from apps.formacion.models import AdjuntoComplementaria, AdjuntoTecnico, AdjuntoUniversitaria, Universitaria, Tecnico, \
+    Complementaria
 from apps.idioma.models import Idioma
 from apps.login.views import BaseLogin
 from apps.persona.forms import PersonaForm, DatosGeneralesForm, ExportarCVForm, DatosColegiaturaForm
 from apps.persona.models import Persona, DatosGenerales, Departamento, Colegiatura
 from apps.produccion.models import AdjuntoCientifica, Cientifica
+
 
 # Clase para registrar a una nueva persona
 class PersonaCreateView(LoginRequiredMixin, BaseLogin, CreateView):
@@ -43,9 +46,6 @@ class PersonaCreateView(LoginRequiredMixin, BaseLogin, CreateView):
     msg = None
 
     # def dispatch(self, request, *args, **kwargs):
-
-
-
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -63,7 +63,7 @@ class PersonaCreateView(LoginRequiredMixin, BaseLogin, CreateView):
         if self.request.session.get('tipo_persona') == TIPO_PERSONA_REGISTRADOR:
             if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_REGISTRADOR, TIPO_PERSONA_AUTORIDAD):
                 self.msg = 'El usuario registrador solo puede registrar administrativo o docente, corregir'
-                return self.form_invalid(form_dg,form_dc)
+                return self.form_invalid(form_dg, form_dc)
 
         if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_DOCENTE):
             if not form_dg.is_valid():
@@ -115,7 +115,8 @@ class PersonaCreateView(LoginRequiredMixin, BaseLogin, CreateView):
         if self.msg:
             messages.warning(self.request, self.msg)
         else:
-            messages.warning(self.request, 'Ha ocurrido un error al crear a la persona, revise si ha introducido bien todos los datos')
+            messages.warning(self.request,
+                             'Ha ocurrido un error al crear a la persona, revise si ha introducido bien todos los datos')
 
         context.update({
             'form_datos_generales': DatosGeneralesForm(self.request.POST or None),
@@ -127,6 +128,7 @@ class PersonaCreateView(LoginRequiredMixin, BaseLogin, CreateView):
     def get_success_url(self):
         messages.success(self.request, 'Persona creada con éxito')
         return reverse('persona:crear_persona')
+
 
 # Clase para editar la información de una persona existente
 class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
@@ -158,7 +160,7 @@ class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
         if self.request.session.get('tipo_persona') == TIPO_PERSONA_REGISTRADOR:
             if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_REGISTRADOR, TIPO_PERSONA_AUTORIDAD):
                 self.msg = 'El usuario registrador solo puede actualizar administrativo o docente, corregir'
-                return self.form_invalid(form_dg,form_dc)
+                return self.form_invalid(form_dg, form_dc)
 
         if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_DOCENTE, TIPO_PERSONA_ADMINISTRATIVO):
             if not form_dg.is_valid():
@@ -236,6 +238,7 @@ class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
         messages.success(self.request, 'Persona actualizada con éxito')
         return reverse('persona:editar_persona', kwargs={'pk': self.object.id})
 
+
 class BuscarPersonaAPIView(APIView):
 
     def get(self, request):
@@ -257,6 +260,7 @@ class BuscarPersonaAPIView(APIView):
                 'numero_documento': persona.numero_documento,
             })
         return Response(data, content_type='application/json')
+
 
 # Clase que lista a las personas registradas en la BD
 class ListaPersonaView(LoginRequiredMixin, BaseLogin, View):
@@ -293,14 +297,14 @@ class ListaPersonaView(LoginRequiredMixin, BaseLogin, View):
                     a.correo_personal or '-',
                     a.get_tipo_persona_display(),
                     a.departamento.nombre if a.departamento else '-',
-                    (self.get_enlace_experiencia_laboral(a) + ' ' + 
-                    self.get_enlace_formacion_academica(a) + ' ' +
-                    self.get_enlace_idiomas(a) + ' ' + 
-                    self.get_enlace_produccion(a) + ' ' +
-                    self.get_enlace_distincion(a) + ' ' + 
-                    self.get_enlace_agregar_cursos(a) + ' ' + 
-                    self.get_exportar_cv(a)
-                    ),
+                    (self.get_enlace_experiencia_laboral(a) + ' ' +
+                     self.get_enlace_formacion_academica(a) + ' ' +
+                     self.get_enlace_idiomas(a) + ' ' +
+                     self.get_enlace_produccion(a) + ' ' +
+                     self.get_enlace_distincion(a) + ' ' +
+                     self.get_enlace_agregar_cursos(a) + ' ' +
+                     self.get_exportar_cv(a)
+                     ),
                     self.get_boton_editar(a),
                     self.get_boton_eliminar(a),
                 ])
@@ -313,13 +317,13 @@ class ListaPersonaView(LoginRequiredMixin, BaseLogin, View):
                     a.correo_personal or '-',
                     a.get_tipo_persona_display(),
                     a.departamento.nombre if a.departamento else '-',
-                    (self.get_enlace_experiencia_laboral(a) + ' ' + 
-                    self.get_enlace_formacion_academica(a) + ' ' +
-                    self.get_enlace_idiomas(a) + ' ' + 
-                    self.get_enlace_produccion(a) + ' ' +
-                    self.get_enlace_distincion(a) + ' ' +
-                    self.get_exportar_cv(a)
-                    ),
+                    (self.get_enlace_experiencia_laboral(a) + ' ' +
+                     self.get_enlace_formacion_academica(a) + ' ' +
+                     self.get_enlace_idiomas(a) + ' ' +
+                     self.get_enlace_produccion(a) + ' ' +
+                     self.get_enlace_distincion(a) + ' ' +
+                     self.get_exportar_cv(a)
+                     ),
                     self.get_boton_editar(a),
                     self.get_boton_eliminar(a),
                 ])
@@ -424,6 +428,7 @@ class ListaPersonaView(LoginRequiredMixin, BaseLogin, View):
         boton = '{0}'.format(boton_editar)
         return boton
 
+
 class EliminarPersonaView(LoginRequiredMixin, APIView):
     def get(self, request, *args, **kwargs):
         persona = get_object_or_404(Persona, id=self.kwargs.get('pk'))
@@ -431,6 +436,7 @@ class EliminarPersonaView(LoginRequiredMixin, APIView):
         persona.delete()
         msg = f'Persona eliminada correctamente'
         return Response({'msg': msg, 'tipo_msg': tipo_msg}, HTTP_200_OK)
+
 
 class DepartamentosPorFacultadView(View):
     def get(self, request, *args, **kwargs):
@@ -442,15 +448,18 @@ class DepartamentosPorFacultadView(View):
 
         return JsonResponse({'data': data})
 
+
 class ProvinciaView(View):
     def get(self, request, *args, **kwargs):
         data = [{'codigo': '', 'nombre': '----------'}]
         dep_id = request.GET.get('dep_id', '')
 
         if dep_id.isdigit():
-            provincias = UbigeoProvincia.objects.filter(departamento__cod_ubigeo_inei_departamento=dep_id).annotate(codigo=F('cod_ubigeo_inei_provincia'),nombre=F('ubigeo_provincia')).values('codigo', 'nombre')
+            provincias = UbigeoProvincia.objects.filter(departamento__cod_ubigeo_inei_departamento=dep_id).annotate(
+                codigo=F('cod_ubigeo_inei_provincia'), nombre=F('ubigeo_provincia')).values('codigo', 'nombre')
             data = list(provincias)
         return JsonResponse({'data': data})
+
 
 class DistritoView(View):
     def get(self, request, *args, **kwargs):
@@ -466,6 +475,7 @@ class DistritoView(View):
             ).values('codigo', 'nombre')
             data = list(distritos)
         return JsonResponse({'data': data})
+
 
 class ExportarCVView(TemplateView, BaseLogin):
     template_name = 'persona/exportar_cv.html'
@@ -483,6 +493,7 @@ class ExportarCVView(TemplateView, BaseLogin):
         })
         return context
 
+
 # CV Simple
 class DescargarCVPdf(View, LoginRequiredMixin):
     def get(self, request, *args, **kwargs):
@@ -491,9 +502,12 @@ class DescargarCVPdf(View, LoginRequiredMixin):
         p = get_object_or_404(Persona, pk=self.kwargs.get('pk'))
         foto_path = default_storage.path('{}'.format(p.ruta_foto))
 
-        dep = UbigeoDepartamento.objects.filter(cod_ubigeo_inei_departamento=p.datosgenerales.ubigeo_departamento).last().ubigeo_departamento
-        prov = UbigeoProvincia.objects.filter(cod_ubigeo_inei_provincia=p.datosgenerales.ubigeo_provincia).last().ubigeo_provincia
-        dist = UbigeoDistrito.objects.filter(cod_ubigeo_inei_distrito=p.datosgenerales.ubigeo_distrito).last().ubigeo_distrito
+        dep = UbigeoDepartamento.objects.filter(
+            cod_ubigeo_inei_departamento=p.datosgenerales.ubigeo_departamento).last().ubigeo_departamento
+        prov = UbigeoProvincia.objects.filter(
+            cod_ubigeo_inei_provincia=p.datosgenerales.ubigeo_provincia).last().ubigeo_provincia
+        dist = UbigeoDistrito.objects.filter(
+            cod_ubigeo_inei_distrito=p.datosgenerales.ubigeo_distrito).last().ubigeo_distrito
 
         BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         response = HttpResponse(content_type='application/pdf')
@@ -501,7 +515,7 @@ class DescargarCVPdf(View, LoginRequiredMixin):
             pat=p.apellido_paterno, mat=p.apellido_materno, nom=p.nombres
         )
 
-        #Datos de colegiatura
+        # Datos de colegiatura
         colegio = Colegio.objects.filter(id=p.colegiatura.colegio_profesional).last().name
         sede = Colegiatura.objects.filter(persona=p.colegiatura.persona).last().sede_colegio
         codigo = Colegiatura.objects.filter(persona=p.colegiatura.persona).last().codigo_colegiado
@@ -572,6 +586,7 @@ class DescargarCVPdf(View, LoginRequiredMixin):
                 pass
         return response
 
+
 class DescargarCVPdfDet6(View, LoginRequiredMixin):
     def get(self, request, *args, **kwargs):
         response = HttpResponse(content_type='application/pdf')
@@ -608,15 +623,17 @@ class DescargarCVPdfDet6(View, LoginRequiredMixin):
             if a.get('opcion') == 'formacion_academica' and a.get('valor') == 'on':
                 universitaria = Universitaria.objects.filter(persona=persona)
                 for uni in universitaria:
-                    adjuntos_universitaria.append(AdjuntoUniversitaria.objects.filter(universitaria=uni).order_by('-id'))
-                
+                    adjuntos_universitaria.append(
+                        AdjuntoUniversitaria.objects.filter(universitaria=uni).order_by('-id'))
+
                 tecnico = Tecnico.objects.filter(persona=persona)
                 for tec in tecnico:
                     adjuntos_tecnico.append(AdjuntoTecnico.objects.filter(tecnico=tec).order_by('-id'))
 
                 complementaria = Complementaria.objects.filter(persona=persona)
                 for cmp in complementaria:
-                    adjuntos_complementaria.append(AdjuntoComplementaria.objects.filter(complementaria=cmp).order_by('-id'))
+                    adjuntos_complementaria.append(
+                        AdjuntoComplementaria.objects.filter(complementaria=cmp).order_by('-id'))
 
             if a.get('opcion') == 'experiencia_laboral' and a.get('valor') == 'on':
                 laboral = Laboral.objects.filter(persona=persona)
@@ -630,21 +647,23 @@ class DescargarCVPdfDet6(View, LoginRequiredMixin):
                 asesor_tesis = AsesorTesis.objects.filter(persona=persona)
                 for ast in asesor_tesis:
                     adjuntos_asesor_tesis.append(AdjuntoAsesorTesis.objects.filter(asesor_tesis=ast).order_by('-id'))
-                
+
                 evaluador_proyecto = EvaluadorProyecto.objects.filter(persona=persona)
                 for evpy in evaluador_proyecto:
-                    adjuntos_evaluador_proyecto.append(AdjuntoEvaluadorProyecto.objects.filter(evaluador_proyecto=evpy).order_by('-id'))
+                    adjuntos_evaluador_proyecto.append(
+                        AdjuntoEvaluadorProyecto.objects.filter(evaluador_proyecto=evpy).order_by('-id'))
             if a.get('opcion') == 'idiomas' and a.get('valor') == 'on':
                 idiomas = Idioma.objects.filter(persona=persona)
             if a.get('opcion') == 'produccion_cientifica' and a.get('valor') == 'on':
                 produccion_cientifica = Cientifica.objects.filter(persona=persona)
                 for prdctf in produccion_cientifica:
-                    adjuntos_produccion_cientifica.append(AdjuntoCientifica.objects.filter(cientifica=prdctf).order_by('-id'))
+                    adjuntos_produccion_cientifica.append(
+                        AdjuntoCientifica.objects.filter(cientifica=prdctf).order_by('-id'))
             if a.get('opcion') == 'premios' and a.get('valor') == 'on':
                 premios = Distincion.objects.filter(persona=persona)
                 for prm in premios:
                     adjuntos_premios.append(AdjuntoDistincion.objects.filter(distincion=prm).order_by('-id'))
-        
+
         docs = []
         # docs.append(path)
         for adju in adjuntos_universitaria:
@@ -654,35 +673,35 @@ class DescargarCVPdfDet6(View, LoginRequiredMixin):
         for adjt in adjuntos_tecnico:
             for tec in adjt:
                 docs.append(str(default_storage.path(tec.ruta)))
-                
+
         for adjc in adjuntos_complementaria:
             for cmp in adjc:
                 docs.append(str(default_storage.path(cmp.ruta)))
-                
+
         for adjl in adjuntos_laboral:
             for lab in adjl:
                 docs.append(str(default_storage.path(lab.ruta)))
-                
+
         for adjd in adjuntos_docente:
             for doc in adjd:
                 docs.append(str(default_storage.path(doc.ruta)))
-                
+
         for adjat in adjuntos_asesor_tesis:
             for ast in adjat:
                 docs.append(str(default_storage.path(ast.ruta)))
-                
+
         for adjpc in adjuntos_produccion_cientifica:
             for pdc in adjpc:
                 docs.append(str(default_storage.path(pdc.ruta)))
-                
+
         for adjp in adjuntos_premios:
             for prm in adjp:
                 docs.append(str(default_storage.path(prm.ruta)))
-                
+
         for adjep in adjuntos_evaluador_proyecto:
             for evp in adjep:
                 docs.append(str(default_storage.path(evp.ruta)))
-        
+
         data = {
             'array_filtros': array_filtros,
             'p': persona,
@@ -728,6 +747,7 @@ class DescargarCVPdfDet6(View, LoginRequiredMixin):
                 pass
         return response
 
+
 class DescargarCVPdfDet3(View, LoginRequiredMixin):
     def get(self, request, *args, **kwargs):
         BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -746,15 +766,19 @@ class DescargarCVPdfDet3(View, LoginRequiredMixin):
         # Return the response value
         return response
 
+
 class DescargarCVPdfDet(View, LoginRequiredMixin):
     def get(self, request, *args, **kwargs):
         persona = get_object_or_404(Persona, pk=self.kwargs.get('pk'))
         foto_path = default_storage.path('{}'.format(persona.ruta_foto))
-        dep = UbigeoDepartamento.objects.filter(cod_ubigeo_inei_departamento=persona.datosgenerales.ubigeo_departamento).last().ubigeo_departamento
-        prov = UbigeoProvincia.objects.filter(cod_ubigeo_inei_provincia=persona.datosgenerales.ubigeo_provincia).last().ubigeo_provincia
-        dist = UbigeoDistrito.objects.filter(cod_ubigeo_inei_distrito=persona.datosgenerales.ubigeo_distrito).last().ubigeo_distrito
+        dep = UbigeoDepartamento.objects.filter(
+            cod_ubigeo_inei_departamento=persona.datosgenerales.ubigeo_departamento).last().ubigeo_departamento
+        prov = UbigeoProvincia.objects.filter(
+            cod_ubigeo_inei_provincia=persona.datosgenerales.ubigeo_provincia).last().ubigeo_provincia
+        dist = UbigeoDistrito.objects.filter(
+            cod_ubigeo_inei_distrito=persona.datosgenerales.ubigeo_distrito).last().ubigeo_distrito
 
-        #Datos de colegiatura
+        # Datos de colegiatura
         colegio = Colegio.objects.filter(id=persona.colegiatura.colegio_profesional).last().name
         sede = Colegiatura.objects.filter(persona=persona.colegiatura.persona).last().sede_colegio
         codigo = Colegiatura.objects.filter(persona=persona.colegiatura.persona).last().codigo_colegiado
@@ -785,15 +809,17 @@ class DescargarCVPdfDet(View, LoginRequiredMixin):
             if a.get('opcion') == 'formacion_academica' and a.get('valor') == 'on':
                 universitaria = Universitaria.objects.filter(persona=persona)
                 for uni in universitaria:
-                    adjuntos_universitaria.append(AdjuntoUniversitaria.objects.filter(universitaria=uni).order_by('-id'))
-                
+                    adjuntos_universitaria.append(
+                        AdjuntoUniversitaria.objects.filter(universitaria=uni).order_by('-id'))
+
                 tecnico = Tecnico.objects.filter(persona=persona)
                 for tec in tecnico:
                     adjuntos_tecnico.append(AdjuntoTecnico.objects.filter(tecnico=tec).order_by('-id'))
 
                 complementaria = Complementaria.objects.filter(persona=persona)
                 for cmp in complementaria:
-                    adjuntos_complementaria.append(AdjuntoComplementaria.objects.filter(complementaria=cmp).order_by('-id'))
+                    adjuntos_complementaria.append(
+                        AdjuntoComplementaria.objects.filter(complementaria=cmp).order_by('-id'))
             if a.get('opcion') == 'experiencia_laboral' and a.get('valor') == 'on':
                 laboral = Laboral.objects.filter(persona=persona)
                 for lb in laboral:
@@ -806,16 +832,18 @@ class DescargarCVPdfDet(View, LoginRequiredMixin):
                 asesor_tesis = AsesorTesis.objects.filter(persona=persona)
                 for ast in asesor_tesis:
                     adjuntos_asesor_tesis.append(AdjuntoAsesorTesis.objects.filter(asesor_tesis=ast).order_by('-id'))
-                
+
                 evaluador_proyecto = EvaluadorProyecto.objects.filter(persona=persona)
                 for evpy in evaluador_proyecto:
-                    adjuntos_evaluador_proyecto.append(AdjuntoEvaluadorProyecto.objects.filter(evaluador_proyecto=evpy).order_by('-id'))
+                    adjuntos_evaluador_proyecto.append(
+                        AdjuntoEvaluadorProyecto.objects.filter(evaluador_proyecto=evpy).order_by('-id'))
             if a.get('opcion') == 'idiomas' and a.get('valor') == 'on':
                 idiomas = Idioma.objects.filter(persona=persona)
             if a.get('opcion') == 'produccion_cientifica' and a.get('valor') == 'on':
                 produccion_cientifica = Cientifica.objects.filter(persona=persona)
                 for prdctf in produccion_cientifica:
-                    adjuntos_produccion_cientifica.append(AdjuntoCientifica.objects.filter(cientifica=prdctf).order_by('-id'))
+                    adjuntos_produccion_cientifica.append(
+                        AdjuntoCientifica.objects.filter(cientifica=prdctf).order_by('-id'))
             if a.get('opcion') == 'premios' and a.get('valor') == 'on':
                 premios = Distincion.objects.filter(persona=persona)
                 for prm in premios:
@@ -863,7 +891,7 @@ class DescargarCVPdfDet(View, LoginRequiredMixin):
         html = template.render(data, request)
         nombre_archivo = f"{uuid.uuid4()}.pdf"
         path = f"{settings.STATIC_ROOT}/{nombre_archivo}"
-        print("\n- Path 1: ",path, '\n')
+        print("\n- Path 1: ", path, '\n')
 
         file = open(path, "w+b")
         pisa.CreatePDF(html, dest=file)
@@ -876,32 +904,32 @@ class DescargarCVPdfDet(View, LoginRequiredMixin):
         for adju in adjuntos_universitaria:
             for univ in adju:
                 # docs.append(default_storage.path(univ.ruta))
-                docs.append("/media/"+univ.rut)
+                docs.append("/media/" + univ.rut)
         for adjt in adjuntos_tecnico:
             for tec in adjt:
                 # docs.append(f"{settings.STATIC_ROOT}/media/{tec.ruta}")
-                docs.append("/media/"+tec.ruta)
+                docs.append("/media/" + tec.ruta)
         for adjc in adjuntos_complementaria:
             for cmp in adjc:
-                docs.append("/media/"+cmp.ruta)
+                docs.append("/media/" + cmp.ruta)
         for adjl in adjuntos_laboral:
             for lab in adjl:
-                docs.append("/media/"+lab.ruta)
+                docs.append("/media/" + lab.ruta)
         for adjd in adjuntos_docente:
             for doc in adjd:
-                docs.append("/media/"+doc.ruta)
+                docs.append("/media/" + doc.ruta)
         for adjat in adjuntos_asesor_tesis:
             for ast in adjat:
-                docs.append("/media/"+ast.ruta)
+                docs.append("/media/" + ast.ruta)
         for adjpc in adjuntos_produccion_cientifica:
             for pdc in adjpc:
-                docs.append("/media/"+pdc.ruta)
+                docs.append("/media/" + pdc.ruta)
         for adjp in adjuntos_premios:
             for prm in adjp:
-                docs.append("/media/"+prm.ruta)
+                docs.append("/media/" + prm.ruta)
         for adjep in adjuntos_evaluador_proyecto:
             for evp in adjep:
-                docs.append("/media/"+evp.ruta)
+                docs.append("/media/" + evp.ruta)
 
         print("\nDocumentos: ", docs)
 
@@ -913,7 +941,7 @@ class DescargarCVPdfDet(View, LoginRequiredMixin):
                 continue
             try:
                 print(f" -> DocName {ind}:", doc_name)
-                merger.append(PdfFileReader(open(doc_name, 'rb')),)
+                merger.append(PdfFileReader(open(doc_name, 'rb')), )
                 print(f" - Merger {ind}:", merger, "\n")
             except Exception as e:
                 print(f" Ocurrio un error: {e}")
@@ -922,7 +950,7 @@ class DescargarCVPdfDet(View, LoginRequiredMixin):
         nombre_archivo_merged = f"{uuid.uuid4()}.pdf"
         path_merged = f"{settings.STATIC_ROOT}/{nombre_archivo_merged}"
 
-        print("\n- Path 2: ",path_merged, '\n')
+        print("\n- Path 2: ", path_merged, '\n')
         merger.write(path_merged)
         merger.close()
 
@@ -931,7 +959,7 @@ class DescargarCVPdfDet(View, LoginRequiredMixin):
         pdf = file.read()
         file.close()
         response.write(pdf)
-        print("\n- Response: ",response, '\n')
+        print("\n- Response: ", response, '\n')
         if os.path.exists(path):
             try:
                 os.remove(path)
