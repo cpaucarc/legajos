@@ -10,11 +10,6 @@ class DocenteMiddleware:
         return response
 
     def process_view(self, request, view_func, view_args, view_kwargs):
-        print('\n-- request user', request.user, ' --')
-        print('-- view_func name', view_func.__name__, type(view_func.__name__))
-        print('-- view_args', view_args)
-        print('-- view_kwargs', view_kwargs, ' --\n')
-        print('Anonymous: ', request.user.id)
 
         if 'PersonaCreateView' in view_func.__name__:
             if request.user.id is None or request.user.is_staff is False:
