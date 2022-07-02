@@ -42,11 +42,6 @@ class LoginView(FormView):
         next = self.request.GET.get("next")
         user = auth.authenticate(username=self.request.POST['username'].strip(), password=self.request.POST['password'].strip())
         persona_id = user.persona.id if user.persona else None
-        print('\nUser', user)
-        print('Username', self.request.POST['username'])
-        print('Password', self.request.POST['password'])
-        print('Request POST', self.request.POST)
-        print('Persona', persona_id, '\n')
 
         if next is not None:
             return next
@@ -90,7 +85,6 @@ class BaseLogin(ContextMixin, View):
             'facultad': self.request.session.get('facultad')
         })
         return context
-
 
 class InicioView(LoginRequiredMixin, BaseLogin, TemplateView):
     template_name = 'login/inicio.html'

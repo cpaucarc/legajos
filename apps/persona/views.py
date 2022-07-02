@@ -11,7 +11,7 @@ from django.core.files.storage import default_storage
 from django.db.models import Value, Q, F
 from django.db.models.functions import Concat
 from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.template.loader import get_template
 from django.urls import reverse
 from django.views import View
@@ -42,6 +42,11 @@ class PersonaCreateView(LoginRequiredMixin, BaseLogin, CreateView):
     form_class = PersonaForm
     msg = None
 
+    # def dispatch(self, request, *args, **kwargs):
+
+
+
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context.update({
@@ -55,8 +60,6 @@ class PersonaCreateView(LoginRequiredMixin, BaseLogin, CreateView):
         form_dc = DatosColegiaturaForm(self.request.POST or None)
         valid = True
         ruta = None
-        print('♦♦♦♦♦♦♦♦Form dg', form_dg)
-        print('♦♦♦♦♦♦♦♦Form 1', form)
         if self.request.session.get('tipo_persona') == TIPO_PERSONA_REGISTRADOR:
             if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_REGISTRADOR, TIPO_PERSONA_AUTORIDAD):
                 self.msg = 'El usuario registrador solo puede registrar administrativo o docente, corregir'
@@ -137,15 +140,12 @@ class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
     def form_valid(self, form):
         ruta = None
         model_datos_generales = DatosGenerales.objects.filter(persona_id=self.object.id).last()
-        print('views-140: model_datos_generales: ', model_datos_generales)
         model_datos_colegiatura = Colegiatura.objects.filter(persona_id=self.object.id).last()
-        print('views-142: model_datos_colegiatura: ', model_datos_colegiatura)
 
         if model_datos_generales:
             form_dg = DatosGeneralesForm(self.request.POST or None, instance=model_datos_generales)
         else:
             form_dg = DatosGeneralesForm(self.request.POST or None)
-        print('views-148: form_dg: ', form_dg)
 
         # Colegiatura
         if model_datos_colegiatura:
@@ -211,8 +211,6 @@ class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
 
     def form_invalid(self, form, **kwargs):
         context = self.get_context_data(**kwargs)
-        print('context views-214:', context)
-        print('context views-215:', self.request)
         if self.msg:
             messages.warning(self.request, self.msg)
         else:
@@ -438,11 +436,9 @@ class DepartamentosPorFacultadView(View):
     def get(self, request, *args, **kwargs):
         data = [{'codigo': '', 'nombre': '----------'}]
         facultad_id = request.GET.get('facultad_id', '')
-        print('Data 1: ', data)
         if facultad_id.isdigit():
             departamento = Departamento.objects.filter(facultad_id=facultad_id).values('id', 'nombre')
             data += list(departamento)
-        print('Data 2: ', data)
 
         return JsonResponse({'data': data})
 
