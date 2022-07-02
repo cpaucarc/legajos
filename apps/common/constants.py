@@ -95,10 +95,12 @@ TIPO_CONTRATO_CHOICES = (
 
 DEDICACION_TIEMPO_COMPLETO = 'tiempo_completo'
 DEDICACION_TIEMPO_PARCIAL = 'tiempo_parcial'
+DEDICACION_DEDICACION_EXCLUSIVA = 'dedicacion_exclusiva'
 
 DEDICACION_CHOICES = (
     (DEDICACION_TIEMPO_COMPLETO, 'Tiempo completo'),
     (DEDICACION_TIEMPO_PARCIAL, 'Tiempo parcial'),
+    (DEDICACION_DEDICACION_EXCLUSIVA, 'Dedicación Exclusiva'),
 )
 
 CATEGORIA_AUXILIAR = 'auxiliar'
