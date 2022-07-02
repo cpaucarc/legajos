@@ -55,6 +55,12 @@ class Persona(AuditableModel, TimeStampedModel):
             a_materno=self.apellido_materno
         )
 
+    @property
+    def indenteficador_persona(self):
+        return '{id}'.format(
+            id=self.id
+        )
+
     def get_default_password_and_username(self):
         if self.numero_documento:
             return self.numero_documento
