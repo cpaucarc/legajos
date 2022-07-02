@@ -12,7 +12,7 @@
           <div class="col-lg-7 col-md-7 col-xs-7">
             <p data-toggle="tooltip" title="Gestionar persona" data-placement="bottom"
                class="modulo ocultar ellipsis blue-tooltip" style="margin-top: 0.7rem; font-size:13px;">
-              Personas
+              Gestionar Personas
             <p>
           </div>
         </a>
@@ -37,7 +37,7 @@
           <i class="fa fa-briefcase"></i>
           </div>
           <div class="col-lg-7 col-md-7 col-xs-7">
-            <p data-toggle="tooltip" title="Mi información" data-placement="bottom"
+            <p data-toggle="tooltip" title="Experiancia laboral" data-placement="bottom"
                class="modulo ocultar ellipsis blue-tooltip" style="margin-top: 0.7rem; font-size:13px;">
               Experiancia laboral
             <p>
@@ -50,7 +50,7 @@
           <i class="fa fa-graduation-cap"></i>
           </div>
           <div class="col-lg-7 col-md-7 col-xs-7">
-            <p data-toggle="tooltip" title="Mi información" data-placement="bottom"
+            <p data-toggle="tooltip" title="Formación académica" data-placement="bottom"
                class="modulo ocultar ellipsis blue-tooltip" style="margin-top: 0.7rem; font-size:13px;">
               Formación académica
             <p>
@@ -63,7 +63,7 @@
           <i class="fa fa-flag"></i>
           </div>
           <div class="col-lg-7 col-md-7 col-xs-7">
-            <p data-toggle="tooltip" title="Mi información" data-placement="bottom"
+            <p data-toggle="tooltip" title="Idioma" data-placement="bottom"
                class="modulo ocultar ellipsis blue-tooltip" style="margin-top: 0.7rem; font-size:13px;">
               Idioma
             <p>
@@ -76,7 +76,7 @@
           <i class="fa fa-search"></i>
           </div>
           <div class="col-lg-7 col-md-7 col-xs-7">
-            <p data-toggle="tooltip" title="Mi información" data-placement="bottom"
+            <p data-toggle="tooltip" title="Producción científica" data-placement="bottom"
                class="modulo ocultar ellipsis blue-tooltip" style="margin-top: 0.7rem; font-size:13px;">
               Producción científica
             <p>
@@ -89,35 +89,37 @@
           <i class="fa fa-trophy"></i>
           </div>
           <div class="col-lg-7 col-md-7 col-xs-7">
-            <p data-toggle="tooltip" title="Mi información" data-placement="bottom"
+            <p data-toggle="tooltip" title="Distinción y premio" data-placement="bottom"
                class="modulo ocultar ellipsis blue-tooltip" style="margin-top: 0.7rem; font-size:13px;">
               Distinción y premio
             <p>
           </div>
         </a>
       </li>
+        {% if tipo_persona == 'docente' %}
      <li>
         <a href="/cursos/agregar-cursos/{{ identificador_persona }}">
           <div class="col-lg-3 col-md-3 col-xs-3">
           <i class="fa fa-book"></i>
           </div>
           <div class="col-lg-7 col-md-7 col-xs-7">
-            <p data-toggle="tooltip" title="Mi información" data-placement="bottom"
+            <p data-toggle="tooltip" title="Cursos dictados" data-placement="bottom"
                class="modulo ocultar ellipsis blue-tooltip" style="margin-top: 0.7rem; font-size:13px;">
               Cursos dictados
             <p>
           </div>
         </a>
       </li>
+        {% endif %}
      <li>
         <a href="/exportar-cv/{{ identificador_persona }}">
           <div class="col-lg-3 col-md-3 col-xs-3">
           <i class="fa fa-file-text"></i>
           </div>
           <div class="col-lg-7 col-md-7 col-xs-7">
-            <p data-toggle="tooltip" title="Mi información" data-placement="bottom"
+            <p data-toggle="tooltip" title="Curriculum Vitae" data-placement="bottom"
                class="modulo ocultar ellipsis blue-tooltip" style="margin-top: 0.7rem; font-size:13px;">
-              Curriculum vitae
+              Curriculum Vitae
             <p>
           </div>
         </a>
