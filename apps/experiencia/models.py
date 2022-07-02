@@ -102,4 +102,3 @@ class AdjuntoEvaluadorProyecto(BaseModel):
         if path:
             os.remove(path)
         super(AdjuntoEvaluadorProyecto, self).delete()
-

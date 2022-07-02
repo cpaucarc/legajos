@@ -27,7 +27,7 @@ class Cientifica(BaseModel):
     autor = models.CharField('Autor', max_length=100)
     tipo_congreso = models.CharField('Tipo de congreso', max_length=45, choices=TIPO_CONGRESO_CHOICES, blank=True,
                                      null=True)
-    pais_publicacion= models.ForeignKey(UbigeoPais, on_delete=models.PROTECT)
+    pais_publicacion = models.ForeignKey(UbigeoPais, on_delete=models.PROTECT)
     persona = models.ForeignKey(Persona, on_delete=models.PROTECT)
 
     def delete(self, using=None, keep_parents=False):

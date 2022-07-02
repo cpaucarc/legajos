@@ -26,7 +26,8 @@ class CientificaForm(forms.ModelForm):
                   'orden_autoria', 'autor', 'pais_publicacion', 'tipo_congreso')
 
     def clean_fecha_publicacion(self):
-        if self.cleaned_data.get('fecha_publicacion') and self.cleaned_data.get('fecha_publicacion') > timezone.now().date():  # noqa
+        if self.cleaned_data.get('fecha_publicacion') and self.cleaned_data.get(
+                'fecha_publicacion') > timezone.now().date():  # noqa
             raise forms.ValidationError('La fecha de publicacion no puede ser mayor a la fecha actual')
         if not self.cleaned_data.get('fecha_publicacion'):
             raise forms.ValidationError('Debe registrar la fecha de publicacion')

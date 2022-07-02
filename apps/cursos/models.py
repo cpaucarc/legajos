@@ -3,6 +3,7 @@ from django.db import models
 from apps.common.models import Institucion
 from apps.persona.models import Persona
 
+
 # Create your models here.
 class Semestre(models.Model):
     nombre = models.CharField(max_length=7)
@@ -12,7 +13,7 @@ class Semestre(models.Model):
     def __str__(self):
         return '{nombre}'.format(nombre=self.nombre)
 
-        
+
 class CursoDictado(models.Model):
     escuela = models.CharField(max_length=100)
     curso = models.CharField(max_length=100)

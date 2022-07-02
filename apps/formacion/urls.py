@@ -7,6 +7,7 @@ from apps.formacion.views import (GuardarUniversitariaView, ListaUniversitariaVi
 from apps.formacion.views import (
     FormacionAcademicaView
 )
+
 app_name = 'formacion'
 urlpatterns = [
     path('formacion-academica/<str:pk>', FormacionAcademicaView.as_view(), name='formacion_academica'),

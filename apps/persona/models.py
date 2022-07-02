@@ -2,8 +2,9 @@ from django.core.validators import validate_email
 from django.db import models
 
 from apps.common.constants import DOCUMENT_TYPE_CHOICES, DOCUMENT_TYPE_DNI, SEXO_CHOICES, TIPO_PERSONA_CHOICES, \
-    CATEGORIA_CHOICES, DEDICACION_CHOICES, TIPO_CONTRATO_CHOICES, COLEGIATURA_HABILITADO,COLEGIATURA_INHABILITADO,COLEGIATURA_ESTADO_CHOICES
-from apps.common.models import AuditableModel, TimeStampedModel, UbigeoPais,Colegio
+    CATEGORIA_CHOICES, DEDICACION_CHOICES, TIPO_CONTRATO_CHOICES, COLEGIATURA_HABILITADO, COLEGIATURA_INHABILITADO, \
+    COLEGIATURA_ESTADO_CHOICES
+from apps.common.models import AuditableModel, TimeStampedModel, UbigeoPais, Colegio
 
 
 class Facultad(models.Model):
@@ -82,10 +83,12 @@ class DatosGenerales(AuditableModel, TimeStampedModel):
     ubigeo_distrito = models.CharField('Distrito', max_length=6)
     persona = models.OneToOneField(Persona, on_delete=models.CASCADE)
 
+
 class Colegiatura(AuditableModel, TimeStampedModel):
     # colegio_profesional = models.ForeignKey(Colegio, on_delete=models.CASCADE, blank=True, null=True)
-    colegio_profesional = models.CharField(verbose_name='Colegio profesional',max_length=5, blank=True, null=True)
-    sede_colegio = models.CharField(verbose_name='Sede del colegio',max_length=200, blank=True, null=True)
-    codigo_colegiado = models.CharField(verbose_name='Código del colegiado',max_length=15, blank=True, null=True)
-    estado_colegiado = models.BooleanField(verbose_name='Estado del colegiado',choices=COLEGIATURA_ESTADO_CHOICES, default=COLEGIATURA_HABILITADO)
+    colegio_profesional = models.CharField(verbose_name='Colegio profesional', max_length=5, blank=True, null=True)
+    sede_colegio = models.CharField(verbose_name='Sede del colegio', max_length=200, blank=True, null=True)
+    codigo_colegiado = models.CharField(verbose_name='Código del colegiado', max_length=15, blank=True, null=True)
+    estado_colegiado = models.BooleanField(verbose_name='Estado del colegiado', choices=COLEGIATURA_ESTADO_CHOICES,
+                                           default=COLEGIATURA_HABILITADO)
     persona = models.OneToOneField(Persona, on_delete=models.CASCADE, blank=True, null=True)
