@@ -209,4 +209,13 @@ $(document).ready(function () {
     }
   });
 
+  // Bloquear algunos inputs si esta en la ruta de editar
+  if (window.location.pathname.startsWith("/editar-persona/")){
+    $('#id_tipo_documento').prop('readonly', true);
+    $('#id_numero_documento').prop('readonly', true);
+    $('#id_apellido_paterno').prop('readonly', true);
+    $('#id_apellido_materno').prop('readonly', true);
+    $('#id_nombres').prop('readonly', true);
+  }
+
 });
