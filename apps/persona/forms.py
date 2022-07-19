@@ -15,6 +15,7 @@ class PersonaForm(forms.ModelForm):
     apellido_paterno = forms.CharField(required=True)
     nombres = forms.CharField(required=True)
     celular = forms.CharField(required=True)
+    ruc = forms.CharField(required=False)
     departamento = forms.ModelChoiceField(queryset=Departamento.objects.none(), required=False)
     ruta_foto = forms.FileField(required=False, widget=forms.FileInput(attrs={'class': 'form-control input-sm'}))
 
@@ -31,11 +32,19 @@ class PersonaForm(forms.ModelForm):
         model = Persona
         fields = (
             'tipo_documento', 'numero_documento', 'sexo', 'nombres', 'apellido_paterno', 'apellido_materno',
-            'celular', 'correo_personal', 'tipo_persona', 'departamento', 'facultad', 'resumen'
+            'celular', 'correo_personal', 'ruc', 'tipo_persona', 'departamento', 'facultad', 'resumen'
         )
         widgets = {
             'resumen': forms.Textarea(attrs={'rows': 3, 'max_length': 1500, 'class': 'form-control'}),
         }
+
+    def clean_ruc(self):
+        if len(self.cleaned_data.get('ruc')) != 11 and len(self.cleaned_data.get('ruc'))!=0:  # noqa
+            raise forms.ValidationError('El N° RUC debe tener 11 digitos')
+        if not str(self.cleaned_data.get('ruc')).startswith('10') and not str(self.cleaned_data.get(
+                'ruc')).startswith('20') and not len(self.cleaned_data.get('ruc'))==0:
+            raise forms.ValidationError('El N°RUC debe comenzar con 10 o 20')
+        return self.cleaned_data.get('ruc')
 
 
 class DatosGeneralesForm(forms.ModelForm):

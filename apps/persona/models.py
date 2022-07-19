@@ -4,7 +4,7 @@ from django.db import models
 from apps.common.constants import DOCUMENT_TYPE_CHOICES, DOCUMENT_TYPE_DNI, SEXO_CHOICES, TIPO_PERSONA_CHOICES, \
     CATEGORIA_CHOICES, DEDICACION_CHOICES, TIPO_CONTRATO_CHOICES, COLEGIATURA_HABILITADO, COLEGIATURA_INHABILITADO, \
     COLEGIATURA_ESTADO_CHOICES
-from apps.common.models import AuditableModel, TimeStampedModel, UbigeoPais, Colegio
+from apps.common.models import AuditableModel, TimeStampedModel, UbigeoPais, validate_ruc
 
 
 class Facultad(models.Model):
@@ -34,6 +34,7 @@ class Persona(AuditableModel, TimeStampedModel):
     apellido_materno = models.CharField('Apellido materno', max_length=120, blank=True, null=True)
     celular = models.CharField(max_length=50, null=True, blank=True)
     correo_personal = models.CharField(max_length=100, null=True, blank=True, validators=[validate_email])
+    ruc = models.CharField(max_length=11, null=True, blank=True, validators=[validate_ruc],verbose_name='RUC')
     tipo_persona = models.CharField(max_length=25, choices=TIPO_PERSONA_CHOICES)
     facultad = models.ForeignKey(Facultad, on_delete=models.PROTECT, blank=True, null=True)
     departamento = models.ForeignKey(Departamento, on_delete=models.PROTECT, blank=True, null=True)
