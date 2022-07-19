@@ -184,6 +184,10 @@
 {% endblock %}
 {% block javascript %}
     <script>
+        var urlELiminarLaboral = "{% url 'experiencia:eliminar_laboral' 'id' %}";
+        var urlELiminarAsesor = "{% url 'experiencia:eliminar_asesor' 'id' %}";
+        var urlELiminarEvaluador = "{% url 'experiencia:eliminar_evaluador' 'id' %}";
+        var urlELiminarDocente = "{% url 'experiencia:eliminar_docente' 'id' %}";
         var urlListaLaboral = "{% url 'experiencia:lista_laboral' pk %}";
         var urlListaDocente = "{% url 'experiencia:lista_docente' pk %}";
         var urlListaAsesorTesis = "{% url 'experiencia:lista_asesor_tesis' pk %}";

@@ -4,12 +4,15 @@ from apps.experiencia.views import (
     SubirArchivosView, ListaArchivosView, EliminarArchivoView,
     DescargarArchivoView, ListaDocenteView, GuardarDocenteView, ConsultaDocenteView,
     ListaAsesorTesisView, GuardarAsesorTesisView, ConsultaAsesorTesisView, ConsultaEvaluadorProyectoView,
-    ListaEvaluadorProyectoView, GuardarEvaluadorProyectoView
+    ListaEvaluadorProyectoView, GuardarEvaluadorProyectoView,EliminarLaboralView,EliminarDocenteView,EliminarAsesorView,EliminarEvaluadorView
 )
 
 app_name = 'experiencia'
 urlpatterns = [
     path('experiencia-laboral/<str:pk>', ExperienciaLaboralView.as_view(), name='experiencia_laboral'),
+    path('eliminar-laboral/<str:pk>', EliminarLaboralView.as_view(), name='eliminar_laboral'),
+    path('eliminar-asesor/<str:pk>', EliminarAsesorView.as_view(), name='eliminar_asesor'),
+    path('eliminar-evaluador/<str:pk>', EliminarEvaluadorView.as_view(), name='eliminar_evaluador'),
     path('consulta-laboral/<str:pk>', ConsultaLaboralView.as_view(), name='consulta_laboral'),
     path('consulta-docente/<str:pk>', ConsultaDocenteView.as_view(), name='consulta_docente'),
     path('consulta-asesor-tesis/<str:pk>', ConsultaAsesorTesisView.as_view(), name='consulta_asesor_tesis'),
@@ -17,6 +20,7 @@ urlpatterns = [
          name='consulta_evaluador_proyecto'),
     path('lista-laboral/<str:pk>', ListaLaboralView.as_view(), name='lista_laboral'),
     path('lista-docente/<str:pk>', ListaDocenteView.as_view(), name='lista_docente'),
+    path('eliminar-docente/<str:pk>', EliminarDocenteView.as_view(), name='eliminar_docente'),
     path('lista-asesor-tesis/<str:pk>', ListaAsesorTesisView.as_view(), name='lista_asesor_tesis'),
     path('lista-evaluador-proyecto/<str:pk>', ListaEvaluadorProyectoView.as_view(), name='lista_evaluador_proyecto'),
     path('guardar-laboral/<str:pk>/', GuardarLaboralView.as_view(), name='guardar_laboral'),

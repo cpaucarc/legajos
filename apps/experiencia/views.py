@@ -8,6 +8,9 @@ from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse
 from django.views import View
 from django.views.generic import TemplateView
+from rest_framework.response import Response
+from rest_framework.status import HTTP_200_OK
+from rest_framework.views import APIView
 
 from apps.common.constants import (TIPO_DOCUMENTO_DOCENTE, TIPO_DOCUMENTO_CHOICES, TIPO_DOCUMENTO_LABORAL,
                                    TIPO_DOCUMENTO_ASESOR_TESIS, TIPO_DOCUMENTO_EVALUADOR_PROYECTO)
@@ -33,6 +36,14 @@ class ExperienciaLaboralView(LoginRequiredMixin, BaseLogin, ControlDocenteAdmini
             'tipo_persona_consultada': self.persona.tipo_persona,
         })
         return context
+
+
+class EliminarLaboralView(LoginRequiredMixin, APIView):
+    def get(self, request, *args, **kwargs):
+        laboral = get_object_or_404(Laboral, id=self.kwargs.get('pk'))
+        laboral.delete()
+        msg = f'Registro eliminado correctamente'
+        return Response({'msg': msg}, HTTP_200_OK)
 
 
 class ListaLaboralView(LoginRequiredMixin, View):
@@ -317,6 +328,14 @@ class ListaDocenteView(LoginRequiredMixin, View):
         return boton
 
 
+class EliminarDocenteView(LoginRequiredMixin, APIView):
+    def get(self, request, *args, **kwargs):
+        docente = get_object_or_404(Docente, id=self.kwargs.get('pk'))
+        docente.delete()
+        msg = f'Registro eliminado correctamente'
+        return Response({'msg': msg}, HTTP_200_OK)
+
+
 class GuardarDocenteView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         id_docente = request.GET.get('docente_id')
@@ -444,6 +463,14 @@ class ListaAsesorTesisView(LoginRequiredMixin, View):
         return boton
 
 
+class EliminarAsesorView(LoginRequiredMixin, APIView):
+    def get(self, request, *args, **kwargs):
+        asesor = get_object_or_404(AsesorTesis, id=self.kwargs.get('pk'))
+        asesor.delete()
+        msg = f'Registro eliminado correctamente'
+        return Response({'msg': msg}, HTTP_200_OK)
+
+
 class ListaEvaluadorProyectoView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         id_persona = kwargs.get('pk')
@@ -492,6 +519,14 @@ class ListaEvaluadorProyectoView(LoginRequiredMixin, View):
         boton = boton.format(a.id, TIPO_DOCUMENTO_EVALUADOR_PROYECTO)
         boton = '{0}'.format(boton)
         return boton
+
+
+class EliminarEvaluadorView(LoginRequiredMixin, APIView):
+    def get(self, request, *args, **kwargs):
+        evaluador = get_object_or_404(EvaluadorProyecto, id=self.kwargs.get('pk'))
+        evaluador.delete()
+        msg = f'Registro eliminado correctamente'
+        return Response({'msg': msg}, HTTP_200_OK)
 
 
 class GuardarAsesorTesisView(LoginRequiredMixin, View):
