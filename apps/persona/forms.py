@@ -39,10 +39,10 @@ class PersonaForm(forms.ModelForm):
         }
 
     def clean_ruc(self):
-        if len(self.cleaned_data.get('ruc')) != 11:  # noqa
+        if len(self.cleaned_data.get('ruc')) != 11 and len(self.cleaned_data.get('ruc'))!=0:  # noqa
             raise forms.ValidationError('El N° RUC debe tener 11 digitos')
         if not str(self.cleaned_data.get('ruc')).startswith('10') and not str(self.cleaned_data.get(
-                'ruc')).startswith('20'):
+                'ruc')).startswith('20') and not len(self.cleaned_data.get('ruc'))==0:
             raise forms.ValidationError('El N°RUC debe comenzar con 10 o 20')
         return self.cleaned_data.get('ruc')
 
