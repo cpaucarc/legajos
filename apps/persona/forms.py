@@ -15,6 +15,7 @@ class PersonaForm(forms.ModelForm):
     apellido_paterno = forms.CharField(required=True)
     nombres = forms.CharField(required=True)
     celular = forms.CharField(required=True)
+    ruc = forms.CharField(required=False)
     departamento = forms.ModelChoiceField(queryset=Departamento.objects.none(), required=False)
     ruta_foto = forms.FileField(required=False, widget=forms.FileInput(attrs={'class': 'form-control input-sm'}))
 
@@ -31,7 +32,7 @@ class PersonaForm(forms.ModelForm):
         model = Persona
         fields = (
             'tipo_documento', 'numero_documento', 'sexo', 'nombres', 'apellido_paterno', 'apellido_materno',
-            'celular', 'correo_personal', 'tipo_persona', 'departamento', 'facultad', 'resumen'
+            'celular', 'correo_personal','ruc', 'tipo_persona', 'departamento', 'facultad', 'resumen'
         )
         widgets = {
             'resumen': forms.Textarea(attrs={'rows': 3, 'max_length': 1500, 'class': 'form-control'}),
