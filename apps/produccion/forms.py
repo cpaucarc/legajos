@@ -15,6 +15,7 @@ class CientificaForm(forms.ModelForm):
     fecha_publicacion = forms.DateField(widget=forms.DateInput(format='%Y-%m-%d',
                                                                attrs={'class': 'form-control input-sm',
                                                                       'type': 'date'}))
+    sub_titulo = forms.CharField(required=False)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
