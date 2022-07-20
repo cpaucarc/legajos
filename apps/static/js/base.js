@@ -10,7 +10,7 @@
   convierteMayuscula($("#id_apellido_paterno"));
   convierteMayuscula($("#id_cargo"));
   convierteMayuscula($("#id_apellido_materno"));
-  convierteMayuscula($("#id_d-descripcion_cargo"));
+  // convierteMayuscula($("#id_d-descripcion_cargo"));
   convierteMayuscula($("#id_nombres"));
   convierteMayuscula($("#id_u-nombre_grado"));
   convierteMayuscula($("#id_u-facultad"));
@@ -26,7 +26,7 @@
     regex: "^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ()0123456789-]+(?: [a-zA-ZáéíóúÁÉÍÓÚñÑüÜ()0123456789-]+)*$", placeholder:''
   });
   $("#id_descripcion_cargo").inputmask({
-    regex: "^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ]+(?: [a-zA-ZáéíóúÁÉÍÓÚñÑüÜ]+)*$", placeholder:''
+    // regex: "^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ]+(?: [a-zA-ZáéíóúÁÉÍÓÚñÑüÜ]+)*$", placeholder:''
   });
   $("#formDistincion #id_descripcion").inputmask({
     regex: "^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ]+(?: [a-zA-ZáéíóúÁÉÍÓÚñÑüÜ]+)*$", placeholder:''
