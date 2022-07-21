@@ -514,13 +514,17 @@ class DescargarCVPdf(View, LoginRequiredMixin):
         response['Content-Disposition'] = 'attachment; filename="{pat}_{mat}_{nom}_CV_SIMPLE.pdf"'.format(
             pat=p.apellido_paterno, mat=p.apellido_materno, nom=p.nombres
         )
-
         # Datos de colegiatura
-        colegio = Colegio.objects.filter(id=p.colegiatura.colegio_profesional).last().name
-        sede = Colegiatura.objects.filter(persona=p.colegiatura.persona).last().sede_colegio
-        codigo = Colegiatura.objects.filter(persona=p.colegiatura.persona).last().codigo_colegiado
-        estado = Colegiatura.objects.filter(persona=p.colegiatura.persona).last().estado_colegiado
-
+        sede = None
+        codigo = None
+        estado = None
+        colegio = None
+        colegiatura = Colegiatura.objects.filter(persona=p).last()
+        if colegiatura:
+            sede = colegiatura.sede_colegio
+            codigo = colegiatura.codigo_colegiado
+            estado = colegiatura.estado_colegiado
+            colegio = colegiatura.colegio_profesional
         universitaria = None
         tecnico = None
         complementaria = None
@@ -779,10 +783,16 @@ class DescargarCVPdfDet(View, LoginRequiredMixin):
             cod_ubigeo_inei_distrito=persona.datosgenerales.ubigeo_distrito).last().ubigeo_distrito
 
         # Datos de colegiatura
-        colegio = Colegio.objects.filter(id=persona.colegiatura.colegio_profesional).last().name
-        sede = Colegiatura.objects.filter(persona=persona.colegiatura.persona).last().sede_colegio
-        codigo = Colegiatura.objects.filter(persona=persona.colegiatura.persona).last().codigo_colegiado
-        estado = Colegiatura.objects.filter(persona=persona.colegiatura.persona).last().estado_colegiado
+        sede = None
+        codigo = None
+        estado = None
+        colegio = None
+        colegiatura = Colegiatura.objects.filter(persona=persona).last()
+        if colegiatura:
+            sede = colegiatura.sede_colegio
+            codigo = colegiatura.codigo_colegiado
+            estado = colegiatura.estado_colegiado
+            colegio = colegiatura.colegio_profesional
 
         universitaria = None
         adjuntos_universitaria = []
