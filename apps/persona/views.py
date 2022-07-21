@@ -33,7 +33,7 @@ from apps.formacion.models import AdjuntoComplementaria, AdjuntoTecnico, Adjunto
     Complementaria
 from apps.idioma.models import Idioma
 from apps.login.views import BaseLogin
-from apps.persona.forms import PersonaForm, DatosGeneralesForm, ExportarCVForm, ColegiaturaForm
+from apps.persona.forms import PersonaForm, DatosGeneralesForm, ExportarCVForm, ColegiaturaFormset
 from apps.persona.models import Persona, DatosGenerales, Departamento, Colegiatura
 from apps.produccion.models import AdjuntoCientifica, Cientifica
 
@@ -55,7 +55,9 @@ class PersonaCreateView(LoginRequiredMixin, BaseLogin, CreateView):
         return context
 
     def form_valid(self, form):
+        context = self.get_context_data()
         form_dg = DatosGeneralesForm(self.request.POST or None)
+        colegiatura_formset = context['colegiatura_formset']
         valid = True
         ruta = None
         if self.request.session.get('tipo_persona') == TIPO_PERSONA_REGISTRADOR:
@@ -112,6 +114,9 @@ class PersonaCreateView(LoginRequiredMixin, BaseLogin, CreateView):
         })
 
         return self.render_to_response(context)
+
+    def get_colegiatura_formset(self):
+        return ColegiaturaFormset(self.request.POST or None)
 
     def get_success_url(self):
         messages.success(self.request, 'Persona creada con éxito')
