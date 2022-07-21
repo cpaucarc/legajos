@@ -108,6 +108,14 @@ class PersonaCreateView(LoginRequiredMixin, BaseLogin, CreateView):
                     if cont == 0:
                         self.msg = 'Falta agregar miembro del equipo del proyecto de capacitación'
                         return self.form_invalid(form)
+                    persona = form.save(commit=False)
+
+                    cole_formset = colegiatura_formset.save(commit=False)
+                    for f in cole_formset:
+                        f.creado_por = self.request.user.username
+                        f.persona_id = persona.id
+                        f.persona = persona
+                        f.save()
 
         return HttpResponseRedirect(self.get_success_url())
 
