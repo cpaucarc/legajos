@@ -29,12 +29,13 @@ class PersonaForm(forms.ModelForm):
             self.fields['departamento'].queryset = Departamento.objects.filter(facultad_id=self['facultad'].value())
             self.fields['departamento'].initial = self['departamento'].value()
 
-        self.fields['colegio_profesional'] = forms.ChoiceField(label='Colegio profesional',
-                                                               choices=[('', '---------')] + get_colegios(),
-                                                               widget=forms.Select(attrs={'class': 'form-control'}))
+        self.fields['colegio_profesional_select'] = forms.ChoiceField(label='Colegio profesional',
+                                                                      choices=[('', '---------')] + get_colegios(),
+                                                                      widget=forms.Select(
+                                                                          attrs={'class': 'form-control'}))
 
-    sede_colegio_input = forms.CharField(required=False)
-    codigo_colegiado_input = forms.CharField(required=True)
+    sede_colegio_input = forms.CharField(label='Sede colegio', required=False)
+    codigo_colegiado_input = forms.CharField(label='Código colegiado', required=True)
     estado_colegiado_select = forms.ChoiceField(label='Estado del colegiado', choices=COLEGIATURA_ESTADO_CHOICES,
                                                 initial=COLEGIATURA_HABILITADO,
                                                 widget=forms.Select(attrs={'class': 'form-control'})

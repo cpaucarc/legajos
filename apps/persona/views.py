@@ -33,7 +33,7 @@ from apps.formacion.models import AdjuntoComplementaria, AdjuntoTecnico, Adjunto
     Complementaria
 from apps.idioma.models import Idioma
 from apps.login.views import BaseLogin
-from apps.persona.forms import PersonaForm, DatosGeneralesForm, ExportarCVForm, DatosColegiaturaForm
+from apps.persona.forms import PersonaForm, DatosGeneralesForm, ExportarCVForm, ColegiaturaForm
 from apps.persona.models import Persona, DatosGenerales, Departamento, Colegiatura
 from apps.produccion.models import AdjuntoCientifica, Cientifica
 
@@ -50,28 +50,23 @@ class PersonaCreateView(LoginRequiredMixin, BaseLogin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context.update({
-            'form_datos_generales': DatosGeneralesForm(self.request.POST or None),
-            'form_datos_colegiatura': DatosColegiaturaForm(self.request.POST or None)
+            'form_datos_generales': DatosGeneralesForm(self.request.POST or None)
         })
         return context
 
     def form_valid(self, form):
         form_dg = DatosGeneralesForm(self.request.POST or None)
-        form_dc = DatosColegiaturaForm(self.request.POST or None)
         valid = True
         ruta = None
         if self.request.session.get('tipo_persona') == TIPO_PERSONA_REGISTRADOR:
             if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_REGISTRADOR, TIPO_PERSONA_AUTORIDAD):
                 self.msg = 'El usuario registrador solo puede registrar administrativo o docente, corregir'
-                return self.form_invalid(form_dg, form_dc)
+                return self.form_invalid(form_dg)
 
         if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_DOCENTE):
             if not form_dg.is_valid():
                 self.msg = 'Error en datos generales, verificar'
                 return self.form_invalid(form_dg)
-            if not form_dc.is_valid():
-                self.msg = 'Error en datos de colegiatura, verificar'
-                return self.form_invalid(form_dc)
 
         if valid:
             if self.request.FILES:
@@ -101,12 +96,6 @@ class PersonaCreateView(LoginRequiredMixin, BaseLogin, CreateView):
                 datos_generales.persona_id = persona.id
                 datos_generales.save()
 
-            if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_DOCENTE):
-                datos_colegiatura = form_dc.save(commit=False)
-                datos_colegiatura.creado_por = self.request.user.username
-                datos_colegiatura.persona_id = persona.id
-                datos_colegiatura.save()
-
         return HttpResponseRedirect(self.get_success_url())
 
     def form_invalid(self, form, **kwargs):
@@ -120,7 +109,6 @@ class PersonaCreateView(LoginRequiredMixin, BaseLogin, CreateView):
 
         context.update({
             'form_datos_generales': DatosGeneralesForm(self.request.POST or None),
-            'form_datos_colegiatura': DatosColegiaturaForm(self.request.POST or None)
         })
 
         return self.render_to_response(context)
