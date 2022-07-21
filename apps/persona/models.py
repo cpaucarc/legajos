@@ -34,7 +34,7 @@ class Persona(AuditableModel, TimeStampedModel):
     apellido_materno = models.CharField('Apellido materno', max_length=120, blank=True, null=True)
     celular = models.CharField(max_length=50, null=True, blank=True)
     correo_personal = models.CharField(max_length=100, null=True, blank=True, validators=[validate_email])
-    ruc = models.CharField(max_length=11, null=True, blank=True, validators=[validate_ruc],verbose_name='RUC')
+    ruc = models.CharField(max_length=11, null=True, blank=True, validators=[validate_ruc], verbose_name='RUC')
     tipo_persona = models.CharField(max_length=25, choices=TIPO_PERSONA_CHOICES)
     facultad = models.ForeignKey(Facultad, on_delete=models.PROTECT, blank=True, null=True)
     departamento = models.ForeignKey(Departamento, on_delete=models.PROTECT, blank=True, null=True)
@@ -92,4 +92,7 @@ class Colegiatura(AuditableModel, TimeStampedModel):
     codigo_colegiado = models.CharField(verbose_name='Código del colegiado', max_length=15, blank=True, null=True)
     estado_colegiado = models.BooleanField(verbose_name='Estado del colegiado', choices=COLEGIATURA_ESTADO_CHOICES,
                                            default=COLEGIATURA_HABILITADO)
-    persona = models.OneToOneField(Persona, on_delete=models.CASCADE, blank=True, null=True)
+    persona = models.ForeignKey(Persona, on_delete=models.PROTECT, blank=True, null=True)
+
+    class Meta:
+        unique_together = ['codigo_colegiado']
