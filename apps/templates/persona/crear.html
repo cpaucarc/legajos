@@ -175,6 +175,11 @@
                                 {% field form.estado_colegiado_select label=True %}
                             </div>
                         </div>
+                        <div class="row center-block">
+                            <div class="col-lg-12">
+                                {% include 'persona/partials/colegiatura_formset.html' %}
+                            </div>
+                        </div>
                     </fieldset>
                 </form>
                 &nbsp;
@@ -236,5 +241,7 @@
         };
 
     </script>
+
+    <script src="{% static 'js/formset.js' %}"></script>
     <script src="{% static 'js/persona/persona.js' %}"></script>
 {% endblock %}
