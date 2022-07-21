@@ -1,10 +1,10 @@
 const cursos_form = document.getElementById("cursos-form");
 
-const select_institucion = document.getElementById("select-institucion");
-const select_semestre = document.getElementById("select-semestre");
+const select_institucion = document.getElementById("id_institucion");
+const select_semestre = document.getElementById("id_semestre");
 const input_pk = document.getElementById("input-pk");
 const input_curso = document.getElementById("input-curso");
-const input_escuela = document.getElementById("input-escuela");
+const input_escuela = document.getElementById("id_escuela");
 const input_cantidad = document.getElementById("input-cantidad");
 
 const btn_agregar_curso = document.getElementById("btn-agregar-curso");
@@ -20,8 +20,8 @@ var cursos = [];
 //   event.preventDefault()
   
 //   let data = new FormData(); // 2
-  
-//   data.append("escuela", input_escuela.value.trim())  
+
+//   data.append("escuela", input_escuela.value.trim())
 //   data.append("cursos", cursos)
   
 // console.log('FormData', data.get('escuela'), data.get('cursos'));
@@ -76,6 +76,7 @@ function agregarCurso(curso) {
   input_curso.focus();
   error_message.innerText = ``;
   cursos.push(curso);
+  console.log('Cursos', cursos)
   return true;
 }
 
@@ -128,3 +129,58 @@ function crearFilas(){
   });
   input_cantidad.value = (ind - 1);
 }
+
+var table_cursos = $("#tabla-cursos").DataTable({
+  language: {
+    "url":  datatablesES
+  },
+  ajax: urlListarCursos,
+  searching: false,
+  processing: true,
+  serverSide: true,
+  ordering: false,
+});
+
+table_cursos.on("draw", function(){
+  $("tbody tr").each(function(){
+    $(this).find('td').eq(4).attr("align",'center');
+    $(this).find('td').eq(5).attr("align",'center');
+    $(this).find('td').eq(6).attr("align",'center');
+    $(this).find('td').eq(7).attr("align",'center');
+  });
+})
+
+cursos_form.addEventListener('submit', function(event) { // 1
+  event.preventDefault();
+
+  let data = new FormData();
+  data.append("institucion_id", select_institucion.value)
+  data.append("semestre_id", select_semestre.value)
+  data.append("escuela", input_escuela.value.trim())
+  data.append("cursos", cursos)
+  data.append("cantidad", cursos.length)
+  console.log('FormData', data.get('institucion_id'), data.get('semestre_id'), data.get('escuela'), data.get('cursos'), data.get('cantidad'));
+
+  let elements = document.getElementsByName('csrfmiddlewaretoken');
+  csrf_token = elements[0].value;
+
+   fetch(urlGuardarCursos.replace('11111', select_institucion.value)
+       .replace('22222', select_semestre.value)
+       .replace('33333', input_escuela.value.trim())
+       .replace('44444', cursos.join('|||'))
+       , {
+      method: 'POST', // or 'PUT'
+      headers:{
+        'Content-Type': 'application/json',
+        "X-CSRFToken": csrf_token
+      }
+    }).then(res => res.json())
+    .then(res => {
+      swal({text: res.msg, type: "success"})
+      cursos = []
+      table_cursos.ajax.reload();
+      $('#exampleModal').modal('hide');
+    })
+    .catch(error => swal({text: 'Se produjo un error:\n' + error, type: "error"}));
+
+})

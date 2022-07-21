@@ -23,3 +23,6 @@ class CursoDictado(models.Model):
 
     def __str__(self):
         return '{semestre} - {curso}'.format(semestre=self.semestre, curso=self.curso)
+
+    class Meta:
+        ordering = ['semestre', 'institucion', 'escuela', 'curso']

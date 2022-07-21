@@ -1,25 +1,28 @@
-{% extends 'base.html' %} {% load static %} {% load form_tags %} {% block css %}
-    <link
-            rel="stylesheet"
-            href="{% static 'vendor/jquery/css/jquery-ui.min.css' %}"
-    />
-    <link
-            rel="stylesheet"
-            type="text/css"
-            href="{% static 'vendor/dropzone/dropzone.min.css' %}"
-    />
-{% endblock %} {% block container %}
+{% extends 'base.html' %}
+{% load static %}
+{% load form_tags %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'vendor/jquery/css/jquery-ui.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/dropzone/dropzone.min.css' %}"/>
+{% endblock %}
+
+{% block container %}
 
     <div class="col-12">
-        {% if mensaje is not None %}
-            <div class="alert alert-success" role="alert">
-                {{ mensaje }}
-            </div>
-        {% endif %}
+{#        {% if mensaje is not None %}#}
+{#            <div class="alert alert-success" role="alert">#}
+{#                {{ mensaje }}#}
+{#            </div>#}
+{#        {% endif %}#}
 
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h5>Cursos Dictados</h5>
+                <h5>Cursos Dictados
+                    <label class="pull-right">
+                        User: <label class="text-success">{{ username }} {{ tipo_persona_desc }}</label>
+                    </label>
+                </h5>
             </div>
             <div class="panel-body">
                 <div class="card">
@@ -33,7 +36,7 @@
                             </div>
                             <br/>
                             <div class="table-responsive">
-                                <table id="tabla-distincion"
+                                <table id="tabla-cursos"
                                        class="table table-striped table-bordered display nowrap w-100">
                                     <thead>
                                     <tr>
@@ -44,14 +47,14 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {% for curso in cursos_registrados %}
-                                        <tr>
-                                            <td>{{ curso.institucion }}</td>
-                                            <td>{{ curso.escuela }}</td>
-                                            <td>{{ curso.curso }}</td>
-                                            <td>{{ curso.semestre }}</td>
-                                        </tr>
-                                    {% endfor %}
+{#                                    {% for curso in cursos_registrados %}#}
+{#                                        <tr>#}
+{#                                            <td>{{ curso.institucion }}</td>#}
+{#                                            <td>{{ curso.escuela }}</td>#}
+{#                                            <td>{{ curso.curso }}</td>#}
+{#                                            <td>{{ curso.semestre }}</td>#}
+{#                                        </tr>#}
+{#                                    {% endfor %}#}
                                     </tbody>
                                 </table>
                             </div>
@@ -68,15 +71,16 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Registro de cursos dictados</h5>
+                    <h5 class="modal-title">Registro de cursos dictados {{ pk }}</h5>
                 </div>
 
-                <form method="POST" action="{% url 'cursos:agregar-cursos' pk %}" id="cursos-form">
+{#                <form method="POST" action="{% url 'cursos:agregar-cursos' pk %}" id="cursos-form">#}
+                <form method="POST" id="cursos-form">
                     {% csrf_token %}
                     <div class="modal-body">
-                        {% field form.institucion %}
-                        {% field form.escuela %}
-                        {% field form.semestre %}
+                        {% field form_cursos.institucion %}
+                        {% field form_cursos.escuela %}
+                        {% field form_cursos.semestre %}
                         <br/>
                         <div class="d-flex flex-row justify-content-between align-items-center">
                             <label for="input-curso">Nombre del Curso</label>
@@ -106,7 +110,7 @@
                             Cancelar
                         </button>
                     </div>
-                </form
+                </form>
             </div>
         </div>
     </div>
@@ -114,5 +118,10 @@
 {% endblock %}
 
 {% block javascript %}
+    <script>
+        var urlGuardarCursos = "{% url 'cursos:guardar_cursos' pk '11111' '22222' '33333' '44444' %}";
+        var urlListarCursos = "{% url 'cursos:lista_cursos' pk %}";
+        datatablesES = "{% static 'vendor/datatables/language/spanish.json' %}";
+    </script>
     <script src="{% static 'js/cursos/cursos.js' %}"></script>
 {% endblock %}
