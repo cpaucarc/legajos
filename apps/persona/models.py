@@ -95,4 +95,4 @@ class Colegiatura(AuditableModel, TimeStampedModel):
     persona = models.ForeignKey(Persona, on_delete=models.PROTECT, blank=True, null=True)
 
     class Meta:
-        unique_together = ['codigo_colegiado']
+        unique_together = [('codigo_colegiado')]
