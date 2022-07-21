@@ -10,7 +10,7 @@
         <th class="col-2">&nbsp;&nbsp;</th>
     </tr>
     </thead>
-    <tbody id="formset-parent1" class="form-colegiatura">
+    <tbody id="formset-parent" class="form-colegiatura">
     {% for colegiatura_form in colegiatura_formset %}
         <tr>
             {{ colegiatura_form.id }}
@@ -33,5 +33,29 @@
             <td>{% field colegiatura_form.DELETE label=True %}</td>
         </tr>
     {% endfor %}
+    </tbody>
+    <tbody id="formset-empty" class="d-none form-colegiatura">
+    {% with colegiatura_formset.empty_form as f %}
+        <tr>
+            {{ f.id }}
+            <td>
+                {% field f.colegio_profesional label=False %}
+                {% field f.colegio_profesional_persona label=False %}
+            </td>
+            <td>
+                {% field f.sede_colegio label=False %}
+                {% field f.sede_colegio_persona label=False %}
+            </td>
+            <td class="w-25">
+                {% field f.codigo_colegiado label=False %}
+                {% field f.codigo_colegiado_persona label=False %}
+            </td>
+            <td class="w-25">
+                {% field f.estado_colegiado label=False %}
+                {% field f.estado_colegiado_persona label=False %}
+            </td>
+            <td>{% field f.DELETE label=True %}</td>
+        </tr>
+    {% endwith %}
     </tbody>
 </table>

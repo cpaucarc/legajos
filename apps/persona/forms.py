@@ -165,10 +165,6 @@ class ExportarCVForm(forms.Form):
 
 
 class ColegiaturaForm(forms.ModelForm):
-    persona_id = forms.IntegerField(widget=forms.HiddenInput(attrs={'class': 'persona-id'}))
-    persona_colegiatura = forms.CharField(
-        widget=forms.TextInput(attrs={'readonly': True, 'class': 'persona-colegiatura'})
-    )
     colegio_profesional = forms.CharField(widget=forms.HiddenInput(attrs={'class': 'colegio-profesional-id'}))
     colegio_profesional_persona = forms.CharField(
         widget=forms.TextInput(attrs={'readonly': True, 'class': 'colegio-profesional-persona'})

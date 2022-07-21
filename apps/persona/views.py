@@ -50,7 +50,8 @@ class PersonaCreateView(LoginRequiredMixin, BaseLogin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context.update({
-            'form_datos_generales': DatosGeneralesForm(self.request.POST or None)
+            'form_datos_generales': DatosGeneralesForm(self.request.POST or None),
+            'colegiatura_formset': self.get_colegiatura_formset(),
         })
         return context
 
@@ -97,6 +98,16 @@ class PersonaCreateView(LoginRequiredMixin, BaseLogin, CreateView):
                 datos_generales.creado_por = self.request.user.username
                 datos_generales.persona_id = persona.id
                 datos_generales.save()
+
+            if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_DOCENTE):
+                if colegiatura_formset.is_valid():
+                    cont = 0
+                    for e in colegiatura_formset:
+                        if e.cleaned_data.get('DELETE') is False:
+                            cont += 1
+                    if cont == 0:
+                        self.msg = 'Falta agregar miembro del equipo del proyecto de capacitación'
+                        return self.form_invalid(form)
 
         return HttpResponseRedirect(self.get_success_url())
 
