@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import inlineformset_factory
 
 from apps.common.constants import DOCUMENT_TYPE_DNI, DOCUMENT_TYPE_CHOICES1, ID_UBIGEO_PERU, COLEGIATURA_HABILITADO, \
     COLEGIATURA_INHABILITADO, COLEGIATURA_ESTADO_CHOICES
@@ -28,6 +29,17 @@ class PersonaForm(forms.ModelForm):
             self.fields['departamento'].queryset = Departamento.objects.filter(facultad_id=self['facultad'].value())
             self.fields['departamento'].initial = self['departamento'].value()
 
+        self.fields['colegio_profesional'] = forms.ChoiceField(label='Colegio profesional',
+                                                               choices=[('', '---------')] + get_colegios(),
+                                                               widget=forms.Select(attrs={'class': 'form-control'}))
+
+    sede_colegio_input = forms.CharField(required=False)
+    codigo_colegiado_input = forms.CharField(required=True)
+    estado_colegiado_select = forms.ChoiceField(label='Estado del colegiado', choices=COLEGIATURA_ESTADO_CHOICES,
+                                                initial=COLEGIATURA_HABILITADO,
+                                                widget=forms.Select(attrs={'class': 'form-control'})
+                                                )
+
     class Meta:
         model = Persona
         fields = (
@@ -39,10 +51,10 @@ class PersonaForm(forms.ModelForm):
         }
 
     def clean_ruc(self):
-        if len(self.cleaned_data.get('ruc')) != 11 and len(self.cleaned_data.get('ruc'))!=0:  # noqa
+        if len(self.cleaned_data.get('ruc')) != 11 and len(self.cleaned_data.get('ruc')) != 0:  # noqa
             raise forms.ValidationError('El N° RUC debe tener 11 digitos')
         if not str(self.cleaned_data.get('ruc')).startswith('10') and not str(self.cleaned_data.get(
-                'ruc')).startswith('20') and not len(self.cleaned_data.get('ruc'))==0:
+                'ruc')).startswith('20') and not len(self.cleaned_data.get('ruc')) == 0:
             raise forms.ValidationError('El N°RUC debe comenzar con 10 o 20')
         return self.cleaned_data.get('ruc')
 
@@ -122,6 +134,17 @@ def get_deptos_academicos(fac_id):
     return list(deptos)
 
 
+def get_colegios(col_id=None):
+    col_list = ['id', 'name']
+    if col_id:
+        colegios = Colegio.objects.filter(
+            acronym=col_id
+        ).values_list(*col_list)
+    else:
+        colegios = Colegio.objects.all().values_list(*col_list)
+    return list(colegios)
+
+
 class ExportarCVForm(forms.Form):
     datos_personales = forms.CharField(required=False, widget=forms.CheckboxInput(
         attrs={'class': 'form-check-input', 'style': 'cursor:pointer;'}))
@@ -140,20 +163,23 @@ class ExportarCVForm(forms.Form):
         super().__init__(*args, **kwargs)
 
 
-class DatosColegiaturaForm(forms.ModelForm):
+class ColegiaturaForm(forms.ModelForm):
+    persona_id = forms.IntegerField(widget=forms.HiddenInput(attrs={'class': 'persona-id'}))
+    sede_colegio = forms.CharField(widget=forms.HiddenInput(attrs={'class': 'sede-colegio-id'}))
+    sede_colegio_persona = forms.CharField(
+        widget=forms.TextInput(attrs={'readonly': True, 'class': 'sede-colegio-persona'})
+    )
+    codigo_colegiado = forms.CharField(widget=forms.HiddenInput(attrs={'class': 'codigo-colegiado-id'}))
+    codigo_colegiado_persona = forms.CharField(
+        widget=forms.TextInput(attrs={'readonly': True, 'class': 'codigo-colegiado-persona'})
+    )
+    estado_colegiado = forms.CharField(widget=forms.HiddenInput(attrs={'class': 'estado-colegiado-id'}))
+    estado_colegiado_persona = forms.CharField(
+        widget=forms.TextInput(attrs={'readonly': True, 'class': 'estado-colegiado-persona'})
+    )
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['colegio_profesional'] = forms.ChoiceField(
-            label='Colegio profesional',
-            choices=[('', '---------')] + get_colegios(),
-            widget=forms.Select(attrs={'class': 'form-control'}))
-
-    sede_colegio = forms.CharField(required=False)
-    codigo_colegiado = forms.CharField(required=True)
-    estado_colegiado = forms.ChoiceField(label='Estado del colegiado', choices=COLEGIATURA_ESTADO_CHOICES,
-                                         initial=COLEGIATURA_HABILITADO,
-                                         widget=forms.Select(attrs={'class': 'form-control'})
-                                         )
 
     class Meta:
         model = Colegiatura
@@ -162,12 +188,4 @@ class DatosColegiaturaForm(forms.ModelForm):
         )
 
 
-def get_colegios(col_id=None):
-    col_list = ['id', 'name']
-    if col_id:
-        colegios = Colegio.objects.filter(
-            acronym=col_id
-        ).values_list(*col_list)
-    else:
-        colegios = Colegio.objects.all().values_list(*col_list)
-    return list(colegios)
+ColegiaturaFormset = inlineformset_factory(Persona, Colegiatura, form=ColegiaturaForm, can_delete=True, extra=0)
