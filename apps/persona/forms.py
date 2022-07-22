@@ -20,6 +20,8 @@ class PersonaForm(forms.ModelForm):
     departamento = forms.ModelChoiceField(queryset=Departamento.objects.none(), required=False)
     ruta_foto = forms.FileField(required=False, widget=forms.FileInput(attrs={'class': 'form-control input-sm'}))
 
+    colegio_profesional_select = forms.ModelChoiceField(queryset=Colegio.objects.none(), required=False)
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -29,14 +31,11 @@ class PersonaForm(forms.ModelForm):
             self.fields['departamento'].queryset = Departamento.objects.filter(facultad_id=self['facultad'].value())
             self.fields['departamento'].initial = self['departamento'].value()
 
-        self.fields['colegio_profesional_select'] = forms.ChoiceField(label='Colegio profesional', required=True,
-                                                                      choices=[('', '---------')] + get_colegios(),
-                                                                      widget=forms.Select(
-                                                                          attrs={'class': 'form-control'}))
+        self.fields['colegio_profesional_select'].queryset = Colegio.objects.all()
 
-    sede_colegio_input = forms.CharField(label='Sede colegio', required=True)
-    codigo_colegiado_input = forms.CharField(label='Código colegiado', required=True)
-    estado_colegiado_select = forms.ChoiceField(label='Estado del colegiado', required=True,
+    sede_colegio_input = forms.CharField(label='Sede colegio', required=False)
+    codigo_colegiado_input = forms.CharField(label='Código colegiado', required=False)
+    estado_colegiado_select = forms.ChoiceField(label='Estado del colegiado', required=False,
                                                 choices=COLEGIATURA_ESTADO_CHOICES,
                                                 initial=COLEGIATURA_HABILITADO,
                                                 widget=forms.Select(attrs={'class': 'form-control'}))
@@ -180,7 +179,7 @@ class ExportarCVForm(forms.Form):
 
 
 class ColegiaturaForm(forms.ModelForm):
-    colegio_profesional = forms.CharField(widget=forms.HiddenInput(attrs={'class': 'colegio-profesional-id'}))
+    colegio_profesional = forms.IntegerField(widget=forms.HiddenInput(attrs={'class': 'colegio-profesional-id'}))
     colegio_profesional_persona = forms.CharField(
         widget=forms.TextInput(attrs={'readonly': True, 'class': 'colegio-profesional-persona'})
     )

@@ -4,7 +4,7 @@ from django.db import models
 from apps.common.constants import DOCUMENT_TYPE_CHOICES, DOCUMENT_TYPE_DNI, SEXO_CHOICES, TIPO_PERSONA_CHOICES, \
     CATEGORIA_CHOICES, DEDICACION_CHOICES, TIPO_CONTRATO_CHOICES, COLEGIATURA_HABILITADO, COLEGIATURA_INHABILITADO, \
     COLEGIATURA_ESTADO_CHOICES
-from apps.common.models import AuditableModel, TimeStampedModel, UbigeoPais, validate_ruc
+from apps.common.models import AuditableModel, TimeStampedModel, UbigeoPais, validate_ruc, Colegio
 
 
 class Facultad(models.Model):
@@ -88,6 +88,7 @@ class DatosGenerales(AuditableModel, TimeStampedModel):
 class Colegiatura(AuditableModel, TimeStampedModel):
     # colegio_profesional = models.ForeignKey(Colegio, on_delete=models.CASCADE, blank=True, null=True)
     colegio_profesional = models.CharField(verbose_name='Colegio profesional', max_length=5, blank=True, null=True)
+    # colegio_profesional = models.ForeignKey(Colegio, on_delete=models.PROTECT,verbose_name='Colegio profesional',  max_length=5, blank=True, null=True)
     sede_colegio = models.CharField(verbose_name='Sede del colegio', max_length=200, blank=True, null=True)
     codigo_colegiado = models.CharField(verbose_name='Código del colegiado', max_length=15, blank=True, null=True)
     estado_colegiado = models.BooleanField(verbose_name='Estado del colegiado', choices=COLEGIATURA_ESTADO_CHOICES,
@@ -95,4 +96,4 @@ class Colegiatura(AuditableModel, TimeStampedModel):
     persona = models.ForeignKey(Persona, on_delete=models.CASCADE, blank=True, null=True)
 
     class Meta:
-        unique_together = [('codigo_colegiado')]
+        unique_together = [['colegio_profesional', 'sede_colegio', 'codigo_colegiado', 'estado_colegiado']]
