@@ -45,8 +45,6 @@ class PersonaCreateView(LoginRequiredMixin, BaseLogin, CreateView):
     form_class = PersonaForm
     msg = None
 
-    # def dispatch(self, request, *args, **kwargs):
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context.update({
@@ -116,20 +114,21 @@ class PersonaCreateView(LoginRequiredMixin, BaseLogin, CreateView):
                         f.persona_id = persona.id
                         f.persona = persona
                         f.save()
+                else:
+                    return self.form_invalid(form)
 
-        return HttpResponseRedirect(self.get_success_url())
+            return HttpResponseRedirect(self.get_success_url())
 
     def form_invalid(self, form, **kwargs):
         context = self.get_context_data(**kwargs)
-
         if self.msg:
             messages.warning(self.request, self.msg)
         else:
             messages.warning(self.request,
                              'Ha ocurrido un error al crear a la persona, revise si ha introducido bien todos los datos')
-
         context.update({
             'form_datos_generales': DatosGeneralesForm(self.request.POST or None),
+            'colegiatura_formset': self.get_colegiatura_formset(),
         })
 
         return self.render_to_response(context)
