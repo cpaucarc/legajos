@@ -1,0 +1,65 @@
+{% load form_tags %}
+<div class="row center-block" style="margin:2px;">
+    <div class="col-lg-12">
+        {{ colegiatura_formset.management_form }}
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Colegio profesional</th>
+                <th style="width: 300px">Sede</th>
+                <th style="width: 120px">código</th>
+                <th style="width: 120px">Estado</th>
+                <th style="width: 50px">&nbsp;&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody id="formset-parent" class="form-colegiatura">
+            {% for colegiatura_form in colegiatura_formset %}
+                <tr>
+                    {{ colegiatura_form.id }}
+                    <td>
+                        {% field colegiatura_form.colegio_profesional label=False %}
+                        {% field colegiatura_form.colegio_profesional_persona label=False %}
+                    </td>
+                    <td>
+                        {% field colegiatura_form.sede_colegio label=False %}
+                        {% field colegiatura_form.sede_colegio_persona label=False %}
+                    </td>
+                    <td>
+                        {% field colegiatura_form.codigo_colegiado label=False %}
+                        {% field colegiatura_form.codigo_colegiado_persona label=False %}
+                    </td>
+                    <td>
+                        {% field colegiatura_form.estado_colegiado label=False %}
+                        {% field colegiatura_form.estado_colegiado_persona label=False %}
+                    </td>
+                    <td>{% field colegiatura_form.DELETE label=True %}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tbody id="formset-empty" class="d-none form-colegiatura">
+            {% with colegiatura_formset.empty_form as f %}
+                <tr>
+                    {{ f.id }}
+                    <td>
+                        {% field f.colegio_profesional label=False %}
+                        {% field f.colegio_profesional_persona label=False %}
+                    </td>
+                    <td>
+                        {% field f.sede_colegio label=False %}
+                        {% field f.sede_colegio_persona label=False %}
+                    </td>
+                    <td>
+                        {% field f.codigo_colegiado label=False %}
+                        {% field f.codigo_colegiado_persona label=False %}
+                    </td>
+                    <td>
+                        {% field f.estado_colegiado label=False %}
+                        {% field f.estado_colegiado_persona label=False %}
+                    </td>
+                    <td>{% field f.DELETE label=True %}</td>
+                </tr>
+            {% endwith %}
+            </tbody>
+        </table>
+    </div>
+</div>

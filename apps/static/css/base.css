@@ -829,6 +829,12 @@ input[type="checkbox"] {
     border: 1px solid;
 }
 
+.form-colegiatura .form-check input[type='checkbox'] {
+    display: none;
+    width: 10px;
+    border: 1px solid;
+}
+
 .elimina-formset {
     cursor: pointer;
     font-size: 20px;

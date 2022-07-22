@@ -155,23 +155,30 @@
                             Colegiatura
                         </legend>
                         <div class="row center-block">
-                            <div class="col-lg-12">
-                                {% field form_datos_colegiatura.colegio_profesional label=True %}
+                            <div class="col-lg-10">
+                                {% field form.colegio_profesional_select label=True %}
+                            </div>
+                            <div class="col-lg-2">
+                                <label style="opacity: 0">-------</label>
+                                <button type="button" class="pull-right btn btn-primary btn-sm my-1"
+                                        id="btn-agregar-colegiatura">
+                                    <i class="fa fa-plus"></i> Agregar colegiatura
+                                </button>
                             </div>
                             <div class="col-lg-6">
-                                {% field form_datos_colegiatura.sede_colegio label=True %}
+                                {% field form.sede_colegio_input label=True %}
                             </div>
                             <div class="col-lg-3">
-                                {% field form_datos_colegiatura.codigo_colegiado label=True %}
+                                {% field form.codigo_colegiado_input label=True %}
                             </div>
                             <div class="col-lg-3">
-                                {% field form_datos_colegiatura.estado_colegiado label=True %}
+                                {% field form.estado_colegiado_select label=True %}
                             </div>
                         </div>
+                        {% include 'persona/partials/colegiatura_formset.html' %}
                     </fieldset>
                 </form>
                 &nbsp;
-
                 {% if username == 'admin' %}
                     <div class="tab-content table-responsive">
                         <table class="table table-bordered table-hover table-striped table-responsive"
@@ -229,5 +236,7 @@
         };
 
     </script>
+
+    <script src="{% static 'js/formset.js' %}"></script>
     <script src="{% static 'js/persona/persona.js' %}"></script>
 {% endblock %}
