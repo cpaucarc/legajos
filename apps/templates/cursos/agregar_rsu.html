@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load form_tags %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'vendor/jquery/css/jquery-ui.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/dropzone/dropzone.min.css' %}"/>
+{% endblock %}
+
+{% block container %}
+
+    <div class="col-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h5>Responsabilidades Sociales
+                    <label class="pull-right">
+                        User: <label class="text-success">{{ username }} {{ tipo_persona_desc }}</label>
+                    </label>
+                </h5>
+            </div>
+            <div class="panel-body">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="tab-content" id="myTabContent">
+                            <div align="right">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalRsu">
+                                    <i class="fa fa-plus"></i> Registrar Responsabilidades Sociales
+                                </button>
+                            </div>
+                            <br/>
+                            <div class="table-responsive">
+                                <table id="tabla-rsu"
+                                       class="table table-striped table-bordered display nowrap w-100">
+                                    <thead>
+                                    <tr>
+                                        <th>Universidad</th>
+                                        <th>Escuela Profesional</th>
+                                        <th>Cursos</th>
+                                        <th>Semestre</th>
+                                        <th>Semestre</th>
+                                        <th>Semestre</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalRsu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Registro de cursos dictados {{ pk }}</h5>
+                </div>
+
+{#                <form method="POST" action="{% url 'cursos:agregar-cursos' pk %}" id="cursos-form">#}
+                <form method="POST" id="rsu-form">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        {% field form_rsu.titulo %}
+                        {% field form_rsu.lugar %}
+                        {% field form_rsu.descripcion %}
+
+                        <div class="col-lg-12" style="padding: 0;">
+                            <div class="col-md-6">{% field form_rsu.fecha_inicio %}</div>
+                            <div class="col-md-6">{% field form_rsu.fecha_fin %}</div>
+                        </div>
+
+                        <div style="padding: 0; margin-top: 125px;">
+                            <div class="form-group form-check">
+                                <input type="checkbox" name="es_en_empresa" class="form-check-input" id="es_en_empresa">
+                                <label for="es_en_empresa" class="form-check-label">En Empresa</label>
+                            </div>
+
+                            <div class="" id="datos_empresa" style="display: none; padding: 0;">
+                                {% field form_rsu.ruc %}
+                                {% field form_rsu.empresa %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type=submit id="btn-guardar-rsu" class="btn btn-primary">
+                            Guardar información
+                        </button>
+                        <button type="button" data-dismiss="modal" class="btn btn-danger">
+                            Cancelar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        var urlGuardarRsu = "{% url 'cursos:guardar_rsu' pk '1111' '2222' '3333' '4444' '5555' '6666' '7777' '8888' %}";
+        var urlListarRsu = "{% url 'cursos:lista_rsu' pk %}";
+        datatablesES = "{% static 'vendor/datatables/language/spanish.json' %}";
+    </script>
+    <script src="{% static 'js/cursos/rsu.js' %}"></script>
+{% endblock %}

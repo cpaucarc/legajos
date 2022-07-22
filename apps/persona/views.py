@@ -36,6 +36,7 @@ from apps.login.views import BaseLogin
 from apps.persona.forms import PersonaForm, DatosGeneralesForm, ExportarCVForm, DatosColegiaturaForm
 from apps.persona.models import Persona, DatosGenerales, Departamento, Colegiatura
 from apps.produccion.models import AdjuntoCientifica, Cientifica
+from apps.cursos.models import CursoDictado, ResponsabilidadSocial
 
 
 # Clase para registrar a una nueva persona
@@ -303,6 +304,7 @@ class ListaPersonaView(LoginRequiredMixin, BaseLogin, View):
                      self.get_enlace_produccion(a) + ' ' +
                      self.get_enlace_distincion(a) + ' ' +
                      self.get_enlace_agregar_cursos(a) + ' ' +
+                     self.get_enlace_agregar_rsu(a) + ' ' +
                      self.get_exportar_cv(a)
                      ),
                     self.get_boton_editar(a),
@@ -322,6 +324,7 @@ class ListaPersonaView(LoginRequiredMixin, BaseLogin, View):
                      self.get_enlace_idiomas(a) + ' ' +
                      self.get_enlace_produccion(a) + ' ' +
                      self.get_enlace_distincion(a) + ' ' +
+                     self.get_enlace_agregar_rsu(a) + ' ' +
                      self.get_exportar_cv(a)
                      ),
                     self.get_boton_editar(a),
@@ -397,6 +400,15 @@ class ListaPersonaView(LoginRequiredMixin, BaseLogin, View):
         link = reverse('cursos:agregar_cursos', kwargs={'pk': a.id})
         boton = '''<a class="btn btn-primary btn-sm separa-boton" href="{0}">
                     <i class="fa fa-edit"></i> Cursos dictados
+                </a>'''
+        boton = boton.format(link)
+        boton = '{0}'.format(boton)
+        return boton
+
+    def get_enlace_agregar_rsu(self, a):
+        link = reverse('cursos:agregar_rsu', kwargs={'pk': a.id})
+        boton = '''<a class="btn btn-primary btn-sm separa-boton" href="{0}">
+                    <i class="fa fa-edit"></i> Responsabilidad Social
                 </a>'''
         boton = boton.format(link)
         boton = '{0}'.format(boton)
@@ -502,6 +514,9 @@ class DescargarCVPdf(View, LoginRequiredMixin):
         p = get_object_or_404(Persona, pk=self.kwargs.get('pk'))
         foto_path = default_storage.path('{}'.format(p.ruta_foto))
 
+        rsus = ResponsabilidadSocial.objects.filter(persona=p)
+        cursos = CursoDictado.objects.filter(persona=p)
+
         dep = UbigeoDepartamento.objects.filter(
             cod_ubigeo_inei_departamento=p.datosgenerales.ubigeo_departamento).last().ubigeo_departamento
         prov = UbigeoProvincia.objects.filter(
@@ -554,6 +569,8 @@ class DescargarCVPdf(View, LoginRequiredMixin):
         data = {
             'array_filtros': array_filtros,
             'p': p,
+            'rsus': rsus,
+            'cursos': cursos,
             'dep': dep,
             'prov': prov,
             'dist': dist,
@@ -590,7 +607,7 @@ class DescargarCVPdf(View, LoginRequiredMixin):
                 pass
         return response
 
-
+# No sirve
 class DescargarCVPdfDet6(View, LoginRequiredMixin):
     def get(self, request, *args, **kwargs):
         response = HttpResponse(content_type='application/pdf')
@@ -751,7 +768,7 @@ class DescargarCVPdfDet6(View, LoginRequiredMixin):
                 pass
         return response
 
-
+# No sirve
 class DescargarCVPdfDet3(View, LoginRequiredMixin):
     def get(self, request, *args, **kwargs):
         BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -774,6 +791,10 @@ class DescargarCVPdfDet3(View, LoginRequiredMixin):
 class DescargarCVPdfDet(View, LoginRequiredMixin):
     def get(self, request, *args, **kwargs):
         persona = get_object_or_404(Persona, pk=self.kwargs.get('pk'))
+
+        rsus = ResponsabilidadSocial.objects.filter(persona=persona)
+        cursos = CursoDictado.objects.filter(persona=persona)
+
         foto_path = default_storage.path('{}'.format(persona.ruta_foto))
         dep = UbigeoDepartamento.objects.filter(
             cod_ubigeo_inei_departamento=persona.datosgenerales.ubigeo_departamento).last().ubigeo_departamento
@@ -862,6 +883,8 @@ class DescargarCVPdfDet(View, LoginRequiredMixin):
         data = {
             'array_filtros': array_filtros,
             'p': persona,
+            'rsus': rsus,
+            'cursos': cursos,
             'dep': dep,
             'prov': prov,
             'dist': dist,
@@ -913,33 +936,32 @@ class DescargarCVPdfDet(View, LoginRequiredMixin):
         docs.append(path)
         for adju in adjuntos_universitaria:
             for univ in adju:
-                # docs.append(default_storage.path(univ.ruta))
-                docs.append("/media/" + univ.rut)
+                docs.append(default_storage.path(univ.ruta))
+                # docs.append("/apps/media/" + univ.rut)
         for adjt in adjuntos_tecnico:
             for tec in adjt:
-                # docs.append(f"{settings.STATIC_ROOT}/media/{tec.ruta}")
-                docs.append("/media/" + tec.ruta)
+                docs.append(default_storage.path(tec.ruta))
         for adjc in adjuntos_complementaria:
             for cmp in adjc:
-                docs.append("/media/" + cmp.ruta)
+                docs.append(default_storage.path(cmp.ruta))
         for adjl in adjuntos_laboral:
             for lab in adjl:
-                docs.append("/media/" + lab.ruta)
+                docs.append(default_storage.path(lab.ruta))
         for adjd in adjuntos_docente:
             for doc in adjd:
-                docs.append("/media/" + doc.ruta)
+                docs.append(default_storage.path(doc.ruta))
         for adjat in adjuntos_asesor_tesis:
             for ast in adjat:
-                docs.append("/media/" + ast.ruta)
+                docs.append(default_storage.path(ast.ruta))
         for adjpc in adjuntos_produccion_cientifica:
             for pdc in adjpc:
-                docs.append("/media/" + pdc.ruta)
+                docs.append(default_storage.path(pdc.ruta))
         for adjp in adjuntos_premios:
             for prm in adjp:
-                docs.append("/media/" + prm.ruta)
+                docs.append(default_storage.path(prm.ruta))
         for adjep in adjuntos_evaluador_proyecto:
             for evp in adjep:
-                docs.append("/media/" + evp.ruta)
+                docs.append(default_storage.path(evp.ruta))
 
         print("\nDocumentos: ", docs)
 

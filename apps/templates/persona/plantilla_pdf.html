@@ -329,11 +329,48 @@
         {% endfor %}
     </div>
 {% endif %}
+
+{% if rsus %}
+    <div class="subtitulo">RESPONSABILIDAD SOCIAL</div>
+    <hr color="#51AEF8" class="linea-subtitulo">
+    <br>
+    <div style="margin-left:20px;font-size:12px;">
+        {% for rsu in rsus %}
+            <div style="font-size: 13px; font-weight: 600;">{{ rsu.titulo }}</div>
+            <div style="font-size: 11px;">{{ rsu.descripcion }}</div>
+            <div>Desarrollado desde {{ rsu.fecha_inicio }} al {{ rsu.fecha_fin }} en {{ rsu.lugar }}</div>
+            {% if rsu.ruc %}
+                <div><b>Empresa:</b> {{ rsu.empresa }} (RUC: {{ rsu.ruc }})</div>
+            {% endif %}
+            <br>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if cursos %}
+    <div class="subtitulo">CURSOS DICTADOS</div>
+    <hr color="#51AEF8" class="linea-subtitulo">
+    <br>
+    <div style="margin-left:20px;font-size:11px;">
+    <table>
+        <tbody>
+        {% for curso in cursos %}
+        <tr style="margin-bottom: 10px;">
+            <td style="width: 55px;">{{ curso.semestre.nombre }}</td>
+            <td style="width: 250px;">{{ curso.institucion.name }}</td>
+            <td>{{ curso.escuela }}</td>
+            <td>{{ curso.curso }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+{% endif %}
+
 <div id="footer_content">
     <hr/>
-    Página
-    <pdf:pagenumber> de
-        <pdf:pagecount>
+    Página<pdf:pagenumber> de<pdf:pagecount>
 </div>
+
 </body>
 </html>
