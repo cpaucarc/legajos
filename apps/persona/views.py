@@ -154,9 +154,9 @@ class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
 
     def form_valid(self, form):
         context = self.get_context_data()
-        colegiatura_formset = context['colegiatura_formset']
         ruta = None
         model_datos_generales = DatosGenerales.objects.filter(persona_id=self.object.id).last()
+        colegiatura_formset = context['colegiatura_formset']
 
         if model_datos_generales:
             form_dg = DatosGeneralesForm(self.request.POST or None, instance=model_datos_generales)
@@ -208,15 +208,22 @@ class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
 
             if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_DOCENTE):
                 if colegiatura_formset.is_valid():
+                    colegiatura_formset = colegiatura_formset.save(commit=False)
+                    colegiado_array = []
+                    for f in colegiatura_formset:
+                        colegiado_array.append('{}'.format(f.codigo_colegiado))
+                    colegiado_array_repetidos = set(colegiado_array)
+                    if len(colegiado_array_repetidos) != len(colegiado_array):
+                        self.msg = 'No puede duplicarse los codigos de colegiatura'
+                        return self.form_invalid(form)
                     persona = form.save(commit=False)
                     self.object.colegiatura_set.all().delete()
                     for e in colegiatura_formset:
-                        e.creado_por = self.request.user.username
-                        e.persona_id = persona.id
                         e.persona = persona
                         e.save()
                 else:
                     return self.form_invalid(form)
+
             return HttpResponseRedirect(self.get_success_url())
 
     def form_invalid(self, form, **kwargs):
@@ -227,6 +234,7 @@ class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
             messages.warning(self.request, 'Ha ocurrido un error al actualizar a la persona')
         context.update({
             'form_datos_generales': DatosGeneralesForm(self.request.POST or None),
+            'colegiatura_formset': self.get_colegiatura_formset(),
         })
         return self.render_to_response(context)
 
