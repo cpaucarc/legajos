@@ -92,7 +92,7 @@ class Colegiatura(AuditableModel, TimeStampedModel):
     codigo_colegiado = models.CharField(verbose_name='Código del colegiado', max_length=15, blank=True, null=True)
     estado_colegiado = models.BooleanField(verbose_name='Estado del colegiado', choices=COLEGIATURA_ESTADO_CHOICES,
                                            default=COLEGIATURA_HABILITADO)
-    persona = models.ForeignKey(Persona, on_delete=models.PROTECT, blank=True, null=True)
+    persona = models.ForeignKey(Persona, on_delete=models.CASCADE, blank=True, null=True)
 
     class Meta:
         unique_together = [('codigo_colegiado')]
