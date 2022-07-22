@@ -153,6 +153,16 @@ class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
     msg = None
     datos_generales = None
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        datos_generales = DatosGenerales.objects.filter(persona_id=self.object.id).last()
+        context.update({
+            'form_datos_generales': DatosGeneralesForm(self.request.POST or None, instance=datos_generales),
+            'colegiatura_formset': self.get_colegiatura_formset(),
+            'MEDIA_URL': settings.MEDIA_URL
+        })
+        return context
+
     def form_valid(self, form):
         context = self.get_context_data()
         ruta = None
@@ -207,23 +217,23 @@ class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
                 if model_datos_generales:
                     model_datos_generales.delete()
 
-            if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_DOCENTE):
-                if colegiatura_formset.is_valid():
-                    colegiatura_formset = colegiatura_formset.save(commit=False)
-                    colegiado_array = []
-                    for f in colegiatura_formset:
-                        colegiado_array.append('{}'.format(f.codigo_colegiado))
-                    colegiado_array_repetidos = set(colegiado_array)
-                    if len(colegiado_array_repetidos) != len(colegiado_array):
-                        self.msg = 'No puede duplicarse los codigos de colegiatura'
-                        return self.form_invalid(form)
-                    persona = form.save(commit=False)
-                    self.object.colegiatura_set.all().delete()
-                    for e in colegiatura_formset:
-                        e.persona = persona
-                        e.save()
-                else:
-                    return self.form_invalid(form)
+            # if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_DOCENTE):
+            #     if colegiatura_formset.is_valid():
+            #         colegiatura_formset = colegiatura_formset.save(commit=False)
+            #         colegiado_array = []
+            #         for f in colegiatura_formset:
+            #             colegiado_array.append('{}'.format(f.codigo_colegiado))
+            #         colegiado_array_repetidos = set(colegiado_array)
+            #         if len(colegiado_array_repetidos) != len(colegiado_array):
+            #             self.msg = 'No puede duplicarse los codigos de colegiatura'
+            #             return self.form_invalid(form)
+            #         persona = form.save(commit=False)
+            #         self.object.colegiatura_set.all().delete()
+            #         for e in colegiatura_formset:
+            #             e.persona = persona
+            #             e.save()
+            #     else:
+            #         return self.form_invalid(form)
 
             return HttpResponseRedirect(self.get_success_url())
 
@@ -239,16 +249,6 @@ class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
         })
         return self.render_to_response(context)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        datos_generales = DatosGenerales.objects.filter(persona_id=self.object.id).last()
-        context.update({
-            'form_datos_generales': DatosGeneralesForm(self.request.POST or None, instance=datos_generales),
-            'colegiatura_formset': self.get_colegiatura_formset(),
-            'MEDIA_URL': settings.MEDIA_URL
-        })
-        return context
-
     def get_colegiatura_formset(self):
         colegiatura = self.object.colegiatura_set.all()
         formset_initial = [{'id': e.id, 'colegio_profesional': e.colegio_profesional,
@@ -256,7 +256,7 @@ class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
                             'sede_colegio': e.sede_colegio, 'sede_colegio_persona': e.sede_colegio,
                             'codigo_colegiado': e.codigo_colegiado, 'codigo_colegiado_persona': e.codigo_colegiado,
                             'estado_colegiado': e.estado_colegiado,
-                            'estado_colegiado_persona': get_estado_colegiado(e.estado_colegiado)}
+                            'estado_colegiado_persona': e.get_estado_colegiado_display()}
                            for e in colegiatura]
         formset_colegiatura = inlineformset_factory(Persona, Colegiatura, form=ColegiaturaForm,
                                                     can_delete=True, extra=colegiatura.count())
@@ -638,6 +638,7 @@ class DescargarCVPdf(View, LoginRequiredMixin):
                 pass
         return response
 
+
 # No sirve
 class DescargarCVPdfDet6(View, LoginRequiredMixin):
     def get(self, request, *args, **kwargs):
@@ -798,6 +799,7 @@ class DescargarCVPdfDet6(View, LoginRequiredMixin):
             except Exception as e:
                 pass
         return response
+
 
 # No sirve
 class DescargarCVPdfDet3(View, LoginRequiredMixin):
