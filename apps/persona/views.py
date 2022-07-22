@@ -21,6 +21,8 @@ from rest_framework.status import HTTP_200_OK
 from rest_framework.views import APIView
 from xhtml2pdf import pisa
 from PyPDF2 import PdfFileMerger, PdfFileReader
+from django.forms import inlineformset_factory
+
 from apps.common.constants import (DOCUMENT_TYPE_DNI, DOCUMENT_TYPE_CE, TIPO_PERSONA_DOCENTE,
                                    TIPO_PERSONA_ADMINISTRATIVO, TIPO_PERSONA_REGISTRADOR, TIPO_PERSONA_AUTORIDAD)
 from apps.common.datatables_pagination import datatable_page
@@ -33,7 +35,8 @@ from apps.formacion.models import AdjuntoComplementaria, AdjuntoTecnico, Adjunto
     Complementaria
 from apps.idioma.models import Idioma
 from apps.login.views import BaseLogin
-from apps.persona.forms import PersonaForm, DatosGeneralesForm, ExportarCVForm, ColegiaturaFormset
+from apps.persona.forms import PersonaForm, DatosGeneralesForm, ExportarCVForm, ColegiaturaFormset, ColegiaturaForm, \
+    get_colegio_name, get_estado_colegiado
 from apps.persona.models import Persona, DatosGenerales, Departamento, Colegiatura
 from apps.produccion.models import AdjuntoCientifica, Cientifica
 
@@ -148,38 +151,29 @@ class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
     form_class = PersonaForm
     msg = None
     datos_generales = None
-    datos_colegiatura = None
 
     def form_valid(self, form):
+        context = self.get_context_data()
+        colegiatura_formset = context['colegiatura_formset']
         ruta = None
         model_datos_generales = DatosGenerales.objects.filter(persona_id=self.object.id).last()
-        model_datos_colegiatura = Colegiatura.objects.filter(persona_id=self.object.id).last()
 
         if model_datos_generales:
             form_dg = DatosGeneralesForm(self.request.POST or None, instance=model_datos_generales)
         else:
             form_dg = DatosGeneralesForm(self.request.POST or None)
 
-        # Colegiatura
-        if model_datos_colegiatura:
-            form_dc = DatosColegiaturaForm(self.request.POST or None, instance=model_datos_colegiatura)
-        else:
-            form_dc = DatosColegiaturaForm(self.request.POST or None)
-
         valid = True
 
         if self.request.session.get('tipo_persona') == TIPO_PERSONA_REGISTRADOR:
             if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_REGISTRADOR, TIPO_PERSONA_AUTORIDAD):
                 self.msg = 'El usuario registrador solo puede actualizar administrativo o docente, corregir'
-                return self.form_invalid(form_dg, form_dc)
+                return self.form_invalid(form_dg)
 
         if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_DOCENTE, TIPO_PERSONA_ADMINISTRATIVO):
             if not form_dg.is_valid():
                 self.msg = 'Error en datos generales, verificar'
                 return self.form_invalid(form_dg)
-            if not form_dc.is_valid():
-                self.msg = 'Error en datos generales, verificar'
-                return self.form_invalid(form_dc)
 
         if valid:
             if self.request.FILES:
@@ -203,24 +197,27 @@ class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
 
             if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_DOCENTE, TIPO_PERSONA_ADMINISTRATIVO):
                 datos_generales = form_dg.save(commit=False)
-                datos_colegiatura = form_dc.save(commit=False)
                 if self.datos_generales:
                     datos_generales.modificado_por = self.request.user.username
                 datos_generales.creado_por = self.request.user.username
                 datos_generales.persona_id = persona.id
                 datos_generales.save()
-                if self.datos_colegiatura:
-                    datos_colegiatura.modificado_por = self.request.user.username
-                datos_colegiatura.creado_por = self.request.user.username
-                datos_colegiatura.persona_id = persona.id
-                datos_colegiatura.save()
             else:
                 if model_datos_generales:
                     model_datos_generales.delete()
-                if model_datos_colegiatura:
-                    model_datos_colegiatura.delete()
 
-        return HttpResponseRedirect(self.get_success_url())
+            if form.cleaned_data.get('tipo_persona') in (TIPO_PERSONA_DOCENTE):
+                if colegiatura_formset.is_valid():
+                    persona = form.save(commit=False)
+                    self.object.colegiatura_set.all().delete()
+                    for e in colegiatura_formset:
+                        e.creado_por = self.request.user.username
+                        e.persona_id = persona.id
+                        e.persona = persona
+                        e.save()
+                else:
+                    return self.form_invalid(form)
+            return HttpResponseRedirect(self.get_success_url())
 
     def form_invalid(self, form, **kwargs):
         context = self.get_context_data(**kwargs)
@@ -230,20 +227,35 @@ class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
             messages.warning(self.request, 'Ha ocurrido un error al actualizar a la persona')
         context.update({
             'form_datos_generales': DatosGeneralesForm(self.request.POST or None),
-            'form_datos_colegiatura': DatosColegiaturaForm(self.request.POST or None)
         })
         return self.render_to_response(context)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         datos_generales = DatosGenerales.objects.filter(persona_id=self.object.id).last()
-        datos_colegiatura = Colegiatura.objects.filter(persona_id=self.object.id).last()
         context.update({
             'form_datos_generales': DatosGeneralesForm(self.request.POST or None, instance=datos_generales),
-            'form_datos_colegiatura': DatosColegiaturaForm(self.request.POST or None, instance=datos_colegiatura),
+            'colegiatura_formset': self.get_colegiatura_formset(),
             'MEDIA_URL': settings.MEDIA_URL
         })
         return context
+
+    def get_colegiatura_formset(self):
+        colegiatura = self.object.colegiatura_set.all()
+        formset_initial = [{'id': e.id, 'colegio_profesional': e.colegio_profesional,
+                            'colegio_profesional_persona': get_colegio_name(e.colegio_profesional),
+                            'sede_colegio': e.sede_colegio, 'sede_colegio_persona': e.sede_colegio,
+                            'codigo_colegiado': e.codigo_colegiado, 'codigo_colegiado_persona': e.codigo_colegiado,
+                            'estado_colegiado': e.estado_colegiado,
+                            'estado_colegiado_persona': get_estado_colegiado(e.estado_colegiado)}
+                           for e in colegiatura]
+        formset_colegiatura = inlineformset_factory(Persona, Colegiatura, form=ColegiaturaForm,
+                                                    can_delete=True, extra=colegiatura.count())
+        formset = formset_colegiatura(
+            data=self.request.POST or None,
+            initial=formset_initial,
+        )
+        return formset
 
     def get_success_url(self):
         messages.success(self.request, 'Persona actualizada con éxito')

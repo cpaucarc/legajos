@@ -36,7 +36,8 @@ class PersonaForm(forms.ModelForm):
 
     sede_colegio_input = forms.CharField(label='Sede colegio', required=True)
     codigo_colegiado_input = forms.CharField(label='Código colegiado', required=True)
-    estado_colegiado_select = forms.ChoiceField(label='Estado del colegiado', required=True, choices=COLEGIATURA_ESTADO_CHOICES,
+    estado_colegiado_select = forms.ChoiceField(label='Estado del colegiado', required=True,
+                                                choices=COLEGIATURA_ESTADO_CHOICES,
                                                 initial=COLEGIATURA_HABILITADO,
                                                 widget=forms.Select(attrs={'class': 'form-control'}))
 
@@ -138,11 +139,26 @@ def get_colegios(col_id=None):
     col_list = ['id', 'name']
     if col_id:
         colegios = Colegio.objects.filter(
-            acronym=col_id
+            id=col_id
         ).values_list(*col_list)
     else:
         colegios = Colegio.objects.all().values_list(*col_list)
     return list(colegios)
+
+
+def get_colegio_name(col_id):
+    if col_id:
+        # return Colegio.objects.filter(id=col_id)
+        return Colegio.objects.only('name').get(id=col_id).name
+    else:
+        return None
+
+
+def get_estado_colegiado(status):
+    if status:
+        return 'Habilitado'
+    else:
+        return 'Inhabilitado'
 
 
 class ExportarCVForm(forms.Form):
