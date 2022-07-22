@@ -40,7 +40,7 @@ $(document).ready(function () {
 
     $(".form-colegiatura .form-check > label").html(`<i class='fa fa-trash elimina-formset'></i>`);
     $(".form-colegiatura").on('click', '.elimina-formset', function () {
-        //$(this).prop("checked", false);
+        $(this).prop("checked", false);
         $(this).closest('tr').hide();
     });
 

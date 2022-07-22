@@ -175,15 +175,10 @@
                                 {% field form.estado_colegiado_select label=True %}
                             </div>
                         </div>
-                        <div class="row center-block">
-                            <div class="col-lg-12">
-                                {% include 'persona/partials/colegiatura_formset.html' %}
-                            </div>
-                        </div>
+                        {% include 'persona/partials/colegiatura_formset.html' %}
                     </fieldset>
                 </form>
                 &nbsp;
-
                 {% if username == 'admin' %}
                     <div class="tab-content table-responsive">
                         <table class="table table-bordered table-hover table-striped table-responsive"
