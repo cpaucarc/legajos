@@ -19,7 +19,7 @@
   convierteMayuscula($("#id_titulo"));
   convierteMayuscula($("#id_sub_titulo"));
   convierteMayuscula($("#id_revista"));
-  convierteMayuscula($("#formCientifica #id_descripcion"));
+  convierteMayuscula($("#formCientifica"));
   convierteMayuscula($("#id_autor"));
   convierteMayuscula($("#id_distincion"));
   $("#id_resumen").inputmask({
@@ -28,7 +28,7 @@
   $("#id_descripcion_cargo").inputmask({
     // regex: "^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ]+(?: [a-zA-ZáéíóúÁÉÍÓÚñÑüÜ]+)*$", placeholder:''
   });
-  $("#formDistincion #id_descripcion").inputmask({
+  $("#formDistincion").inputmask({
     regex: "^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ]+(?: [a-zA-ZáéíóúÁÉÍÓÚñÑüÜ]+)*$", placeholder:''
   });
   $("#id_celular").inputmask({
