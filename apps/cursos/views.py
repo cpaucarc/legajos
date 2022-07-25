@@ -147,4 +147,4 @@ class RsuGuardarView(LoginRequiredMixin, View):
             )
             return JsonResponse({'msg': '¡La responsabilidad social fue registrado con éxito!', 'type': 'success'})
         except Exception as e:
-            return JsonResponse({'error': f"{e}", 'type': 'success'})
+            return JsonResponse({'error': f"{e}", 'type': 'error'})

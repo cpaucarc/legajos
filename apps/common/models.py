@@ -199,4 +199,4 @@ class Colegio(models.Model):
     name = models.CharField('Nombre',max_length=150)
 
     def __str__(self):
-        return '{acronym}-{name}'.format(acronym=self.acronym, name=self.name)
+        return '{acronym} - {name}'.format(acronym=self.acronym, name=self.name)

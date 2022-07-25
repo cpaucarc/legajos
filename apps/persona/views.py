@@ -35,7 +35,7 @@ from apps.formacion.models import AdjuntoComplementaria, AdjuntoTecnico, Adjunto
     Complementaria
 from apps.idioma.models import Idioma
 from apps.login.views import BaseLogin
-from apps.persona.forms import PersonaForm, DatosGeneralesForm, ExportarCVForm, ColegiaturaFormset, ColegiaturaForm, \
+from apps.persona.forms import PersonaForm, DatosGeneralesForm, ExportarCVForm, ColegiaturaFormset, ColegiaturaForm, ColeForm, \
     get_colegio_name, get_estado_colegiado
 from apps.persona.models import Persona, DatosGenerales, Departamento, Colegiatura
 from apps.produccion.models import AdjuntoCientifica, Cientifica
@@ -54,6 +54,7 @@ class PersonaCreateView(LoginRequiredMixin, BaseLogin, CreateView):
         context.update({
             'form_datos_generales': DatosGeneralesForm(self.request.POST or None),
             'colegiatura_formset': self.get_colegiatura_formset(),
+            'pk': 0,
         })
         return context
 
@@ -158,8 +159,10 @@ class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
         datos_generales = DatosGenerales.objects.filter(persona_id=self.object.id).last()
         context.update({
             'form_datos_generales': DatosGeneralesForm(self.request.POST or None, instance=datos_generales),
-            'colegiatura_formset': self.get_colegiatura_formset(),
-            'MEDIA_URL': settings.MEDIA_URL
+            # 'colegiatura_formset': self.get_colegiatura_formset(),
+            'MEDIA_URL': settings.MEDIA_URL,
+            'pk': self.object.id,
+            'form_colegiatura': ColeForm()
         })
         return context
 
@@ -245,26 +248,26 @@ class PersonaUpdateView(LoginRequiredMixin, BaseLogin, UpdateView):
             messages.warning(self.request, 'Ha ocurrido un error al actualizar a la persona')
         context.update({
             'form_datos_generales': DatosGeneralesForm(self.request.POST or None),
-            'colegiatura_formset': self.get_colegiatura_formset(),
+            # 'colegiatura_formset': self.get_colegiatura_formset(),
         })
         return self.render_to_response(context)
 
-    def get_colegiatura_formset(self):
-        colegiatura = self.object.colegiatura_set.all()
-        formset_initial = [{'id': e.id, 'colegio_profesional': e.colegio_profesional,
-                            'colegio_profesional_persona': get_colegio_name(e.colegio_profesional),
-                            'sede_colegio': e.sede_colegio, 'sede_colegio_persona': e.sede_colegio,
-                            'codigo_colegiado': e.codigo_colegiado, 'codigo_colegiado_persona': e.codigo_colegiado,
-                            'estado_colegiado': e.estado_colegiado,
-                            'estado_colegiado_persona': e.get_estado_colegiado_display()}
-                           for e in colegiatura]
-        formset_colegiatura = inlineformset_factory(Persona, Colegiatura, form=ColegiaturaForm,
-                                                    can_delete=True, extra=colegiatura.count())
-        formset = formset_colegiatura(
-            data=self.request.POST or None,
-            initial=formset_initial,
-        )
-        return formset
+    # def get_colegiatura_formset(self):
+    #     colegiatura = self.object.colegiatura_set.all()
+    #     formset_initial = [{'id': e.id, 'colegio_profesional': e.colegio_profesional,
+    #                         'colegio_profesional_persona': get_colegio_name(e.colegio_profesional),
+    #                         'sede_colegio': e.sede_colegio, 'sede_colegio_persona': e.sede_colegio,
+    #                         'codigo_colegiado': e.codigo_colegiado, 'codigo_colegiado_persona': e.codigo_colegiado,
+    #                         'estado_colegiado': e.estado_colegiado,
+    #                         'estado_colegiado_persona': e.get_estado_colegiado_display()}
+    #                        for e in colegiatura]
+    #     formset_colegiatura = inlineformset_factory(Persona, Colegiatura, form=ColegiaturaForm,
+    #                                                 can_delete=True, extra=colegiatura.count())
+    #     formset = formset_colegiatura(
+    #         data=self.request.POST or None,
+    #         initial=formset_initial,
+    #     )
+    #     return formset
 
     def get_success_url(self):
         messages.success(self.request, 'Persona actualizada con éxito')
@@ -1036,3 +1039,49 @@ class DescargarCVPdfDet(View, LoginRequiredMixin):
             except Exception as e:
                 pass
         return response
+
+class ColegiaturaGuardarView(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        try:
+            persona = get_object_or_404(Persona, pk=kwargs.get('pk'))
+
+            colegios = str(kwargs.get('colegios')).split('|||')
+            sedes = str(kwargs.get('sedes')).split('|||')
+            codigos = str(kwargs.get('codigos')).split('|||')
+            estados = str(kwargs.get('estados')).split('|||')
+            print('\nDatos:', colegios, sedes, codigos, estados)
+
+            for i in range(0, len(colegios)):
+                print(colegios[i], sedes[i], codigos[i], estados[i] == 'true')
+                Colegiatura.objects.create(
+                    colegio_profesional_id = colegios[i],
+                    sede_colegio = sedes[i].upper(),
+                    codigo_colegiado = codigos[i].upper(),
+                    estado_colegiado = estados[i] == 'true',
+                    persona = persona
+                )
+            print('\nGuardado')
+            return JsonResponse({'msg': '¡La información de la colegiatura fue registrado con éxito!', 'type': 'success'})
+        except Exception as e:
+            print('\nError', e)
+            return JsonResponse({'msg': f"{e}", 'type': 'error'})
+
+class ListaColegiaturaView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        colegiaturas = Colegiatura.objects.filter(persona_id=kwargs.get('pk'))
+        draw, page = datatable_page(colegiaturas, request)
+        lista_colegiaturas_data = []
+        for colegiatura in page.object_list:
+            lista_colegiaturas_data.append([
+                colegiatura.colegio_profesional.name,
+                colegiatura.sede_colegio,
+                colegiatura.codigo_colegiado,
+                'Habilitado' if colegiatura.estado_colegiado else 'Inhabilitado',
+            ])
+        data = {
+            'draw': draw,
+            'recordsTotal': colegiaturas.count(),
+            'recordsFiltered': colegiaturas.count(),
+            'data': lista_colegiaturas_data
+        }
+        return JsonResponse(data)

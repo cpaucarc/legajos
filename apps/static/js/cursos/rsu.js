@@ -11,11 +11,11 @@ const ruc = document.getElementById('id_ruc')
 const empresa = document.getElementById('id_empresa')
 
 function limpiarTexto(texto){
-    texto = texto.replace('/', '');
-    texto = texto.replace('\\', '');
-    texto = texto.replace('"', '');
-    texto = texto.replace('&', '');
-    texto = texto.replace('\'', '');
+    texto = texto.replaceAll('/', '');
+    texto = texto.replaceAll('\\', '');
+    texto = texto.replaceAll('"', '');
+    texto = texto.replaceAll('&', '');
+    texto = texto.replaceAll('\'', '');
     return texto;
 }
 

@@ -1,7 +1,8 @@
 from django.urls import path
 from apps.persona.views import (BuscarPersonaAPIView, PersonaCreateView, ListaPersonaView, PersonaUpdateView,
                                 EliminarPersonaView, ProvinciaView, DistritoView, DepartamentosPorFacultadView,
-                                ExportarCVView, DescargarCVPdf, DescargarCVPdfDet)
+                                ExportarCVView, DescargarCVPdf, DescargarCVPdfDet,
+                                ColegiaturaGuardarView, ListaColegiaturaView)
 
 app_name = 'persona'
 urlpatterns = [
@@ -16,4 +17,7 @@ urlpatterns = [
     path('consulta-departamento/', DepartamentosPorFacultadView.as_view(), name='consulta_departamento'),
     path('provincias/', ProvinciaView.as_view(), name='provincias'),
     path('distritos/', DistritoView.as_view(), name='distritos'),
+
+    path('guardar-colegiatura/<str:pk>/<str:colegios>/<str:sedes>/<str:codigos>/<str:estados>', ColegiaturaGuardarView.as_view(), name='guardar_colegiatura'),
+    path('lista-colegiatura/<str:pk>', ListaColegiaturaView.as_view(), name='lista_colegiatura'),
 ]

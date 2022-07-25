@@ -32,10 +32,11 @@ class PersonaForm(forms.ModelForm):
             self.fields['departamento'].initial = self['departamento'].value()
 
         self.fields['colegio_profesional_select'].queryset = Colegio.objects.all()
+        self.fields['colegio_profesional_select'].label = "Colegio Profesional"
 
-    sede_colegio_input = forms.CharField(label='Sede colegio', required=False)
-    codigo_colegiado_input = forms.CharField(label='Código colegiado', required=False)
-    estado_colegiado_select = forms.ChoiceField(label='Estado del colegiado', required=False,
+    sede_colegio_input = forms.CharField(label='Sede del Colegio Profesional', required=False)
+    codigo_colegiado_input = forms.CharField(label='Código de Colegiado', required=False)
+    estado_colegiado_select = forms.ChoiceField(label='Estado del Colegiado', required=False,
                                                 choices=COLEGIATURA_ESTADO_CHOICES,
                                                 initial=COLEGIATURA_HABILITADO,
                                                 widget=forms.Select(attrs={'class': 'form-control'}))
@@ -99,6 +100,16 @@ class DatosGeneralesForm(forms.ModelForm):
         if not self.cleaned_data.get('fecha_nacimiento'):
             raise forms.ValidationError('Debe registrar fecha de nacimiento')
         return self.cleaned_data.get('fecha_nacimiento')
+
+class ColeForm(forms.ModelForm):
+    colegio_profesional = forms.ModelChoiceField(queryset=Colegio.objects.filter().order_by('name'), widget=forms.Select())
+    sede_colegio = forms.CharField(label='Sede del Colegio Profesional', widget=forms.TextInput())
+    codigo_colegiado = forms.CharField(label='Código de Colegiado', widget=forms.TextInput())
+    estado_colegiado = forms.ChoiceField(label='Estado del Colegiado', choices=COLEGIATURA_ESTADO_CHOICES, initial=COLEGIATURA_HABILITADO, widget=forms.Select())
+
+    class Meta:
+        model = Colegiatura
+        fields = ('colegio_profesional', 'sede_colegio', 'codigo_colegiado', 'estado_colegiado')
 
 
 def get_departamentos(cod_dep=None):

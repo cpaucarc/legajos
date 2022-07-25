@@ -150,33 +150,66 @@
                             </div>
                         </div>
                     </fieldset>
-                    <fieldset class="border p-5" id="dcolegiatura">
-                        <legend class="scheduler-border" style="width: 120px!important; font-size:12px;"> Datos de
-                            Colegiatura
+{#                    <fieldset class="border p-5" id="dcolegiatura">#}
+{#                        <legend class="scheduler-border" style="width: 120px!important; font-size:12px;"> Datos de#}
+{#                            Colegiatura#}
+{#                        </legend>#}
+{#                        <div class="row center-block">#}
+{#                            <div class="col-lg-10">#}
+{#                                {% field form.colegio_profesional_select label=True %}#}
+{#                            </div>#}
+{#                            <div class="col-lg-2">#}
+{#                                <label style="opacity: 0">-------</label>#}
+{#                                <button type="button" class="pull-right btn btn-primary btn-sm my-1"#}
+{#                                        id="btn-agregar-colegiatura">#}
+{#                                    <i class="fa fa-plus"></i> Agregar colegiatura#}
+{#                                </button>#}
+{#                            </div>#}
+{#                            <div class="col-lg-6">#}
+{#                                {% field form.sede_colegio_input label=True %}#}
+{#                            </div>#}
+{#                            <div class="col-lg-3">#}
+{#                                {% field form.codigo_colegiado_input label=True %}#}
+{#                            </div>#}
+{#                            <div class="col-lg-3">#}
+{#                                {% field form.estado_colegiado_select label=True %}#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        {% include 'persona/partials/colegiatura_formset.html' %}#}
+{#                    </fieldset>#}
+
+                {% if pk > 0 %}
+                        <br>
+                    <fieldset class="border p-5" style="padding-right: 20px; padding-left: 20px;">
+                        <legend class="scheduler-border" style="width: 120px!important; font-size:12px;">
+                            Datos de Colegiatura
                         </legend>
-                        <div class="row center-block">
-                            <div class="col-lg-10">
-                                {% field form.colegio_profesional_select label=True %}
-                            </div>
-                            <div class="col-lg-2">
-                                <label style="opacity: 0">-------</label>
-                                <button type="button" class="pull-right btn btn-primary btn-sm my-1"
-                                        id="btn-agregar-colegiatura">
-                                    <i class="fa fa-plus"></i> Agregar colegiatura
-                                </button>
-                            </div>
-                            <div class="col-lg-6">
-                                {% field form.sede_colegio_input label=True %}
-                            </div>
-                            <div class="col-lg-3">
-                                {% field form.codigo_colegiado_input label=True %}
-                            </div>
-                            <div class="col-lg-3">
-                                {% field form.estado_colegiado_select label=True %}
-                            </div>
+                        <div align="right">
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#colegiaturaModal">
+                                <i class="fa fa-plus"></i> Agregar colegiatura
+                            </button>
                         </div>
-                        {% include 'persona/partials/colegiatura_formset.html' %}
+                        <br/>
+                        <div class="table-responsive">
+                            <table id="tabla-colegiaturas"
+                                   class="table table-striped table-bordered display nowrap w-100">
+                                <thead>
+                                <tr>
+                                    <th>Colegio Profesional</th>
+                                    <th>Sede</th>
+                                    <th>Código</th>
+                                    <th>Estado</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
                     </fieldset>
+
+                {% endif %}
+
                 </form>
                 &nbsp;
                 {% if username == 'admin' %}
@@ -204,6 +237,58 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    {% if pk > 0 %}
+    <div class="modal fade" id="colegiaturaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Registro de colegisturas {{ pk }}</h5>
+                </div>
+
+                <form method="POST" id="colegiaturas-form">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                            <div class="col-lg-12">
+                                {% field form_colegiatura.colegio_profesional label=True %}
+                            </div>
+                            <div class="col-lg-12">
+                                {% field form_colegiatura.sede_colegio label=True %}
+                            </div>
+                            <div class="col-lg-6">
+                                {% field form_colegiatura.codigo_colegiado label=True %}
+                            </div>
+                            <div class="col-lg-6">
+                                {% field form_colegiatura.estado_colegiado label=True %}
+                            </div>
+                        <br/>
+                        <div align="right">
+                            <button type="button" class="btn btn-success btn-sm" id="agregar-colegiatura">
+                                Agregar colegiatura
+                            </button>
+                        </div>
+                        <br>
+                        <table class="table table-sm table-striped table-bordered mt-2">
+                            <tbody id="colegiaturas-agregados">
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type=submit id="btn-guardar-colegiaturas" class="btn btn-primary">
+                            Guardar información
+                        </button>
+                        <button type="button" data-dismiss="modal" class="btn btn-danger">
+                            Cancelar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endif %}
     <div class="modal" tabindex="-1" id="modal-proyecto-pdf">
         <div class="modal-dialog modal-xl2">
             <div class="modal-content">
@@ -235,8 +320,12 @@
             "distritos": "{% url 'persona:distritos' %}",
         };
 
+        var urlGuardarColegiatura = "{% url 'persona:guardar_colegiatura' pk '11111' '22222' '33333' '44444' %}";
+        var urlListarColegiatura = "{% url 'persona:lista_colegiatura' pk %}";
+
     </script>
 
     <script src="{% static 'js/formset.js' %}"></script>
     <script src="{% static 'js/persona/persona.js' %}"></script>
+    <script src="{% static 'js/persona/colegiatura.js' %}"></script>
 {% endblock %}
