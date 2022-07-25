@@ -153,23 +153,33 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label style="color:#51AEF8;">Dist.:</label> &nbsp;&nbsp;&nbsp;{{ dist }}
         </td>
     </tr>
-    <tr>
-        <td class="td_25" style="text-align:right;">Colegiado en :</td>
-        <td class="td_70">{{ colegio }}</td>
-    </tr>
-    <tr>
-        <td class="td_25" style="text-align:right;">Sede :</td>
-        <td class="td_70">{{ sede }}</td>
-    </tr>
-    <tr>
-        <td class="td_25" style="text-align:right;">Código.:</td>
-        <td class="td_70">{{ codigo }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label style="color:#51AEF8;">Estado :</label>
-            &nbsp;&nbsp;&nbsp;
-            {% if estado %}Habilitado{% else %}Inhabilitado{% endif %}
-        </td>
-    </tr>
     </tbody>
 </table>
+
+{% if colegiaturas %}
+    <br>
+    <div class="subtitulo">INFORMACIÓN DE COLEGIATURAS</div>
+    <hr color="#51AEF8" class="linea-subtitulo">
+    <br>
+    <div style="margin-left:20px;font-size:12px; margin-bottom: 5px;">
+        <table>
+            <tbody>
+            {% for colegiatura in colegiaturas %}
+                <tr style="margin-bottom: 4px; margin-top: 4px;">
+                    <td colspan="5">Colegiado en: <b>{{ colegiatura.colegio_profesional.name|upper }}</b></td>
+                    <td colspan="1">Estado: <b>{% if colegiatura.estado_colegiado %}Habilitado{% else %}Inhabilitado{% endif %}</b></td>
+                </tr>
+                <tr style="margin-bottom: 4px; margin-top: 4px;">
+                    <td colspan="2">Sede: <b>{{ colegiatura.sede_colegio|upper }}</b></td>
+                    <td colspan="2">Código: <b>{{ colegiatura.codigo_colegiado|upper }}</b></td>
+                    <td colspan="2"></td>
+                </tr>
+                <tr><td colspan="3"></td></tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endif %}
 
 {% if universitaria or tecnico or complementaria %}
     <br>

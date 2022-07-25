@@ -560,7 +560,7 @@ class DescargarCVPdf(View, LoginRequiredMixin):
 
         BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         response = HttpResponse(content_type='application/pdf')
-        response['Content-Disposition'] = 'attachment; filename="{pat}_{mat}_{nom}_CV_SIMPLE.pdf"'.format(
+        response['Content-Disposition'] = 'attachment; filename="{pat} {mat} {nom} CV-SIMPLE.pdf"'.format(
             pat=p.apellido_paterno, mat=p.apellido_materno, nom=p.nombres
         )
         # Datos de colegiatura
@@ -568,12 +568,7 @@ class DescargarCVPdf(View, LoginRequiredMixin):
         codigo = None
         estado = None
         colegio = None
-        colegiatura = Colegiatura.objects.filter(persona=p).last()
-        if colegiatura:
-            sede = colegiatura.sede_colegio
-            codigo = colegiatura.codigo_colegiado
-            estado = colegiatura.estado_colegiado
-            colegio = colegiatura.colegio_profesional
+        colegiaturas = Colegiatura.objects.filter(persona=p)
         universitaria = None
         tecnico = None
         complementaria = None
@@ -608,10 +603,7 @@ class DescargarCVPdf(View, LoginRequiredMixin):
             'dep': dep,
             'prov': prov,
             'dist': dist,
-            'colegio': colegio,
-            'sede': sede,
-            'codigo': codigo,
-            'estado': estado,
+            'colegiaturas': colegiaturas,
             'foto_path': foto_path,
             'universitaria': universitaria,
             'tecnico': tecnico,
@@ -844,12 +836,7 @@ class DescargarCVPdfDet(View, LoginRequiredMixin):
         codigo = None
         estado = None
         colegio = None
-        colegiatura = Colegiatura.objects.filter(persona=persona).last()
-        if colegiatura:
-            sede = colegiatura.sede_colegio
-            codigo = colegiatura.codigo_colegiado
-            estado = colegiatura.estado_colegiado
-            colegio = colegiatura.colegio_profesional
+        colegiaturas = Colegiatura.objects.filter(persona=persona)
 
         universitaria = None
         adjuntos_universitaria = []
@@ -924,10 +911,7 @@ class DescargarCVPdfDet(View, LoginRequiredMixin):
             'dep': dep,
             'prov': prov,
             'dist': dist,
-            'colegio': colegio,
-            'sede': sede,
-            'codigo': codigo,
-            'estado': estado,
+            'colegiaturas': colegiaturas,
             'foto_path': foto_path,
             'universitaria': universitaria,
             'adjuntos_universitaria': adjuntos_universitaria,
@@ -952,7 +936,7 @@ class DescargarCVPdfDet(View, LoginRequiredMixin):
 
         BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         response = HttpResponse(content_type='application/pdf')
-        response['Content-Disposition'] = 'attachment; filename="{pat}_{mat}_{nom}_CV_DETALLADO.pdf"'.format(
+        response['Content-Disposition'] = 'attachment; filename="{pat} {mat} {nom} CV-DETALLADO.pdf"'.format(
             pat=persona.apellido_paterno, mat=persona.apellido_materno, nom=persona.nombres
         )
 
@@ -1049,7 +1033,6 @@ class ColegiaturaGuardarView(LoginRequiredMixin, View):
             sedes = str(kwargs.get('sedes')).split('|||')
             codigos = str(kwargs.get('codigos')).split('|||')
             estados = str(kwargs.get('estados')).split('|||')
-            print('\nDatos:', colegios, sedes, codigos, estados)
 
             for i in range(0, len(colegios)):
                 print(colegios[i], sedes[i], codigos[i], estados[i] == 'true')
@@ -1060,7 +1043,6 @@ class ColegiaturaGuardarView(LoginRequiredMixin, View):
                     estado_colegiado = estados[i] == 'true',
                     persona = persona
                 )
-            print('\nGuardado')
             return JsonResponse({'msg': '¡La información de la colegiatura fue registrado con éxito!', 'type': 'success'})
         except Exception as e:
             print('\nError', e)
