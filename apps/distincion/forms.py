@@ -4,8 +4,7 @@ from apps.distincion.models import Distincion
 
 
 class DistincionForm(forms.ModelForm):
-    fecha = forms.DateField(widget=forms.DateInput(format='%Y-%m-%d', attrs={'class': 'form-control input-sm',
-                                                                             'type': 'date'}))
+    fecha = forms.DateField(widget=forms.DateInput(format='%Y-%m-%d', attrs={'class': 'form-control input-sm', 'type': 'date'}))
     web_referencia = forms.CharField(required=False)
 
     def __init__(self, *args, **kwargs):
