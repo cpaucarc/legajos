@@ -2,7 +2,7 @@ $(document).ready(function() {
   $("#agrega-cientifica").on( "click", function() {
     $(".add-item-cientifica").html("Agregar");
     $("#modal-cientifica .modal-title").html("Nueva producción científica");
-    $("#formCientifica")[0].reset();
+    $("#formularioCientifica")[0].reset();
     $("#errores_list").html("");
     $('#modal-cientifica').modal('show');
     $("#id_cientifica").val("");
@@ -39,7 +39,7 @@ table_cientifica.on("draw", function(){
 })
 
 $(document).on('click', '.carga-editaru', function(e) {
-  $form = $("#formCientifica");
+  $form = $("#formularioCientifica");
   $form [0].reset();
   $form.valid()
   $("#errores_list").html("");
@@ -97,7 +97,7 @@ $(document).on('click', '.carga-editaru', function(e) {
 });
 
 $(document).on('click', 'a.add-item-cientifica', function(e) {
-  $form = $("#formCientifica");
+  $form = $("#formularioCientifica");
   if($form.valid()){
     cargarBlock();
     var id_cientifica= $("#id_cientifica").val() ? $("#id_cientifica").val() : '';
