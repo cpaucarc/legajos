@@ -3,7 +3,8 @@ from apps.formacion.views import (GuardarUniversitariaView, ListaUniversitariaVi
                                   ListaArchivosView, EliminarArchivoView, ConsultaUniversitariaView,
                                   DescargarArchivoView, ConsultaTecnicoView, ListaTecnicoView, GuardarTecnicoView,
                                   ConsultaComplementariaView, ListaComplementariaView, GuardarComplementariaView,
-                                  EliminarComplementariaView, EliminarTecnicoView, EliminarUniversitariaView)
+                                  EliminarComplementariaView, EliminarTecnicoView, EliminarUniversitariaView,
+                                  ListaMaestriaView, ConsultaMaestriaView, GuardarMaestriaView, EliminarMaestriaView)
 from apps.formacion.views import (
     FormacionAcademicaView
 )
@@ -14,16 +15,24 @@ urlpatterns = [
     path('consulta-universitaria/<str:pk>', ConsultaUniversitariaView.as_view(), name='consulta_universitaria'),
     path('consulta-tecnico/<str:pk>', ConsultaTecnicoView.as_view(), name='consulta_tecnico'),
     path('consulta-complementaria/<str:pk>', ConsultaComplementariaView.as_view(), name='consulta_complementaria'),
+    path('consulta-maestria/<str:pk>', ConsultaMaestriaView.as_view(), name='consulta_maestria'),
+
     path('lista-Universitaria/<str:pk>', ListaUniversitariaView.as_view(), name='lista_universitaria'),
     path('lista-tecnico/<str:pk>', ListaTecnicoView.as_view(), name='lista_tecnico'),
     path('lista-complementaria/<str:pk>', ListaComplementariaView.as_view(), name='lista_complementaria'),
+    path('lista-maestria/<str:pk>', ListaMaestriaView.as_view(), name='lista_maestria'),
+
     path('guardar-universitaria/<str:pk>/', GuardarUniversitariaView.as_view(), name='guardar_universitaria'),
     path('guardar-tecnico/<str:pk>/', GuardarTecnicoView.as_view(), name='guardar_tecnico'),
     path('guardar-complementaria/<str:pk>/', GuardarComplementariaView.as_view(), name='guardar_complementaria'),
+    path('guardar-maestria/<str:pk>/', GuardarMaestriaView.as_view(), name='guardar_maestria'),
+
     path('lista-archivos/<str:pk>/<str:tipo>/', ListaArchivosView.as_view(), name='listar_archivos'),
     path('subir-archivos/<str:pk>/<str:tipo>/', SubirArchivosView.as_view(), name='subir_archivos'),
     path('eliminar-archivo/<str:pk>/<str:tipo>/', EliminarArchivoView.as_view(), name='eliminar_archivo'),
     path('descargar-archivo/<str:pk>/<str:tipo>/', DescargarArchivoView.as_view(), name='descargar_archivo'),
+
+    path('eliminar-maestria/<str:pk>', EliminarMaestriaView.as_view(), name='eliminar_maestria'),
     path('eliminar-complementaria/<str:pk>', EliminarComplementariaView.as_view(), name='eliminar_complementaria'),
     path('eliminar-tecnico/<str:pk>', EliminarTecnicoView.as_view(), name='eliminar_tecnico'),
     path('eliminar-universitaria/<str:pk>', EliminarUniversitariaView.as_view(), name='eliminar_universitaria'),

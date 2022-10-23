@@ -1,7 +1,7 @@
 from django import forms
 from django.utils import timezone
 
-from apps.formacion.models import Universitaria, Tecnico, Complementaria
+from apps.formacion.models import Universitaria, Tecnico, Complementaria, Maestria
 
 
 class UniversitariaForm(forms.ModelForm):
@@ -70,6 +70,33 @@ class ComplementariaForm(forms.ModelForm):
         model = Complementaria
         fields = ('capacitacion_complementaria', 'centro_estudios', 'pais_estudios', 'frecuencia', 'cantidad',
                   'fecha_inicio', 'fecha_fin')
+
+    def clean(self):
+        cleaned_data = super().clean()
+        fecha_inicio = cleaned_data.get('fecha_inicio')
+        fecha_fin = cleaned_data.get('fecha_fin')
+        if fecha_inicio and fecha_fin:
+            if fecha_fin < fecha_inicio:
+                self.add_error('fecha_fin', 'La fecha fin no puede ser menor a la fecha de inicio')
+            if fecha_inicio > timezone.now().date():
+                self.add_error('fecha_inicio', 'La fecha inicio no puede ser mayor a la fecha actual')
+            if fecha_fin > timezone.now().date():
+                self.add_error('fecha_fin', 'La fecha fin no puede ser mayor a la fecha actual')
+
+
+
+class MaestriaForm(forms.ModelForm):
+    fecha_inicio = forms.DateField(widget=forms.DateInput(format='%Y-%m-%d',
+                                                          attrs={'class': 'form-control input-sm', 'type': 'date'}))
+    fecha_fin = forms.DateField(widget=forms.DateInput(format='%Y-%m-%d',
+                                                       attrs={'class': 'form-control input-sm', 'type': 'date'}))
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    class Meta:
+        model = Maestria
+        fields = ('denominacion', 'centro_estudios', 'pais_estudios', 'modalidad', 'duracion', 'fecha_inicio', 'fecha_fin')
 
     def clean(self):
         cleaned_data = super().clean()

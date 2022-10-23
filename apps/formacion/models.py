@@ -3,7 +3,7 @@ import os
 from django.core.files.storage import default_storage
 from django.db import models
 
-from apps.common.constants import GRADO_CHOICES, FRECUENCIA_CHOICES
+from apps.common.constants import GRADO_CHOICES, FRECUENCIA_CHOICES, MODALIDAD_CHOICES
 from apps.common.models import BaseModel, Institucion, UbigeoPais
 from apps.persona.models import Persona
 
@@ -93,3 +93,33 @@ class AdjuntoComplementaria(BaseModel):
         if path:
             os.remove(path)
         super(AdjuntoComplementaria, self).delete()
+
+
+class Maestria(BaseModel):
+    denominacion = models.CharField('Denominación de la Maestría', max_length=250)
+    centro_estudios = models.ForeignKey(Institucion, on_delete=models.PROTECT)
+    pais_estudios = models.ForeignKey(UbigeoPais, on_delete=models.PROTECT, blank=True, null=True)
+    duracion = models.PositiveIntegerField('Duración (en Meses)')
+    fecha_inicio = models.DateField('Fecha inicio', blank=True, null=True)
+    fecha_fin = models.DateField('Fecha fin', blank=True, null=True)
+    modalidad = models.CharField('Modalidad', max_length=45, choices=MODALIDAD_CHOICES)
+    persona = models.ForeignKey(Persona, on_delete=models.PROTECT)
+
+    def delete(self, using=None, keep_parents=False):
+        for am in self.adjuntomaestria_set.all():
+            path = default_storage.path(am.ruta)
+            if path:
+                os.remove(path)
+        super(Maestria, self).delete()
+
+
+class AdjuntoMaestria(BaseModel):
+    nombre = models.CharField('Nombre del documento', max_length=200)
+    ruta = models.TextField('Ruta del documento', max_length=500)
+    maestria = models.ForeignKey(Maestria, on_delete=models.CASCADE)
+
+    def delete(self, using=None, keep_parents=False):
+        path = default_storage.path(self.ruta)
+        if path:
+            os.remove(path)
+        super(AdjuntoMaestria, self).delete()

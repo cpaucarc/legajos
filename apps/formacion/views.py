@@ -14,12 +14,13 @@ from rest_framework.status import HTTP_200_OK
 from rest_framework.views import APIView
 
 from apps.common.constants import (TIPO_DOCUMENTO_FORMACION_UNIVERSITARIA, TIPO_DOCUMENTO_CHOICES,
-                                   TIPO_DOCUMENTO_FORMACION_TECNICA, TIPO_DOCUMENTO_FORMACION_COMPLEMENTARIA)
+                                   TIPO_DOCUMENTO_FORMACION_TECNICA, TIPO_DOCUMENTO_FORMACION_COMPLEMENTARIA,
+                                   TIPO_DOCUMENTO_FORMACION_MAESTRIA)
 from apps.common.datatables_pagination import datatable_page
 from apps.experiencia.forms import EvaluadorProyectoForm
-from apps.formacion.forms import UniversitariaForm, TecnicoForm, ComplementariaForm
+from apps.formacion.forms import UniversitariaForm, TecnicoForm, ComplementariaForm, MaestriaForm
 from apps.formacion.models import (Universitaria, AdjuntoUniversitaria, Tecnico, AdjuntoTecnico, Complementaria,
-                                   AdjuntoComplementaria)
+                                   AdjuntoComplementaria, Maestria, AdjuntoMaestria)
 from apps.login.views import BaseLogin, ControlDocenteAdministrativo
 from apps.persona.models import Persona
 
@@ -33,6 +34,7 @@ class FormacionAcademicaView(LoginRequiredMixin, BaseLogin, ControlDocenteAdmini
             'form_universitaria': UniversitariaForm(prefix='u'),
             'form_tecnico': TecnicoForm(prefix='t'),
             'form_complementaria': ComplementariaForm(prefix='c'),
+            'form_maestria': MaestriaForm(prefix='m'),
             'form_evaluador': EvaluadorProyectoForm(prefix='ep'),
         })
         return context
@@ -127,6 +129,9 @@ class EliminarArchivoView(LoginRequiredMixin, View):
         if tipo_documento == TIPO_DOCUMENTO_FORMACION_COMPLEMENTARIA:
             complementaria = get_object_or_404(AdjuntoComplementaria, pk=kwargs.get('pk'))
             complementaria.delete()
+        if tipo_documento == TIPO_DOCUMENTO_FORMACION_MAESTRIA:
+            maestria = get_object_or_404(AdjuntoMaestria, pk=kwargs.get('pk'))
+            maestria.delete()
         return JsonResponse({'result': 'ok'})
 
 
@@ -150,6 +155,11 @@ class SubirArchivosView(LoginRequiredMixin, View):
             carpeta = 'formacion_complementaria'
             modelo = AdjuntoComplementaria()
             modelo.complementaria = complementaria
+        elif tipo_documento == TIPO_DOCUMENTO_FORMACION_MAESTRIA:
+            maestria = get_object_or_404(Maestria, pk=kwargs.get('pk'))
+            carpeta = 'maestria'
+            modelo = AdjuntoMaestria()
+            modelo.maestria = maestria
         path = None
         if modelo:
             try:
@@ -185,6 +195,8 @@ class ListaArchivosView(LoginRequiredMixin, View):
                 adjuntos = AdjuntoTecnico.objects.filter(tecnico=kwargs.get('pk')).order_by('-id')
             elif tipo_documento == TIPO_DOCUMENTO_FORMACION_COMPLEMENTARIA:
                 adjuntos = AdjuntoComplementaria.objects.filter(complementaria=kwargs.get('pk')).order_by('-id')
+            elif tipo_documento == TIPO_DOCUMENTO_FORMACION_MAESTRIA:
+                adjuntos = AdjuntoMaestria.objects.filter(maestria=kwargs.get('pk')).order_by('-id')
         if not adjuntos:
             adjuntos = AdjuntoUniversitaria.objects.none()
         draw, page = datatable_page(adjuntos, request)
@@ -232,6 +244,8 @@ class DescargarArchivoView(LoginRequiredMixin, View):
             adjunto = get_object_or_404(AdjuntoTecnico, pk=pk)
         elif tipo_documento == TIPO_DOCUMENTO_FORMACION_COMPLEMENTARIA:
             adjunto = get_object_or_404(AdjuntoComplementaria, pk=pk)
+        elif tipo_documento == TIPO_DOCUMENTO_FORMACION_MAESTRIA:
+            adjunto = get_object_or_404(AdjuntoMaestria, pk=pk)
         if adjunto:
             try:
                 archivo = default_storage.open(adjunto.ruta)
@@ -468,4 +482,108 @@ class EliminarUniversitariaView(LoginRequiredMixin, APIView):
         universitaria = get_object_or_404(Universitaria, id=self.kwargs.get('pk'))
         universitaria.delete()
         msg = f'Formación universitaria eliminada correctamente'
+        return Response({'msg': msg}, HTTP_200_OK)
+
+
+class ListaMaestriaView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        id_persona = kwargs.get('pk')
+        maestria = Maestria.objects.none()
+        if id_persona:
+            maestria = Maestria.objects.filter(persona_id=id_persona).order_by('-id')
+        draw, page = datatable_page(maestria, request)
+        lista_maestria_data = []
+        for mst in page.object_list:
+            lista_maestria_data.append([
+                mst.denominacion,
+                '{}'.format(mst.centro_estudios),
+                '{}'.format(mst.pais_estudios),
+                mst.get_modalidad_display() or '-',
+                "{} meses".format(mst.duracion) or '-',
+                mst.fecha_inicio or '-',
+                mst.fecha_fin or '-',
+                self.get_boton_archivos(mst),
+                self.get_boton_editar(mst),
+                self.get_boton_eliminar(mst),
+            ])
+        data = {
+            'draw': draw,
+            'recordsTotal': maestria.count(),
+            'recordsFiltered': maestria.count(),
+            'data': lista_maestria_data
+        }
+        return JsonResponse(data)
+
+    def get_boton_eliminar(self, mst):
+        boton_eliminar = '''<button class="btn btn-danger btn-sm eliminar-maestria" data-id={0}>
+                      <i class="fa fa-trash"></i></button>'''
+        boton_eliminar = boton_eliminar.format(mst.id)
+        boton = '{0}'.format(boton_eliminar)
+        return boton
+
+    def get_boton_editar(self, mst):
+        boton = '''<button class="btn btn-warning btn-sm carga-editar-maestria" data-id={}>
+                        <i class="fa fa-edit"></i></a></button>'''
+        boton = boton.format(mst.id)
+        boton = '{0}'.format(boton)
+        return boton
+
+    def get_boton_archivos(self, mst):
+        boton = '''<button class="btn btn-info btn-sm archivose" data-id={} data-tipo={}>
+                    <i class="fa fa-eye"></i></a></button>'''
+        boton = boton.format(mst.id, TIPO_DOCUMENTO_FORMACION_MAESTRIA)
+        boton = '{0}'.format(boton)
+        return boton
+
+
+class ConsultaMaestriaView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        maestria = get_object_or_404(Maestria, pk=kwargs.get('pk'))
+        data = {
+            'id': maestria.id,
+            'denominacion': '{}'.format(maestria.denominacion),
+            'centro_estudios_id': maestria.centro_estudios_id,
+            'pais_estudios_id': maestria.pais_estudios_id,
+            'centro_estudios': '{}'.format(maestria.centro_estudios),
+            'modalidad': maestria.modalidad,
+            'duracion': maestria.duracion,
+            'fecha_inicio': maestria.fecha_inicio,
+            'fecha_fin': maestria.fecha_fin,
+        }
+        return JsonResponse(data)
+
+
+class GuardarMaestriaView(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        id_maestria = request.GET.get('maestria_id')
+        persona = get_object_or_404(Persona, pk=kwargs.get('pk'))
+        if id_maestria:
+            maestria = get_object_or_404(Maestria, pk=id_maestria)
+            form = MaestriaForm(request.POST, instance=maestria, prefix='m')
+            if form.is_valid():
+                maestria = form.save(commit=False)
+                maestria.modificado_por = self.request.user.username
+                maestria.save()
+                response = JsonResponse({'msg': 'Se realizó la actualización correctamente'})
+                return response
+            else:
+                return JsonResponse({'error': f"{form.errors}"})
+        else:
+            form = MaestriaForm(request.POST, prefix='m')
+            if form.is_valid():
+                maestria = form.save(commit=False)
+                maestria.persona = persona
+                maestria.creado_por = self.request.user.username
+                maestria.save()
+                response = JsonResponse({'msg': 'Se realizó el registro correctamente'})
+                return response
+            else:
+                return JsonResponse({'error': f"{form.errors}"})
+
+
+class EliminarMaestriaView(LoginRequiredMixin, APIView):
+    def get(self, request, *args, **kwargs):
+        maestria = get_object_or_404(Maestria, id=self.kwargs.get('pk'))
+        maestria.delete()
+        msg = f'Maestría eliminada correctamente'
         return Response({'msg': msg}, HTTP_200_OK)
