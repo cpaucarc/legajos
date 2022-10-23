@@ -32,7 +32,7 @@ from apps.distincion.models import AdjuntoDistincion, Distincion
 from apps.experiencia.models import AdjuntoAsesorTesis, AdjuntoDocente, AdjuntoEvaluadorProyecto, AdjuntoLaboral, \
     Laboral, AsesorTesis, Docente, EvaluadorProyecto
 from apps.formacion.models import AdjuntoComplementaria, AdjuntoTecnico, AdjuntoUniversitaria, Universitaria, Tecnico, \
-    Complementaria
+    Complementaria, Maestria, AdjuntoMaestria
 from apps.idioma.models import Idioma
 from apps.login.views import BaseLogin
 from apps.persona.forms import PersonaForm, DatosGeneralesForm, ExportarCVForm, ColegiaturaFormset, ColegiaturaForm, ColeForm, \
@@ -572,6 +572,7 @@ class DescargarCVPdf(View, LoginRequiredMixin):
         universitaria = None
         tecnico = None
         complementaria = None
+        maestrias = None
         laboral = None
         docente = None
         asesor_tesis = None
@@ -584,6 +585,7 @@ class DescargarCVPdf(View, LoginRequiredMixin):
                 universitaria = Universitaria.objects.filter(persona=p)
                 tecnico = Tecnico.objects.filter(persona=p)
                 complementaria = Complementaria.objects.filter(persona=p)
+                maestrias = Maestria.objects.filter(persona=p)
             if a.get('opcion') == 'experiencia_laboral' and a.get('valor') == 'on':
                 laboral = Laboral.objects.filter(persona=p)
                 docente = Docente.objects.filter(persona=p)
@@ -608,6 +610,7 @@ class DescargarCVPdf(View, LoginRequiredMixin):
             'universitaria': universitaria,
             'tecnico': tecnico,
             'complementaria': complementaria,
+            'maestrias': maestrias,
             'laboral': laboral,
             'docente': docente,
             'asesor_tesis': asesor_tesis,
@@ -844,6 +847,8 @@ class DescargarCVPdfDet(View, LoginRequiredMixin):
         adjuntos_tecnico = []
         complementaria = None
         adjuntos_complementaria = []
+        maestrias = None
+        adjuntos_maestrias = []
         laboral = None
         adjuntos_laboral = []
         docente = None
@@ -874,6 +879,11 @@ class DescargarCVPdfDet(View, LoginRequiredMixin):
                 for cmp in complementaria:
                     adjuntos_complementaria.append(
                         AdjuntoComplementaria.objects.filter(complementaria=cmp).order_by('-id'))
+
+                maestrias = Maestria.objects.filter(persona=persona)
+                for mst in maestrias:
+                    adjuntos_maestrias.append(
+                        AdjuntoMaestria.objects.filter(maestria=mst).order_by('-id'))
             if a.get('opcion') == 'experiencia_laboral' and a.get('valor') == 'on':
                 laboral = Laboral.objects.filter(persona=persona)
                 for lb in laboral:
@@ -919,6 +929,8 @@ class DescargarCVPdfDet(View, LoginRequiredMixin):
             'adjuntos_tecnico': adjuntos_tecnico,
             'complementaria': complementaria,
             'adjuntos_complementaria': adjuntos_complementaria,
+            'maestrias': maestrias,
+            'adjuntos_maestrias': adjuntos_maestrias,
             'laboral': laboral,
             'adjuntos_laboral': adjuntos_laboral,
             'docente': docente,
@@ -958,6 +970,9 @@ class DescargarCVPdfDet(View, LoginRequiredMixin):
             for univ in adju:
                 docs.append(default_storage.path(univ.ruta))
                 # docs.append("/apps/media/" + univ.rut)
+        for adjmt in adjuntos_maestrias:
+            for mta in adjmt:
+                docs.append(default_storage.path(mta.ruta))
         for adjt in adjuntos_tecnico:
             for tec in adjt:
                 docs.append(default_storage.path(tec.ruta))

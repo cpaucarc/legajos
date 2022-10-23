@@ -197,6 +197,38 @@
         {% endfor %}
     </div>
 
+    <div class="subtitulo">FORMACIÓN ACADÉMICA (MAESTRÍA)</div>
+    <hr color="#51AEF8" class="linea-subtitulo">
+    <br>
+    <div style="margin-left:20px;font-size:12px;">
+        {% for mst in maestrias %}
+            <table>
+                <tr>
+                    <td>
+                        <label style="color:#51AEF8">
+                            {{ mst.fecha_inicio|date:"d/m/Y" }} - {{ mst.fecha_fin|date:"d/m/Y" }}
+                        </label>
+                    </td>
+                    <td colspan="3"><b>{{ mst.denominacion|upper }}</b></td>
+                </tr>
+                <tr>
+                    <td>Duración: {{ mst.duracion }} meses</td>
+                    <td colspan="3">
+                        {{ mst.centro_estudios.name|upper }} ({{ mst.pais_estudios.ubigeo_pais|upper }})
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="3">
+                        Modalidad: {{ mst.get_modalidad_display }}
+                    </td>
+                </tr>
+            </table>
+            <br>
+
+        {% endfor %}
+    </div>
+
     <div class="subtitulo">FORMACIÓN ACADÉMICA (TÉCNICA)</div>
     <hr color="#51AEF8" class="linea-subtitulo">
     <br>

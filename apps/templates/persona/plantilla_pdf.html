@@ -187,14 +187,17 @@
             {% for colegiatura in colegiaturas %}
                 <tr style="margin-bottom: 4px; margin-top: 4px;">
                     <td colspan="5">Colegiado en: <b>{{ colegiatura.colegio_profesional.name|upper }}</b></td>
-                    <td colspan="1">Estado: <b>{% if colegiatura.estado_colegiado %}Habilitado{% else %}Inhabilitado{% endif %}</b></td>
+                    <td colspan="1">Estado: <b>{% if colegiatura.estado_colegiado %}Habilitado{% else %}
+                        Inhabilitado{% endif %}</b></td>
                 </tr>
                 <tr style="margin-bottom: 4px; margin-top: 4px;">
                     <td colspan="2">Sede: <b>{{ colegiatura.sede_colegio|upper }}</b></td>
                     <td colspan="2">Código: <b>{{ colegiatura.codigo_colegiado|upper }}</b></td>
                     <td colspan="2"></td>
                 </tr>
-                <tr><td colspan="3"></td></tr>
+                <tr>
+                    <td colspan="3"></td>
+                </tr>
             {% endfor %}
             </tbody>
         </table>
@@ -215,6 +218,37 @@
             <br>
         {% endfor %}
     </div>
+    <div class="subtitulo">FORMACIÓN ACADÉMICA (MAESTRÍA)</div>
+    <hr color="#51AEF8" class="linea-subtitulo">
+    <br>
+    <div style="margin-left:20px;font-size:12px;">
+        {% for mst in maestrias %}
+            <table>
+                <tr>
+                    <td>
+                        <label style="color:#51AEF8">
+                            {{ mst.fecha_inicio|date:"d/m/Y" }} - {{ mst.fecha_fin|date:"d/m/Y" }}
+                        </label>
+                    </td>
+                    <td colspan="3"><b>{{ mst.denominacion|upper }}</b></td>
+                </tr>
+                <tr>
+                    <td>Duración: {{ mst.duracion }} meses</td>
+                    <td colspan="3">
+                        {{ mst.centro_estudios.name|upper }} ({{ mst.pais_estudios.ubigeo_pais|upper }})
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="3">
+                        Modalidad: {{ mst.get_modalidad_display }}
+                    </td>
+                </tr>
+            </table>
+            <br>
+
+        {% endfor %}
+    </div>
     <div class="subtitulo">FORMACIÓN ACADÉMICA (TÉCNICA)</div>
     <hr color="#51AEF8" class="linea-subtitulo">
     <br>
@@ -222,7 +256,7 @@
         {% for t in tecnico %}
             <div>{{ t.centro_estudios.name|upper }}</div>
             <div><b>Carrera:</b> {{ t.nombre_carrera|upper }}</div>
-            <div><b>Fecha:</b> {{ t.fecha_inicio|date:"d/m/Y" }} al {{ t.fecha_fin|date:"d/m/Y" }}</label></div>
+            <div><b>Fecha:</b> {{ t.fecha_inicio|date:"d/m/Y" }} al {{ t.fecha_fin|date:"d/m/Y" }}</div>
             <br>
         {% endfor %}
     </div>
@@ -362,24 +396,26 @@
     <hr color="#51AEF8" class="linea-subtitulo">
     <br>
     <div style="margin-left:20px;font-size:11px;">
-    <table>
-        <tbody>
-        {% for curso in cursos %}
-        <tr style="margin-bottom: 10px;">
-            <td style="width: 55px;">{{ curso.semestre.nombre }}</td>
-            <td style="width: 250px;">{{ curso.institucion.name }}</td>
-            <td>{{ curso.escuela }}</td>
-            <td>{{ curso.curso }}</td>
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <table>
+            <tbody>
+            {% for curso in cursos %}
+                <tr style="margin-bottom: 10px;">
+                    <td style="width: 55px;">{{ curso.semestre.nombre }}</td>
+                    <td style="width: 250px;">{{ curso.institucion.name }}</td>
+                    <td>{{ curso.escuela }}</td>
+                    <td>{{ curso.curso }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
 {% endif %}
 
 <div id="footer_content">
     <hr/>
-    Página<pdf:pagenumber> de<pdf:pagecount>
+    Página
+    <pdf:pagenumber> de
+        <pdf:pagecount>
 </div>
 
 </body>
